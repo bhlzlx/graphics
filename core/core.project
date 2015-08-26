@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Project Name="core" InternalType="Console">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
+    <Plugin Name="CMakePlugin">
+      <![CDATA[[{
+  "name": "Debug",
+  "enabled": false,
+  "buildDirectory": "build",
+  "sourceDirectory": "$(ProjectPath)",
+  "generator": "MinGW Makefiles",
+  "buildType": "Debug",
+  "arguments": [],
+  "parentProject": ""
+ }]]]>
+    </Plugin>
+  </Plugins>
+  <VirtualDirectory Name="model">
+    <VirtualDirectory Name="md5">
+      <File Name="model/md5/main.cpp"/>
+      <File Name="model/md5/md5.cpp"/>
+      <File Name="model/md5/md5.h"/>
+      <File Name="model/md5/md5Frame.cpp"/>
+      <File Name="model/md5/md5Frame.h"/>
+    </VirtualDirectory>
+    <File Name="model/MD5Model.cpp"/>
+    <File Name="model/MD5Model.h"/>
+    <File Name="model/models.cpp"/>
+    <File Name="model/models.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="math">
+    <File Name="math/Camera.cpp"/>
+    <File Name="math/Camera.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="common">
+    <VirtualDirectory Name="log">
+      <File Name="common/log/logger.cpp"/>
+      <File Name="common/log/logger.h"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <Description/>
+  <Dependencies/>
+  <VirtualDirectory Name="src">
+    <File Name="main.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="app">
+    <File Name="app/AppDelegate.cpp"/>
+    <File Name="app/AppDelegate.h"/>
+    <File Name="app/OpenGLViewController.cpp"/>
+    <File Name="app/OpenGLViewController.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="buffer">
+    <File Name="buffer/buffer.cpp"/>
+    <File Name="buffer/buffer.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="core">
+    <File Name="core/BufferOGL.cpp"/>
+    <File Name="core/BufferOGL.h"/>
+    <File Name="core/DepthStencilOGL.cpp"/>
+    <File Name="core/DepthStencilOGL.h"/>
+    <File Name="core/device.h"/>
+    <File Name="core/EffectOGL.cpp"/>
+    <File Name="core/EffectOGL.h"/>
+    <File Name="core/Image.cpp"/>
+    <File Name="core/RenderPipelineOGL.cpp"/>
+    <File Name="core/RenderPipelineOGL.h"/>
+    <File Name="core/RenderTargetOGL.cpp"/>
+    <File Name="core/RenderTargetOGL.h"/>
+    <File Name="core/ShaderOGL.cpp"/>
+    <File Name="core/ShaderOGL.h"/>
+    <File Name="core/TexOGL.cpp"/>
+    <File Name="core/TexOGL.h"/>
+    <File Name="core/UICommon.cpp"/>
+    <File Name="core/UICommon.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="event">
+    <File Name="event/MouseEvent.cpp"/>
+    <File Name="event/MouseEvent.h"/>
+  </VirtualDirectory>
+  <Settings Type="Executable">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="" Assembler="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g;-O0;-Wall;-std=c++11;-I./core" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="-lglew32 -lglfw3 -lpng -lz -lgdi32 -lopengl32" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="E:/projects/builds/$(ProjectName)/$(ProjectName)" IntermediateDirectory="E:/projects/builds/$(ProjectName)/Debug" Command="E:/projects/builds/$(ProjectName)/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="E:/projects/builds/$(ProjectName)/" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="yes">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="yes" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths>E:\projects\graphics\core</SearchPaths>
+      </Completion>
+    </Configuration>
+    <Configuration Name="Release" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-O2;-Wall" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
+        <Preprocessor Value="NDEBUG"/>
+      </Compiler>
+      <Linker Options="" Required="yes"/>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName>None</ThirdPartyToolName>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths/>
+      </Completion>
+    </Configuration>
+  </Settings>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
+</CodeLite_Project>
