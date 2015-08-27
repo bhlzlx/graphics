@@ -1,89 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="core" InternalType="Console">
+<CodeLite_Project Name="md5parse" InternalType="Console">
   <Plugins>
-    <Plugin Name="qmake">
-      <![CDATA[00010001N0005Debug000000000000]]>
-    </Plugin>
     <Plugin Name="CMakePlugin">
       <![CDATA[[{
   "name": "Debug",
   "enabled": false,
   "buildDirectory": "build",
   "sourceDirectory": "$(ProjectPath)",
-  "generator": "MinGW Makefiles",
-  "buildType": "Debug",
+  "generator": "",
+  "buildType": "",
   "arguments": [],
   "parentProject": ""
  }]]]>
     </Plugin>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
   </Plugins>
-  <VirtualDirectory Name="model">
-    <VirtualDirectory Name="md5">
-      <File Name="model/md5/main.cpp"/>
-      <File Name="model/md5/md5.cpp"/>
-      <File Name="model/md5/md5.h"/>
-      <File Name="model/md5/md5Frame.cpp"/>
-      <File Name="model/md5/md5Frame.h"/>
-    </VirtualDirectory>
-    <File Name="model/MD5Model.cpp"/>
-    <File Name="model/MD5Model.h"/>
-    <File Name="model/models.cpp"/>
-    <File Name="model/models.h"/>
-    <VirtualDirectory Name="md5parser">
-      <File Name="model/md5parser/md5.cpp"/>
-      <File Name="model/md5parser/md5.h"/>
-      <File Name="model/md5parser/md5Model.h"/>
-      <File Name="model/md5parser/md5Model.cpp"/>
-    </VirtualDirectory>
-  </VirtualDirectory>
-  <VirtualDirectory Name="math">
-    <File Name="math/Camera.cpp"/>
-    <File Name="math/Camera.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="common">
-    <VirtualDirectory Name="log">
-      <File Name="common/log/logger.cpp"/>
-      <File Name="common/log/logger.h"/>
-    </VirtualDirectory>
-  </VirtualDirectory>
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="main.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="app">
-    <File Name="app/AppDelegate.cpp"/>
-    <File Name="app/AppDelegate.h"/>
-    <File Name="app/OpenGLViewController.cpp"/>
-    <File Name="app/OpenGLViewController.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="buffer">
-    <File Name="buffer/buffer.cpp"/>
-    <File Name="buffer/buffer.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="core">
-    <File Name="core/BufferOGL.cpp"/>
-    <File Name="core/BufferOGL.h"/>
-    <File Name="core/DepthStencilOGL.cpp"/>
-    <File Name="core/DepthStencilOGL.h"/>
-    <File Name="core/device.h"/>
-    <File Name="core/EffectOGL.cpp"/>
-    <File Name="core/EffectOGL.h"/>
-    <File Name="core/Image.cpp"/>
-    <File Name="core/RenderPipelineOGL.cpp"/>
-    <File Name="core/RenderPipelineOGL.h"/>
-    <File Name="core/RenderTargetOGL.cpp"/>
-    <File Name="core/RenderTargetOGL.h"/>
-    <File Name="core/ShaderOGL.cpp"/>
-    <File Name="core/ShaderOGL.h"/>
-    <File Name="core/TexOGL.cpp"/>
-    <File Name="core/TexOGL.h"/>
-    <File Name="core/UICommon.cpp"/>
-    <File Name="core/UICommon.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="event">
-    <File Name="event/MouseEvent.cpp"/>
-    <File Name="event/MouseEvent.h"/>
+    <VirtualDirectory Name="md5">
+      <File Name="md5/md5.h"/>
+      <File Name="md5/md5.cpp"/>
+    </VirtualDirectory>
+    <File Name="buffer.cpp"/>
+    <File Name="buffer.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -96,16 +39,16 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-O0;-Wall;-std=c++11;-I./core" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
       </Compiler>
-      <Linker Options="-lglew32 -lglfw3 -lpng -lz -lgdi32 -lopengl32" Required="yes"/>
+      <Linker Options="" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="E:/projects/builds/$(ProjectName)/$(ProjectName)" IntermediateDirectory="E:/projects/builds/$(ProjectName)/Debug" Command="E:/projects/builds/$(ProjectName)/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="E:/projects/builds/$(ProjectName)/" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
-      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="yes">
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
         <DebuggerSearchPaths/>
         <PostConnectCommands/>
         <StartupCommands/>
@@ -126,11 +69,11 @@
         <CustomPostBuild/>
         <CustomPreBuild/>
       </AdditionalRules>
-      <Completion EnableCpp11="yes" EnableCpp14="no">
+      <Completion EnableCpp11="no" EnableCpp14="no">
         <ClangCmpFlagsC/>
         <ClangCmpFlags/>
         <ClangPP/>
-        <SearchPaths>E:\projects\graphics\core</SearchPaths>
+        <SearchPaths/>
       </Completion>
     </Configuration>
     <Configuration Name="Release" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
@@ -173,6 +116,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
 </CodeLite_Project>

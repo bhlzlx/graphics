@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=26/08/2015
+Date                   :=27/08/2015
 CodeLitePath           :="E:\application\CodeLite"
 LinkerName             :=E:/tdmgcc32/bin/g++.exe
 SharedObjectLinkerName :=E:/tdmgcc32/bin/g++.exe -shared -fPIC
@@ -64,7 +64,7 @@ AS       := E:/tdmgcc32/bin/as.exe
 CodeLiteDir:=E:\application\CodeLite
 Objects0=$(IntermediateDirectory)/model_MD5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/model_models.cpp$(ObjectSuffix) $(IntermediateDirectory)/math_Camera.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_AppDelegate.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_OpenGLViewController.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_BufferOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_DepthStencilOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_EffectOGL.cpp$(ObjectSuffix) \
 	$(IntermediateDirectory)/core_Image.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderPipelineOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderTargetOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_TexOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_UICommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/event_MouseEvent.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_main.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_md5Frame.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) 
+	$(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) 
 
 
 
@@ -254,6 +254,22 @@ $(IntermediateDirectory)/md5_md5Frame.cpp$(DependSuffix): model/md5/md5Frame.cpp
 
 $(IntermediateDirectory)/md5_md5Frame.cpp$(PreprocessSuffix): model/md5/md5Frame.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/md5_md5Frame.cpp$(PreprocessSuffix) "model/md5/md5Frame.cpp"
+
+$(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix): model/md5parser/md5.cpp $(IntermediateDirectory)/md5parser_md5.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/model/md5parser/md5.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/md5parser_md5.cpp$(DependSuffix): model/md5parser/md5.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/md5parser_md5.cpp$(DependSuffix) -MM "model/md5parser/md5.cpp"
+
+$(IntermediateDirectory)/md5parser_md5.cpp$(PreprocessSuffix): model/md5parser/md5.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/md5parser_md5.cpp$(PreprocessSuffix) "model/md5parser/md5.cpp"
+
+$(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix): model/md5parser/md5Model.cpp $(IntermediateDirectory)/md5parser_md5Model.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/model/md5parser/md5Model.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/md5parser_md5Model.cpp$(DependSuffix): model/md5parser/md5Model.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/md5parser_md5Model.cpp$(DependSuffix) -MM "model/md5parser/md5Model.cpp"
+
+$(IntermediateDirectory)/md5parser_md5Model.cpp$(PreprocessSuffix): model/md5parser/md5Model.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/md5parser_md5Model.cpp$(PreprocessSuffix) "model/md5parser/md5Model.cpp"
 
 $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix): common/log/logger.cpp $(IntermediateDirectory)/log_logger.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/common/log/logger.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) $(IncludePath)

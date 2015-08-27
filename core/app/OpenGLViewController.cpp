@@ -207,7 +207,6 @@ UISize& OpenGLViewController::GetScreenSize()
 
 void OpenGLViewController::OnUpdate()
 {
-	
 	long long timepassed = (glfwGetTime() - m_startTime) * 1000;
    /* GetMD5KeyFrame(&m_motionFrame,m_pMD5File,timepassed);
 	for(int i = 0;i<m_pMD5Model->m_vecMeshes.size();++i)
@@ -217,7 +216,7 @@ void OpenGLViewController::OnUpdate()
 		m_pMD5Model->m_vecMeshes[i].m_pVertexBuffer->SetSubData(0,ptr,size);
 	}
 	*/
-    m_view = m_pCamera->GetMatrix();   
+    m_view = m_pCamera->GetMatrix();
 	m_pRenderPipelineDefault->Begin();
 	/*
     m_pEffectCpu->Begin();    

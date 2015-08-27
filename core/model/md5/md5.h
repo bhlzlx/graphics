@@ -68,9 +68,9 @@ namespace model
 		// MeshFile
 		typedef struct 
 		{
-			int         			m_nVersion;		// 版本号
-			unsigned    			m_nNumJoints;	// 骨骼数
-			unsigned    			m_nNumMeshes;	// mesh数量
+			int						m_nVersion;		// 版本号
+			unsigned				m_nNumJoints;	// 骨骼数
+			unsigned				m_nNumMeshes;	// mesh数量
 			
 			JointMapPtr    			m_pJointMap;	// Joint骨骼结构组织信息
 			JointArray				m_pJointArray;	// 默认Joint数组数据			
