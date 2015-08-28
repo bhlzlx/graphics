@@ -14,7 +14,7 @@ uniform mat4x4  MODEL;
 uniform mat4x4  VIEW;
 uniform mat4x4  PROJECTION;
 
-uniform mat4x4	BONE_MATRICES[64];
+uniform mat4x4	BONE_MATRICES[128];
 
 out vec2  frag_uv;
 

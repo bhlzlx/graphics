@@ -4,13 +4,14 @@
 #include "md5.h"
 #include <core/bufferogl.h>
 #include <core/texogl.h>
+#include <core/effectogl.h>
 using namespace model;
 
-#define ANIMATION_MAX 4
+#define ANIMATION_MAX 16
 
 namespace Graphics
 {
-	struct md5Model
+	typedef struct md5Model
 	{
 		struct md5MeshBuffer
 		{
@@ -35,14 +36,22 @@ namespace Graphics
 		md5MeshBuffer*			m_pMeshBuffers;
 		// 默认绑定骨骼的逆矩阵数组
 		matrix_4x4*				m_pInverseBoneMatrices;
-		// 计算帧插值所用的临时骨骼数据
-		md5Joint*				m_pTJointsA;
-		md5Joint*				m_pTJointsB;
+		// 要传送的骨骼矩阵
+		matrix_4x4*				m_pUniformBoneMatrices;
+		
+		int32_t					m_iActivedAnimID;
 		
 		// 解析 并 创建mesh相关的 buffer object
 		void Init( const char * _szMeshFile );
+		void Deinit();
+		// 
+		void ActiveAnim( uint32_t _iAnimID );
 		// 解析anim添加到anim列表中
 		void AddAnimation( const char * _szAnimFile);
+		// 求变换矩阵
+		void Tick( long long _animTime );
+		// 渲染~
+		void Render( EffectOGL * _pEffect, uint8_t _wiredframe );
 	};
 }
 

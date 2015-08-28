@@ -11,7 +11,6 @@ namespace model
 {
 #define JOINT_NAME_MAX 128
 #define FILENAME_MAX 128
-	
 	typedef glm::vec3 	fvector3;
 	typedef glm::vec4 	fvector4;
 	typedef glm::ivec3 	ivector3;

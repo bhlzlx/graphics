@@ -3,21 +3,25 @@
 //
 #ifndef GRAPHICSLIBRARY_OPENGLVIEWCONTROLLER_H
 #define GRAPHICSLIBRARY_OPENGLVIEWCONTROLLER_H
-
+#include <gl/glew.h>
 #include <stdint.h>
 
-#include "../core/ShaderOGL.h"
+#include <model/md5parser/md5Model.h>
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "../event/MouseEvent.h"
-#include "../math/Camera.h"
+#include <event/MouseEvent.h>
+#include <math/Camera.h>
 
-#include "../core/UICommon.h"
-#include "../core/EffectOGL.h"
-#include "../core/BufferOGL.h"
-#include "../core/RenderPipelineOGL.h"
-#include "../model/md5model.h"
+#include <core/ShaderOGL.h>
+#include <core/UICommon.h>
+#include <core/EffectOGL.h>
+#include <core/BufferOGL.h>
+#include <core/RenderPipelineOGL.h>
+
+
+
 
 using namespace UI;
 using namespace Graphics;
@@ -34,17 +38,20 @@ struct OpenGLViewController
 	EffectOGL*			m_pEffectCpu;
     EffectOGL*          m_pEffectGpu;
     VertexBuffer*       m_cubeBuffer;
-    Graphics::VertexArray*        m_vertexArray;
+    VertexArray*        m_vertexArray;
     TexOGL*             m_pChessTex;
     TexOGL*             m_pCustomTex;
     
    // CModelParser        m_modelObject;
     
-    _MD5_::MD5Model*    m_pMD5Model;
-	MD5FilePtr			m_pMD5File;
-	MD5Frame			m_motionFrame;
+    //_MD5_::MD5Model*    m_pMD5Model;
+	//MD5FilePtr			m_pMD5File;
+	//MD5Frame			m_motionFrame;
 	
-	Graphics::MD5Model  m_GPUModel;
+	md5Model			m_md5Model;
+	//Graphics::MD5Model  m_GPUModel;
+	
+	
     
 	wchar_t				m_szTextSample[1024];
 

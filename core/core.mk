@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=27/08/2015
+Date                   :=28/08/2015
 CodeLitePath           :="E:\application\CodeLite"
 LinkerName             :=E:/tdmgcc32/bin/g++.exe
 SharedObjectLinkerName :=E:/tdmgcc32/bin/g++.exe -shared -fPIC
@@ -62,9 +62,8 @@ AS       := E:/tdmgcc32/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=E:\application\CodeLite
-Objects0=$(IntermediateDirectory)/model_MD5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/model_models.cpp$(ObjectSuffix) $(IntermediateDirectory)/math_Camera.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_AppDelegate.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_OpenGLViewController.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_BufferOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_DepthStencilOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_EffectOGL.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/core_Image.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderPipelineOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderTargetOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_TexOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_UICommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/event_MouseEvent.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_main.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_md5Frame.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/math_Camera.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_AppDelegate.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_OpenGLViewController.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_BufferOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_DepthStencilOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_EffectOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_Image.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderPipelineOGL.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/core_RenderTargetOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_TexOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_UICommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/event_MouseEvent.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) 
 
 
 
@@ -95,22 +94,6 @@ PreBuild:
 ##
 ## Objects
 ##
-$(IntermediateDirectory)/model_MD5Model.cpp$(ObjectSuffix): model/MD5Model.cpp $(IntermediateDirectory)/model_MD5Model.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/model/MD5Model.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/model_MD5Model.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/model_MD5Model.cpp$(DependSuffix): model/MD5Model.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/model_MD5Model.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/model_MD5Model.cpp$(DependSuffix) -MM "model/MD5Model.cpp"
-
-$(IntermediateDirectory)/model_MD5Model.cpp$(PreprocessSuffix): model/MD5Model.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/model_MD5Model.cpp$(PreprocessSuffix) "model/MD5Model.cpp"
-
-$(IntermediateDirectory)/model_models.cpp$(ObjectSuffix): model/models.cpp $(IntermediateDirectory)/model_models.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/model/models.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/model_models.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/model_models.cpp$(DependSuffix): model/models.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/model_models.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/model_models.cpp$(DependSuffix) -MM "model/models.cpp"
-
-$(IntermediateDirectory)/model_models.cpp$(PreprocessSuffix): model/models.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/model_models.cpp$(PreprocessSuffix) "model/models.cpp"
-
 $(IntermediateDirectory)/math_Camera.cpp$(ObjectSuffix): math/Camera.cpp $(IntermediateDirectory)/math_Camera.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/math/Camera.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/math_Camera.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/math_Camera.cpp$(DependSuffix): math/Camera.cpp
@@ -230,30 +213,6 @@ $(IntermediateDirectory)/event_MouseEvent.cpp$(DependSuffix): event/MouseEvent.c
 
 $(IntermediateDirectory)/event_MouseEvent.cpp$(PreprocessSuffix): event/MouseEvent.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/event_MouseEvent.cpp$(PreprocessSuffix) "event/MouseEvent.cpp"
-
-$(IntermediateDirectory)/md5_main.cpp$(ObjectSuffix): model/md5/main.cpp $(IntermediateDirectory)/md5_main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/model/md5/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5_main.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/md5_main.cpp$(DependSuffix): model/md5/main.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/md5_main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/md5_main.cpp$(DependSuffix) -MM "model/md5/main.cpp"
-
-$(IntermediateDirectory)/md5_main.cpp$(PreprocessSuffix): model/md5/main.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/md5_main.cpp$(PreprocessSuffix) "model/md5/main.cpp"
-
-$(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix): model/md5/md5.cpp $(IntermediateDirectory)/md5_md5.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/model/md5/md5.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/md5_md5.cpp$(DependSuffix): model/md5/md5.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/md5_md5.cpp$(DependSuffix) -MM "model/md5/md5.cpp"
-
-$(IntermediateDirectory)/md5_md5.cpp$(PreprocessSuffix): model/md5/md5.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/md5_md5.cpp$(PreprocessSuffix) "model/md5/md5.cpp"
-
-$(IntermediateDirectory)/md5_md5Frame.cpp$(ObjectSuffix): model/md5/md5Frame.cpp $(IntermediateDirectory)/md5_md5Frame.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/model/md5/md5Frame.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5_md5Frame.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/md5_md5Frame.cpp$(DependSuffix): model/md5/md5Frame.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/md5_md5Frame.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/md5_md5Frame.cpp$(DependSuffix) -MM "model/md5/md5Frame.cpp"
-
-$(IntermediateDirectory)/md5_md5Frame.cpp$(PreprocessSuffix): model/md5/md5Frame.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/md5_md5Frame.cpp$(PreprocessSuffix) "model/md5/md5Frame.cpp"
 
 $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix): model/md5parser/md5.cpp $(IntermediateDirectory)/md5parser_md5.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/model/md5parser/md5.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IncludePath)

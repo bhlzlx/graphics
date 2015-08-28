@@ -100,7 +100,10 @@ static void window_size_callback(GLFWwindow* window, int width, int height)
 
 static void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-    appDelegate.AppKeyPressed(key,mouseEvent.lastX,mouseEvent.lastY);
+	if(action != GLFW_PRESS)
+	{
+		appDelegate.AppKeyPressed(key,mouseEvent.lastX,mouseEvent.lastY);
+	}    
 }
 
 static void OnRender()

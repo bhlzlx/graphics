@@ -95,7 +95,7 @@ void OpenGLViewController::OnInit()
 	effectDesc.szVertexShaderText = szVertSimpleText;
 	this->m_pEffectCpu = EffectOGL::CreateEffect(&effectDesc);
     
-    iBuffer * pMeshBuff = BufferFromFile("./Bob.md5mesh");
+   /* iBuffer * pMeshBuff = BufferFromFile("./Bob.md5mesh");
 	iBuffer * pAnimBuff = BufferFromFile("./Bob.md5anim");
 	// 断言
 	assert(pMeshBuff && pAnimBuff);
@@ -111,6 +111,16 @@ void OpenGLViewController::OnInit()
 	
 	Graphics::InitMD5Model(&m_GPUModel,m_pMD5File);
 	CalculateAnimMatrices(&m_GPUModel,5000);
+	*/
+	
+	m_md5Model.Init("./model/hellknight.md5mesh");
+	m_md5Model.AddAnimation("./model/attack.md5anim");
+	m_md5Model.AddAnimation("./model/attack2.md5anim");
+	m_md5Model.AddAnimation("./model/stand.md5anim");
+	m_md5Model.AddAnimation("./model/walk.md5anim");
+	m_md5Model.AddAnimation("./model/roar.md5anim");
+	m_md5Model.ActiveAnim(0);
+	
 //	for(int i = 0;i<m_pMD5Model->m_vecMeshes.size();++i)
 //	{
 //		m_pMD5Model->m_vecMeshes[i].m_pVertexArray->SetVertexBuffer(0,m_GPUModel.m_pMeshes[i].m_pBindposeVertexBuffer,3,0,0);
@@ -197,6 +207,24 @@ void OpenGLViewController::OnKeyPressed(unsigned char key, int x, int y)
         {
             m_pCamera->Rightward(MOVE_STEP);break;
         }
+	case '-':
+		{
+			m_md5Model.m_iActivedAnimID--;
+			if(m_md5Model.m_iActivedAnimID < 0)
+			{
+				m_md5Model.m_iActivedAnimID = m_md5Model.m_nNumAnimation - 1;
+			}
+			break;
+		}
+	case '=':
+		{
+			m_md5Model.m_iActivedAnimID++;
+			if(m_md5Model.m_iActivedAnimID >= m_md5Model.m_nNumAnimation)
+			{
+				m_md5Model.m_iActivedAnimID = 0;
+			}
+			break;
+		}
     }
 }
 
@@ -232,7 +260,9 @@ void OpenGLViewController::OnUpdate()
 	m_pEffectGpu->m_pShader->SetUniformData(&m_model,"MODEL");
     m_pEffectGpu->m_pShader->SetUniformData(&m_view,"VIEW");
     m_pEffectGpu->m_pShader->SetUniformData(&m_projection,"PROJECTION");
-	Graphics::RenderMD5(&m_GPUModel,m_pEffectGpu,timepassed);
+	m_md5Model.Tick(timepassed);
+	m_md5Model.Render(m_pEffectGpu,true);
+	//Graphics::RenderMD5(&m_GPUModel,m_pEffectGpu,timepassed);
     m_pEffectGpu->End();
 	
     m_pRenderPipelineDefault->End();
@@ -315,6 +345,7 @@ void OpenGLViewController::Release()
     this->m_pEffectGpu->Release();
     this->m_pMiniRenderPipeline->Release();
     this->m_pRenderPipelineDefault->Release();
+	this->m_md5Model.Deinit();
     //this->m_pCustomTex->Release();
     
     delete this->m_pCamera;

@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string.h>
+#include <cctype>
 
 #define VERSION_INFO    "MD5Version"
 #define NUM_JOINTS      "numJoints"
@@ -86,6 +87,26 @@ namespace model
 		}
 	}
 	
+	uint8_t isValidLine( char * _pLine, uint16_t _nLength)
+	{
+		for(int i = 0;i<_nLength;++i)
+		{
+			if( isprint(_pLine[i]) )
+			{
+				if(_pLine[i] == '/')
+				{
+					return 0;
+				}
+				else
+				{
+					return 1;
+				}
+			}
+		}
+		// all blank!
+		return 0;
+	}
+	
 	char * read_line(iBuffer * _pBuffer)
 	{
 		static char buffer[512];
@@ -106,7 +127,7 @@ again:
 			++length;
 			if(buffer[length - 1] == '\n')
 			{
-				if(length < LINE_LENGTH_MIN)
+				if(!isValidLine(buffer,length))
 				{
 					goto again;
 				}
@@ -116,6 +137,8 @@ again:
 		buffer[length] = 0;
 		return buffer;
 	}
+	
+	
 	
 	iBuffer * read_block_for_key(iBuffer * _pBuffer, const char * _key)
 	{
@@ -176,7 +199,7 @@ again:
 				pJoint->m_quaOrient.z
 			);
 			strrmv(pJointMap->m_szName,"\t\" ");
-			assert(ret);
+			assert(ret == 8);
 		}
 	}
 	
@@ -206,7 +229,7 @@ again:
 				&_pMesh->m_pVertices[vertIndex].m_nStart,
 				&_pMesh->m_pVertices[vertIndex].m_nCount
 				);
-			assert(ret);
+			assert(ret == 4);
 		}
 		// 取三角形数
 		pLine = read_line(_pBlockBuff);
@@ -221,7 +244,7 @@ again:
 				&_pMesh->m_pTriangles[triangleIndex].y,
 				&_pMesh->m_pTriangles[triangleIndex].z
 			);
-			assert(ret);
+			assert(ret == 3);
 		}
 		// 取weight
 		pLine = read_line(_pBlockBuff);
@@ -238,7 +261,7 @@ again:
 				&_pMesh->m_pWeights[weightIndex].m_vecOffset.y,
 				&_pMesh->m_pWeights[weightIndex].m_vecOffset.z
 			);
-			assert(ret);
+			assert(ret == 5);
 		}
 	}
 	
@@ -308,7 +331,7 @@ again:
 				&_pAnimModel->m_pJointMap[jointIdx].m_iEffectStart
 			);
 			strrmv(_pAnimModel->m_pJointMap[jointIdx].m_szName,"\"");
-			assert(scan_ret);
+			assert(scan_ret == 4);
 		}
 	}
 	
@@ -328,7 +351,7 @@ again:
 				&_pAnimModel->m_pBounds[boundIdx].m_vecMax.y,
 				&_pAnimModel->m_pBounds[boundIdx].m_vecMax.z
 			);
-			assert(scan_ret);
+			assert(scan_ret == 6);
 		}
 	}
 	
@@ -348,7 +371,12 @@ again:
 				&_pJoints[jointIdx].m_quaOrient.y,
 				&_pJoints[jointIdx].m_quaOrient.z
 			);
-			assert(scan_ret);
+			_pJoints[jointIdx].m_quaOrient.w = calc_quat_w( 
+				_pJoints[jointIdx].m_quaOrient.x,
+				_pJoints[jointIdx].m_quaOrient.y,
+				_pJoints[jointIdx].m_quaOrient.z
+			);
+			assert(scan_ret == 6);
 		}
 	}
 	
@@ -356,20 +384,30 @@ again:
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
+		float * pPtr = (float *)_pJoints;
+		int32_t count = 0;
 		for(int jointIdx = 0;jointIdx < _nBones;++jointIdx)
 		{
 			pLine = read_line(_pBuffer);
+			// pLine 为空终止操作
+			if(pLine == NULL)
+			{
+				return;
+			}
 			scan_ret = sscanf(pLine,
 				"%f %f %f %f %f %f",
-				&_pJoints[jointIdx].m_vecOffset.x,
-				&_pJoints[jointIdx].m_vecOffset.y,
-				&_pJoints[jointIdx].m_vecOffset.z,
-				&_pJoints[jointIdx].m_quaOrient.x,
-				&_pJoints[jointIdx].m_quaOrient.y,
-				&_pJoints[jointIdx].m_quaOrient.z
+				pPtr,
+				pPtr+1,
+				pPtr+2,
+				pPtr+3,
+				pPtr+4,
+				pPtr+5
 			);
-			assert(scan_ret);
+			pPtr+=scan_ret;
+			// 返回数不是确定的~
+			count += scan_ret;
 		}
+		printf("count : %d \n",count);
 	}
 	
 	void InitAnimModel(md5AnimModel * _pAnimModel, iBuffer * _pBuffer)
@@ -428,11 +466,46 @@ again:
 		blockBuffer = read_block_for_key(_pBuffer,BASEFRAME);
 		ParseBaseFrame(blockBuffer,_pAnimModel->m_pBaseFrame,_pAnimModel->m_nNumJoints);
 		// key frames
+		md5Joint * pTempJoints = new md5Joint[_pAnimModel->m_nNumJoints];
 		for(int frameIdx = 0;frameIdx < _pAnimModel->m_nNumFrames; ++frameIdx)
 		{
 			blockBuffer = read_block_for_key(_pBuffer,FRAME);
-			ParseKeyFrame(blockBuffer,_pAnimModel->m_pKeyFrames[frameIdx],_pAnimModel->m_nNumJoints);
+			ParseKeyFrame(blockBuffer,pTempJoints,_pAnimModel->m_nNumJoints);
+			// 复制base frame然后替换
+			memcpy( _pAnimModel->m_pKeyFrames[frameIdx], _pAnimModel->m_pBaseFrame, sizeof(md5Joint) * _pAnimModel->m_nNumJoints );
+			// 替换			
+			float * pWritePtr = (float *)_pAnimModel->m_pKeyFrames[frameIdx];			
+			for(int jointIndex = 0; jointIndex < _pAnimModel->m_nNumJoints; ++jointIndex)
+			{
+				float * pReadPtr = ((float *)pTempJoints) + _pAnimModel->m_pJointMap[jointIndex].m_iEffectStart;
+				uint32_t replaceFlag = _pAnimModel->m_pJointMap[jointIndex].m_cEffectFlag;
+				for(int bit = 0;bit<6;bit++)
+				{
+					if( 0x1<<bit & replaceFlag)
+					{
+						pWritePtr[bit] = *pReadPtr;
+						pReadPtr++;
+					}
+				}
+				pWritePtr+=7;
+				// 计算四元数的w
+				_pAnimModel->m_pKeyFrames[frameIdx][jointIndex].m_quaOrient.w = calc_quat_w(
+					_pAnimModel->m_pKeyFrames[frameIdx][jointIndex].m_quaOrient.x,
+					_pAnimModel->m_pKeyFrames[frameIdx][jointIndex].m_quaOrient.y,
+					_pAnimModel->m_pKeyFrames[frameIdx][jointIndex].m_quaOrient.z
+				);
+				// 建立骨骼，累积四元数以及位移
+				int parentJointIndex = _pAnimModel->m_pJointMap[jointIndex].m_iParentIndex;
+				if(parentJointIndex >= 0 )
+				{
+					md5Joint * pJoint = &_pAnimModel->m_pKeyFrames[frameIdx][jointIndex];
+					md5Joint * pParentJoint = &_pAnimModel->m_pKeyFrames[frameIdx][parentJointIndex];
+					pJoint->m_vecOffset = pParentJoint->m_vecOffset + pParentJoint->m_quaOrient * pJoint->m_vecOffset;
+					pJoint->m_quaOrient = pParentJoint->m_quaOrient * pJoint->m_quaOrient;
+				}
+			}
 		}
+		delete []pTempJoints;
 	}
 	
 	void ClearAnimModel(md5AnimModel * _pAnimModel)
