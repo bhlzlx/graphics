@@ -7,7 +7,7 @@ ProjectName            :=core
 ConfigurationName      :=Debug
 WorkspacePath          := "E:\projects\graphics"
 ProjectPath            := "E:\projects\graphics\core"
-IntermediateDirectory  :=E:/projects/builds/$(ProjectName)/Debug
+IntermediateDirectory  :=$(BuildDir)/$(ProjectName)/Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
@@ -27,7 +27,7 @@ OutputSwitch           :=-o
 LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
-OutputFile             :=E:/projects/builds/$(ProjectName)/$(ProjectName)
+OutputFile             :=$(BuildDir)/$(ProjectName)/$(ProjectName)
 Preprocessors          :=
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
@@ -62,6 +62,7 @@ AS       := E:/tdmgcc32/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=E:\application\CodeLite
+BuildDir:=E:/projects/builds
 Objects0=$(IntermediateDirectory)/model_BasicModel.cpp$(ObjectSuffix) $(IntermediateDirectory)/math_Camera.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_AppDelegate.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_OpenGLViewController.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_BufferOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_DepthStencilOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_EffectOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_Image.cpp$(ObjectSuffix) \
 	$(IntermediateDirectory)/core_RenderPipelineOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderTargetOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_TexOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_UICommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/event_MouseEvent.cpp$(ObjectSuffix) $(IntermediateDirectory)/scene_GameScene.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) \
 	
@@ -83,11 +84,11 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
 MakeIntermediateDirs:
-	@$(MakeDirCommand) "E:/projects/builds/$(ProjectName)/Debug"
+	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Debug"
 
 
 $(IntermediateDirectory)/.d:
-	@$(MakeDirCommand) "E:/projects/builds/$(ProjectName)/Debug"
+	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Debug"
 
 PreBuild:
 
@@ -261,6 +262,6 @@ $(IntermediateDirectory)/log_logger.cpp$(PreprocessSuffix): common/log/logger.cp
 ## Clean
 ##
 clean:
-	$(RM) -r E:/projects/builds/$(ProjectName)/Debug/
+	$(RM) -r $(BuildDir)/$(ProjectName)/Debug/
 
 

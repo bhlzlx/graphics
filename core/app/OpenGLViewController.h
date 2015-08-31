@@ -32,11 +32,7 @@ struct OpenGLViewController
 	GameScene			m_gameScene;
     
 	wchar_t				m_szTextSample[1024];
-
-    mat4                m_projection;
-    mat4                m_view;
-    mat4                m_model;
-
+	
     mat4                m_view_light;
     vec4                m_lightPosition;
     float               m_lightRotation;

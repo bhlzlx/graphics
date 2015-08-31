@@ -40,7 +40,7 @@ void OpenGLViewController::OnInit()
     // 创建默认的 framebuffer object
     ClearOP clearOp;
     clearOp.bClearColor = GL_TRUE;
-    float clearColors[4] = {1.0f,.5f,0.5f,1.0f};
+    float clearColors[4] = {.8f,0.8f,0.8f,1.0f};
     memcpy(&clearOp.vClearColors,clearColors,sizeof(clearColors));
     m_pRenderPipelineDefault = RenderPipelineDefault::CreateRenderPipelineDefault(&clearOp);
     
@@ -65,8 +65,6 @@ void OpenGLViewController::OnInit()
     renderPipelineDesc.clearOP.fDepthValue = 1.0f;
     
     m_pMiniRenderPipeline = RenderPipeline::CreateRenderPipeline( &renderPipelineDesc);
-		
-    m_model = glm::mat4x4(1);
 	
 	m_pGameCamera->m_projectionMatrix = perspective(45.f,screenSize.dx/screenSize.dy,0.001f,1000.0f);
 	
