@@ -197,7 +197,12 @@ namespace Graphics
         glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 		_pEffect->m_pShader->SetUniformData(&m_matrix,"MODEL");
         _pEffect->m_pShader->SetUniformData(&renderMode,"RENDER_MODE");
-		_pEffect->m_pShader->SetUniformData(this->m_pUniformBoneMatrices,"BONE_MATRICES[0]",this->m_meshModel.m_nNumJoints);
+		bool succeed = true;
+		succeed = _pEffect->m_pShader->SetUniformData(this->m_pUniformBoneMatrices,"BONE_MATRICES[0]",this->m_meshModel.m_nNumJoints);
+		if(!succeed)
+		{
+			_pEffect->m_pShader->SetUniformData(this->m_pUniformBoneMatrices,"BONE_MATRICES",this->m_meshModel.m_nNumJoints);
+		}
 		for(int meshIdx = 0; meshIdx<this->m_nNumMeshes; ++meshIdx)
 		{
 			md5MeshBuffer * pMeshBuffer = &this->m_pMeshBuffers[meshIdx];

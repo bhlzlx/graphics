@@ -150,7 +150,7 @@ void ShaderOGL::SetShadowTexture(GLuint _index,TexOGL * _pTex)
     }
 }
 
-void ShaderOGL::SetUniformData(void* _pData, const char* szName,unsigned int nElement)
+bool ShaderOGL::SetUniformData(void* _pData, const char* szName,unsigned int nElement)
 {
     // ����uniform��
     std::vector<ShaderVariable>::iterator iter = m_uniforms.begin();
@@ -164,61 +164,62 @@ void ShaderOGL::SetUniformData(void* _pData, const char* szName,unsigned int nEl
              */
             switch(iter->type) {
             case GL_FLOAT: {
-                glUniform1fv(iter->id, nElement, (float*)_pData);return ;
+                glUniform1fv(iter->id, nElement, (float*)_pData);return true;
                 break;
             }
             case GL_FLOAT_VEC2: {
-                glUniform2fv(iter->id, nElement, (float*)_pData);return ;
+                glUniform2fv(iter->id, nElement, (float*)_pData);return true;
                 break;
             }
             case GL_FLOAT_VEC3: {
-                glUniform3fv(iter->id, nElement, (float*)_pData);return ;
+                glUniform3fv(iter->id, nElement, (float*)_pData);return true;
                 break;
             }
             case GL_FLOAT_VEC4: {
-                glUniform4fv(iter->id, nElement, (float*)_pData);return ;
+                glUniform4fv(iter->id, nElement, (float*)_pData);return true;
                 break;
             }
             case GL_INT: {
-                glUniform1iv(iter->id, nElement, (int*)_pData);return ;
+                glUniform1iv(iter->id, nElement, (int*)_pData);return true;
                 break;
             }
             case GL_INT_VEC2: {
-                glUniform2iv(iter->id, nElement, (int*)_pData);return ;
+                glUniform2iv(iter->id, nElement, (int*)_pData);return true;
                 break;
             }
             case GL_INT_VEC3: {
-                glUniform3iv(iter->id, nElement, (int*)_pData);return ;
+                glUniform3iv(iter->id, nElement, (int*)_pData);return true;
                 break;
             }
             case GL_INT_VEC4: {
-                glUniform4iv(iter->id, nElement, (int*)_pData);return ;
+                glUniform4iv(iter->id, nElement, (int*)_pData);return true;
                 break;
             }
             case GL_FLOAT_MAT2: {
-                glUniformMatrix2fv(iter->id, nElement, GL_FALSE, (float*)_pData);return ;
+                glUniformMatrix2fv(iter->id, nElement, GL_FALSE, (float*)_pData);return true;
                 break;
             }
             case GL_FLOAT_MAT3: {
-                glUniformMatrix3fv(iter->id, nElement, GL_FALSE, (float*)_pData);return ;
+                glUniformMatrix3fv(iter->id, nElement, GL_FALSE, (float*)_pData);return true;
                 break;
             }
             case GL_FLOAT_MAT4: {
-                glUniformMatrix4fv(iter->id, nElement, GL_FALSE, (float*)_pData);return ;
+                glUniformMatrix4fv(iter->id, nElement, GL_FALSE, (float*)_pData);return true;
                 break;
             }
             case GL_SAMPLER_2D: {
-                glUniform1i(iter->id, *(GLint*)_pData);return ;
+                glUniform1i(iter->id, *(GLint*)_pData);return true;
                 break;
             }
             case GL_SAMPLER_2D_SHADOW: {
-                glUniform1i(iter->id, *(GLint*)_pData);return ;
+                glUniform1i(iter->id, *(GLint*)_pData);return true;
                 break;
             }
             }
         }
         iter++;
     }
+	return false;
 }
 
 };

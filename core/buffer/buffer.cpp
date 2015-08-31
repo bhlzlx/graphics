@@ -1,4 +1,4 @@
-﻿#include "buffer.h"
+#include "buffer.h"
 #include <cstdio>
 #include <string.h>
 
@@ -100,6 +100,11 @@ struct StdBuffer:public iBuffer
         m_pCurr = NULL;
         m_pEnd = NULL;
     }
+	
+	virtual bool Eof()
+	{
+		return m_pCurr >= m_pEnd;
+	}
 };
 
 iBuffer * CreateStandardBuffer(unsigned long size)

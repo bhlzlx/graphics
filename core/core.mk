@@ -12,11 +12,11 @@ OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
-User                   :=Administrator
+User                   :=phantom
 Date                   :=31/08/2015
-CodeLitePath           :="E:\application\CodeLite"
-LinkerName             :=E:/tdmgcc32/bin/g++.exe
-SharedObjectLinkerName :=E:/tdmgcc32/bin/g++.exe -shared -fPIC
+CodeLitePath           :="D:\app\CodeLite"
+LinkerName             :=F:/tdmgcc/bin/g++.exe
+SharedObjectLinkerName :=F:/tdmgcc/bin/g++.exe -shared -fPIC
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -36,36 +36,36 @@ ObjectsFileList        :="core.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=makedir
 RcCmpOptions           := 
-RcCompilerName         :=E:/tdmgcc32/bin/windres.exe
+RcCompilerName         :=F:/tdmgcc/bin/windres.exe
 LinkOptions            :=  -lglew32 -lglfw3 -lpng -lz -lgdi32 -lopengl32
-IncludePath            := $(IncludeSwitch)E:/tdmgcclib/include  $(IncludeSwitch). $(IncludeSwitch). 
+IncludePath            := $(IncludeSwitch)F:/tdmgcclib/include  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
 RcIncludePath          := 
 Libs                   := 
 ArLibs                 :=  
-LibPath                :=$(LibraryPathSwitch)E:/tdmgcclib/lib  $(LibraryPathSwitch). 
+LibPath                :=$(LibraryPathSwitch)F:/tdmgcclib/lib  $(LibraryPathSwitch). 
 
 ##
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
-AR       := E:/tdmgcc32/bin/ar.exe rcu
-CXX      := E:/tdmgcc32/bin/g++.exe
-CC       := E:/tdmgcc32/bin/gcc.exe
+AR       := F:/tdmgcc/bin/ar.exe rcu
+CXX      := F:/tdmgcc/bin/g++.exe
+CC       := F:/tdmgcc/bin/gcc.exe
 CXXFLAGS :=  -g -O0 -Wall -std=c++11 -I./core $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
-AS       := E:/tdmgcc32/bin/as.exe
+AS       := F:/tdmgcc/bin/as.exe
 
 
 ##
 ## User defined environment variables
 ##
-CodeLiteDir:=E:\application\CodeLite
+CodeLiteDir:=D:\app\CodeLite
 BuildDir:=E:/projects/builds
 Objects0=$(IntermediateDirectory)/model_BasicModel.cpp$(ObjectSuffix) $(IntermediateDirectory)/math_Camera.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_AppDelegate.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_OpenGLViewController.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_BufferOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_DepthStencilOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_EffectOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_Image.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/core_RenderPipelineOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderTargetOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_TexOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_UICommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/event_MouseEvent.cpp$(ObjectSuffix) $(IntermediateDirectory)/scene_GameScene.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) \
-	
+	$(IntermediateDirectory)/core_RenderPipelineOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderTargetOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_TexOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_UICommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/event_MouseEvent.cpp$(ObjectSuffix) $(IntermediateDirectory)/scene_GameScene.cpp$(ObjectSuffix) $(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) 
 
 
 
@@ -231,6 +231,14 @@ $(IntermediateDirectory)/scene_GameScene.cpp$(DependSuffix): scene/GameScene.cpp
 
 $(IntermediateDirectory)/scene_GameScene.cpp$(PreprocessSuffix): scene/GameScene.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/scene_GameScene.cpp$(PreprocessSuffix) "scene/GameScene.cpp"
+
+$(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix): algorithm/md5.cpp $(IntermediateDirectory)/algorithm_md5.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/algorithm/md5.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/algorithm_md5.cpp$(DependSuffix): algorithm/md5.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/algorithm_md5.cpp$(DependSuffix) -MM "algorithm/md5.cpp"
+
+$(IntermediateDirectory)/algorithm_md5.cpp$(PreprocessSuffix): algorithm/md5.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/algorithm_md5.cpp$(PreprocessSuffix) "algorithm/md5.cpp"
 
 $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix): model/md5parser/md5.cpp $(IntermediateDirectory)/md5parser_md5.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/model/md5parser/md5.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IncludePath)

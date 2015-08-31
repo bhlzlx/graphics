@@ -171,4 +171,8 @@
       </Completion>
     </Configuration>
   </Settings>
+  <VirtualDirectory Name="algorithm">
+    <File Name="algorithm/md5.cpp"/>
+    <File Name="algorithm/md5.h"/>
+  </VirtualDirectory>
 </CodeLite_Project>

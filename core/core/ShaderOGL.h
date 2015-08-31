@@ -37,7 +37,7 @@ struct ShaderOGL
     void Active();
     void Release();
 
-    void SetUniformData(void * _pData,const char * szName,unsigned int nElement = 1);
+    bool SetUniformData(void * _pData,const char * szName,unsigned int nElement = 1);
 
     void SetTexture(GLuint _index,TexOGL * _pTex);
     void SetShadowTexture(GLuint _index,TexOGL * _pTex);

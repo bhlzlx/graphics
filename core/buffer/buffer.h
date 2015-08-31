@@ -9,6 +9,7 @@ struct iBuffer
     virtual unsigned long Write(unsigned char * src,unsigned long size)= 0;
     virtual unsigned long Read(unsigned char * out,unsigned long size)= 0;
     virtual bool Seek(int pos,long offset)= 0;
+	virtual bool Eof() = 0;
 
     virtual void Release() = 0;
 };
