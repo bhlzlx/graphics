@@ -5,13 +5,14 @@
 #include <core/bufferogl.h>
 #include <core/texogl.h>
 #include <core/effectogl.h>
+#include <model/RenderObject.h>
 using namespace model;
 
 #define ANIMATION_MAX 16
 
 namespace Graphics
 {
-	typedef struct md5Model
+	typedef struct md5Model:public RenderObjectBase
 	{
 		struct md5MeshBuffer
 		{
@@ -52,6 +53,7 @@ namespace Graphics
 		void Tick( long long _animTime );
 		// 渲染~
 		void Render( EffectOGL * _pEffect, uint8_t _wiredframe );
+		void Release();
 	};
 }
 

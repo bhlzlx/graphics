@@ -138,8 +138,6 @@ again:
 		return buffer;
 	}
 	
-	
-	
 	iBuffer * read_block_for_key(iBuffer * _pBuffer, const char * _key)
 	{
 		char * pLine = read_line(_pBuffer);

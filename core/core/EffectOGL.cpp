@@ -60,6 +60,7 @@ namespace Graphics
         }
         else
         {
+			glEnable(GL_CULL_FACE);
             glCullFace(CullMode2OGL(m_desc.renderState.cullMode));
         }
         // 开启深度测试

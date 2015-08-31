@@ -37,13 +37,7 @@ WindowHandle        mainWnd;
 MouseEvent          mouseEvent;
 AppDelegate         appDelegate;
 
-unsigned int shader_programme;
-
-
-
 int InitOpenGL();
-
-static unsigned int counter = 0;
 
 static void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 {
@@ -146,8 +140,6 @@ int main(int argc,char ** argv)
             glfwSwapBuffers (mainWnd.window);
         }
     }
-    /* OTHER STUFF GOES HERE NEXT */
-
     // close GL context and any other GLFW resources
     appDelegate.AppWillTerminate();
     glfwTerminate();
@@ -167,7 +159,6 @@ int InitOpenGL()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-
 
 	mainWnd.window = glfwCreateWindow (DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, "Graphics", NULL, NULL);
 
@@ -242,8 +233,6 @@ bool FPS_Helper::Tick()
 
     if(msec_diff > this->m_uFixedFPSInterval)
     {
-        // Èç¹ûÆÚ¼äÓÐ2±¶ÒÔÉÏ¼ä¸ôÓ¦¸ÃÁ¢¼´Ë¢ÐÂ£¬Ë¢ÐÂÊ±¼ä¾ÍÊÇµ±Ç°Ê±¼ä
-        // Èç¹ûÃ»ÓÐ2±¶ÒÔÉÏ£¬Ôò¼ÆËã³ö¶ÔÓ¦µÄÊ±¼ä
         if(msec_diff < this->m_uFixedFPSInterval * 2)
         {
             m_iTimeUpdate = m_iTimeUpdate + m_uFixedFPSInterval;

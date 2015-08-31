@@ -138,7 +138,7 @@ namespace Graphics
         }
         else
         {            
-            glDrawArrays(GL_TRIANGLES,0,36);
+            glDrawArrays(GL_TRIANGLES,0,_nVertices);
         }
     }
 };

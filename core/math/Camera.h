@@ -36,6 +36,7 @@ struct CCamera
     mat4  m_rotateMatrix;
 
     mat4  m_viewMatrix;
+	mat4  m_projectionMatrix;
 
     void RotateAxisX(float angle);
     void RotateAxisY(float angle);
@@ -46,11 +47,17 @@ struct CCamera
     void Leftward( float iden);
     void Rightward( float iden);
 
-    mat4& GetMatrix();
+    mat4& GetViewMatrix();
+	mat4& GetProjectionMatrix();
+	
     vec4& GetPosition();
 
     CCamera();
 };
+
+extern CCamera gameCamera;
+
+CCamera * GetGameCamera();
 
 #endif //GRAPHICSLIBRARY_CAMERA_H
 

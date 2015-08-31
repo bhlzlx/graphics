@@ -24,6 +24,9 @@
       <File Name="model/md5parser/md5Model.h"/>
       <File Name="model/md5parser/md5Model.cpp"/>
     </VirtualDirectory>
+    <File Name="model/BasicModel.h"/>
+    <File Name="model/BasicModel.cpp"/>
+    <File Name="model/RenderObject.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="math">
     <File Name="math/Camera.cpp"/>
@@ -164,4 +167,8 @@
       </Completion>
     </Configuration>
   </Settings>
+  <VirtualDirectory Name="scene">
+    <File Name="scene/GameScene.cpp"/>
+    <File Name="scene/GameScene.h"/>
+  </VirtualDirectory>
 </CodeLite_Project>
