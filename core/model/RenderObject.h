@@ -8,6 +8,7 @@
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <stdint.h>
+#include <functional>
 
 namespace Graphics
 {
@@ -24,6 +25,8 @@ namespace Graphics
 		glm::vec3		m_vOffset;
 		float 			m_fScale;
 		glm::mat4		m_matrix;
+		
+		size_t 			m_handle;
 	};
 	
 

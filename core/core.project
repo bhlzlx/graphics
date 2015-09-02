@@ -82,6 +82,16 @@
   <VirtualDirectory Name="scene">
     <File Name="scene/GameScene.cpp"/>
     <File Name="scene/GameScene.h"/>
+    <VirtualDirectory Name="aabb">
+      <File Name="scene/aabb/aabb.h"/>
+      <File Name="scene/aabb/aabb.cpp"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="octree">
+      <File Name="scene/octree/Octree.h"/>
+      <File Name="scene/octree/Octree.cpp"/>
+      <File Name="scene/octree/OctreeRenderNode.h"/>
+      <File Name="scene/octree/OctreeRenderNode.cpp"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
