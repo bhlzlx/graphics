@@ -16,6 +16,7 @@ namespace Graphics
 	{
 	public:
 		virtual void Render(EffectOGL * _pEffect,uint8_t _wiredFrame) = 0;
+		virtual void Render(EffectOGL * _pEffect,glm::mat4 _model, uint8_t _wiredFrame);
 		virtual void SetPosition( glm::vec3 & _position );
 		virtual void SetRotation( glm::vec3 & _axis, float _angle);
 		virtual void SetScale(float _scale);

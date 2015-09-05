@@ -1,37 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="F:\gits\graphics\graphics.workspace">
-  <int Value="3" Name="m_selectedTab"/>
-  <wxString Value="F:\gits\graphics\graphics.workspace" Name="m_workspaceName"/>
-  <TabInfoArray Name="TabInfoArray">
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\core\main.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="0" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\core\event\MouseEvent.cpp" Name="FileName"/>
-      <int Value="4" Name="FirstVisibleLine"/>
-      <int Value="19" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\core\scene\aabb\aabb.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="22" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\core\scene\aabb\aabb.cpp" Name="FileName"/>
-      <int Value="60" Name="FirstVisibleLine"/>
-      <int Value="76" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-  </TabInfoArray>
+<Session Name="E:\projects\graphics\graphics.workspace">
+  <int Value="0" Name="m_selectedTab"/>
+  <wxString Value="E:\projects\graphics\graphics.workspace" Name="m_workspaceName"/>
+  <TabInfoArray Name="TabInfoArray"/>
   <SerializedObject Name="m_breakpoints">
     <long Value="2" Name="Count"/>
     <SerializedObject Name="Breakpoint0">

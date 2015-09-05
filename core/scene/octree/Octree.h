@@ -3,24 +3,23 @@
 
 #include <stdint.h>
 #include <scene/aabb/aabb.h>
-#include <scene/octree/OctreeRenderNode.h>
 #include <set>
 
 namespace Graphics
 {
+	struct OctreeRenderNode;
 	struct OctreeNode
 	{
 		aabb					m_aabb;
 		
-		bool 					Contains( aabb * _pAABB );
+		bool 					Contains( aabb & AABB );
 		void					InitOctree( glm::vec3 _vecMin, glm::vec3 _vecMax, uint16_t _depth);
-		OctreeNode*				InsertRenderNode( OctreeRenderNode * _pRenderNode );
+		bool 					InsertRenderNode( Graphics::OctreeRenderNode * _pRenderNode );
 		// 子节点
 		OctreeNode* 			m_pChildrenNodes;
 		int16_t 				m_nNumChildren;
 		// 渲染对象
-		std::set<OctreeRenderNode *> \
-								m_renderNodes;
+		std::set<OctreeRenderNode *> m_renderNodes;
 		int16_t 				m_nDepthFloor;
 	};
 	

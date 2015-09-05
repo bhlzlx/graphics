@@ -92,6 +92,8 @@
       <File Name="scene/octree/OctreeRenderNode.h"/>
       <File Name="scene/octree/OctreeRenderNode.cpp"/>
     </VirtualDirectory>
+    <File Name="scene/SceneObject.h"/>
+    <File Name="scene/SceneObject.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

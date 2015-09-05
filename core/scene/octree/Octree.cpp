@@ -1,5 +1,6 @@
 #include "Octree.h"
 #include <queue>
+#include <scene/octree/OctreeRenderNode.h>
 
 namespace Graphics
 {
@@ -12,21 +13,16 @@ namespace Graphics
 	{
 	}
 	
-	bool OctreeNode::Contains( aabb * _pAABB )
+	bool OctreeNode::Contains( aabb & AABB )
 	{
-		
-	}
-	
-	OctreeNode* InsertRenderNode( OctreeRenderNode * _pRenderNode )
-	{
-		
+		return this->m_aabb.Contains( AABB);
 	}
 	
 	bool Octree::InsertRenderNode( OctreeRenderNode * _pRenderNode )
 	{
 		OctreeNode * pCurrNode = m_pRootNode;
 		// 如果最大包围盒也容不下就失败了！
-		if(!pCurrNode->m_aabb.Contains( _pRenderNode->m_pLocalAABB))
+		if(!pCurrNode->m_aabb.Contains( _pRenderNode->m_localAABB))
 		{
 			return false;
 		}
@@ -36,7 +32,7 @@ namespace Graphics
 			bool shouldBreak = true;
 			for(int i = 0; i<8; ++i)
 			{
-				if(pCurrNode->m_pChildrenNodes[i].m_aabb.Contains( _pRenderNode->m_pLocalAABB) )
+				if(pCurrNode->m_pChildrenNodes[i].m_aabb.Contains( _pRenderNode->m_localAABB) )
 				{
 					pCurrNode = &pCurrNode->m_pChildrenNodes[i];
 					shouldBreak = false;
@@ -48,7 +44,8 @@ namespace Graphics
 			}
 		}
 		
-		pCurrNode->m_renderNodes
+		pCurrNode->m_renderNodes.insert( _pRenderNode );
+		return true;
 	}
 
 	void Octree::Init( glm::vec3 _center, glm::vec3 _bound, uint16_t _depth )
@@ -78,7 +75,7 @@ namespace Graphics
 				glm::vec3 currVecMin = pCurrNode->m_aabb.m_vecMin;
 				glm::vec3 currVecMax = pCurrNode->m_aabb.m_vecMax;
 			
-				glm::vec3 halfVec = (currVecMin + currVecMax) / 2;
+				glm::vec3 halfVec = (currVecMin + currVecMax) / 2.0f;
 			
 				pCurrNode->m_pChildrenNodes[0].m_aabb.m_vecMin = currVecMin;
 				pCurrNode->m_pChildrenNodes[0].m_aabb.m_vecMax = halfVec;

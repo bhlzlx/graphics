@@ -1,9 +1,9 @@
 [{
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -std=c++11 -I./core -IE:/tdmgcclib/include -I. -I. -MG -MP -MTE:/projects/builds/core/Debug/aabb_aabb.cpp.o -MFE:/projects/builds/core/Debug/aabb_aabb.cpp.o.d -MM scene/aabb/aabb.cpp",
-  "file": "F:\\gits\\graphics\\core\\scene\\aabb\\aabb.cpp"
+  "directory": "E:\\projects\\graphics\\core",
+  "command": "F:/tdmgcc/bin/g++.exe -g -O0 -Wall -std=c++11 -I./core -IF:/tdmgcclib/include -I. -I. -MG -MP -MTE:/projects/builds/core/Debug/octree_Octree.cpp.o -MFE:/projects/builds/core/Debug/octree_Octree.cpp.o.d -MM scene/octree/Octree.cpp",
+  "file": "E:\\projects\\graphics\\core\\scene\\octree\\Octree.cpp"
  }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/scene/aabb/aabb.cpp -g -O0 -Wall -std=c++11 -I./core -o E:/projects/builds/core/Debug/aabb_aabb.cpp.o -IE:/tdmgcclib/include -I. -I.",
-  "file": "F:\\gits\\graphics\\core\\scene\\aabb\\aabb.cpp"
+  "directory": "E:\\projects\\graphics\\core",
+  "command": "F:/tdmgcc/bin/g++.exe -c E:/projects/graphics/core/scene/octree/Octree.cpp -g -O0 -Wall -std=c++11 -I./core -o E:/projects/builds/core/Debug/octree_Octree.cpp.o -IF:/tdmgcclib/include -I. -I.",
+  "file": "E:\\projects\\graphics\\core\\scene\\octree\\Octree.cpp"
  }]

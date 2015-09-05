@@ -23,6 +23,7 @@ public:
 	Graphics::TexOGL*					m_pChessTexture;
 	
 	CCamera*							m_pGameCamera;
+
 	
 	void Init();
 	void Render( uint64_t time);
