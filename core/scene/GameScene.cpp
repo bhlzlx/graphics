@@ -1,5 +1,7 @@
 #include "GameScene.h"
 #include <model/BasicModel.h>
+#include <scene/octree/octreerendernode.h>
+#include <stdio.h>
 
 using namespace Graphics;
 
@@ -40,34 +42,20 @@ void GameScene::Init()
 	m_pGameCamera = GetGameCamera();
 	
 	// 添加模型
-	Graphics::Cube * pCube = NULL;
-	Graphics::md5Model * pModel = NULL;
+	this->m_pCubeModel = (Graphics::Cube*)Graphics::Cube::CreateCube();
 	
-	for(int i = 0; i< 9; ++i)
-	{
-		pCube = (Cube*)Graphics::Cube::CreateCube();
-		pModel = new md5Model;
-		pModel->Init("./model/hellknight.md5mesh");
-		pModel->AddAnimation("./model/idle.md5anim");
-		pModel->AddAnimation("./model/attack2.md5anim");
-		pModel->AddAnimation("./model/stand.md5anim");
-		pModel->AddAnimation("./model/roar.md5anim");
-		pModel->ActiveAnim(0);
+	this->m_pOctree = new Octree;
+	this->m_pOctree->Init( glm::vec3(0.0f,0.0f,0.0f), glm::vec3(64.0f,64.0f,64.0f),2);
 
-		glm::vec3 pos = glm::vec3( i%3 * 10 , 0,i / 3 * 10);
-		pCube->SetPosition(pos);
-		pos.y += 4;
-		pModel->SetPosition(pos);
-		pModel->ActiveAnim(i%3);
-		
-		glm::vec3 axis(1,0,0);
-		pCube->SetRotation(axis,0.0f);
-		pModel->SetRotation(axis,-M_PI/2);
-		
-		pCube->SetScale(4.0f);
-		pModel->SetScale(0.05f);
-		this->m_staticObjects.push_back(pCube);
-		this->m_animObjects.push_back(pModel);
+	for(int i = 0; i< 4; ++i)
+	{
+		SceneObject * pSceneObject = SceneObject::CreateSceneObject( m_pCubeModel);
+		glm::vec3 pos = glm::vec3( i%2 * 8 +2,2,i /2 * 8);
+		pSceneObject->SetPosition(pos);
+		pSceneObject->SetScale(1.0f);
+		OctreeRenderNode * pRenderNode = OctreeRenderNode::CreateRenderNode(pSceneObject);
+		this->m_pOctree->InsertRenderNode( pRenderNode);
+		this->m_staticObjects.push_back(pSceneObject);
 	}
 }
 
@@ -75,18 +63,34 @@ void GameScene::Render(uint64_t _time)
 {
 	glm::mat4& viewMat = m_pGameCamera->GetViewMatrix();
 	glm::mat4& projectionMat = m_pGameCamera->GetProjectionMatrix();
+	CCamera * pCamera = GetGameCamera();
 	
 	m_pStaticEffect->Begin();
 	m_pStaticEffect->m_pShader->SetUniformData( &viewMat, "VIEW");
 	m_pStaticEffect->m_pShader->SetUniformData( &projectionMat, "PROJECTION");
-	m_pStaticEffect->m_pShader->SetTexture(0,m_pChessTexture);
-	for( RenderObjectBase * pObject : this->m_staticObjects)
+	m_pStaticEffect->m_pShader->SetTexture( 0,m_pChessTexture);
+	
+	/*	
+	for( SceneObject * pObject : m_staticObjects)
 	{
-		pObject->Render(this->m_pStaticEffect,false);
+		if(pCamera->InFrustumBoundBox( pObject->m_localAABB))
+		{
+			pObject->Render(m_pStaticEffect);
+		}
 	}
+ */
+	this->m_pOctree->UpdateRenderList();
+	for( OctreeRenderNode * pRenderNode : this->m_pOctree->m_renderList)
+	{
+		if(pCamera->InFrustumBoundBox( pRenderNode->m_pSceneObject->m_localAABB))
+		{
+			pRenderNode->m_pSceneObject->Render(m_pStaticEffect);
+		}
+	}
+	
 	m_pStaticEffect->End();
 	
-	
+	/*
 	m_pAnimEffect->Begin();
 	m_pAnimEffect->m_pShader->SetUniformData( &viewMat, "VIEW");
 	m_pAnimEffect->m_pShader->SetUniformData( &projectionMat, "PROJECTION");
@@ -96,4 +100,5 @@ void GameScene::Render(uint64_t _time)
 		pObject->Render(this->m_pAnimEffect,false);
 	}
 	m_pAnimEffect->End();
+	 */
 }

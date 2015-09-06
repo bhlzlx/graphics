@@ -8,6 +8,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include <scene/aabb/aabb.h>
 
 using namespace glm;
 
@@ -37,6 +38,9 @@ struct CCamera
 
     mat4  m_viewMatrix;
 	mat4  m_projectionMatrix;
+	mat4  m_vpMat;
+	
+	float g_frustumPlanes[6][4];
 
     void RotateAxisX(float angle);
     void RotateAxisY(float angle);
@@ -49,6 +53,10 @@ struct CCamera
 
     mat4& GetViewMatrix();
 	mat4& GetProjectionMatrix();
+	
+	void updateFrustumPlane();
+	bool InFrustumBoundBox(float _x, float _y, float _z);
+	bool InFrustumBoundBox( Graphics::aabb & _box );
 	
     vec4& GetPosition();
 

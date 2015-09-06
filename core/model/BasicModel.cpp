@@ -69,7 +69,7 @@ namespace Graphics
 	void DrawWiredFrame( EffectOGL * _pEffect, VertexArray * _pVertexArray, uint32_t _nNumVert )
 	{
 		int renderMode;
-		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);    
+		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 		glPolygonOffset(-0.2,-0.2);
 		glEnable(GL_POLYGON_OFFSET_LINE);
 		renderMode = 1;
@@ -83,39 +83,12 @@ namespace Graphics
 		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 		glDisable(GL_POLYGON_OFFSET_LINE);
 	}
-	
-	void RenderObjectBase::SetScale(float _scale)
-	{
-		m_fScale = _scale;
-		m_matrix = glm::translate( glm::mat4(1.0f),this->m_vOffset ) * glm::mat4_cast( this->m_qRotation ) * glm::scale( glm::mat4(1.0),glm::vec3(m_fScale,m_fScale,m_fScale));
-	}
-	
-	void RenderObjectBase::SetPosition( glm::vec3 & _position )
-	{
-		this->m_vOffset = _position;
-		m_matrix = glm::translate( glm::mat4(1.0f),this->m_vOffset ) * glm::mat4_cast( this->m_qRotation ) * glm::scale( glm::mat4(1.0),glm::vec3(m_fScale,m_fScale,m_fScale));
-	}
-	
-	void RenderObjectBase::SetRotation(glm::vec3 & _axis, float _angle)
-	{
-		float sinAngle;
-		_angle *= 0.5f;
-		glm::vec3 vn(_axis);
-		glm::normalize(vn);
-		sinAngle = sin(_angle);
-		this->m_qRotation.x = (vn.x * sinAngle);
-		this->m_qRotation.y = (vn.y * sinAngle);
-		this->m_qRotation.z = (vn.z * sinAngle);
-		this->m_qRotation.w = cos(_angle);
-		
-		m_matrix = glm::translate( glm::mat4(1.0f),this->m_vOffset ) * glm::mat4_cast( this->m_qRotation ) * glm::scale( glm::mat4(1.0),glm::vec3(m_fScale,m_fScale,m_fScale));
-	}
 
-	void Cube::Render(EffectOGL * _pEffect,uint8_t _wiredFrame)
+	void Cube::Render(EffectOGL * _pEffect, glm::mat4 _model, uint8_t _wiredFrame)
 	{
 		int renderMode = 0;
         glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-		_pEffect->m_pShader->SetUniformData(&m_matrix,"MODEL");
+		_pEffect->m_pShader->SetUniformData(&_model,"MODEL");
 		_pEffect->m_pShader->SetUniformData(&renderMode,"RENDER_MODE");
 		m_pVertexArray->Bind();
 		m_pVertexArray->Draw(36);
@@ -140,6 +113,8 @@ namespace Graphics
 		pCube->m_pVertexArray->SetVertexBuffer(0,pCube->m_pVertexBuffer,3,(sizeof(float) * 8),0,GL_FLOAT);
 		pCube->m_pVertexArray->SetVertexBuffer(1,pCube->m_pVertexBuffer,3,(sizeof(float) * 8),sizeof(float) * 3,GL_FLOAT);
 		pCube->m_pVertexArray->SetVertexBuffer(2,pCube->m_pVertexBuffer,2,(sizeof(float) * 8),sizeof(float) * 6,GL_FLOAT);
+		pCube->m_localAABB.m_vecMin = glm::vec3(-1.0f,-1.0f,-1.0f);
+		pCube->m_localAABB.m_vecMax = glm::vec3(1.0f,1.0f,1.0f);
 		return pCube;
 	}
 }

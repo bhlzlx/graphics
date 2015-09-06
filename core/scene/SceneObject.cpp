@@ -16,6 +16,8 @@ void SceneObject::SetPosition( glm::vec3 & _position )
 					this->m_vOffset ) * glm::mat4_cast( this->m_qRotation ) * glm::scale( glm::mat4(1.0),
 					glm::vec3(m_fScale,m_fScale,m_fScale)
 					);
+	this->m_localAABB = this->m_pModel->m_localAABB;
+	this->m_localAABB.Transform(m_matrix);
 }
  void SceneObject::SetRotation( glm::vec3 & _axis, float _angle)
  {
@@ -33,6 +35,8 @@ void SceneObject::SetPosition( glm::vec3 & _position )
 					this->m_vOffset ) * glm::mat4_cast( this->m_qRotation ) * glm::scale( glm::mat4(1.0),
 					glm::vec3(m_fScale,m_fScale,m_fScale)
 					);
+	this->m_localAABB = this->m_pModel->m_localAABB;
+	this->m_localAABB.Transform(m_matrix);
  }
  
 void SceneObject::SetScale(float _scale)
@@ -43,17 +47,48 @@ void SceneObject::SetScale(float _scale)
 						this->m_vOffset ) * glm::mat4_cast( this->m_qRotation ) * glm::scale( glm::mat4(1.0),
 						glm::vec3(m_fScale,m_fScale,m_fScale)
 						);
+	this->m_localAABB = this->m_pModel->m_localAABB;
+	this->m_localAABB.Transform(m_matrix);
 }
 
 void SceneObject::Release()
 {
-	if(this->m_pModel)
-	{
-		m_pModel->Release();
-	}
+	delete this;
 }
 
 void SceneObject::Render(Graphics::EffectOGL* _pEffect)
 {
 	this->m_pModel->Render(_pEffect,this->m_matrix,false);
+	// draw wired frame
+	int renderMode;
+	glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+	glPolygonOffset(-0.2,-0.2);
+	glEnable(GL_POLYGON_OFFSET_LINE);
+	renderMode = 1;
+	_pEffect->m_pShader->SetUniformData(&renderMode,"RENDER_MODE");
+	static glm::vec4 wiredframe_color = glm::vec4(1.0,1.0,1.0,1.0);
+	_pEffect->m_pShader->SetUniformData(&wiredframe_color,"WIREDFRAME_COLOR");
+	m_pAABBVAO->Bind();
+	m_pAABBVAO->Draw(36);
+	glPolygonOffset(0,0);
+	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+	glDisable(GL_POLYGON_OFFSET_LINE);
+}
+
+SceneObject * SceneObject::CreateSceneObject( Graphics::RenderObjectBase * _pRenderObject )
+{
+	SceneObject * pSceneObject = new SceneObject();
+	pSceneObject->m_matrix = glm::mat4(1.0f);
+	pSceneObject->m_localAABB = _pRenderObject->m_localAABB;
+	pSceneObject->m_fScale = 1.0f;
+	pSceneObject->m_qRotation = glm::quat(1.0f,0.0f,0.0f,0.0f);
+	pSceneObject->m_vOffset = glm::vec3(0.0f,0.0f,0.0f);
+	pSceneObject->m_pModel = _pRenderObject;
+	
+	CreateAABBVBO(pSceneObject->m_localAABB,&pSceneObject->m_pAABBVBO,&pSceneObject->m_pAABBIBO);
+	pSceneObject->m_pAABBVAO = Graphics::VertexArray::CreateVertexArray();
+	pSceneObject->m_pAABBVAO->SetIndexBuffer(pSceneObject->m_pAABBIBO);
+	pSceneObject->m_pAABBVAO->SetVertexBuffer(0,pSceneObject->m_pAABBVBO,3,0,0,GL_FLOAT);
+	
+	return pSceneObject;
 }

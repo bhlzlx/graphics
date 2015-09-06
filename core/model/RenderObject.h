@@ -9,25 +9,17 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <stdint.h>
 #include <functional>
+#include <scene/aabb/aabb.h>
 
 namespace Graphics
 {
 	class RenderObjectBase
 	{
 	public:
-		virtual void Render(EffectOGL * _pEffect,uint8_t _wiredFrame) = 0;
-		virtual void Render(EffectOGL * _pEffect,glm::mat4 _model, uint8_t _wiredFrame);
-		virtual void SetPosition( glm::vec3 & _position );
-		virtual void SetRotation( glm::vec3 & _axis, float _angle);
-		virtual void SetScale(float _scale);
+		virtual void Render(EffectOGL * _pEffect,glm::mat4 _model, uint8_t _wiredFrame) = 0;
 		virtual void Release() = 0;
-	protected:
-		glm::quat		m_qRotation;
-		glm::vec3		m_vOffset;
-		float 			m_fScale;
-		glm::mat4		m_matrix;
-		
-		size_t 			m_handle;
+	public:
+		aabb			m_localAABB;
 	};
 	
 

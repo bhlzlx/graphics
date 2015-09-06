@@ -4,7 +4,10 @@
 using namespace model;
 
 int main(int argc, char **argv)
-{	iBuffer * pMeshBuffer = BufferFromFile( "Bob.md5mesh" );
+{
+	glm::mat4 mat;
+	printf("%f",mat[15]);
+	iBuffer * pMeshBuffer = BufferFromFile( "Bob.md5mesh" );
 	iBuffer * pAnimBuffer = BufferFromFile( "Bob.md5anim" );
 	md5MeshModel mesh;
 	md5AnimModel anim;

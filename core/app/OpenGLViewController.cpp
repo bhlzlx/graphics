@@ -134,6 +134,10 @@ void OpenGLViewController::OnKeyPressed(unsigned char key, int x, int y)
         {
             m_pGameCamera->Rightward(MOVE_STEP);break;
         }
+	case 'B':
+		{
+			break;
+		}
 //	case '-':
 //		{
 //			m_md5Model.m_iActivedAnimID--;

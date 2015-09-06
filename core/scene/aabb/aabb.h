@@ -1,7 +1,8 @@
 #ifndef __AABB_H__
 #define __AABB_H__
-
+#include <gl/glew.h>
 #include <glm/glm.hpp>
+#include <core/bufferogl.h>
 
 namespace Graphics
 {
@@ -26,6 +27,8 @@ namespace Graphics
 		aabb();
 		~aabb();
 	};
+	
+	void CreateAABBVBO( aabb& _box, VertexBuffer ** _ppVBO, VertexBuffer ** _ppIBO);
 
 }
 

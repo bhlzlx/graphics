@@ -5,15 +5,15 @@
 ## Debug
 ProjectName            :=md5parse
 ConfigurationName      :=Debug
-WorkspacePath          := "E:\projects\graphics"
-ProjectPath            := "E:\projects\graphics\md5parse"
+WorkspacePath          := "F:\gits\graphics"
+ProjectPath            := "F:\gits\graphics\md5parse"
 IntermediateDirectory  :=E:/projects/builds/$(ProjectName)/Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=28/08/2015
+Date                   :=06/09/2015
 CodeLitePath           :="E:\application\CodeLite"
 LinkerName             :=E:/tdmgcc32/bin/g++.exe
 SharedObjectLinkerName :=E:/tdmgcc32/bin/g++.exe -shared -fPIC
@@ -62,6 +62,7 @@ AS       := E:/tdmgcc32/bin/as.exe
 ## User defined environment variables
 ##
 CodeLiteDir:=E:\application\CodeLite
+BuildDir:=E:/projects/builds
 Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix) 
 
 
@@ -94,7 +95,7 @@ PreBuild:
 ## Objects
 ##
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/md5parse/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/md5parse/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/main.cpp$(DependSuffix) -MM "main.cpp"
 
@@ -102,7 +103,7 @@ $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) "main.cpp"
 
 $(IntermediateDirectory)/buffer.cpp$(ObjectSuffix): buffer.cpp $(IntermediateDirectory)/buffer.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/md5parse/buffer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/buffer.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/md5parse/buffer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/buffer.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/buffer.cpp$(DependSuffix): buffer.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/buffer.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/buffer.cpp$(DependSuffix) -MM "buffer.cpp"
 
@@ -110,7 +111,7 @@ $(IntermediateDirectory)/buffer.cpp$(PreprocessSuffix): buffer.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/buffer.cpp$(PreprocessSuffix) "buffer.cpp"
 
 $(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix): md5/md5.cpp $(IntermediateDirectory)/md5_md5.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/md5parse/md5/md5.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix) $(IncludePath)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/md5parse/md5/md5.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/md5_md5.cpp$(DependSuffix): md5/md5.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/md5_md5.cpp$(DependSuffix) -MM "md5/md5.cpp"
 

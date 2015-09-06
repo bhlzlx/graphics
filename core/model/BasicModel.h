@@ -8,7 +8,7 @@ namespace Graphics
 	class Cube: public RenderObjectBase
 	{
 	public:
-		void Render(EffectOGL * _pEffect,uint8_t _wiredFrame);
+		void Render(EffectOGL * _pEffect, glm::mat4 _model, uint8_t _wiredFrame);
 		void Release();
 		static RenderObjectBase * CreateCube();
 	public:

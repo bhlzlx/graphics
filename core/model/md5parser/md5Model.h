@@ -52,7 +52,7 @@ namespace Graphics
 		// 求变换矩阵
 		void Tick( long long _animTime );
 		// 渲染~
-		void Render( EffectOGL * _pEffect, uint8_t _wiredframe );
+		void Render( EffectOGL * _pEffect, glm::mat4 _model, uint8_t _wiredframe );
 		void Release();
 	};
 }

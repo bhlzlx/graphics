@@ -72,6 +72,9 @@ namespace Graphics
 		glm::vec4 r;
 		// 0,0,0
 		r = matrix * currentCorner;
+		this->m_vecMax = glm::vec3(r.x,r.y,r.z);
+		this->m_vecMin = glm::vec3(r.x,r.y,r.z);
+		
 		Merge( glm::vec3(r.x,r.y,r.z) );
 		// 1,0,0
 		currentCorner.x = oldMax.x;
@@ -118,6 +121,38 @@ namespace Graphics
 			m_vecMax.y = _vec.y;
 		if( m_vecMax.z < _vec.z )
 			m_vecMax.z = _vec.z;
+	}
+	
+	void CreateAABBVBO( aabb& _box, VertexBuffer ** _ppVBO, VertexBuffer ** _ppIBO)
+	{
+		glm::vec3 points[8];
+		points[0] = _box.m_vecMin;
+		points[1] = points[0];
+		points[1].x = _box.m_vecMax.x;
+		points[2] = points[1];
+		points[2].y = _box.m_vecMax.y;
+		points[3] = points[2];
+		points[3].x = _box.m_vecMin.x;
+		points[4] = points[3];
+		points[4].z = _box.m_vecMax.z;
+		points[5] = points[4];
+		points[5].y = _box.m_vecMin.y;
+		points[6] = points[5];
+		points[6].x = _box.m_vecMax.x;
+		points[7] = points[6];
+		points[7].y = _box.m_vecMax.y;
+		
+		unsigned int indices[] = 
+		{
+			0,1,2, 2,3,0,
+			4,5,0, 0,3,4,
+			1,0,5, 5,6,1,
+			2,1,6, 6,7,2,
+			4,5,6, 6,7,4,
+			4,3,2, 2,7,4
+		};
+		*_ppVBO = Graphics::VertexBuffer::CreateBuffer( &points, sizeof(points));
+		*_ppIBO = Graphics::VertexBuffer::CreateBuffer( &indices, sizeof(indices));
 	}
 }
 

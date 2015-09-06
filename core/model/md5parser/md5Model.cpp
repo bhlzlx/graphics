@@ -191,11 +191,11 @@ namespace Graphics
 		}
 	}
 	
-	void md5Model::Render( EffectOGL * _pEffect, uint8_t _wiredframe )
+	void md5Model::Render( EffectOGL * _pEffect, glm::mat4 _model, uint8_t _wiredframe )
 	{
 		int renderMode = 0;
         glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
-		_pEffect->m_pShader->SetUniformData(&m_matrix,"MODEL");
+		_pEffect->m_pShader->SetUniformData(&_model,"MODEL");
         _pEffect->m_pShader->SetUniformData(&renderMode,"RENDER_MODE");
 		bool succeed = true;
 		succeed = _pEffect->m_pShader->SetUniformData(this->m_pUniformBoneMatrices,"BONE_MATRICES[0]",this->m_meshModel.m_nNumJoints);

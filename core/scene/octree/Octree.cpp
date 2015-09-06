@@ -1,6 +1,7 @@
 #include "Octree.h"
 #include <queue>
 #include <scene/octree/OctreeRenderNode.h>
+#include <math/camera.h>
 
 namespace Graphics
 {
@@ -36,6 +37,7 @@ namespace Graphics
 				{
 					pCurrNode = &pCurrNode->m_pChildrenNodes[i];
 					shouldBreak = false;
+					break;
 				}
 			}
 			if(shouldBreak || pCurrNode->m_nNumChildren == 0)
@@ -44,7 +46,8 @@ namespace Graphics
 			}
 		}
 		
-		pCurrNode->m_renderNodes.insert( _pRenderNode );
+		pCurrNode->m_renderNodes.push_back( _pRenderNode );
+		_pRenderNode->m_pAttachNode = pCurrNode;
 		return true;
 	}
 
@@ -57,7 +60,7 @@ namespace Graphics
 		m_pRootNode->m_aabb.m_vecMin = vecMin;
 		m_pRootNode->m_aabb.m_vecMax = vecMax;
 		m_pRootNode->m_nDepthFloor = _depth;
-		
+		nodeQueue.push( m_pRootNode);
 		while(!nodeQueue.empty())
 		{
 			OctreeNode * pCurrNode = nodeQueue.front();
@@ -75,10 +78,11 @@ namespace Graphics
 				glm::vec3 currVecMin = pCurrNode->m_aabb.m_vecMin;
 				glm::vec3 currVecMax = pCurrNode->m_aabb.m_vecMax;
 			
-				glm::vec3 halfVec = (currVecMin + currVecMax) / 2.0f;
+				glm::vec3 halfVec = (currVecMax - currVecMin) / 2.0f;
+				glm::vec3 middleVec = (currVecMin + currVecMax) / 2.0f;
 			
 				pCurrNode->m_pChildrenNodes[0].m_aabb.m_vecMin = currVecMin;
-				pCurrNode->m_pChildrenNodes[0].m_aabb.m_vecMax = halfVec;
+				pCurrNode->m_pChildrenNodes[0].m_aabb.m_vecMax = middleVec;
 				
 				pCurrNode->m_pChildrenNodes[1].m_aabb.m_vecMin = pCurrNode->m_pChildrenNodes[0].m_aabb.m_vecMin;
 				pCurrNode->m_pChildrenNodes[1].m_aabb.m_vecMax = pCurrNode->m_pChildrenNodes[0].m_aabb.m_vecMax;
@@ -114,7 +118,6 @@ namespace Graphics
 				pCurrNode->m_pChildrenNodes[7].m_aabb.m_vecMax = pCurrNode->m_pChildrenNodes[6].m_aabb.m_vecMax;
 				pCurrNode->m_pChildrenNodes[7].m_aabb.m_vecMin.x += halfVec.x;
 				pCurrNode->m_pChildrenNodes[7].m_aabb.m_vecMax.x += halfVec.x;
-				
 			}
 			else
 			{
@@ -123,7 +126,39 @@ namespace Graphics
 			}
 		}
 	}
+	
+	void Graphics::Octree::UpdateRenderList()
+	{
+		this->m_renderList.clear();
+		CCamera * pCamera = GetGameCamera();
+		std::queue<OctreeNode *> nodeQueue;
+		if(pCamera->InFrustumBoundBox( this->m_pRootNode->m_aabb))
+		{
+			nodeQueue.push( m_pRootNode);
+		}
+		else
+		{
+			return;
+		}
+		while(!nodeQueue.empty())
+		{
+			OctreeNode * pCurrNode = nodeQueue.front();
+			nodeQueue.pop();
+			for( OctreeRenderNode * pRenderNode :pCurrNode->m_renderNodes)
+			{
+				this->m_renderList.push_back( pRenderNode);
+			}
+			for(int i = 0; i<pCurrNode->m_nNumChildren; ++i)
+			{
+				if(pCamera->InFrustumBoundBox( pCurrNode->m_pChildrenNodes[i].m_aabb))
+				{
+					nodeQueue.push( &pCurrNode->m_pChildrenNodes[i]);
+				}
+			}
+		}
+	}
 }
+
 
 
 
