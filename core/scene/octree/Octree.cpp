@@ -14,6 +14,23 @@ namespace Graphics
 	{
 	}
 	
+	void OctreeNode::Render(EffectOGL * _pEffect)
+	{
+		int renderMode;
+		glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+		glPolygonOffset(-0.2,-0.2);
+		glEnable(GL_POLYGON_OFFSET_LINE);
+		renderMode = 1;
+		_pEffect->m_pShader->SetUniformData(&renderMode,"RENDER_MODE");
+		static glm::vec4 wiredframe_color = glm::vec4(1.0,0.0,1.0,1.0);
+		_pEffect->m_pShader->SetUniformData(&wiredframe_color,"WIREDFRAME_COLOR");
+		m_pAABBVAO->Bind();
+		m_pAABBVAO->Draw(36);
+		glPolygonOffset(0,0);
+		glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+		glDisable(GL_POLYGON_OFFSET_LINE);
+	}
+	
 	bool OctreeNode::Contains( aabb & AABB )
 	{
 		return this->m_aabb.Contains( AABB);
@@ -64,6 +81,11 @@ namespace Graphics
 		while(!nodeQueue.empty())
 		{
 			OctreeNode * pCurrNode = nodeQueue.front();
+			CreateAABBVBO(pCurrNode->m_aabb,&pCurrNode->m_pAABBVBO,&pCurrNode->m_pAABBIBO);
+			pCurrNode->m_pAABBVAO = Graphics::VertexArray::CreateVertexArray();
+			pCurrNode->m_pAABBVAO->SetIndexBuffer(pCurrNode->m_pAABBIBO);
+			pCurrNode->m_pAABBVAO->SetVertexBuffer(0,pCurrNode->m_pAABBVBO,3,0,0,GL_FLOAT);
+			
 			nodeQueue.pop();
 			uint16_t currDepth = pCurrNode->m_nDepthFloor;
 			if(currDepth != 0)

@@ -6,6 +6,7 @@
 #include <set>
 #include <list>
 #include <core/bufferogl.h>
+#include <core/effectogl.h>
 
 namespace Graphics
 {
@@ -17,12 +18,17 @@ namespace Graphics
 		bool 					Contains( aabb & AABB );
 		void					InitOctree( glm::vec3 _vecMin, glm::vec3 _vecMax, uint16_t _depth);
 		bool 					InsertRenderNode( Graphics::OctreeRenderNode * _pRenderNode );
+		void 					Render(EffectOGL * _pEffect);
 		// 子节点
 		OctreeNode* 			m_pChildrenNodes;
 		int16_t 				m_nNumChildren;
 		// 渲染对象
 		std::list<OctreeRenderNode *> m_renderNodes;
 		int16_t 				m_nDepthFloor;
+		
+		Graphics::VertexBuffer* 	m_pAABBVBO;
+		Graphics::VertexBuffer* 	m_pAABBIBO;
+		Graphics::VertexArray* 		m_pAABBVAO;
 	};
 	
 	struct Octree

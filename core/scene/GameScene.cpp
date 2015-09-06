@@ -85,6 +85,7 @@ void GameScene::Render(uint64_t _time)
 		if(pCamera->InFrustumBoundBox( pRenderNode->m_pSceneObject->m_localAABB))
 		{
 			pRenderNode->m_pSceneObject->Render(m_pStaticEffect);
+			pRenderNode->m_pAttachNode->Render(m_pStaticEffect);
 		}
 	}
 	
