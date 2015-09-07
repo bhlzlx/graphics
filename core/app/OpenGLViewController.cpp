@@ -136,14 +136,15 @@ void OpenGLViewController::OnKeyPressed(unsigned char key, int x, int y)
         }
 	case 'B':
 		{
+			printf("break");
 			break;
 		}
 //	case '-':
 //		{
 //			m_md5Model.m_iActivedAnimID--;
 //			if(m_md5Model.m_iActivedAnimID < 0)
-//			{
-//				m_md5Model.m_iActivedAnimID = m_md5Model.m_nNumAnimation - 1;
+//			{w
+//				m_md5Model.m_iActivedAnimID = m_md5Model.m_nNumAnimation - 1;b
 //			}
 //			break;
 //		}

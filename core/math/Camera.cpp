@@ -243,55 +243,22 @@ void CCamera::updateFrustumPlane()
 
 bool CCamera::InFrustumBoundBox(Graphics::aabb& _box)
 {
-	glm::vec3 oldMin = _box.m_vecMin;
-	glm::vec3 oldMax = _box.m_vecMax;
-	glm::vec4 currentCorner = glm::vec4( oldMin, 1.0f);
-	glm::vec3 camPos = glm::vec3( m_position.x, m_position.y, m_position.z );
-	if(_box.Contains(camPos))
+	glm::vec3 center = (_box.m_vecMin + _box.m_vecMax) / 2.0f;
+	glm::vec3 half = (_box.m_vecMax - _box.m_vecMin) / 2.0f;
+	float rad = pow( (pow(half.x,2) + pow(half.y,2) + pow(half.z,2)),0.5);
+	float distance = 0.0f;
+	for(int face = 0; face<6; ++face)
 	{
-		return true;
+		distance = 	g_frustumPlanes[face][0] * center.x + \
+					g_frustumPlanes[face][1] * center.y + 
+					g_frustumPlanes[face][2] * center.z + 
+					g_frustumPlanes[face][3];
+		if(distance < -rad)
+		{
+			return false;
+		}
 	}
-	
-	if(this->InFrustumBoundBox( currentCorner.x, currentCorner.y, currentCorner.z))
-	{
-		return true;
-	}
-	currentCorner.x = oldMax.x;
-	if(this->InFrustumBoundBox( currentCorner.x, currentCorner.y, currentCorner.z))
-	{
-		return true;
-	}
-	currentCorner.y = oldMax.y;
-	if(this->InFrustumBoundBox( currentCorner.x, currentCorner.y, currentCorner.z))
-	{
-		return true;
-	}
-	currentCorner.x = oldMin.x;
-	if(this->InFrustumBoundBox( currentCorner.x, currentCorner.y, currentCorner.z))
-	{
-		return true;
-	}
-	currentCorner.z = oldMax.z;
-	if(this->InFrustumBoundBox( currentCorner.x, currentCorner.y, currentCorner.z))
-	{
-		return true;
-	}
-	currentCorner.y = oldMin.y;
-	if(this->InFrustumBoundBox( currentCorner.x, currentCorner.y, currentCorner.z))
-	{
-		return true;
-	}
-	currentCorner.x = oldMax.x;
-	if(this->InFrustumBoundBox( currentCorner.x, currentCorner.y, currentCorner.z))
-	{
-		return true;
-	}
-	currentCorner.y = oldMax.y;
-	if(this->InFrustumBoundBox( currentCorner.x, currentCorner.y, currentCorner.z))
-	{
-		return true;
-	}
-	return false;
+	return true;
 }
 
 

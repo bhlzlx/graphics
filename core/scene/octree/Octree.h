@@ -40,6 +40,7 @@ namespace Graphics
 		bool InsertRenderNode( OctreeRenderNode * _pRenderNode );
 		void UpdateRenderList();
 		std::list<OctreeRenderNode*>		m_renderList;
+		std::list<OctreeNode*>				m_nodeList;
 		
 		OctreeNode * 						m_pRootNode;
 		uint16_t 							m_nDepth;

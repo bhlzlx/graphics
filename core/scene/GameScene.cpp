@@ -45,12 +45,12 @@ void GameScene::Init()
 	this->m_pCubeModel = (Graphics::Cube*)Graphics::Cube::CreateCube();
 	
 	this->m_pOctree = new Octree;
-	this->m_pOctree->Init( glm::vec3(0.0f,0.0f,0.0f), glm::vec3(64.0f,64.0f,64.0f),2);
+	this->m_pOctree->Init( glm::vec3(0.0f,0.0f,0.0f), glm::vec3(32.0f,32.0f,32.0f),3);
 
-	for(int i = 0; i< 4; ++i)
+	for(int i = 0; i< 32; ++i)
 	{
 		SceneObject * pSceneObject = SceneObject::CreateSceneObject( m_pCubeModel);
-		glm::vec3 pos = glm::vec3( i%2 * 8 +2,2,i /2 * 8);
+		glm::vec3 pos = glm::vec3( i%7 * 8 - 2 * 8 + 4 +2,4,i/7 * 8 + 4);
 		pSceneObject->SetPosition(pos);
 		pSceneObject->SetScale(1.0f);
 		OctreeRenderNode * pRenderNode = OctreeRenderNode::CreateRenderNode(pSceneObject);
@@ -80,13 +80,16 @@ void GameScene::Render(uint64_t _time)
 	}
  */
 	this->m_pOctree->UpdateRenderList();
+	/*for( OctreeNode * pOctreeNode : this->m_pOctree->m_nodeList)
+	{
+		pOctreeNode->Render(m_pStaticEffect);
+	}
+	*/
+	
 	for( OctreeRenderNode * pRenderNode : this->m_pOctree->m_renderList)
 	{
-		if(pCamera->InFrustumBoundBox( pRenderNode->m_pSceneObject->m_localAABB))
-		{
-			pRenderNode->m_pSceneObject->Render(m_pStaticEffect);
-			pRenderNode->m_pAttachNode->Render(m_pStaticEffect);
-		}
+		pRenderNode->m_pSceneObject->Render(m_pStaticEffect);
+		pRenderNode->m_pAttachNode->Render(m_pStaticEffect);
 	}
 	
 	m_pStaticEffect->End();

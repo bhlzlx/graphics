@@ -11,11 +11,12 @@ SceneObject::~SceneObject()
 void SceneObject::SetPosition( glm::vec3 & _position )
 {
 	this->m_vOffset = _position;
-	m_matrix = glm::translate( 
-					glm::mat4(1.0f),
-					this->m_vOffset ) * glm::mat4_cast( this->m_qRotation ) * glm::scale( glm::mat4(1.0),
-					glm::vec3(m_fScale,m_fScale,m_fScale)
-					);
+	m_matrix = glm::translate(
+						glm::mat4(1.0f),this->m_vOffset ) * 
+						glm::mat4_cast( this->m_qRotation ) * 
+						glm::scale( glm::mat4(1.0),glm::vec3(m_fScale,m_fScale,m_fScale)
+						);
+	this->m_localAABB = this->m_pModel->m_localAABB;
 	this->m_localAABB = this->m_pModel->m_localAABB;
 	this->m_localAABB.Transform(m_matrix);
 }
@@ -30,11 +31,12 @@ void SceneObject::SetPosition( glm::vec3 & _position )
 	this->m_qRotation.y = (vn.y * sinAngle);
 	this->m_qRotation.z = (vn.z * sinAngle);
 	this->m_qRotation.w = cos(_angle);
-	m_matrix = glm::translate( 
-					glm::mat4(1.0f),
-					this->m_vOffset ) * glm::mat4_cast( this->m_qRotation ) * glm::scale( glm::mat4(1.0),
-					glm::vec3(m_fScale,m_fScale,m_fScale)
-					);
+	m_matrix = glm::translate(
+						glm::mat4(1.0f),this->m_vOffset ) * 
+						glm::mat4_cast( this->m_qRotation ) * 
+						glm::scale( glm::mat4(1.0),glm::vec3(m_fScale,m_fScale,m_fScale)
+						);
+	this->m_localAABB = this->m_pModel->m_localAABB;
 	this->m_localAABB = this->m_pModel->m_localAABB;
 	this->m_localAABB.Transform(m_matrix);
  }
@@ -42,10 +44,10 @@ void SceneObject::SetPosition( glm::vec3 & _position )
 void SceneObject::SetScale(float _scale)
 {
 	m_fScale = _scale;
-	m_matrix = glm::translate( 
-						glm::mat4(1.0f),
-						this->m_vOffset ) * glm::mat4_cast( this->m_qRotation ) * glm::scale( glm::mat4(1.0),
-						glm::vec3(m_fScale,m_fScale,m_fScale)
+	m_matrix = glm::translate(
+						glm::mat4(1.0f),this->m_vOffset ) * 
+						glm::mat4_cast( this->m_qRotation ) * 
+						glm::scale( glm::mat4(1.0),glm::vec3(m_fScale,m_fScale,m_fScale)
 						);
 	this->m_localAABB = this->m_pModel->m_localAABB;
 	this->m_localAABB.Transform(m_matrix);
@@ -60,7 +62,7 @@ void SceneObject::Render(Graphics::EffectOGL* _pEffect)
 {
 	this->m_pModel->Render(_pEffect,this->m_matrix,false);
 	// draw wired frame
-	int renderMode;
+	/*int renderMode;
 	glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
 	glPolygonOffset(-0.2,-0.2);
 	glEnable(GL_POLYGON_OFFSET_LINE);
@@ -73,6 +75,7 @@ void SceneObject::Render(Graphics::EffectOGL* _pEffect)
 	glPolygonOffset(0,0);
 	glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
 	glDisable(GL_POLYGON_OFFSET_LINE);
+	 */
 }
 
 SceneObject * SceneObject::CreateSceneObject( Graphics::RenderObjectBase * _pRenderObject )

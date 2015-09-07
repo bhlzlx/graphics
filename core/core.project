@@ -77,8 +77,6 @@
     <File Name="event/MouseEvent.cpp"/>
     <File Name="event/MouseEvent.h"/>
   </VirtualDirectory>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
   <VirtualDirectory Name="scene">
     <File Name="scene/GameScene.cpp"/>
     <File Name="scene/GameScene.h"/>
@@ -187,4 +185,6 @@
     <File Name="algorithm/md5.cpp"/>
     <File Name="algorithm/md5.h"/>
   </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

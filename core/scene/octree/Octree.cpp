@@ -21,6 +21,8 @@ namespace Graphics
 		glPolygonOffset(-0.2,-0.2);
 		glEnable(GL_POLYGON_OFFSET_LINE);
 		renderMode = 1;
+		static glm::mat4 model = glm::mat4(1.0f);
+		_pEffect->m_pShader->SetUniformData(&model,"MODEL");
 		_pEffect->m_pShader->SetUniformData(&renderMode,"RENDER_MODE");
 		static glm::vec4 wiredframe_color = glm::vec4(1.0,0.0,1.0,1.0);
 		_pEffect->m_pShader->SetUniformData(&wiredframe_color,"WIREDFRAME_COLOR");
@@ -152,6 +154,8 @@ namespace Graphics
 	void Graphics::Octree::UpdateRenderList()
 	{
 		this->m_renderList.clear();
+		m_nodeList.clear();
+		
 		CCamera * pCamera = GetGameCamera();
 		std::queue<OctreeNode *> nodeQueue;
 		if(pCamera->InFrustumBoundBox( this->m_pRootNode->m_aabb))
@@ -170,6 +174,7 @@ namespace Graphics
 			{
 				this->m_renderList.push_back( pRenderNode);
 			}
+			m_nodeList.push_back(pCurrNode);
 			for(int i = 0; i<pCurrNode->m_nNumChildren; ++i)
 			{
 				if(pCamera->InFrustumBoundBox( pCurrNode->m_pChildrenNodes[i].m_aabb))
