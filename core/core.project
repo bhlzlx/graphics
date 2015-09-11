@@ -31,6 +31,8 @@
   <VirtualDirectory Name="math">
     <File Name="math/Camera.cpp"/>
     <File Name="math/Camera.h"/>
+    <File Name="math/Variance.h"/>
+    <File Name="math/Variance.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="common">
     <VirtualDirectory Name="log">
@@ -53,26 +55,6 @@
     <File Name="buffer/buffer.cpp"/>
     <File Name="buffer/buffer.h"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="core">
-    <File Name="core/BufferOGL.cpp"/>
-    <File Name="core/BufferOGL.h"/>
-    <File Name="core/DepthStencilOGL.cpp"/>
-    <File Name="core/DepthStencilOGL.h"/>
-    <File Name="core/device.h"/>
-    <File Name="core/EffectOGL.cpp"/>
-    <File Name="core/EffectOGL.h"/>
-    <File Name="core/Image.cpp"/>
-    <File Name="core/RenderPipelineOGL.cpp"/>
-    <File Name="core/RenderPipelineOGL.h"/>
-    <File Name="core/RenderTargetOGL.cpp"/>
-    <File Name="core/RenderTargetOGL.h"/>
-    <File Name="core/ShaderOGL.cpp"/>
-    <File Name="core/ShaderOGL.h"/>
-    <File Name="core/TexOGL.cpp"/>
-    <File Name="core/TexOGL.h"/>
-    <File Name="core/UICommon.cpp"/>
-    <File Name="core/UICommon.h"/>
-  </VirtualDirectory>
   <VirtualDirectory Name="event">
     <File Name="event/MouseEvent.cpp"/>
     <File Name="event/MouseEvent.h"/>
@@ -92,6 +74,17 @@
     </VirtualDirectory>
     <File Name="scene/SceneObject.h"/>
     <File Name="scene/SceneObject.cpp"/>
+    <VirtualDirectory Name="kdtree"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="algorithm">
+    <File Name="algorithm/md5.cpp"/>
+    <File Name="algorithm/md5.h"/>
+  </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
+  <VirtualDirectory Name="gui">
+    <File Name="gui/Label.h"/>
+    <File Name="gui/Label.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -107,7 +100,7 @@
       <Compiler Options="-g;-O0;-Wall;-std=c++11;-I./core" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
       </Compiler>
-      <Linker Options="-lglew32 -lglfw3 -lpng -lz -lgdi32 -lopengl32" Required="yes"/>
+      <Linker Options="-lglew32 -lglfw3 -lpng -lz -lgdi32 -lopengl32 -lfreetype -liconv" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(BuildDir)/$(ProjectName)/$(ProjectName)" IntermediateDirectory="$(BuildDir)/$(ProjectName)/Debug" Command="$(BuildDir)/$(ProjectName)/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(BuildDir)/$(ProjectName)/" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
@@ -181,10 +174,32 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="algorithm">
-    <File Name="algorithm/md5.cpp"/>
-    <File Name="algorithm/md5.h"/>
+  <VirtualDirectory Name="core">
+    <File Name="core/BufferOGL.cpp"/>
+    <File Name="core/BufferOGL.h"/>
+    <File Name="core/DepthStencilOGL.cpp"/>
+    <File Name="core/DepthStencilOGL.h"/>
+    <File Name="core/device.h"/>
+    <File Name="core/EffectOGL.cpp"/>
+    <File Name="core/EffectOGL.h"/>
+    <File Name="core/Image.cpp"/>
+    <File Name="core/RenderPipelineOGL.cpp"/>
+    <File Name="core/RenderPipelineOGL.h"/>
+    <File Name="core/RenderTargetOGL.cpp"/>
+    <File Name="core/RenderTargetOGL.h"/>
+    <File Name="core/ShaderOGL.cpp"/>
+    <File Name="core/ShaderOGL.h"/>
+    <File Name="core/TexOGL.cpp"/>
+    <File Name="core/TexOGL.h"/>
+    <File Name="core/UICommon.cpp"/>
+    <File Name="core/UICommon.h"/>
+    <VirtualDirectory Name="renderer">
+      <File Name="core/renderer/TextRenderer.h"/>
+      <File Name="core/renderer/TextRenderer.cpp"/>
+    </VirtualDirectory>
   </VirtualDirectory>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
+  <VirtualDirectory Name="memory">
+    <File Name="memory/memory.cpp"/>
+    <File Name="memory/memory.h"/>
+  </VirtualDirectory>
 </CodeLite_Project>

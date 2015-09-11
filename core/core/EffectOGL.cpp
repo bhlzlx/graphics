@@ -32,6 +32,34 @@ namespace Graphics
             default: return GL_LEQUAL;
         }
     }
+	
+	GLenum BlendFactor2OGL( Graphics::BLEND_FACTOR _factor)
+	{
+		switch( _factor)
+		{
+			case BLEND_FACTOR_DESTALPHA: return GL_DST_ALPHA;
+			case BLEND_FACTOR_DESTCOLOR: return GL_DST_COLOR;
+			case BLEND_FACTOR_INVDESTALPHA: return GL_ONE_MINUS_DST_ALPHA;
+			case BLEND_FACTOR_INVDESTCOLOR: return GL_ONE_MINUS_DST_COLOR;
+			case BLEND_FACTOR_INVSRCALPHA: return GL_ONE_MINUS_SRC_ALPHA;
+			case BLEND_FACTOR_INVSRCCOLOR: return GL_ONE_MINUS_SRC_COLOR;
+			case BLEND_FACTOR_ONE: return GL_ONE;
+			case BLEND_FACTOR_SRCALPHA: return GL_SRC_ALPHA;
+			case BLEND_FACTOR_SRCCOLOR: return GL_SRC_COLOR;
+			case BLEND_FACTOR_ZERO : return GL_ZERO;
+			default: return GL_ONE;
+		}
+	}
+	
+	GLenum BlendFunc2OGL(Graphics::BLEND_OP _func)
+	{
+		switch( _func)
+		{
+			case BLEND_OP_ADD : return GL_ADD;
+			case BLEND_OP_SUBTRACT: return GL_SUBTRACT;
+			default: return GL_ADD;
+		}
+	}
 
     EffectOGL::EffectOGL()
     {
@@ -92,6 +120,16 @@ namespace Graphics
         {
             glDisable(GL_SCISSOR_TEST);
         }
+		// blend
+		if(m_desc.renderState.blendable)
+		{
+			glEnable(GL_BLEND);
+			glBlendFunc( BlendFactor2OGL( m_desc.renderState.blendSrc), BlendFactor2OGL( m_desc.renderState.blendDest));
+		}
+		else
+		{
+			glDisable(GL_BLEND);
+		}
     }
     
     void EffectOGL::End()

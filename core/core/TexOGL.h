@@ -14,6 +14,7 @@ namespace Graphics
         
         void Release();
         TexDesc * GetDesc();
+		void Bind();
         void ApplySamplerState(SamplerOGL * _pSampler);
         
         static TexOGL * CreateTex(TexDesc * _pTexDesc , bool autoMip = false);

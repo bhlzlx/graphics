@@ -283,4 +283,11 @@ namespace Graphics
         this->addressMode_S = GL_REPEAT;
         this->addressMode_T = GL_REPEAT;
     }
+	
+	void TexOGL::Bind()
+	{
+		glBindTexture(GL_TEXTURE_2D,this->m_texture);
+	}
+
 }
+

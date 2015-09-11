@@ -38,6 +38,7 @@ namespace Graphics
           return Size<T>(this->width,this->height);
       }
     };
+	
     enum DRAW_TYPE
     {
         DRAW_TYPE_WIREDFRAME,
@@ -206,6 +207,9 @@ namespace Graphics
             redChannelWritable = true;
             greenChannelWritable = true;
             blueChannelWritable = true;
+			
+			blendDest = BLEND_FACTOR_ZERO;
+			blendSrc = BLEND_FACTOR_ONE;
             
             cullMode = CULL_MODE_BACK;
             blendable = false;
@@ -329,7 +333,7 @@ namespace Graphics
         static Image * ImageFromPng( iBuffer *);
         void Release();
     };
-    
+	
     extern Size<int> GetWindowSize();
 };
 #endif

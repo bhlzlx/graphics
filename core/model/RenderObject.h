@@ -21,8 +21,6 @@ namespace Graphics
 	public:
 		aabb			m_localAABB;
 	};
-	
-
 }
 
 #endif // __RENDER_OBJECT_H__

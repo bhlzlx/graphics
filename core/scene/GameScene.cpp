@@ -36,11 +36,8 @@ void GameScene::Init()
 	effectDesc.szPixelShaderText = szFragText;
 	effectDesc.szVertexShaderText = szVertText;
 	this->m_pAnimEffect = EffectOGL::CreateEffect(&effectDesc);
-	
 	m_pChessTexture = Graphics::TexOGL::CreateChessTex();
-	
 	m_pGameCamera = GetGameCamera();
-	
 	// 添加模型
 	this->m_pCubeModel = (Graphics::Cube*)Graphics::Cube::CreateCube();
 	

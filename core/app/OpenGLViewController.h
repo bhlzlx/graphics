@@ -17,6 +17,8 @@
 #include <core/BufferOGL.h>
 #include <core/RenderPipelineOGL.h>
 
+#include <core/renderer/TextRenderer.h>
+
 using namespace UI;
 using namespace Graphics;
 using namespace glm;
@@ -37,9 +39,11 @@ struct OpenGLViewController
     vec4                m_lightPosition;
     float               m_lightRotation;
     
-    static UISize              screenSize;
+    static UISize		screenSize;
 
     CCamera *           m_pGameCamera;
+	
+	TextRenderer*		m_pTextRenderer;
 
     OpenGLViewController();
     

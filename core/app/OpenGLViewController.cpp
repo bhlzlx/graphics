@@ -69,6 +69,9 @@ void OpenGLViewController::OnInit()
 	m_pGameCamera->m_projectionMatrix = perspective(45.f,screenSize.dx/screenSize.dy,0.001f,1000.0f);
 	
 	m_gameScene.Init();
+	
+	m_pTextRenderer = new TextRenderer;
+	m_pTextRenderer->Init( "msyh.ttf", "charlib.txt");
 }
 
 void OpenGLViewController::OnUpdate()
@@ -77,12 +80,15 @@ void OpenGLViewController::OnUpdate()
 	
 	m_pRenderPipelineDefault->Begin();
 	m_gameScene.Render(timepassed);
+	
+	m_pTextRenderer->Render();
+	
     m_pRenderPipelineDefault->End();
 }
 
 void OpenGLViewController::OnTimer()
 {
-
+	
 }
 
 OpenGLViewController::OpenGLViewController()
@@ -137,6 +143,19 @@ void OpenGLViewController::OnKeyPressed(unsigned char key, int x, int y)
 	case 'B':
 		{
 			printf("break");
+			break;
+		}
+	case 'P':
+		{
+			glm::vec3 pt1( screenSize.dx/2, screenSize.dy/2, 0.0f);
+			glm::vec3 pt2( screenSize.dx/2, screenSize.dy/2, 1.0f);
+			glm::vec4 viewport( 0.0f, 0.0f, screenSize.dx, screenSize.dy );
+			glm::vec3 near = glm::unProject( pt1, this->m_pGameCamera->GetViewMatrix(), this->m_pGameCamera->GetProjectionMatrix(), viewport);
+			glm::vec3 far = glm::unProject( pt2, this->m_pGameCamera->GetViewMatrix(), this->m_pGameCamera->GetProjectionMatrix(), viewport);
+			printf("near : x= %f y=%f z=%f \nfar : x=%f y=%f z=%f\n",
+			near.x,near.y,near.z,
+			far.x,far.y,far.z
+			);
 			break;
 		}
 //	case '-':
