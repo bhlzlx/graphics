@@ -6,34 +6,44 @@
 #include <cstdlib>
 
 #include "OpenGLViewController.h"
-#include "../math/Camera.h"
-#include "./AppDelegate.h"
-#include "../model/models.h"
-#include "../core/RenderTargetOGL.h"
-#include "../core/DepthStencilOGL.h"
-#include "../buffer/buffer.h"
-#include "../model/md5/md5Frame.h"
+#include <math/Camera.h>
+#include <app/AppDelegate.h>
+#include <model/models.h>
+#include <core/RenderTargetOGL.h>
+#include <core/DepthStencilOGL.h>
+#include <buffer/buffer.h>
+#include <model/md5/md5Frame.h>
 #include <string.h>
 #include <math.h>
 #include <glfw/glfw3.h>
 
+const uint16_t STRING_TEST[2] = {0x4f60,0x597d};
+
 #define MOVE_STEP 0.5f
 
-UISize OpenGLViewController::screenSize(DEFAULT_SCREEN_WIDTH,DEFAULT_SCREEN_HEIGHT);
+OpenGLViewController * __pViewController = NULL;
+
+TexOGL*	textRenderTestTex = NULL;
 
 namespace Graphics
 {
-    Size<int> GetWindowSize()
+    Size<int>& GetWindowSize()
     {
-        return Size<int>(OpenGLViewController::screenSize.dx,OpenGLViewController::screenSize.dy);
+		static Size<int> size;
+		size.height = __pViewController->m_viewport.height;
+		size.width = __pViewController->m_viewport.width;
+		return size;
     }
 }
 
 void OpenGLViewController::OnInit()
 {
+	__pViewController = this;
 	m_pGameCamera = GetGameCamera();
 	
-	screenSize = UISize(DEFAULT_SCREEN_WIDTH,DEFAULT_SCREEN_HEIGHT);
+	m_viewport.width = DEFAULT_SCREEN_WIDTH;
+	m_viewport.height = DEFAULT_SCREEN_HEIGHT;
+	
     glViewport(0,0,DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT);
     OnResize(DEFAULT_SCREEN_WIDTH,DEFAULT_SCREEN_HEIGHT);
     
@@ -46,13 +56,13 @@ void OpenGLViewController::OnInit()
     
     RenderTargetDesc renderTargetDesc;
     renderTargetDesc.eFormat = PIXEL_FORMAT_RGBA8888;
-    renderTargetDesc.nHeight = DEFAULT_SCREEN_HEIGHT;
-    renderTargetDesc.nWidth = DEFAULT_SCREEN_WIDTH;
+    renderTargetDesc.m_Size.height = DEFAULT_SCREEN_HEIGHT;
+    renderTargetDesc.m_Size.width = DEFAULT_SCREEN_WIDTH;
     RenderTargetOGL * pRenderTarget = RenderTargetOGL::CreateRenderTarget(&renderTargetDesc);
     
     DepthStencilDesc depthStencilDesc;
-    depthStencilDesc.nHeight = DEFAULT_SCREEN_HEIGHT;
-    depthStencilDesc.nWidth = DEFAULT_SCREEN_WIDTH;
+    depthStencilDesc.m_Size.height = DEFAULT_SCREEN_HEIGHT;
+    depthStencilDesc.m_Size.width = DEFAULT_SCREEN_WIDTH;
     DepthStencilOGL * pDepthStencil = DepthStencilOGL::CreateDepthStencil(&depthStencilDesc);
     
     RenderPipelineDesc renderPipelineDesc;
@@ -66,22 +76,30 @@ void OpenGLViewController::OnInit()
     
     m_pMiniRenderPipeline = RenderPipeline::CreateRenderPipeline( &renderPipelineDesc);
 	
-	m_pGameCamera->m_projectionMatrix = perspective(45.f,screenSize.dx/screenSize.dy,0.001f,1000.0f);
+	m_pGameCamera->m_projectionMatrix = perspective(45.f,(float)m_viewport.width/(float)m_viewport.height,0.001f,1000.0f);
 	
 	m_gameScene.Init();
 	
 	m_pTextRenderer = new TextRenderer;
-	m_pTextRenderer->Init( "msyh.ttf", "charlib.txt");
+	//m_pTextRenderer->Init( "msyh.ttf", "charlib.txt");
+	m_pTextRenderer->Init( "liukai.ttf", "charlib.txt");
+	
 }
 
 void OpenGLViewController::OnUpdate()
 {
 	long long timepassed = (glfwGetTime() - m_startTime) * 1000;
+	static Size<uint32_t> offset = {
+			0,0
+		};
+	if( textRenderTestTex == NULL)
+	{
+		textRenderTestTex = Graphics::TexOGL::CreateChessTex();
+		m_pTextRenderer->Render( textRenderTestTex, offset, &STRING_TEST[0], 2, 0.5f);
+	}
 	
 	m_pRenderPipelineDefault->Begin();
 	m_gameScene.Render(timepassed);
-	
-	m_pTextRenderer->Render();
 	
     m_pRenderPipelineDefault->End();
 }
@@ -147,15 +165,6 @@ void OpenGLViewController::OnKeyPressed(unsigned char key, int x, int y)
 		}
 	case 'P':
 		{
-			glm::vec3 pt1( screenSize.dx/2, screenSize.dy/2, 0.0f);
-			glm::vec3 pt2( screenSize.dx/2, screenSize.dy/2, 1.0f);
-			glm::vec4 viewport( 0.0f, 0.0f, screenSize.dx, screenSize.dy );
-			glm::vec3 near = glm::unProject( pt1, this->m_pGameCamera->GetViewMatrix(), this->m_pGameCamera->GetProjectionMatrix(), viewport);
-			glm::vec3 far = glm::unProject( pt2, this->m_pGameCamera->GetViewMatrix(), this->m_pGameCamera->GetProjectionMatrix(), viewport);
-			printf("near : x= %f y=%f z=%f \nfar : x=%f y=%f z=%f\n",
-			near.x,near.y,near.z,
-			far.x,far.y,far.z
-			);
 			break;
 		}
 //	case '-':
@@ -179,11 +188,6 @@ void OpenGLViewController::OnKeyPressed(unsigned char key, int x, int y)
     }
 }
 
-UISize& OpenGLViewController::GetScreenSize()
-{
-	return screenSize;
-}
-
 void OpenGLViewController::OnResize(unsigned width,unsigned height)
 {
     if(width == 0)
@@ -191,15 +195,16 @@ void OpenGLViewController::OnResize(unsigned width,unsigned height)
     if(height == 0)
         height = 1;
 
-	screenSize.dx = width;
-	screenSize.dy = height;
-    glViewport(0, 0, width,height);
+	m_viewport.x = 0;
+	m_viewport.y = 0;
+	m_viewport.width = width;
+	m_viewport.height = height;
 	
 	m_pGameCamera->m_projectionMatrix = perspective(45.0f,(float)width/(float)height,0.01f,1000.0f);
 	
     if(m_pRenderPipelineDefault)
 	{
-        m_pRenderPipelineDefault->UpdateViewport(0,0,screenSize.dx,screenSize.dy);
+        m_pRenderPipelineDefault->UpdateViewport(0,0,m_viewport.width,m_viewport.height);
 	}
 }
 
@@ -207,6 +212,5 @@ void OpenGLViewController::Release()
 {
     this->m_pMiniRenderPipeline->Release();
     this->m_pRenderPipelineDefault->Release();
-	
     delete this;
 }

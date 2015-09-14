@@ -20,8 +20,7 @@ namespace Graphics
         TexDesc texDesc;
         texDesc.ePixelFormat = _pDesc->eFormat;
         texDesc.eTexClass = TEX_CLASS_RENDERTARGET;
-        texDesc.nSizeX = _pDesc->nWidth;
-        texDesc.nSizeY = _pDesc->nHeight;
+		texDesc.size = _pDesc->m_Size;
         pRenderTarget->m_pTexture = TexOGL::CreateTex(&texDesc);
         // 创建rbo
         // rbo不以纹理的方式创建，所以不用rbo了
@@ -44,7 +43,10 @@ namespace Graphics
         &this->m_desc;
     }
     
-
-
+	void RenderTargetOGL::SetColorTex(ITex* _pTex)
+	{
+		this->m_pTexture = (TexOGL*)_pTex;
+	}
 }
+
 

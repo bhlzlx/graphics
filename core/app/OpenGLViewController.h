@@ -23,6 +23,8 @@ using namespace UI;
 using namespace Graphics;
 using namespace glm;
 
+extern TexOGL*				textRenderTestTex;
+
 struct OpenGLViewController
 {
 	double 				m_startTime;
@@ -38,9 +40,9 @@ struct OpenGLViewController
     mat4                m_view_light;
     vec4                m_lightPosition;
     float               m_lightRotation;
-    
-    static UISize		screenSize;
-
+	
+	Rect<uint32_t>		m_viewport;
+	
     CCamera *           m_pGameCamera;
 	
 	TextRenderer*		m_pTextRenderer;
@@ -59,6 +61,8 @@ struct OpenGLViewController
 
     void OnKeyPressed(unsigned char key, int x, int y);
 };
+
+extern OpenGLViewController * __pViewController;
 
 
 #endif //GRAPHICSLIBRARY_OPENGLVIEWCONTROLLER_H

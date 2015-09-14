@@ -17,6 +17,7 @@ namespace Graphics
         
         void Release();
         ITex * GetColorTex();
+		void SetColorTex( ITex * _pTex);
         RenderTargetDesc* GetDesc();
         
         RenderTargetOGL();

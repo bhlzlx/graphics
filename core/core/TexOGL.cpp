@@ -51,6 +51,11 @@ namespace Graphics
         }
         return GL_FALSE;
     }
+	
+	Size<uint32_t>& TexOGL::GetSize()
+	{
+		return m_desc.size;
+	}
     
     
     TexDesc* TexOGL::GetDesc()
@@ -77,22 +82,22 @@ namespace Graphics
         {
             case PIXEL_FORMAT_DEPTH_STENCIL:
             {
-                glTexImage2D(GL_TEXTURE_2D,0,GL_DEPTH24_STENCIL8,_pTexDesc->nSizeX,_pTexDesc->nSizeY,0,GL_DEPTH_STENCIL,GL_UNSIGNED_INT_24_8,NULL);
+                glTexImage2D(GL_TEXTURE_2D,0,GL_DEPTH24_STENCIL8,_pTexDesc->size.width,_pTexDesc->size.height,0,GL_DEPTH_STENCIL,GL_UNSIGNED_INT_24_8,NULL);
                 break;
             }
             case PIXEL_FORMAT_DEPTH_32:
             {
-                glTexImage2D(GL_TEXTURE_2D,0,GL_DEPTH_COMPONENT32F,_pTexDesc->nSizeX,_pTexDesc->nSizeY,0,GL_DEPTH_COMPONENT,GL_FLOAT,NULL);
+                glTexImage2D(GL_TEXTURE_2D,0,GL_DEPTH_COMPONENT32F,_pTexDesc->size.width,_pTexDesc->size.height,0,GL_DEPTH_COMPONENT,GL_FLOAT,NULL);
                 break;
             }
             case PIXEL_FORMAT_STENCIL_8:
             {
-                glTexImage2D(GL_TEXTURE_2D,0,GL_STENCIL_INDEX8,_pTexDesc->nSizeX,_pTexDesc->nSizeY,0,GL_STENCIL_INDEX,GL_UNSIGNED_BYTE,NULL);
+                glTexImage2D(GL_TEXTURE_2D,0,GL_STENCIL_INDEX8,_pTexDesc->size.width,_pTexDesc->size.height,0,GL_STENCIL_INDEX,GL_UNSIGNED_BYTE,NULL);
                 break;
             }
             default:
             {
-                glTexImage2D(GL_TEXTURE_2D,0,format,_pTexDesc->nSizeX,_pTexDesc->nSizeY,0,format,GL_UNSIGNED_BYTE,NULL);
+                glTexImage2D(GL_TEXTURE_2D,0,format,_pTexDesc->size.width,_pTexDesc->size.height,0,format,GL_UNSIGNED_BYTE,NULL);
                 if(autoMip)
                     glGenerateMipmap(GL_TEXTURE_2D);
             }
@@ -156,6 +161,7 @@ namespace Graphics
         int error;
         error = glGetError();
         TexOGL * pTex = new TexOGL;
+		pTex->m_desc.size.height = pTex->m_desc.size.width = 64;
         glGenTextures(1,&pTex->m_texture);
         error = glGetError();
 
@@ -249,8 +255,8 @@ namespace Graphics
         TexOGL * pTex = new TexOGL;
         pTex->m_desc.ePixelFormat = PIXEL_FORMAT_RGBA8888;
         pTex->m_desc.eTexClass = TEX_CLASS_STATIC_RAW;
-        pTex->m_desc.nSizeX = _pImage->nWidth;
-        pTex->m_desc.nSizeY = _pImage->nHeight;
+		pTex->m_desc.size.width = _pImage->nWidth;
+		pTex->m_desc.size.height = _pImage->nHeight;
         glGenTextures(1,&pTex->m_texture);
         error = glGetError();
         glBindTexture(GL_TEXTURE_2D,pTex->m_texture);        
@@ -272,8 +278,8 @@ namespace Graphics
     {
         if(_bMipmap)
         {
-            this->magFilter = GL_LINEAR;
-            this->minFilter = GL_LINEAR_MIPMAP_LINEAR;
+            this->magFilter = GL_NEAREST;
+            this->minFilter = GL_LINEAR_MIPMAP_NEAREST;
         }
         else
         {

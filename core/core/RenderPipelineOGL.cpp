@@ -34,8 +34,8 @@ namespace Graphics
             glFramebufferTexture(GL_FRAMEBUFFER,GL_DEPTH_ATTACHMENT,pDepthTex->m_texture,0);
             //glFramebufferTexture(GL_FRAMEBUFFER,GL_STENCIL_ATTACHMENT,pStencilTex->m_texture,0);
             //
-            pRenderPipeline->m_viewport = Rect<int>(0,0,_pDesc->pDepthStencil->GetDesc()->nWidth,_pDesc->pDepthStencil->GetDesc()->nHeight);
-            pRenderPipeline->m_scissor = Rect<int>(0,0,_pDesc->pDepthStencil->GetDesc()->nWidth,_pDesc->pDepthStencil->GetDesc()->nHeight);
+            pRenderPipeline->m_viewport = Rect<uint32_t>(_pDesc->pDepthStencil->GetDesc()->m_Size);
+            pRenderPipeline->m_scissor = Rect<uint32_t>(_pDesc->pDepthStencil->GetDesc()->m_Size);
         }
         else
         {
@@ -54,8 +54,7 @@ namespace Graphics
             sprintf(Keywords,"GL_COLOR_ATTACHMENT%d",i);
             RenderTargetOGL * pRenderTarget = (RenderTargetOGL *)_pDesc->pRenderTargets[i];
             TexOGL * pTex = pRenderTarget->m_pTexture;
-            glFramebufferTexture(GL_DRAW_FRAMEBUFFER,GL_COLOR_ATTACHMENT0+i,pTex->m_texture,0);
-            
+            glFramebufferTexture(GL_DRAW_FRAMEBUFFER,GL_COLOR_ATTACHMENT0+i,pTex->m_texture,0);            
         }
         
         GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);

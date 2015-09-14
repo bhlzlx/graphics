@@ -32,11 +32,20 @@ namespace Graphics
           width = _width;
           height = _height;
       }
+	  
+	  Rect( const Size<T>& _size)
+	  {
+			x = 0;
+			y = 0;
+			width = _size.width;
+			height = _size.height;
+	  }
       
       Size<T> GetSize()
       {
           return Size<T>(this->width,this->height);
       }
+	  
     };
 	
     enum DRAW_TYPE
@@ -175,8 +184,7 @@ namespace Graphics
     {
         TEX_CLASS           eTexClass;
         PIXEL_FORMAT        ePixelFormat;
-        uint16_t            nSizeX;
-        uint16_t            nSizeY;
+        Size<uint32_t>		size;
     };
     
     struct RenderState
@@ -256,14 +264,12 @@ namespace Graphics
     
     struct DepthStencilDesc
     {
-        int16_t nWidth;
-        int16_t nHeight;
+		Size<uint32_t>	m_Size;
     };
     
     struct RenderTargetDesc
     {
-        int16_t         nWidth;
-        int16_t         nHeight;
+        Size<uint32_t>  m_Size;
         PIXEL_FORMAT    eFormat;
     };
     
@@ -281,12 +287,14 @@ namespace Graphics
     
     struct ITex
     {
+		virtual Size<uint32_t>& GetSize() = 0;
         virtual void Release() = 0;
     };
     
     struct IRenderTarget
     {
         virtual ITex * GetColorTex() = 0;
+		virtual void  SetColorTex( ITex * _pTex) = 0;
         virtual const RenderTargetDesc * GetDesc() = 0;
         virtual void Release() = 0;
     };
@@ -334,6 +342,6 @@ namespace Graphics
         void Release();
     };
 	
-    extern Size<int> GetWindowSize();
+    extern Size<int>& GetWindowSize();
 };
 #endif

@@ -5,6 +5,7 @@
 #include <core/texogl.h>
 #include <core/effectogl.h>
 #include <core/rendertargetogl.h>
+#include <core/depthstencilogl.h>
 
 namespace Graphics
 {
@@ -34,19 +35,27 @@ namespace Graphics
 									#include <glsl/fontrender.frag>
 		effectDesc.szVertexShaderText = 
 									#include <glsl/fontrender.vert>
-									
+		
 		this->m_pEffect = Graphics::EffectOGL::CreateEffect(&effectDesc);
 		// 创建帧缓冲区
 		RenderTargetDesc renderTargetDesc;
 		renderTargetDesc.eFormat = PIXEL_FORMAT_RGBA8888;
-		renderTargetDesc.nHeight = 4;
-		renderTargetDesc.nWidth = 4;
+		renderTargetDesc.m_Size.width = 4;
+		renderTargetDesc.m_Size.height = 4;
 		DepthStencilDesc depthStencilDesc;
-		depthStencilDesc.nHeight = 4;
-		depthStencilDesc.nWidth = 4;
+		depthStencilDesc.m_Size.width = 2048;
+		depthStencilDesc.m_Size.height = 2048;
 		
-		Graphics::RenderTargetOGL * pRenderTargetOGL = Graphics::RenderTargetOGL::CreateRenderTarget( &renderTargetDesc);
+		Graphics::RenderTargetOGL * pRenderTarget = Graphics::RenderTargetOGL::CreateRenderTarget( &renderTargetDesc);
+		Graphics::IDepthStencil* pDepthStencil = Graphics::DepthStencilOGL::CreateDepthStencil( &depthStencilDesc);
 		Graphics::RenderPipelineDesc pipelineDesc;
+		pipelineDesc.nRendertargetCount = 1;
+		pipelineDesc.pDepthStencil = pDepthStencil;
+		pipelineDesc.pRenderTargets[0] = pRenderTarget;
+		
+		this->m_pFramebuffer = Graphics::RenderPipeline::CreateRenderPipeline( &pipelineDesc);
+		m_pFramebuffer->m_desc.pRenderTargets[0]->GetColorTex()->Release();
+		m_pFramebuffer->m_desc.pRenderTargets[0]->SetColorTex( NULL);
 		
 		
 		// 将utf8转换为unicode编码
@@ -155,26 +164,30 @@ namespace Graphics
 				// 如果高度也不够了新建一个texture
 				if(FONT_TEX_SIZE - FONT_GAP - iTexCoordBaseY < cellsize)
 				{
+					if(iCurrTexIdx != -1)
+					{
+						m_pFontTexArray[iCurrTexIdx]->Bind();
+						glGenerateMipmap(GL_TEXTURE_2D);
+					}
 					Graphics::TexDesc texdesc;		
 					texdesc.eTexClass = TEX_CLASS_DYNAMIC;
 					texdesc.ePixelFormat = PIXEL_FORMAT_A8;
-					texdesc.nSizeX = FONT_TEX_SIZE;
-					texdesc.nSizeY = FONT_TEX_SIZE;
-					Graphics::TexOGL * pTex = Graphics::TexOGL::CreateTex( &texdesc, false);
+					texdesc.size = Size<uint32_t>(FONT_TEX_SIZE, FONT_TEX_SIZE);
+					Graphics::TexOGL * pTex = Graphics::TexOGL::CreateTex( &texdesc, true);
 					pTex->Bind();
 					iBuffer * emptyBuff = CreateStandardBuffer(FONT_TEX_SIZE * FONT_TEX_SIZE);
 					memset(emptyBuff->GetBuffer(),0,emptyBuff->GetLength());
 					glTexSubImage2D(
-					GL_TEXTURE_2D,
-					0,
-					0,
-					0,
-					FONT_TEX_SIZE,
-					FONT_TEX_SIZE,
-					GL_RED,
-					GL_UNSIGNED_BYTE,
-					emptyBuff->GetBuffer()
-					);
+						GL_TEXTURE_2D,
+						0,
+						0,
+						0,
+						FONT_TEX_SIZE,
+						FONT_TEX_SIZE,
+						GL_RED,
+						GL_UNSIGNED_BYTE,
+						emptyBuff->GetBuffer()
+						);
 					emptyBuff->Release();
 					
 					error = glGetError();
@@ -192,7 +205,7 @@ namespace Graphics
 			pInfo->m_range.height = (float)cellsize / (float)FONT_TEX_SIZE;
 			m_pFontMap[charcode] = pInfo;
 			
-			void * pPixeles = fontBuff->GetBuffer();
+			void * pPixels = fontBuff->GetBuffer();
 			error = 0;
 			
 			if(bitmap.width && bitmap.rows)
@@ -207,7 +220,7 @@ namespace Graphics
 					bitmap.rows,
 					GL_RED,
 					GL_UNSIGNED_BYTE,
-					pPixeles
+					pPixels
 					);
 			}
 			
@@ -216,7 +229,6 @@ namespace Graphics
 			{
 				assert(error == 0);
 			}
-			
 			iTexCoordBaseX = iTexCoordBaseX + FONT_GAP + width_pixels + offsetx;
 		}
 		
@@ -225,9 +237,9 @@ namespace Graphics
 		if(fontBuff)
 		{
 			fontBuff->Release();
-		}		
+		}
 		pUTFBuffer->Release();
-		
+		glGenerateMipmap(GL_TEXTURE_2D);
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 	}
 	
@@ -254,6 +266,50 @@ namespace Graphics
 		
 		m_pEffect->End();
 	}
-
+	
+	Rect<float>& TextRenderer::GetCharRect( uint16_t _uChar )
+	{
+		return this->m_pFontMap[_uChar]->m_range;
+	}
+	
+	void TextRenderer::Render(ITex * _pTex, Size<uint32_t>& _offset,const uint16_t* _pUnicode, uint32_t _nChar, float _fontSize)
+	{
+		// 获取要渲染纹理的大小
+		Size<uint32_t>& texSize = _pTex->GetSize();
+		// 设置viewport
+		m_pFramebuffer->m_viewport.width = texSize.width;
+		m_pFramebuffer->m_viewport.height = texSize.height;
+		// 设置纹理
+		m_pFramebuffer->m_desc.pRenderTargets[0]->SetColorTex(_pTex);
+		TexOGL * pTex = (TexOGL*)_pTex;
+		glFramebufferTexture(GL_DRAW_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,pTex->m_texture,0);
+		// 渲染
+		m_pFramebuffer->Begin();
+		m_pEffect->Begin();
+		static Rect<float>  drawRect;
+		uint32_t xoffset_t = _offset.width;
+		for(uint32_t charId = 0; charId<_nChar; ++charId )
+		{
+			Rect<float>& fontRect = this->m_pFontMap[_pUnicode[charId]]->m_range;
+			drawRect.height = m_fFontSize*_fontSize/texSize.width;
+			drawRect.width = FONT_TEX_SIZE*fontRect.width*_fontSize/texSize.width;
+			drawRect.x = (float)xoffset_t / (float)texSize.width;
+			drawRect.y = 1 - _offset.height/texSize.height - drawRect.height;
+			// 设置shader变量
+			m_pEffect->m_pShader->SetTexture(0, this->m_pFontTexArray[0]);
+			m_pEffect->m_pShader->SetUniformData( &fontRect, "FONT_RECT");
+			m_pEffect->m_pShader->SetUniformData( &drawRect, "DRAW_RECT");
+			// 画字符
+			glDrawArrays(GL_TRIANGLES,0,6);
+			xoffset_t += (fontRect.width * (float)FONT_TEX_SIZE * _fontSize);
+			// 超限判断放在最后
+			if(xoffset_t > texSize.width || drawRect.y > texSize.height)
+			{
+				break;
+			}
+		}
+		m_pEffect->End();
+		m_pFramebuffer->End();
+	}
+	
 }
-

@@ -2,6 +2,7 @@
 #include <model/BasicModel.h>
 #include <scene/octree/octreerendernode.h>
 #include <stdio.h>
+#include <app/openglviewcontroller.h>
 
 using namespace Graphics;
 
@@ -65,7 +66,8 @@ void GameScene::Render(uint64_t _time)
 	m_pStaticEffect->Begin();
 	m_pStaticEffect->m_pShader->SetUniformData( &viewMat, "VIEW");
 	m_pStaticEffect->m_pShader->SetUniformData( &projectionMat, "PROJECTION");
-	m_pStaticEffect->m_pShader->SetTexture( 0,m_pChessTexture);
+	//m_pStaticEffect->m_pShader->SetTexture( 0,m_pChessTexture);
+	m_pStaticEffect->m_pShader->SetTexture( 0,textRenderTestTex);
 	
 	/*	
 	for( SceneObject * pObject : m_staticObjects)

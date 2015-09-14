@@ -8,14 +8,13 @@ namespace Graphics
 
     struct RenderPipeline:public IRenderPipeline
     {
-        RenderPipelineDesc          m_desc;
-        GLuint                      m_FrameBuffer;
+        RenderPipelineDesc				m_desc;
+        GLuint							m_FrameBuffer;
         
-        Rect<GLint>                 m_viewport;
-        Rect<GLint>                 m_scissor;
+        Rect<uint32_t>					m_viewport;
+        Rect<uint32_t>					m_scissor;
         RenderPipeline();
-        
-        
+
         bool Begin();
         void End();
         const RenderPipelineDesc * GetDesc();

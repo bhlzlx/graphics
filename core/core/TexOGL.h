@@ -16,6 +16,7 @@ namespace Graphics
         TexDesc * GetDesc();
 		void Bind();
         void ApplySamplerState(SamplerOGL * _pSampler);
+		Size<uint32_t>& GetSize();
         
         static TexOGL * CreateTex(TexDesc * _pTexDesc , bool autoMip = false);
         static TexOGL * CreateChessTex();
