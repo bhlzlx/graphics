@@ -37,12 +37,12 @@ namespace Graphics
 		~TextRenderer();
 		
 		uint8_t Init( const char * _szFontpath, const char * _szFontLib );
-		void Render();
+		
+		void Render(ITex * _pTex, Size<uint32_t>& _offset,const uint16_t* _pUnicode, uint32_t _nChar, float _fontSize);
+		
 		Rect<float>& GetCharRect( uint16_t _uChar );
 		
-		void RenderBegin();
-		void Render(ITex * _pTex, Size<uint32_t>& _offset,const uint16_t* _pUnicode, uint32_t _nChar, float _fontSize);
-		void RenderEnd();
+		void Release();
 		// 用于分配Font对象的内存池
 		SMemPool*		m_pMemPool;
 		FontCharacter** m_pFontMap;
@@ -51,11 +51,12 @@ namespace Graphics
 		
 		float 			m_fFontSize;
 		
-		
 		Graphics::RenderPipeline* m_pFramebuffer;
 		
 		EffectOGL* 	    m_pEffect;
 	};
+	
+	TextRenderer * GetTextRenderer();
 }
 
 #endif // __CORE_TEXTRENDERER_H__

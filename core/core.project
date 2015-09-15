@@ -39,6 +39,8 @@
       <File Name="common/log/logger.cpp"/>
       <File Name="common/log/logger.h"/>
     </VirtualDirectory>
+    <File Name="common/EncodeCommon.h"/>
+    <File Name="common/EncodeCommon.cpp"/>
   </VirtualDirectory>
   <Description/>
   <Dependencies/>
@@ -218,4 +220,8 @@
       </Completion>
     </Configuration>
   </Settings>
+  <VirtualDirectory Name="settings">
+    <File Name="settings/settings.cpp"/>
+    <File Name="settings/settings.h"/>
+  </VirtualDirectory>
 </CodeLite_Project>

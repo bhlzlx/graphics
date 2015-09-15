@@ -16,6 +16,8 @@
 #include <string.h>
 #include <math.h>
 #include <glfw/glfw3.h>
+#include <settings/settings.h>
+#include <common/EncodeCommon.h>
 
 const uint16_t STRING_TEST[2] = {0x4f60,0x597d};
 
@@ -38,6 +40,8 @@ namespace Graphics
 
 void OpenGLViewController::OnInit()
 {
+	iBuffer * configBuff = BufferFromFile("config.txt");
+	phantom::GetSettings().Init(configBuff);
 	__pViewController = this;
 	m_pGameCamera = GetGameCamera();
 	
@@ -52,7 +56,7 @@ void OpenGLViewController::OnInit()
     clearOp.bClearColor = GL_TRUE;
     float clearColors[4] = {.8f,0.8f,0.8f,1.0f};
     memcpy(&clearOp.vClearColors,clearColors,sizeof(clearColors));
-    m_pRenderPipelineDefault = RenderPipelineDefault::CreateRenderPipelineDefault(&clearOp);
+    m_pRenderPipelineDefault = RenderPipelineDefault::GetRenderPipelineDefault(&clearOp);
     
     RenderTargetDesc renderTargetDesc;
     renderTargetDesc.eFormat = PIXEL_FORMAT_RGBA8888;
@@ -78,12 +82,27 @@ void OpenGLViewController::OnInit()
 	
 	m_pGameCamera->m_projectionMatrix = perspective(45.f,(float)m_viewport.width/(float)m_viewport.height,0.001f,1000.0f);
 	
-	m_gameScene.Init();
+	m_gameScene.Init();	
+	m_pTextRenderer = GetTextRenderer();
 	
-	m_pTextRenderer = new TextRenderer;
-	//m_pTextRenderer->Init( "msyh.ttf", "charlib.txt");
-	m_pTextRenderer->Init( "liukai.ttf", "charlib.txt");
+	m_pGuiRenderer = new gui::GuiRenderer();
+	m_pGuiRenderer->Init();
+	Rect<float> labelRect(0,0,256,32);
+	float lableFontSize = phantom::GetSettings().m_floats["GUI_FONT_SIZE"];
+	m_pLabel = gui::Label::CreateLabel( labelRect, 0xffffffff, lableFontSize);
 	
+			// 将utf8转换为unicode编码
+	std::string& labelText = phantom::GetSettings().GetStringValue("LABEL_STRING");
+	iBuffer * pUTFBuffer = CreateStandardBuffer( labelText.size() * 1.5);
+	uint16_t * ptr_in = (uint16_t *)labelText.c_str();
+	uint32_t size_in = labelText.size();
+	uint16_t * ptr_out = (uint16_t *)pUTFBuffer->GetBuffer();
+	uint32_t size_avail = pUTFBuffer->GetLength();
+	uint32_t count = UTF82Unicode(ptr_in,size_in,ptr_out,size_avail);
+	m_pLabel->m_szText = new uint16_t[count];
+	memcpy(m_pLabel->m_szText, pUTFBuffer->GetBuffer(),sizeof(uint16_t) * count);
+	pUTFBuffer->Release();
+	m_pLabel->m_nTextLen = count;
 }
 
 void OpenGLViewController::OnUpdate()
@@ -95,11 +114,13 @@ void OpenGLViewController::OnUpdate()
 	if( textRenderTestTex == NULL)
 	{
 		textRenderTestTex = Graphics::TexOGL::CreateChessTex();
-		m_pTextRenderer->Render( textRenderTestTex, offset, &STRING_TEST[0], 2, 0.5f);
+		m_pTextRenderer->Render( textRenderTestTex, offset, &STRING_TEST[0], 2, 24.0f);
 	}
 	
 	m_pRenderPipelineDefault->Begin();
 	m_gameScene.Render(timepassed);
+	
+	m_pGuiRenderer->Render( m_pLabel);
 	
     m_pRenderPipelineDefault->End();
 }

@@ -11,6 +11,8 @@
 
 namespace Graphics
 {   
+	RenderPipelineDefault * __pRenderPipelineMain = NULL;
+	
     RenderPipeline::RenderPipeline()
     {
         
@@ -91,10 +93,23 @@ namespace Graphics
         }
         return true;
     }
+	
+	bool RenderPipeline::Resume()
+	{
+		// bind framebuffer
+        glBindFramebuffer(GL_FRAMEBUFFER,this->m_FrameBuffer);
+        // viewport
+        glViewport(m_viewport.x,m_viewport.y,m_viewport.width,m_viewport.height);
+        // scissor 这里只是调用scissor方法，实际上还要打开开关，这个选项放在effect里
+        glScissor(m_scissor.x,m_scissor.y,m_scissor.width,m_scissor.height);
+        return true;
+	}
+	
     void RenderPipeline::End()
     {
         return;
     }
+	
     const RenderPipelineDesc * RenderPipeline::GetDesc()
     {
         return &this->m_desc;
@@ -138,6 +153,17 @@ namespace Graphics
         glScissor(m_scissor.x,m_scissor.y,m_scissor.width,m_scissor.height);
         return true;
     }
+	
+	bool RenderPipelineDefault::Resume()
+	{
+		// 绑定默认FBO
+        glBindFramebuffer(GL_FRAMEBUFFER,0);
+        // viewport
+        glViewport(m_viewport.x,m_viewport.y,m_viewport.width,m_viewport.height);
+        // scissor 这里只是调用scissor方法，实际上还要打开开关，这个选项放在effect里
+        glScissor(m_scissor.x,m_scissor.y,m_scissor.width,m_scissor.height);
+        return true;
+	}
     
     void RenderPipelineDefault::UpdateViewport(int _x,int _y,int _width,int _height)
     {
@@ -149,24 +175,27 @@ namespace Graphics
         m_scissor = Rect<int>(_x,_y,_width,_height);
     }
     
-    void   RenderPipelineDefault::End()
+    void RenderPipelineDefault::End()
     {
         
     }
     
-    void   RenderPipelineDefault::Release()
+    void RenderPipelineDefault::Release()
     {
         delete this;
     }
     
-    RenderPipelineDefault * Graphics::RenderPipelineDefault::CreateRenderPipelineDefault(ClearOP* _pClear)
+    RenderPipelineDefault * Graphics::RenderPipelineDefault::GetRenderPipelineDefault(ClearOP* _pClear)
     {
-        RenderPipelineDefault * pRenderPipeline = new RenderPipelineDefault();
-        memcpy(&pRenderPipeline->m_clearOp,_pClear,sizeof(ClearOP));
-        Size<int> wndSize = GetWindowSize();
-        pRenderPipeline->m_viewport = Rect<int>(0,0,wndSize.width,wndSize.height);
-        pRenderPipeline->m_scissor = Rect<int>(0,0,wndSize.width,wndSize.height);
-        return pRenderPipeline;
+		if( __pRenderPipelineMain == NULL)
+		{
+			__pRenderPipelineMain = new RenderPipelineDefault();
+			memcpy(&__pRenderPipelineMain->m_clearOp,_pClear,sizeof(ClearOP));
+			Size<int> wndSize = GetWindowSize();
+			__pRenderPipelineMain->m_viewport = Rect<int>(0,0,wndSize.width,wndSize.height);
+			__pRenderPipelineMain->m_scissor = Rect<int>(0,0,wndSize.width,wndSize.height);
+		}
+        return __pRenderPipelineMain;
     }
 }
 

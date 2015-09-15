@@ -16,8 +16,8 @@
 #include <core/EffectOGL.h>
 #include <core/BufferOGL.h>
 #include <core/RenderPipelineOGL.h>
-
 #include <core/renderer/TextRenderer.h>
+#include <gui/Label.h>
 
 using namespace UI;
 using namespace Graphics;
@@ -46,6 +46,9 @@ struct OpenGLViewController
     CCamera *           m_pGameCamera;
 	
 	TextRenderer*		m_pTextRenderer;
+	
+	gui::GuiRenderer*	m_pGuiRenderer;
+	gui::Label*			m_pLabel;
 
     OpenGLViewController();
     

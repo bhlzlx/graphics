@@ -165,7 +165,7 @@ again:
 		iBuffer * pRet = CreateStandardBuffer(pEnd - pContent);
 		int n_read = _pBuffer->Read(pRet->GetBuffer(),pRet->GetLength() - 1);
 		assert(n_read == (int)pRet->GetLength() - 1);
-		_pBuffer->Seek(SEEK_CUR,1L);            
+		_pBuffer->Seek(SEEK_CUR,1L);
 		return pRet;
 	}
 	

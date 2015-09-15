@@ -284,7 +284,7 @@ namespace Graphics
         else
         {
             this->magFilter = GL_NEAREST;
-            this->minFilter = GL_NEAREST;
+            this->minFilter = GL_LINEAR;
         }
         this->addressMode_S = GL_REPEAT;
         this->addressMode_T = GL_REPEAT;

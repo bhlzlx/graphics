@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=14/09/2015
+Date                   :=15/09/2015
 CodeLitePath           :="E:\application\CodeLite"
 LinkerName             :=E:/tdmgcc32/bin/g++.exe
 SharedObjectLinkerName :=E:/tdmgcc32/bin/g++.exe -shared -fPIC
@@ -63,9 +63,10 @@ AS       := E:/tdmgcc32/bin/as.exe
 ##
 CodeLiteDir:=E:\application\CodeLite
 BuildDir:=E:/projects/builds
-Objects0=$(IntermediateDirectory)/model_BasicModel.cpp$(ObjectSuffix) $(IntermediateDirectory)/math_Camera.cpp$(ObjectSuffix) $(IntermediateDirectory)/math_Variance.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_AppDelegate.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_OpenGLViewController.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/event_MouseEvent.cpp$(ObjectSuffix) $(IntermediateDirectory)/scene_GameScene.cpp$(ObjectSuffix) $(IntermediateDirectory)/scene_SceneObject.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/gui_Label.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_BufferOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_DepthStencilOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_EffectOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_Image.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderPipelineOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderTargetOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_TexOGL.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/core_UICommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/memory_memory.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) $(IntermediateDirectory)/aabb_aabb.cpp$(ObjectSuffix) $(IntermediateDirectory)/octree_Octree.cpp$(ObjectSuffix) $(IntermediateDirectory)/octree_OctreeRenderNode.cpp$(ObjectSuffix) $(IntermediateDirectory)/renderer_TextRenderer.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/model_BasicModel.cpp$(ObjectSuffix) $(IntermediateDirectory)/math_Camera.cpp$(ObjectSuffix) $(IntermediateDirectory)/math_Variance.cpp$(ObjectSuffix) $(IntermediateDirectory)/common_EncodeCommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_AppDelegate.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_OpenGLViewController.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/event_MouseEvent.cpp$(ObjectSuffix) $(IntermediateDirectory)/scene_GameScene.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/scene_SceneObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/gui_Label.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_BufferOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_DepthStencilOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_EffectOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_Image.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderPipelineOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderTargetOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/core_TexOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_UICommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/memory_memory.cpp$(ObjectSuffix) $(IntermediateDirectory)/settings_settings.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) $(IntermediateDirectory)/aabb_aabb.cpp$(ObjectSuffix) $(IntermediateDirectory)/octree_Octree.cpp$(ObjectSuffix) $(IntermediateDirectory)/octree_OctreeRenderNode.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/renderer_TextRenderer.cpp$(ObjectSuffix) 
 
 
 
@@ -119,6 +120,14 @@ $(IntermediateDirectory)/math_Variance.cpp$(DependSuffix): math/Variance.cpp
 
 $(IntermediateDirectory)/math_Variance.cpp$(PreprocessSuffix): math/Variance.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/math_Variance.cpp$(PreprocessSuffix) "math/Variance.cpp"
+
+$(IntermediateDirectory)/common_EncodeCommon.cpp$(ObjectSuffix): common/EncodeCommon.cpp $(IntermediateDirectory)/common_EncodeCommon.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/core/common/EncodeCommon.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/common_EncodeCommon.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/common_EncodeCommon.cpp$(DependSuffix): common/EncodeCommon.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/common_EncodeCommon.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/common_EncodeCommon.cpp$(DependSuffix) -MM "common/EncodeCommon.cpp"
+
+$(IntermediateDirectory)/common_EncodeCommon.cpp$(PreprocessSuffix): common/EncodeCommon.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/common_EncodeCommon.cpp$(PreprocessSuffix) "common/EncodeCommon.cpp"
 
 $(IntermediateDirectory)/main.cpp$(ObjectSuffix): main.cpp $(IntermediateDirectory)/main.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/core/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IncludePath)
@@ -271,6 +280,14 @@ $(IntermediateDirectory)/memory_memory.cpp$(DependSuffix): memory/memory.cpp
 
 $(IntermediateDirectory)/memory_memory.cpp$(PreprocessSuffix): memory/memory.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/memory_memory.cpp$(PreprocessSuffix) "memory/memory.cpp"
+
+$(IntermediateDirectory)/settings_settings.cpp$(ObjectSuffix): settings/settings.cpp $(IntermediateDirectory)/settings_settings.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/core/settings/settings.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/settings_settings.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/settings_settings.cpp$(DependSuffix): settings/settings.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/settings_settings.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/settings_settings.cpp$(DependSuffix) -MM "settings/settings.cpp"
+
+$(IntermediateDirectory)/settings_settings.cpp$(PreprocessSuffix): settings/settings.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/settings_settings.cpp$(PreprocessSuffix) "settings/settings.cpp"
 
 $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix): model/md5parser/md5.cpp $(IntermediateDirectory)/md5parser_md5.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/core/model/md5parser/md5.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IncludePath)

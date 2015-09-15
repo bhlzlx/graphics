@@ -7,6 +7,8 @@
 #include <core/rendertargetogl.h>
 #include <core/depthstencilogl.h>
 
+#include <settings/settings.h>
+
 namespace Graphics
 {
 	const uint32_t CHARSET_MAX 	= 1<<17-1;	
@@ -14,6 +16,8 @@ namespace Graphics
 	const uint32_t FONT_PT		= 24;	
 	const int32_t  FONT_TEX_SIZE = 2048;
 	const int32_t  FONT_GAP		= 2;
+	
+	float FONT_BOUND = 0.0f;
 
 	TextRenderer::TextRenderer()
 	{
@@ -25,6 +29,15 @@ namespace Graphics
 
 	uint8_t TextRenderer::Init( const char * _szFontpath, const char * _szFontLib )
 	{
+		// 判断文件可读性
+		FILE * file = NULL;
+		file = fopen(_szFontLib,"r");
+		assert(file);
+		fclose(file);
+		file = fopen(_szFontpath,"r");
+		assert(file);
+		fclose(file);
+		
 		// 初始化 shader effect
 		Graphics::EffectDesc effectDesc;
 		effectDesc.renderState.blendDest = BLEND_FACTOR_INVSRCALPHA;
@@ -52,6 +65,8 @@ namespace Graphics
 		pipelineDesc.nRendertargetCount = 1;
 		pipelineDesc.pDepthStencil = pDepthStencil;
 		pipelineDesc.pRenderTargets[0] = pRenderTarget;
+		pipelineDesc.clearOP.vClearColors[3] = 0.0f;
+		//pipelineDesc.clearOP.bClearColor = false;
 		
 		this->m_pFramebuffer = Graphics::RenderPipeline::CreateRenderPipeline( &pipelineDesc);
 		m_pFramebuffer->m_desc.pRenderTargets[0]->GetColorTex()->Release();
@@ -97,7 +112,7 @@ namespace Graphics
 		error = FT_Init_FreeType( &freetype_lib);
 		error = FT_New_Face( freetype_lib, _szFontpath, 0, &freetype_face);
 		error = FT_Select_Charmap(freetype_face,FT_ENCODING_UNICODE);
-		error = FT_Set_Char_Size(freetype_face, 0, FONT_PT*64, PPI, PPI);
+		error = FT_Set_Char_Size(freetype_face, 0, FONT_BOUND*64, PPI, PPI);
 		// 遍历字符
 		uint16_t* pChar = (uint16_t *)pUTFBuffer->GetBuffer();
 		// 
@@ -167,13 +182,13 @@ namespace Graphics
 					if(iCurrTexIdx != -1)
 					{
 						m_pFontTexArray[iCurrTexIdx]->Bind();
-						glGenerateMipmap(GL_TEXTURE_2D);
+						//glGenerateMipmap(GL_TEXTURE_2D);
 					}
 					Graphics::TexDesc texdesc;		
 					texdesc.eTexClass = TEX_CLASS_DYNAMIC;
 					texdesc.ePixelFormat = PIXEL_FORMAT_A8;
 					texdesc.size = Size<uint32_t>(FONT_TEX_SIZE, FONT_TEX_SIZE);
-					Graphics::TexOGL * pTex = Graphics::TexOGL::CreateTex( &texdesc, true);
+					Graphics::TexOGL * pTex = Graphics::TexOGL::CreateTex( &texdesc, false);
 					pTex->Bind();
 					iBuffer * emptyBuff = CreateStandardBuffer(FONT_TEX_SIZE * FONT_TEX_SIZE);
 					memset(emptyBuff->GetBuffer(),0,emptyBuff->GetLength());
@@ -239,32 +254,8 @@ namespace Graphics
 			fontBuff->Release();
 		}
 		pUTFBuffer->Release();
-		glGenerateMipmap(GL_TEXTURE_2D);
+		//glGenerateMipmap(GL_TEXTURE_2D);
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
-	}
-	
-	void TextRenderer::Render()
-	{
-		m_pEffect->Begin();
-		Rect<float> drawRect;
-		drawRect.width = 1.0f;
-		drawRect.height = 1.0f;
-		drawRect.x = 0.0f;
-		drawRect.y = 0.0f;
-		
-		Rect<float> fontRect;
-		fontRect.width = 1.0f;
-		fontRect.height = 1.0f;
-		fontRect.x = 0.0f;
-		fontRect.y = 0.0f;
-		
-		m_pEffect->m_pShader->SetTexture(0, this->m_pFontTexArray[0]);
-		m_pEffect->m_pShader->SetUniformData( &fontRect, "FONT_RECT");
-		m_pEffect->m_pShader->SetUniformData( &drawRect, "DRAW_RECT");
-		
-		glDrawArrays(GL_TRIANGLES,0,6);
-		
-		m_pEffect->End();
 	}
 	
 	Rect<float>& TextRenderer::GetCharRect( uint16_t _uChar )
@@ -274,6 +265,8 @@ namespace Graphics
 	
 	void TextRenderer::Render(ITex * _pTex, Size<uint32_t>& _offset,const uint16_t* _pUnicode, uint32_t _nChar, float _fontSize)
 	{
+		float fRealHeight = 0;
+		float fRealWidth = 0;
 		// 获取要渲染纹理的大小
 		Size<uint32_t>& texSize = _pTex->GetSize();
 		// 设置viewport
@@ -282,6 +275,7 @@ namespace Graphics
 		// 设置纹理
 		m_pFramebuffer->m_desc.pRenderTargets[0]->SetColorTex(_pTex);
 		TexOGL * pTex = (TexOGL*)_pTex;
+		glBindFramebuffer(GL_FRAMEBUFFER, m_pFramebuffer->m_FrameBuffer);;
 		glFramebufferTexture(GL_DRAW_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,pTex->m_texture,0);
 		// 渲染
 		m_pFramebuffer->Begin();
@@ -291,8 +285,10 @@ namespace Graphics
 		for(uint32_t charId = 0; charId<_nChar; ++charId )
 		{
 			Rect<float>& fontRect = this->m_pFontMap[_pUnicode[charId]]->m_range;
-			drawRect.height = m_fFontSize*_fontSize/texSize.width;
-			drawRect.width = FONT_TEX_SIZE*fontRect.width*_fontSize/texSize.width;
+			fRealHeight = _fontSize;
+			fRealWidth = _fontSize * fontRect.width / fontRect.height;
+			drawRect.height = fRealHeight / texSize.height;
+			drawRect.width = fRealWidth / texSize.width;
 			drawRect.x = (float)xoffset_t / (float)texSize.width;
 			drawRect.y = 1 - _offset.height/texSize.height - drawRect.height;
 			// 设置shader变量
@@ -301,7 +297,7 @@ namespace Graphics
 			m_pEffect->m_pShader->SetUniformData( &drawRect, "DRAW_RECT");
 			// 画字符
 			glDrawArrays(GL_TRIANGLES,0,6);
-			xoffset_t += (fontRect.width * (float)FONT_TEX_SIZE * _fontSize);
+			xoffset_t += fRealWidth;
 			// 超限判断放在最后
 			if(xoffset_t > texSize.width || drawRect.y > texSize.height)
 			{
@@ -312,4 +308,35 @@ namespace Graphics
 		m_pFramebuffer->End();
 	}
 	
+	TextRenderer * __pTextureRenderer = NULL;
+	
+	TextRenderer * GetTextRenderer()
+	{
+		if( __pTextureRenderer == NULL)
+		{
+			__pTextureRenderer = new TextRenderer();
+			phantom::Config & config = phantom::GetSettings();
+			const char * fontPath = config.m_strings["FONT_TTF"].c_str();
+			const char * charLib = config.m_strings["CHAR_LIB"].c_str();
+			FONT_BOUND = config.m_floats["FONT_BASIC_SIZE"];
+			__pTextureRenderer->Init( fontPath, charLib);
+		}
+		return __pTextureRenderer;
+	}
+	
+	void Graphics::TextRenderer::Release()
+	{
+		this->m_pEffect->Release();
+		this->m_pFramebuffer->Release();		
+		// fontmap里的对象全部由内存池分配，所以直接销毁内存池，和指针数组就可以了
+		delete []this->m_pFontMap;
+		delete m_pMemPool;
+		// 销毁纹理
+		for(int i = 0; i<this->m_nFontTexCount; ++i)
+		{
+			this->m_pFontTexArray[i]->Release();
+		}
+	}
 }
+
+

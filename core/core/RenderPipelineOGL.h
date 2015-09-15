@@ -1,7 +1,7 @@
 #ifndef __RENDER_PIPELINE__
 #define __RENDER_PIPELINE__
 
-#include "device.h"
+#include <core/device.h>
 
 namespace Graphics
 {
@@ -16,6 +16,7 @@ namespace Graphics
         RenderPipeline();
 
         bool Begin();
+		bool Resume();
         void End();
         const RenderPipelineDesc * GetDesc();
         void Release();
@@ -33,12 +34,14 @@ namespace Graphics
         void                        UpdateViewport(int _x,int _y,int _width,int _height);
         void                        SetScissor( int _x,int _y,int _width,int _height );
         bool                        Begin();
+		bool						Resume();
         void                        End();
         void                        Release();
         
-        static RenderPipelineDefault * CreateRenderPipelineDefault( ClearOP * _pClear);
+        static RenderPipelineDefault * GetRenderPipelineDefault( ClearOP * _pClear);
     };
-
+	
+	RenderPipelineDefault * GetRenderPipelineDefault();
 }
 
 #endif // __RENDER_PIPELINE__

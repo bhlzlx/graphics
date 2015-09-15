@@ -15,7 +15,8 @@ namespace gui
 	
 	struct GuiRenderer
 	{
-		EffectOGL * m_pEffect;
+		EffectOGL * 		m_pEffect;
+		TextRenderer*		m_pTextRenderer; 
 		
 		void Init();
 		void Render( GuiObject * _pGuiObject);
@@ -23,7 +24,7 @@ namespace gui
 	
 	struct GuiObject
 	{
-		virtual void Draw( EffectOGL * _pEffect ) = 0;
+		virtual void Draw( EffectOGL * _pEffect, TextRenderer* _pTextRenderer) = 0;
 	};
 	
 	class Label:public GuiObject
@@ -31,14 +32,15 @@ namespace gui
 	public:
 		Label();
 		~Label();
-		void Draw( EffectOGL * _pEffect );		
+		void Draw( Graphics::EffectOGL* _pEffect, TextRenderer* _pTextRenderer);		
 		static Label* CreateLabel( Rect<float>& _rc, uint32_t _color, float _fontSize);
-	private:
+	public:
 		Graphics::Rect<float> m_area;
+		Graphics::Size<uint32_t> m_offset;
 		Graphics::TexOGL* m_pTex;
 		
 		uint16_t * m_szText;
-		uint32_t * m_nTextLen;
+		uint32_t   m_nTextLen;
 					
 		float 		m_fFontSize;
 	};
