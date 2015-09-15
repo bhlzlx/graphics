@@ -87,7 +87,7 @@ void OpenGLViewController::OnInit()
 	
 	m_pGuiRenderer = new gui::GuiRenderer();
 	m_pGuiRenderer->Init();
-	Rect<float> labelRect(0,0,256,32);
+	Rect<float> labelRect(0,0,512,32);
 	float lableFontSize = phantom::GetSettings().m_floats["GUI_FONT_SIZE"];
 	m_pLabel = gui::Label::CreateLabel( labelRect, 0xffffffff, lableFontSize);
 	

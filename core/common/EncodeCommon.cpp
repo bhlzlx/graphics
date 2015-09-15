@@ -12,7 +12,7 @@ uint32_t UTF82Unicode( uint16_t * _pUTF8, uint32_t _nDataLen, uint16_t* _pUnicod
 	}
 	uint32_t error = 0;
 	error = iconv(conv,(char**)&_pUTF8,&_nDataLen,(char **)&_pUnicode,&_nBufferSize);
-	if(error != 0)
+	if(error == -1)
 	{
 		iconv_close(conv);
 		return 0;

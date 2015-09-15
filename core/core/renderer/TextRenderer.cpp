@@ -284,7 +284,18 @@ namespace Graphics
 		uint32_t xoffset_t = _offset.width;
 		for(uint32_t charId = 0; charId<_nChar; ++charId )
 		{
-			Rect<float>& fontRect = this->m_pFontMap[_pUnicode[charId]]->m_range;
+//			if(_pUnicode[charId] == 32)
+//			{
+//				xoffset_t+=_fontSize/2;
+//				continue;
+//			}
+			FontCharacter * pFontInfo = this->m_pFontMap[_pUnicode[charId]];
+			if(pFontInfo == NULL)
+			{
+				pFontInfo = m_pFontMap[95];
+			}
+			Rect<float>& fontRect = pFontInfo->m_range;
+			uint32_t iPage = pFontInfo->m_iPage;
 			fRealHeight = _fontSize;
 			fRealWidth = _fontSize * fontRect.width / fontRect.height;
 			drawRect.height = fRealHeight / texSize.height;
@@ -292,7 +303,7 @@ namespace Graphics
 			drawRect.x = (float)xoffset_t / (float)texSize.width;
 			drawRect.y = 1 - _offset.height/texSize.height - drawRect.height;
 			// 设置shader变量
-			m_pEffect->m_pShader->SetTexture(0, this->m_pFontTexArray[0]);
+			m_pEffect->m_pShader->SetTexture(0, this->m_pFontTexArray[iPage]);
 			m_pEffect->m_pShader->SetUniformData( &fontRect, "FONT_RECT");
 			m_pEffect->m_pShader->SetUniformData( &drawRect, "DRAW_RECT");
 			// 画字符
