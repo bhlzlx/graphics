@@ -9,11 +9,11 @@
 
 #include <common/log/logger.h>
 
-phantom::Logger * __logger__ = NULL;
+ow::Logger * __logger__ = NULL;
 
 void AppDelegate::AppWillStart()
 {
-    __logger__ = phantom::Logger::GetInstance("./log.txt");
+    __logger__ = ow::Logger::GetInstance("./log.txt");
     assert(__logger__);
     m_pViewController = new OpenGLViewController();
 }

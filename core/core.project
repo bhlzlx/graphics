@@ -105,8 +105,6 @@
     <File Name="core/ShaderOGL.h"/>
     <File Name="core/TexOGL.cpp"/>
     <File Name="core/TexOGL.h"/>
-    <File Name="core/UICommon.cpp"/>
-    <File Name="core/UICommon.h"/>
     <VirtualDirectory Name="renderer">
       <File Name="core/renderer/TextRenderer.h"/>
       <File Name="core/renderer/TextRenderer.cpp"/>

@@ -3,7 +3,7 @@
 #include <cstdio>
 #include <cassert>
 
-namespace phantom
+namespace ow
 {
 	uint8_t isValidLine( char * _pLine, uint16_t _nLength)
 	{
@@ -72,7 +72,7 @@ again:
 		return pRet;
 	}
 	
-	uint8_t Config::Init( iBuffer *_pBuffer)
+	uint8_t Settings::Init( iBuffer *_pBuffer)
 	{
 		iBuffer * bufferRef = (iBuffer*)0;
 		while(bufferRef = read_config_block(_pBuffer) )
@@ -115,26 +115,47 @@ again:
 		}
 	}
 	
-	Config config;
+	Settings __setttings;
 	
-	Config& GetSettings()
+	Settings& GetSettings()
 	{
-		return config;
+		return __setttings;
 	}
 }
 
 
-float& phantom::Config::GetFloatValue(const char* _szKey)
+float& ow::Settings::GetFloatValue(const char* _szKey)
 {
+	Conf_float::iterator iter = m_floats.find(_szKey);
+	if(iter == m_floats.end())
+	{
+		assert(false && "empty key-value");
+		static float v = 0.0f;
+		return v;
+	}
 	return this->m_floats[_szKey];
 }
 
-int& phantom::Config::GetIntValue(const char* _szKey)
+int& ow::Settings::GetIntValue(const char* _szKey)
 {
+	Conf_int::iterator iter = m_ints.find(_szKey);
+	if(iter == m_ints.end())
+	{
+		assert(false && "empty key-value");
+		static int v = -1;
+		return v;
+	}
 	return this->m_ints[_szKey];
 }
 
-std::string& phantom::Config::GetStringValue(const char* _szKey)
+std::string& ow::Settings::GetStringValue(const char* _szKey)
 {
+	Conf_string::iterator iter = m_strings.find(_szKey);
+	if(iter == m_strings.end())
+	{
+		assert(false && "empty key-value");
+		static std::string v = "";
+		return v;
+	}
 	return this->m_strings[_szKey];
 }

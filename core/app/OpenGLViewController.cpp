@@ -41,7 +41,7 @@ namespace Graphics
 void OpenGLViewController::OnInit()
 {
 	iBuffer * configBuff = BufferFromFile("config.txt");
-	phantom::GetSettings().Init(configBuff);
+	ow::GetSettings().Init(configBuff);
 	__pViewController = this;
 	m_pGameCamera = GetGameCamera();
 	
@@ -88,7 +88,7 @@ void OpenGLViewController::OnInit()
 	m_pGuiRenderer = new gui::GuiRenderer();
 	m_pGuiRenderer->Init();
 	Rect<float> labelRect(0,0,512,32);
-	phantom::Config &config = phantom::GetSettings();
+	ow::Settings &config = ow::GetSettings();
 	float lableFontSize = config.GetFloatValue("GUI_FONT_SIZE");
 	glm::vec4 labelColor = glm::vec4(
 								config.GetFloatValue("GUI_COLOR_RED"),
@@ -96,10 +96,11 @@ void OpenGLViewController::OnInit()
 								config.GetFloatValue("GUI_COLOR_BLUE"),
 								config.GetFloatValue("GUI_COLOR_ALPHA")
 							);
+							
 	m_pLabel = gui::Label::CreateLabel( labelRect, labelColor, lableFontSize);
 	
 	// 将utf8转换为unicode编码
-	std::string& labelText = phantom::GetSettings().GetStringValue("LABEL_STRING");
+	std::string& labelText = ow::GetSettings().GetStringValue("LABEL_STRING");
 	iBuffer * pUTFBuffer = CreateStandardBuffer( labelText.size() * 2);
 	uint16_t * ptr_in = (uint16_t *)labelText.c_str();
 	uint32_t size_in = labelText.size();
@@ -115,16 +116,6 @@ void OpenGLViewController::OnInit()
 void OpenGLViewController::OnUpdate()
 {
 	long long timepassed = (glfwGetTime() - m_startTime) * 1000;
-	static Size<uint32_t> offset = {
-			0,0
-		};
-	if( textRenderTestTex == NULL)
-	{
-		textRenderTestTex = Graphics::TexOGL::CreateChessTex();
-		m_pTextRenderer->SetFontColor( 1.0f, 0.0f, 0.0f, 1.0f );
-		m_pTextRenderer->SetFontSize( 24.0f);
-		m_pTextRenderer->Render( textRenderTestTex, offset, &STRING_TEST[0], 2);
-	}
 	
 	m_pRenderPipelineDefault->Begin();
 	m_gameScene.Render(timepassed);

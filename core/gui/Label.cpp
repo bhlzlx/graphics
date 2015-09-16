@@ -14,7 +14,7 @@ namespace gui
 						#include <glsl/uirender.frag>
 						
 		EffectDesc effectDesc;
-		int enableBlend = phantom::GetSettings().GetIntValue("GUI_ENABLE_BLEND");
+		int enableBlend = ow::GetSettings().GetIntValue("GUI_ENABLE_BLEND");
 		if(enableBlend)
 		{
 			effectDesc.renderState.blendDest = BLEND_FACTOR_INVSRCALPHA;
@@ -46,6 +46,7 @@ namespace gui
 	{
 		// 画文字
 		_pTextRenderer->SetFontColor( this->m_vecColor.x ,this->m_vecColor.y, this->m_vecColor.z, this->m_vecColor.w);
+		_pTextRenderer->SetFontSize( this->m_fFontSize);
 		_pTextRenderer->Render(m_pTex,m_offset,m_szText,m_nTextLen);
 		// 将文字渲染到主界面
 		RenderPipelineDefault * pPipeline = RenderPipelineDefault::GetRenderPipelineDefault( NULL );

@@ -1,7 +1,7 @@
 #include "logger.h"
 #include <cstring>
 
-namespace phantom
+namespace ow
 {
 
 Logger * Logger::LOGGER = NULL;

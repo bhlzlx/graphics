@@ -12,18 +12,14 @@
 #include <math/Camera.h>
 
 #include <core/ShaderOGL.h>
-#include <core/UICommon.h>
 #include <core/EffectOGL.h>
 #include <core/BufferOGL.h>
 #include <core/RenderPipelineOGL.h>
 #include <core/renderer/TextRenderer.h>
 #include <gui/Label.h>
 
-using namespace UI;
 using namespace Graphics;
 using namespace glm;
-
-extern TexOGL*				textRenderTestTex;
 
 struct OpenGLViewController
 {
@@ -51,8 +47,6 @@ struct OpenGLViewController
 	gui::Label*			m_pLabel;
 
     OpenGLViewController();
-    
-    UISize & GetScreenSize();
 
     void OnMouseEvent(MouseEvent * event);
     void OnResize(unsigned width,unsigned height);

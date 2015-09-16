@@ -292,7 +292,7 @@ namespace Graphics
 			FontCharacter * pFontInfo = this->m_pFontMap[_pUnicode[charId]];
 			if(pFontInfo == NULL)
 			{
-				pFontInfo = m_pFontMap[95];
+				pFontInfo = m_pFontMap[12348];
 			}
 			Rect<float>& fontRect = pFontInfo->m_range;
 			uint32_t iPage = pFontInfo->m_iPage;
@@ -326,7 +326,7 @@ namespace Graphics
 		if( __pTextureRenderer == NULL)
 		{
 			__pTextureRenderer = new TextRenderer();
-			phantom::Config & config = phantom::GetSettings();
+			ow::Settings & config = ow::GetSettings();
 			const char * fontPath = config.m_strings["FONT_TTF"].c_str();
 			const char * charLib = config.m_strings["CHAR_LIB"].c_str();
 			FONT_BOUND = config.m_floats["FONT_BASIC_SIZE"];
@@ -361,6 +361,6 @@ namespace Graphics
 	{
 		this->m_renderState.m_fFontSize = _fFontSize;
 	}
-
+	
 }
 

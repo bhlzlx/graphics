@@ -3,7 +3,7 @@
 
 #include <cstdio>
 
-namespace phantom
+namespace ow
 {
 
 class Logger

@@ -6,13 +6,13 @@
 #include <string>
 #include <buffer/buffer.h>
 
-namespace phantom
+namespace ow
 {
 	typedef std::map< std::string, std::string> Conf_string;
 	typedef std::map< std::string, float> Conf_float;
 	typedef std::map< std::string, int> Conf_int;
 	
-	struct Config
+	struct Settings
 	{
 		Conf_string 	m_strings;
 		Conf_float 		m_floats;
@@ -25,7 +25,7 @@ namespace phantom
 		float& GetFloatValue( const char * _szKey);
 	};
 	
-	Config& GetSettings();
+	Settings& GetSettings();
 }
 
 #endif // __CONFIG_H__

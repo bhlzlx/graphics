@@ -66,24 +66,9 @@ void GameScene::Render(uint64_t _time)
 	m_pStaticEffect->Begin();
 	m_pStaticEffect->m_pShader->SetUniformData( &viewMat, "VIEW");
 	m_pStaticEffect->m_pShader->SetUniformData( &projectionMat, "PROJECTION");
-	//m_pStaticEffect->m_pShader->SetTexture( 0,m_pChessTexture);
-	m_pStaticEffect->m_pShader->SetTexture( 0,textRenderTestTex);
+	m_pStaticEffect->m_pShader->SetTexture( 0,m_pChessTexture);
 	
-	/*	
-	for( SceneObject * pObject : m_staticObjects)
-	{
-		if(pCamera->InFrustumBoundBox( pObject->m_localAABB))
-		{
-			pObject->Render(m_pStaticEffect);
-		}
-	}
- */
 	this->m_pOctree->UpdateRenderList();
-	/*for( OctreeNode * pOctreeNode : this->m_pOctree->m_nodeList)
-	{
-		pOctreeNode->Render(m_pStaticEffect);
-	}
-	*/
 	
 	for( OctreeRenderNode * pRenderNode : this->m_pOctree->m_renderList)
 	{

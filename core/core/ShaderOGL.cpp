@@ -23,7 +23,7 @@ GLuint load_shader(const char* szShader, GLuint mode)
     if(compileState == GL_FALSE) {
         char error[1024];
         glGetShaderInfoLog(id, 1024, NULL, error);
-        phantom::Logger::GetInstance(NULL)->Write(error);
+        ow::Logger::GetInstance(NULL)->Write(error);
         glDeleteShader(id);
         return 0;
     } else {
@@ -94,7 +94,7 @@ GLuint ShaderOGL::shaderFuncFromStringWithMode(const char* szShader, GLuint mode
         static char error[1024];
         glGetShaderInfoLog(id, 1024, NULL, error);
         printf("%s\n",error);
-        phantom::Logger::GetInstance(NULL)->Write(error);
+        ow::Logger::GetInstance(NULL)->Write(error);
         glDeleteShader(id);
         return 0;
     } else {
