@@ -45,7 +45,8 @@ namespace gui
 	void Label::Draw( Graphics::EffectOGL* _pEffect, TextRenderer* _pTextRenderer)
 	{
 		// 画文字
-		_pTextRenderer->Render(m_pTex,m_offset,m_szText,m_nTextLen,m_fFontSize);
+		_pTextRenderer->SetFontColor( this->m_vecColor.x ,this->m_vecColor.y, this->m_vecColor.z, this->m_vecColor.w);
+		_pTextRenderer->Render(m_pTex,m_offset,m_szText,m_nTextLen);
 		// 将文字渲染到主界面
 		RenderPipelineDefault * pPipeline = RenderPipelineDefault::GetRenderPipelineDefault( NULL );
 		pPipeline->Resume();
@@ -63,10 +64,11 @@ namespace gui
 		_pEffect->End();
 	}
 
-	Label * Label::CreateLabel( Rect<float>& _rc, uint32_t _color, float _fontSize)
+	Label * Label::CreateLabel( Rect<float>& _rc, glm::vec4 _color, float _fontSize)
 	{
 		Label * pLabel = new Label;
 		pLabel->m_area = _rc;
+		pLabel->m_vecColor = _color;
 		pLabel->m_fFontSize = _fontSize;
 		Graphics::TexDesc texDesc;
 		texDesc.ePixelFormat = Graphics::PIXEL_FORMAT_RGBA8888;

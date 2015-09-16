@@ -65,8 +65,7 @@ namespace Graphics
 		pipelineDesc.nRendertargetCount = 1;
 		pipelineDesc.pDepthStencil = pDepthStencil;
 		pipelineDesc.pRenderTargets[0] = pRenderTarget;
-		pipelineDesc.clearOP.vClearColors[3] = 0.0f;
-		//pipelineDesc.clearOP.bClearColor = false;
+		pipelineDesc.clearOP.vClearColors[3] = 0.4f;
 		
 		this->m_pFramebuffer = Graphics::RenderPipeline::CreateRenderPipeline( &pipelineDesc);
 		m_pFramebuffer->m_desc.pRenderTargets[0]->GetColorTex()->Release();
@@ -136,7 +135,7 @@ namespace Graphics
 			FT_Size_Metrics & metrics	= freetype_face->size->metrics;
 			FT_Bitmap & bitmap			= freetype_face->glyph->bitmap;
 			
-			int32_t  cellsize		= metrics.max_advance>>6;
+			int32_t  cellsize		= metrics.height>>6;
 			uint32_t cellbytes 		= cellsize * cellsize;
 			uint32_t down_pixels	= (-metrics.descender)>>6;
 			uint32_t up_pixels		= metrics.ascender>>6;
@@ -147,7 +146,7 @@ namespace Graphics
 			
 			if(!fontBuff)
 			{
-				m_fFontSize = (float)cellsize;
+				m_fDefSize = (float)cellsize;
 				fontBuff = CreateStandardBuffer( cellbytes );
 			}
 			else
@@ -263,7 +262,7 @@ namespace Graphics
 		return this->m_pFontMap[_uChar]->m_range;
 	}
 	
-	void TextRenderer::Render(ITex * _pTex, Size<uint32_t>& _offset,const uint16_t* _pUnicode, uint32_t _nChar, float _fontSize)
+	void TextRenderer::Render(ITex * _pTex, Size<uint32_t>& _offset,const uint16_t* _pUnicode, uint32_t _nChar )
 	{
 		float fRealHeight = 0;
 		float fRealWidth = 0;
@@ -275,20 +274,21 @@ namespace Graphics
 		// 设置纹理
 		m_pFramebuffer->m_desc.pRenderTargets[0]->SetColorTex(_pTex);
 		TexOGL * pTex = (TexOGL*)_pTex;
-		glBindFramebuffer(GL_FRAMEBUFFER, m_pFramebuffer->m_FrameBuffer);;
+		glBindFramebuffer(GL_FRAMEBUFFER, m_pFramebuffer->m_FrameBuffer);
 		glFramebufferTexture(GL_DRAW_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,pTex->m_texture,0);
 		// 渲染
 		m_pFramebuffer->Begin();
 		m_pEffect->Begin();
+		m_pEffect->m_pShader->SetUniformData( &this->m_renderState.m_vecFontColor, "FONT_COLOR");
 		static Rect<float>  drawRect;
 		uint32_t xoffset_t = _offset.width;
 		for(uint32_t charId = 0; charId<_nChar; ++charId )
 		{
-//			if(_pUnicode[charId] == 32)
-//			{
-//				xoffset_t+=_fontSize/2;
-//				continue;
-//			}
+			if(_pUnicode[charId] == 32)
+			{
+				xoffset_t+= m_renderState.m_fFontSize/2;
+				continue;
+			}
 			FontCharacter * pFontInfo = this->m_pFontMap[_pUnicode[charId]];
 			if(pFontInfo == NULL)
 			{
@@ -296,8 +296,8 @@ namespace Graphics
 			}
 			Rect<float>& fontRect = pFontInfo->m_range;
 			uint32_t iPage = pFontInfo->m_iPage;
-			fRealHeight = _fontSize;
-			fRealWidth = _fontSize * fontRect.width / fontRect.height;
+			fRealHeight = m_renderState.m_fFontSize;
+			fRealWidth = m_renderState.m_fFontSize * fontRect.width / fontRect.height;
 			drawRect.height = fRealHeight / texSize.height;
 			drawRect.width = fRealWidth / texSize.width;
 			drawRect.x = (float)xoffset_t / (float)texSize.width;
@@ -348,6 +348,19 @@ namespace Graphics
 			this->m_pFontTexArray[i]->Release();
 		}
 	}
-}
+	
+	void Graphics::TextRenderer::SetFontColor(float _r, float _g, float _b, float _a)
+	{
+		this->m_renderState.m_vecFontColor.x = _r;
+		this->m_renderState.m_vecFontColor.y = _g;
+		this->m_renderState.m_vecFontColor.z = _b;
+		this->m_renderState.m_vecFontColor.w = _a;
+	}
 
+	void Graphics::TextRenderer::SetFontSize(float _fFontSize)
+	{
+		this->m_renderState.m_fFontSize = _fFontSize;
+	}
+
+}
 

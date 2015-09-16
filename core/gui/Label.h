@@ -6,6 +6,7 @@
 #include <core/texogl.h>
 #include <core/device.h>
 #include <core/effectogl.h>
+#include <glm/glm.hpp>
 
 using namespace Graphics;
 
@@ -33,11 +34,13 @@ namespace gui
 		Label();
 		~Label();
 		void Draw( Graphics::EffectOGL* _pEffect, TextRenderer* _pTextRenderer);		
-		static Label* CreateLabel( Rect<float>& _rc, uint32_t _color, float _fontSize);
+		static Label* CreateLabel( Rect<float>& _rc, glm::vec4 _color, float _fontSize);
 	public:
 		Graphics::Rect<float> m_area;
 		Graphics::Size<uint32_t> m_offset;
 		Graphics::TexOGL* m_pTex;
+		
+		glm::vec4 	m_vecColor;
 		
 		uint16_t * m_szText;
 		uint32_t   m_nTextLen;

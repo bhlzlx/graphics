@@ -12,6 +12,7 @@
 #include <core/TexOGL.h>
 #include <core/RenderPipelineOGL.h>
 #include <memory/memory.h>
+#include <glm/glm.hpp>
 
 using namespace Memory;
 
@@ -32,13 +33,21 @@ namespace Graphics
 			Rect<float>	m_range;
 		};
 		
+		struct FontRenderState
+		{
+			glm::vec4 	m_vecFontColor;
+			float 		m_fFontSize;
+		};
+		
 	public:
 		TextRenderer();
 		~TextRenderer();
 		
 		uint8_t Init( const char * _szFontpath, const char * _szFontLib );
 		
-		void Render(ITex * _pTex, Size<uint32_t>& _offset,const uint16_t* _pUnicode, uint32_t _nChar, float _fontSize);
+		void SetFontSize( float _fFontSize);
+		void SetFontColor( float _r, float _g, float _b, float _a);
+		void Render(ITex * _pTex, Size<uint32_t>& _offset,const uint16_t* _pUnicode, uint32_t _nChar );
 		
 		Rect<float>& GetCharRect( uint16_t _uChar );
 		
@@ -49,11 +58,13 @@ namespace Graphics
 		TexOGL* 		m_pFontTexArray[4];
 		uint8_t			m_nFontTexCount;
 		
-		float 			m_fFontSize;
+		float 			m_fDefSize;
 		
 		Graphics::RenderPipeline* m_pFramebuffer;
 		
 		EffectOGL* 	    m_pEffect;
+		
+		FontRenderState	m_renderState;
 	};
 	
 	TextRenderer * GetTextRenderer();
