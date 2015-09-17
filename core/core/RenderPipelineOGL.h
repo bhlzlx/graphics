@@ -15,11 +15,12 @@ namespace Graphics
         Rect<uint32_t>					m_scissor;
         RenderPipeline();
 
-        bool Begin();
-		bool Resume();
-        void End();
-        const RenderPipelineDesc * GetDesc();
-        void Release();
+        bool 							Begin();
+		void 							ClearDepth();
+		bool 							Resume();
+        void 							End();
+        const 							RenderPipelineDesc * GetDesc();
+        void 							Release();
         
         static RenderPipeline * CreateRenderPipeline( RenderPipelineDesc * _pDesc);
     };
@@ -34,6 +35,7 @@ namespace Graphics
         void                        UpdateViewport(int _x,int _y,int _width,int _height);
         void                        SetScissor( int _x,int _y,int _width,int _height );
         bool                        Begin();
+		void 						ClearDepth();
 		bool						Resume();
         void                        End();
         void                        Release();

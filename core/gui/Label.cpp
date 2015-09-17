@@ -51,6 +51,7 @@ namespace gui
 		// 将文字渲染到主界面
 		RenderPipelineDefault * pPipeline = RenderPipelineDefault::GetRenderPipelineDefault( NULL );
 		pPipeline->Resume();
+		pPipeline->ClearDepth();
 		_pEffect->Begin();
 		// 计算位置
 		Rect<uint32_t>& viewport = __pViewController->m_viewport;

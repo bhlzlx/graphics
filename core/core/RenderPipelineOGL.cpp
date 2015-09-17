@@ -105,6 +105,12 @@ namespace Graphics
         return true;
 	}
 	
+	void RenderPipeline::ClearDepth()
+	{
+		glClearDepth(1.0f);
+		glClear( GL_DEPTH_BUFFER_BIT);
+	}
+	
     void RenderPipeline::End()
     {
         return;
@@ -174,6 +180,12 @@ namespace Graphics
     {
         m_scissor = Rect<int>(_x,_y,_width,_height);
     }
+	
+	void RenderPipelineDefault::ClearDepth()
+	{
+		glClearDepth(1.0f);
+		glClear( GL_DEPTH_BUFFER_BIT);
+	}
     
     void RenderPipelineDefault::End()
     {

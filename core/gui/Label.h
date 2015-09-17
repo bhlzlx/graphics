@@ -35,6 +35,8 @@ namespace gui
 		~Label();
 		void Draw( Graphics::EffectOGL* _pEffect, TextRenderer* _pTextRenderer);		
 		static Label* CreateLabel( Rect<float>& _rc, glm::vec4 _color, float _fontSize);
+		
+		void Release();
 	public:
 		Graphics::Rect<float> m_area;
 		Graphics::Size<uint32_t> m_offset;

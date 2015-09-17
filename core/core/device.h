@@ -319,6 +319,7 @@ namespace Graphics
     {
         virtual bool Begin() = 0;
         virtual void End() = 0;
+		virtual void ClearDepth() = 0;
         virtual const RenderPipelineDesc * GetDesc() = 0;
         virtual void Release() = 0;
     };
