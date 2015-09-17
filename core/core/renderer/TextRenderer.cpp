@@ -281,12 +281,12 @@ namespace Graphics
 		m_pEffect->Begin();
 		m_pEffect->m_pShader->SetUniformData( &this->m_renderState.m_vecFontColor, "FONT_COLOR");
 		static Rect<float>  drawRect;
-		uint32_t xoffset_t = _offset.width;
+		float xoffset_t = _offset.width;
 		for(uint32_t charId = 0; charId<_nChar; ++charId )
 		{
 			if(_pUnicode[charId] == 32)
 			{
-				xoffset_t+= m_renderState.m_fFontSize/2;
+				xoffset_t+= m_renderState.m_fFontSize/2.0f;
 				continue;
 			}
 			FontCharacter * pFontInfo = this->m_pFontMap[_pUnicode[charId]];
@@ -300,7 +300,7 @@ namespace Graphics
 			fRealWidth = m_renderState.m_fFontSize * fontRect.width / fontRect.height;
 			drawRect.height = fRealHeight / texSize.height;
 			drawRect.width = fRealWidth / texSize.width;
-			drawRect.x = (float)xoffset_t / (float)texSize.width;
+			drawRect.x = xoffset_t / (float)texSize.width;
 			drawRect.y = 1 - _offset.height/texSize.height - drawRect.height;
 			// 设置shader变量
 			m_pEffect->m_pShader->SetTexture(0, this->m_pFontTexArray[iPage]);
