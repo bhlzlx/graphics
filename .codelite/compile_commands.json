@@ -1,13 +1,17 @@
 [{
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/main.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/main.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -I. -I.",
-  "file": "F:\\gits\\graphics\\core\\main.cpp"
+  "directory": "F:\\gits\\graphics\\wx",
+  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -I. -I. -MG -MP -MT./Debug/main.cpp.o -MF./Debug/main.cpp.o.d -MM main.cpp",
+  "file": "F:\\gits\\graphics\\wx\\main.cpp"
  }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/app/AppDelegate.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/app_AppDelegate.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -I. -I.",
-  "file": "F:\\gits\\graphics\\core\\app\\AppDelegate.cpp"
+  "directory": "F:\\gits\\graphics\\wx",
+  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -I. -I. -MG -MP -MT./Debug/wxcrafter.cpp.o -MF./Debug/wxcrafter.cpp.o.d -MM wxcrafter.cpp",
+  "file": "F:\\gits\\graphics\\wx\\wxcrafter.cpp"
  }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/scene/GameScene.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/scene_GameScene.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -I. -I.",
-  "file": "F:\\gits\\graphics\\core\\scene\\GameScene.cpp"
+  "directory": "F:\\gits\\graphics\\wx",
+  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -I. -I. -MG -MP -MT./Debug/wxcrafter_bitmaps.cpp.o -MF./Debug/wxcrafter_bitmaps.cpp.o.d -MM wxcrafter_bitmaps.cpp",
+  "file": "F:\\gits\\graphics\\wx\\wxcrafter_bitmaps.cpp"
+ }, {
+  "directory": "F:\\gits\\graphics\\wx",
+  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -I. -I. -MG -MP -MT./Debug/MainDialog.cpp.o -MF./Debug/MainDialog.cpp.o.d -MM MainDialog.cpp",
+  "file": "F:\\gits\\graphics\\wx\\MainDialog.cpp"
  }]

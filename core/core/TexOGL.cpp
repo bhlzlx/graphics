@@ -26,7 +26,7 @@ namespace Graphics
             case TEX_FILTER_LINEAR: return GL_LINEAR;
             case TEX_FILTER_POINT: return GL_NEAREST;
             case TEX_FILTER_MIP_LINEAR: return GL_LINEAR_MIPMAP_LINEAR;
-            case TEX_FILTER_MIP_POINT: return GL_NEAREST;
+            case TEX_FILTER_MIP_POINT: return GL_NEAREST_MIPMAP_NEAREST;
         }
     }
     GLenum PixelFormat2OGL( PIXEL_FORMAT format)

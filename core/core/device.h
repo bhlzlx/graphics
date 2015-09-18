@@ -128,6 +128,14 @@ namespace Graphics
         
         TEX_FILTER      MinFilter;
         TEX_FILTER      MagFilter;
+		
+		SamplerState()
+		{
+			AddressU = TEX_ADDRESS_REPEAT;
+			AddressV = TEX_ADDRESS_REPEAT;
+			MinFilter = TEX_FILTER_POINT;
+			MagFilter = TEX_FILTER_POINT;
+		}
     };
     
     enum TEX_CLASS

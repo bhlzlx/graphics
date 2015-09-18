@@ -181,13 +181,19 @@ namespace Graphics
 					if(iCurrTexIdx != -1)
 					{
 						m_pFontTexArray[iCurrTexIdx]->Bind();
-						//glGenerateMipmap(GL_TEXTURE_2D);
+						glGenerateMipmap(GL_TEXTURE_2D);
 					}
 					Graphics::TexDesc texdesc;		
 					texdesc.eTexClass = TEX_CLASS_DYNAMIC;
 					texdesc.ePixelFormat = PIXEL_FORMAT_A8;
 					texdesc.size = Size<uint32_t>(FONT_TEX_SIZE, FONT_TEX_SIZE);
 					Graphics::TexOGL * pTex = Graphics::TexOGL::CreateTex( &texdesc, false);
+					Graphics::SamplerState samplerState;
+					samplerState.MagFilter = TEX_FILTER_MIP_LINEAR;
+					samplerState.MinFilter = TEX_FILTER_MIP_LINEAR;
+					
+					Graphics::SamplerOGL sampler(samplerState);
+					pTex->ApplySamplerState( &sampler);
 					pTex->Bind();
 					iBuffer * emptyBuff = CreateStandardBuffer(FONT_TEX_SIZE * FONT_TEX_SIZE);
 					memset(emptyBuff->GetBuffer(),0,emptyBuff->GetLength());
@@ -253,7 +259,7 @@ namespace Graphics
 			fontBuff->Release();
 		}
 		pUTFBuffer->Release();
-		//glGenerateMipmap(GL_TEXTURE_2D);
+		glGenerateMipmap(GL_TEXTURE_2D);
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 	}
 	

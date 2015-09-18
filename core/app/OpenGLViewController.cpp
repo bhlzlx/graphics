@@ -1,10 +1,10 @@
 //
 // Created by phantom on 2015/5/21.
 //
-
+#include <gl/glew.h>
 #include <cstdio>
 #include <cstdlib>
-
+#include <glfw/glfw3.h>
 #include "OpenGLViewController.h"
 #include <math/Camera.h>
 #include <app/AppDelegate.h>
@@ -15,17 +15,17 @@
 #include <model/md5/md5Frame.h>
 #include <string.h>
 #include <math.h>
-#include <glfw/glfw3.h>
+
 #include <settings/settings.h>
 #include <common/EncodeCommon.h>
+
+const char * szConfigPath = "./config.txt";
 
 const uint16_t STRING_TEST[2] = {0x4f60,0x597d};
 
 #define MOVE_STEP 0.5f
 
 OpenGLViewController * __pViewController = NULL;
-
-TexOGL*	textRenderTestTex = NULL;
 
 namespace Graphics
 {
@@ -40,11 +40,10 @@ namespace Graphics
 
 void OpenGLViewController::OnInit()
 {
-	iBuffer * configBuff = BufferFromFile("config.txt");
-	ow::GetSettings().Init(configBuff);
 	__pViewController = this;
+	iBuffer * configBuff = BufferFromFile(szConfigPath);
+	ow::GetSettings().Init(configBuff);
 	m_pGameCamera = GetGameCamera();
-	
 	m_viewport.width = DEFAULT_SCREEN_WIDTH;
 	m_viewport.height = DEFAULT_SCREEN_HEIGHT;
 	
@@ -54,7 +53,7 @@ void OpenGLViewController::OnInit()
     // 创建默认的 framebuffer object
     ClearOP clearOp;
     clearOp.bClearColor = GL_TRUE;
-    float clearColors[4] = {.8f,0.8f,0.8f,1.0f};
+    float clearColors[4] = { 0.8f,0.8f,0.8f,1.0f };
     memcpy(&clearOp.vClearColors,clearColors,sizeof(clearColors));
     m_pRenderPipelineDefault = RenderPipelineDefault::GetRenderPipelineDefault(&clearOp);
     
