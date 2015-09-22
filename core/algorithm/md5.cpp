@@ -9,7 +9,7 @@ bool MD5Buffer::Eof()
 	return this->m_pFileBuffer->Eof() && this->m_pFilledBuffer->Eof();
 }
 
-uint32_t MD5Buffer::Read(uint8_t * _pOut,uint32_t _nLength)
+uint32_t MD5Buffer::Read(int8_t * _pOut,uint32_t _nLength)
 {
 	if(!this->m_pFileBuffer->Eof())
 	{
@@ -32,14 +32,14 @@ void MD5Buffer::Release()
 	delete this;
 }
 
-MD5Buffer * MD5BufferForData( iBuffer * _pData)
+MD5Buffer * MD5BufferForData( IBuffer * _pData)
 {
 	MD5Buffer * pBuffer = new MD5Buffer();
 	pBuffer->m_pFileBuffer = _pData;
-	int64_t filesize =pBuffer->m_pFileBuffer->GetLength();
+	int64_t filesize =pBuffer->m_pFileBuffer->Size();
 	uint32_t filledSize = calc_md5_fill_n(filesize) + sizeof(int64_t);
-	pBuffer->m_pFilledBuffer = CreateStandardBuffer(filledSize);
-	uint8_t * ptr = pBuffer->m_pFilledBuffer->GetBuffer();
+	pBuffer->m_pFilledBuffer = CreateMemBuffer(filledSize);
+	int8_t * ptr = pBuffer->m_pFilledBuffer->GetBuffer();
 	memset(ptr,0,filledSize);
 	*ptr = 0b10000000;
 	ptr += filledSize - sizeof(int64_t);
@@ -212,7 +212,7 @@ size_t calc_md5_fill_n( size_t nData )
     }
 }
 
-void MD5Calc::Compute( iBuffer * _pData)
+void MD5Calc::Compute( IBuffer * _pData)
 {
     A = *(uint*)chain_values;
     B = *((uint*)chain_values + 1);
@@ -220,10 +220,10 @@ void MD5Calc::Compute( iBuffer * _pData)
     D = *((uint*)chain_values + 3);
 	
 	MD5Buffer * pMD5Buffer = MD5BufferForData(_pData);
-    unsigned char buff[64];
+    int8_t buff[64];
     while(!pMD5Buffer->Eof())
     {
-		pMD5Buffer->Read(( uint8_t *)buff,64);
+		pMD5Buffer->Read(buff,64);
         this->Turn((uint *)&buff[0]);
     }
 	pMD5Buffer->Release();

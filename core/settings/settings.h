@@ -18,7 +18,7 @@ namespace ow
 		Conf_float 		m_floats;
 		Conf_int		m_ints;
 		
-		uint8_t Init( iBuffer * _pBuffer);
+		uint8_t Init( IBuffer * _pBuffer);
 		
 		int& GetIntValue( const char * _szKey);
 		std::string& GetStringValue( const char * _szKey);

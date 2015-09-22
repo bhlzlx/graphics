@@ -24,4 +24,3 @@ uint32_t UTF82Unicode( uint16_t * _pUTF8, uint32_t _nDataLen, uint16_t* _pUnicod
 	char_count =  (origSize - _nBufferSize) / sizeof(uint16_t);
 	return char_count;
 }
-

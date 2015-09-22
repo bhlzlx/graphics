@@ -200,7 +200,7 @@ namespace model
 		// 读一行
 		// 自动跳过空行
 		// 文件尾返回NULL
-		char * read_line(iBuffer * _pBuffer)
+		char * read_line(IBuffer * _pBuffer)
 		{
 			static char buffer[512];
 			int length ;
@@ -231,7 +231,7 @@ again:
 			return buffer;
 		}
 		// 读一个大括号模块
-		iBuffer * read_block_for_key(iBuffer * _pBuffer, const char * _key)
+		IBuffer * read_block_for_key(IBuffer * _pBuffer, const char * _key)
 		{
 			char * pLine = read_line(_pBuffer);
 			// 读key行
@@ -255,7 +255,7 @@ again:
 			char * pContent = (char * )_pBuffer->GetCurr();
 			char * pEnd = strchr(pContent,'}');
 			
-			iBuffer * pRet = CreateStandardBuffer(pEnd - pContent);
+			IBuffer * pRet = CreateStandardBuffer(pEnd - pContent);
 			int n_read = _pBuffer->Read(pRet->GetBuffer(),pRet->GetLength() - 1);
 			assert(n_read == pRet->GetLength() - 1);
 			_pBuffer->Seek(SEEK_CUR,1L);            
@@ -315,7 +315,7 @@ again:
 			}
 		}
 		
-		bool ParseJoints(iBuffer * _pBuffer,MeshFilePtr _pMesh)
+		bool ParseJoints(IBuffer * _pBuffer,MeshFilePtr _pMesh)
 		{
 			JointMapPtr pJointMap = _pMesh->m_pJointMap;
 			JointArray pJointArray = _pMesh->m_pJointArray;
@@ -358,7 +358,7 @@ again:
 			}
 		}
 		
-		void ParseMesh(iBuffer * _pBuffer ,MeshFilePtr _pMesh,int _index)
+		void ParseMesh(IBuffer * _pBuffer ,MeshFilePtr _pMesh,int _index)
 		{
 			MeshPtr pSubMesh = _pMesh->m_pMeshes + _index;
 			char * pLine;
@@ -438,7 +438,7 @@ again:
 			return;
 		}
 		
-		void ParseHierarchy(iBuffer * _pBuffer,AnimFilePtr _pAnim)
+		void ParseHierarchy(IBuffer * _pBuffer,AnimFilePtr _pAnim)
 		{
 			char * pLine = NULL;
 			__hierarchy_read_struct__ hierarchy_struct;
@@ -463,7 +463,7 @@ again:
 			}
 		}
 		
-		void ParseBounds(iBuffer * _pBuffer,AnimFilePtr _pAnim)
+		void ParseBounds(IBuffer * _pBuffer,AnimFilePtr _pAnim)
 		{
 			char * pLine = NULL;
 			__bound_read_struct__ bound_struct;
@@ -489,7 +489,7 @@ again:
 			}
 		}
 		
-		void ParseKeyFrame(iBuffer * _pBuffer,JointArray _pKeyFrame,int _nJoints)
+		void ParseKeyFrame(IBuffer * _pBuffer,JointArray _pKeyFrame,int _nJoints)
 		{
 			char * pLine = NULL;
 			__frame_read_struct__ frame_struct;
@@ -519,7 +519,7 @@ again:
 			}
 		}
 		
-		void ParseMD5( iBuffer * _pMeshBuff, iBuffer * _pAnimBuff ,MD5FilePtr _pMD5File)
+		void ParseMD5( IBuffer * _pMeshBuff, IBuffer * _pAnimBuff ,MD5FilePtr _pMD5File)
 		{
 			_pMD5File->m_pAnimFile = new AnimFile();
 			_pMD5File->m_pMeshFile = new MeshFile();
@@ -553,7 +553,7 @@ again:
 			_pMesh->m_nNumMeshes = numMeshes;
 			_pMesh->m_pMeshes = new Mesh[numMeshes];
 			// 读取joints信息
-			iBuffer * pBuffer = read_block_for_key(_pMeshBuff,JOINTS);
+			IBuffer * pBuffer = read_block_for_key(_pMeshBuff,JOINTS);
 			// 解析joints数据
 			ParseJoints(pBuffer,_pMesh);
 			pBuffer->Release();
@@ -649,17 +649,17 @@ again:
 			_pMD5File->m_pMeshFile = NULL;
 		}
 		
-		iBuffer * GetIndexBuffer( MeshPtr _pMesh )
+		IBuffer * GetIndexBuffer( MeshPtr _pMesh )
 		{
-			iBuffer* pRet = CreateStandardBuffer(_pMesh->m_nNumTriangles * sizeof(Triple<unsigned int>));
+			IBuffer* pRet = CreateStandardBuffer(_pMesh->m_nNumTriangles * sizeof(Triple<unsigned int>));
 			memcpy(pRet->GetBuffer(),&_pMesh->m_pTringles[0],pRet->GetLength());
 			return pRet;
 		}
 		
-		iBuffer * GetUVBuffer( MeshPtr _pMesh )
+		IBuffer * GetUVBuffer( MeshPtr _pMesh )
 		{
 			unsigned int nUVSize = _pMesh->m_nNumVertices * 2 * sizeof(float);
-			iBuffer* pRet  = CreateStandardBuffer(nUVSize);
+			IBuffer* pRet  = CreateStandardBuffer(nUVSize);
 			glm::vec2 * pVec = (glm::vec2*)pRet->GetBuffer();
 			for(int i = 0;i<_pMesh->m_nNumVertices;++i)
 			{

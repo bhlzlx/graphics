@@ -1,8 +1,8 @@
 .PHONY: clean All
 
 All:
-	@echo "----------Building project:[ wx - Debug ]----------"
-	@cd "wx" && $(MAKE) -f  "wx.mk"
+	@echo "----------Building project:[ core - Debug ]----------"
+	@cd "core" && $(MAKE) -f  "core.mk"
 clean:
-	@echo "----------Cleaning project:[ wx - Debug ]----------"
-	@cd "wx" && $(MAKE) -f  "wx.mk" clean
+	@echo "----------Cleaning project:[ core - Debug ]----------"
+	@cd "core" && $(MAKE) -f  "core.mk" clean

@@ -13,12 +13,12 @@ typedef uint32_t uint;
 
 struct MD5Buffer
 {
-	iBuffer *			m_pFileBuffer;
-	iBuffer *			m_pFilledBuffer;
-	uint32_t Read( uint8_t * _pOut, uint32_t _nLength);
+	IBuffer *			m_pFileBuffer;
+	IBuffer *			m_pFilledBuffer;
+	uint32_t Read( int8_t * _pOut, uint32_t _nLength);
 	bool Eof();
 	void Release();
-	MD5Buffer * MD5BufferForData(const iBuffer * _pData);
+	MD5Buffer * MD5BufferForData(const IBuffer * _pData);
 };
 
 struct MD5Calc
@@ -38,7 +38,7 @@ struct MD5Calc
     void HH(uint& a,uint& b,uint& c,uint& d,uint& x,uint y,uint& z);
     void II(uint& a,uint& b,uint& c,uint& d,uint& x,uint y,uint& z);
     MD5Calc();
-    void Compute( iBuffer * _pData);
+    void Compute( IBuffer * _pData);
 	void GetMD5( char * _szBuffer);
     void Turn( uint * chunk);
     void PrintMD5();

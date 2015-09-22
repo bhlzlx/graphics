@@ -2,6 +2,8 @@
 #include <string.h>
 #include <cstdio>
 #include <cassert>
+#include <common/EncodeCommon.h>
+#include <common/ResourcePool.h>
 
 namespace ow
 {
@@ -25,7 +27,7 @@ namespace ow
 		return 0;
 	}
 	
-	char * read_line(iBuffer * _pBuffer)
+	char * read_line(IBuffer * _pBuffer)
 	{
 		static char buffer[512];
 		int length ;
@@ -34,7 +36,7 @@ again:
 		memset(buffer,0,512);
 		while(true)
 		{
-			int ret = _pBuffer->Read((unsigned char *)buffer + length,1);
+			int ret = _pBuffer->Read((int8_t*)&buffer[0] + length,1);
 			if(ret == 0 )
 			{
 				if(length == 0)
@@ -45,18 +47,21 @@ again:
 			++length;
 			if(buffer[length - 1] == '\n')
 			{
-				if(!isValidLine(buffer,length))
+				if(!isValidLine((char*)buffer,length))
 				{
 					goto again;
 				}
 				break;
 			}
 		}
+		
+		
+		
 		buffer[length] = 0;
 		return buffer;
 	}
 	
-	iBuffer * read_config_block(iBuffer * _pBuffer)
+	IBuffer * read_config_block(IBuffer * _pBuffer)
 	{
 		char * pLine = read_line(_pBuffer);
 		if(pLine == NULL)
@@ -64,17 +69,17 @@ again:
 			return NULL;
 		}
 		// 找 ';'
-		uint8_t * pContent = _pBuffer->GetCurr();
-		uint8_t * pEnd = (uint8_t*)strchr((char*)pContent,';');
+		int8_t * pContent = _pBuffer->GetCurr();
+		int8_t * pEnd = (int8_t*)strchr((char*)pContent,';');
 		int32_t nLen = pEnd - pContent - 1;
-		iBuffer *pRet = CreateBufferRef( pContent, nLen);
+		IBuffer *pRet = CreateBufferRef( pContent, nLen);
 		_pBuffer->Seek(SEEK_CUR,nLen + 4);
 		return pRet;
 	}
 	
-	uint8_t Settings::Init( iBuffer *_pBuffer)
+	uint8_t Settings::Init( IBuffer *_pBuffer)
 	{
-		iBuffer * bufferRef = (iBuffer*)0;
+		IBuffer * bufferRef = (IBuffer*)0;
 		while(bufferRef = read_config_block(_pBuffer) )
 		{
 			char * pLine = read_line( bufferRef );
@@ -87,13 +92,17 @@ again:
 			
 			if(ch == 'S')
 			{
-				char stringvalue[128];
+				int8_t * pBuffer = (int8_t*)STRING_POOL_PTR->Alloc( _GLOBAL_STRING_BUFFER_MAX_ );
+				IBuffer * stringBuffer = CreateBufferRef(pBuffer,_GLOBAL_STRING_BUFFER_MAX_);
 				while( pLine = read_line(bufferRef))
 				{
-					sscanf(pLine,"%s = %s", &keybuffer[0], &stringvalue[0]);
-					this->m_strings[keybuffer] = stringvalue;
+					sscanf(pLine,"%s = %s", &keybuffer[0], stringBuffer->GetBuffer());
+					this->m_strings[keybuffer] = (char*)stringBuffer->GetBuffer();
 				}
+				stringBuffer->Release();
+				STRING_POOL_PTR->Recycle(pBuffer);
 			}
+			
 			else if(ch == 'F')
 			{
 				float value;

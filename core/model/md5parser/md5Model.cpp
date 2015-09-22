@@ -13,7 +13,7 @@ namespace Graphics
 	// 解析 并 创建mesh相关的 buffer object
 	void md5Model::Init( const char * _szMeshFile )
 	{
-		iBuffer * pBuffer = BufferFromFile(_szMeshFile);
+		IBuffer * pBuffer = BufferFromFile(_szMeshFile);
 		assert(pBuffer);
 		
 		model::InitMeshModel( &this->m_meshModel, pBuffer);
@@ -33,7 +33,7 @@ namespace Graphics
 			pSubMesh = m_meshModel.m_pMeshes + meshIndex;
 			pSubMeshBuffer = this->m_pMeshBuffers + meshIndex;
 			// 生成纹理
-			iBuffer * imageBuffer = BufferFromFile(pSubMesh->m_szTexture);
+			IBuffer * imageBuffer = BufferFromFile(pSubMesh->m_szTexture);
 			if(imageBuffer)
 			{
 				Image * image = Image::ImageFromPng(imageBuffer);
@@ -57,8 +57,8 @@ namespace Graphics
 			bufferPtr = (uint8_t *)pSubMesh->m_pTriangles;
 			pSubMeshBuffer->m_pIndexBuffer = Graphics::VertexBuffer::CreateBuffer(bufferPtr,bufferSize);
 			// 创建UV
-			iBuffer * pUVBuffer = GetUVBuffer(pSubMesh);
-			bufferSize = pUVBuffer->GetLength();
+			IBuffer * pUVBuffer = GetUVBuffer(pSubMesh);
+			bufferSize = pUVBuffer->Size();
 			bufferPtr = (uint8_t*)pUVBuffer->GetBuffer();
 			pSubMeshBuffer->m_pUVBuffer = Graphics::VertexBuffer::CreateBuffer(bufferPtr,bufferSize);
 			pUVBuffer->Release();
@@ -146,7 +146,7 @@ namespace Graphics
 	{
 		if(this->m_nNumAnimation < ANIMATION_MAX)
 		{
-			iBuffer * pBuffer = BufferFromFile(_szAnimFile);
+			IBuffer * pBuffer = BufferFromFile(_szAnimFile);
 			assert(pBuffer);
 			model::InitAnimModel(&this->m_animModels[m_nNumAnimation],pBuffer);
 			m_nNumAnimation++;

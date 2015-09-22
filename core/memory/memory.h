@@ -6,7 +6,7 @@
 #include <cstdlib>
 #include <cstdio>
 
-namespace Memory
+namespace ow
 {
     struct MemoryBlock
     {
@@ -21,7 +21,7 @@ namespace Memory
     {
         unsigned short                 m_nUnitCount;
         unsigned short                 m_nUnitSize;
-        Memory::MemoryBlock*           m_pHeadNode;
+        ow::MemoryBlock*           m_pHeadNode;
 
         SMemPool(unsigned short nUnitCount,unsigned short nUnitSize);
         ~SMemPool();

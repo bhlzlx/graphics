@@ -7,10 +7,10 @@
 
 namespace Graphics
 {    
-    static void iBufferPNGReadFunc(png_structp s_ptr,png_bytep data,png_size_t size)
+    static void IBufferPNGReadFunc(png_structp s_ptr,png_bytep data,png_size_t size)
     {
-        iBuffer * pBuff = (iBuffer *)png_get_io_ptr(s_ptr);
-        pBuff->Read(data,size);
+        IBuffer * pBuff = (IBuffer *)png_get_io_ptr(s_ptr);
+        pBuff->Read((int8_t*)data,size);
     }
     
     void Image::Release()
@@ -19,14 +19,14 @@ namespace Graphics
         delete this;
     }
     
-    Image * Image::ImageFromPng(iBuffer * _pBuffer)
+    Image * Image::ImageFromPng(IBuffer * _pBuffer)
     {
         if(!_pBuffer)
             return NULL;
         png_structp s_ptr = png_create_read_struct(PNG_LIBPNG_VER_STRING,0,0,0);
         png_infop   i_ptr = png_create_info_struct(s_ptr);
         setjmp(png_jmpbuf(s_ptr));
-        png_set_read_fn(s_ptr,_pBuffer,iBufferPNGReadFunc);
+        png_set_read_fn(s_ptr,_pBuffer,IBufferPNGReadFunc);
         png_read_png(s_ptr,i_ptr, PNG_TRANSFORM_EXPAND , 0);
         
         int color_type = i_ptr->color_type;

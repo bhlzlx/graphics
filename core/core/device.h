@@ -347,7 +347,7 @@ namespace Graphics
         uint16_t    nWidth;
         uint16_t    nHeight;
         uint8_t *   pData;
-        static Image * ImageFromPng( iBuffer *);
+        static Image * ImageFromPng( IBuffer *);
         void Release();
     };
 	

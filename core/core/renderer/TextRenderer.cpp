@@ -73,13 +73,13 @@ namespace Graphics
 		
 		
 		// 将utf8转换为unicode编码
-		iBuffer * pFontlibBuffer = BufferFromFile( _szFontLib);	
-		iBuffer * pUTFBuffer = CreateStandardBuffer( pFontlibBuffer->GetLength() * 1.5);
+		IBuffer * pFontlibBuffer = BufferFromFile( _szFontLib);	
+		IBuffer * pUTFBuffer = CreateMemBuffer( pFontlibBuffer->Size() * 1.5);
 		
-		uint8_t * ptr_in = pFontlibBuffer->GetBuffer();
-		uint32_t size_in = pFontlibBuffer->GetLength();
-		uint8_t * ptr_out = pUTFBuffer->GetBuffer();
-		uint32_t size_avail = pUTFBuffer->GetLength();
+		int8_t * ptr_in = pFontlibBuffer->GetBuffer();
+		uint32_t size_in = pFontlibBuffer->Size();
+		int8_t * ptr_out = pUTFBuffer->GetBuffer();
+		uint32_t size_avail = pUTFBuffer->Size();
 		
 		uint32_t char_count = 0;
 		iconv_t conv = iconv_open("UCS-2LE", "UTF-8");
@@ -94,13 +94,13 @@ namespace Graphics
 			iconv_close(conv);
 			return false;
 		}
-		char_count =  (pUTFBuffer->GetLength() - size_avail) / sizeof(uint16_t);
+		char_count =  (pUTFBuffer->Size() - size_avail) / sizeof(uint16_t);
 		// 关闭转换流
 		iconv_close(conv);
 		// 销毁文件缓冲
 		pFontlibBuffer->Release();
 		// 创建Font内存池
-		this->m_pMemPool = new Memory::SMemPool(32,sizeof(FontCharacter));
+		this->m_pMemPool = new ow::SMemPool(32,sizeof(FontCharacter));
 		// 分配满FontChar位,置零
 		this->m_pFontMap = new FontCharacter*[CHARSET_MAX];
 		memset(m_pFontMap, 0, sizeof(FontCharacter*) * CHARSET_MAX);
@@ -115,7 +115,7 @@ namespace Graphics
 		// 遍历字符
 		uint16_t* pChar = (uint16_t *)pUTFBuffer->GetBuffer();
 		// 
-		iBuffer * fontBuff = NULL;
+		IBuffer * fontBuff = NULL;
 		
 		int32_t iTexCoordBaseX = FONT_TEX_SIZE;
 		int32_t iTexCoordBaseY = FONT_TEX_SIZE;
@@ -147,11 +147,11 @@ namespace Graphics
 			if(!fontBuff)
 			{
 				m_fDefSize = (float)cellsize;
-				fontBuff = CreateStandardBuffer( cellbytes );
+				fontBuff = CreateMemBuffer( cellbytes );
 			}
 			else
 			{
-				assert( fontBuff->GetLength() >= cellbytes);
+				assert( fontBuff->Size() >= cellbytes);
 			}
 			if(offsety < 0)
 			{
@@ -159,7 +159,7 @@ namespace Graphics
 			}
 			// 从freetype中复制像素到fontbuffer
 			// copy pixels to buffer
-			memset(fontBuff->GetBuffer(),0,fontBuff->GetLength());
+			memset(fontBuff->GetBuffer(),0,fontBuff->Size());
 			for(int32_t r = 0; r<bitmap.rows; ++r)
 			{
 				memcpy(
@@ -181,22 +181,23 @@ namespace Graphics
 					if(iCurrTexIdx != -1)
 					{
 						m_pFontTexArray[iCurrTexIdx]->Bind();
-						glGenerateMipmap(GL_TEXTURE_2D);
+						//glGenerateMipmap(GL_TEXTURE_2D);
 					}
 					Graphics::TexDesc texdesc;		
 					texdesc.eTexClass = TEX_CLASS_DYNAMIC;
 					texdesc.ePixelFormat = PIXEL_FORMAT_A8;
 					texdesc.size = Size<uint32_t>(FONT_TEX_SIZE, FONT_TEX_SIZE);
 					Graphics::TexOGL * pTex = Graphics::TexOGL::CreateTex( &texdesc, false);
-					Graphics::SamplerState samplerState;
+					/*Graphics::SamplerState samplerState;
 					samplerState.MagFilter = TEX_FILTER_MIP_LINEAR;
 					samplerState.MinFilter = TEX_FILTER_MIP_LINEAR;
 					
 					Graphics::SamplerOGL sampler(samplerState);
 					pTex->ApplySamplerState( &sampler);
+					 */
 					pTex->Bind();
-					iBuffer * emptyBuff = CreateStandardBuffer(FONT_TEX_SIZE * FONT_TEX_SIZE);
-					memset(emptyBuff->GetBuffer(),0,emptyBuff->GetLength());
+					IBuffer * emptyBuff = CreateMemBuffer(FONT_TEX_SIZE * FONT_TEX_SIZE);
+					memset(emptyBuff->GetBuffer(),0,emptyBuff->Size());
 					glTexSubImage2D(
 						GL_TEXTURE_2D,
 						0,
@@ -259,7 +260,7 @@ namespace Graphics
 			fontBuff->Release();
 		}
 		pUTFBuffer->Release();
-		glGenerateMipmap(GL_TEXTURE_2D);
+		//glGenerateMipmap(GL_TEXTURE_2D);
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
 	}
 	

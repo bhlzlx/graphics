@@ -14,7 +14,7 @@
 #include <memory/memory.h>
 #include <glm/glm.hpp>
 
-using namespace Memory;
+using namespace ow;
 
 namespace Graphics
 {

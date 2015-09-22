@@ -51,7 +51,7 @@ bool CModelParser::LoadModel(const char * szFilepath)
         {
             assert(material);
             aiString path;
-            iBuffer * pBuff;
+            IBuffer * pBuff;
             Image * image;
             
             material->GetTexture(aiTextureType_DIFFUSE,0,&path);

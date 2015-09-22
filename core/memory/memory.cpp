@@ -1,7 +1,7 @@
 #include "memory.h"
 #include <cassert>
 
-namespace Memory
+namespace ow
 {
     MemoryBlock * SMemPool::CreateMemoryBlock(unsigned short _nUnitCount,unsigned short _nUnitSize)
     {

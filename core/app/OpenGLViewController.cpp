@@ -39,9 +39,9 @@ namespace Graphics
 }
 
 void OpenGLViewController::OnInit()
-{
+{	
 	__pViewController = this;
-	iBuffer * configBuff = BufferFromFile(szConfigPath);
+	IBuffer * configBuff = BufferFromFile(szConfigPath);
 	ow::GetSettings().Init(configBuff);
 	m_pGameCamera = GetGameCamera();
 	m_viewport.width = DEFAULT_SCREEN_WIDTH;
@@ -100,11 +100,11 @@ void OpenGLViewController::OnInit()
 	
 	// 将utf8转换为unicode编码
 	std::string& labelText = ow::GetSettings().GetStringValue("LABEL_STRING");
-	iBuffer * pUTFBuffer = CreateStandardBuffer( labelText.size() * 2);
+	IBuffer * pUTFBuffer = CreateMemBuffer( labelText.size() * 2);
 	uint16_t * ptr_in = (uint16_t *)labelText.c_str();
 	uint32_t size_in = labelText.size();
 	uint16_t * ptr_out = (uint16_t *)pUTFBuffer->GetBuffer();
-	uint32_t size_avail = pUTFBuffer->GetLength();
+	uint32_t size_avail = pUTFBuffer->Size();
 	uint32_t count = UTF82Unicode(ptr_in,size_in,ptr_out,size_avail);
 	m_pLabel->m_szText = new uint16_t[count];
 	memcpy(m_pLabel->m_szText, pUTFBuffer->GetBuffer(),sizeof(uint16_t) * count);

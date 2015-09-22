@@ -33,7 +33,7 @@ namespace Graphics
 			char* pIndexBuffer = (char *)&_pFile->m_pMeshFile->m_pMeshes[i].m_pTringles[0];
 			pMD5Mesh->m_pIndexBuffer = Graphics::VertexBuffer::CreateBuffer(pIndexBuffer,nIndexBufferSize);
 			 // 创建 uv buffer object
-			iBuffer * pUVBuffer = model::md5::GetUVBuffer(&_pFile->m_pMeshFile->m_pMeshes[i]);
+			IBuffer * pUVBuffer = model::md5::GetUVBuffer(&_pFile->m_pMeshFile->m_pMeshes[i]);
 			pMD5Mesh->m_pUVBuffer = Graphics::VertexBuffer::CreateBuffer(pUVBuffer->GetBuffer(),pUVBuffer->GetLength());
 			pUVBuffer->Release();
 			// 创建 weight（权重）相关的 buffer object

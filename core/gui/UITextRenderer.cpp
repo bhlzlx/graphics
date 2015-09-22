@@ -2,7 +2,7 @@
 #include <iconv.h>
 #include <cassert>
 #include "UITextRenderer.h"
-#include "./buffer/ibuffer.h"
+#include "./buffer/IBuffer.h"
 #include <glm/glm.hpp>
 #include "./app/OpenGLViewController.h"
 
@@ -42,10 +42,10 @@ void UITextRenderer::Init(const char * szFilepath,const char * textlib )
 	m_offsety_base = FONT_TEX_SIZE;
 
 	// ´´½¨Á½¸öbuffer¶ÔÏó Ò»¸ö¶ÁÎÄ¼þ£¬Ò»¸öÌá¹©×ª»»¿Õ¼ä
-	iBuffer * textBuff = BufferFromFile(textlib);
-	iBuffer * convBuff = CreateStandardBuffer(textBuff->GetLength() * 1.5);
+	IBuffer * textBuff = BufferFromFile(textlib);
+	IBuffer * convBuff = CreateStandardBuffer(textBuff->GetLength() * 1.5);
 
-	iBuffer * fontBuff = NULL;
+	IBuffer * fontBuff = NULL;
 
 	char * ptr_in = (char *)textBuff->GetBuffer();
 	size_t siz_in = textBuff->GetLength();
@@ -148,7 +148,7 @@ void UITextRenderer::Init(const char * szFilepath,const char * textlib )
 				error = glGetError();
 				glTexStorage2D(GL_TEXTURE_2D,1,GL_R8,FONT_TEX_SIZE,FONT_TEX_SIZE);
 
-				iBuffer * emptyBuff = CreateStandardBuffer(FONT_TEX_SIZE * FONT_TEX_SIZE);
+				IBuffer * emptyBuff = CreateStandardBuffer(FONT_TEX_SIZE * FONT_TEX_SIZE);
 				memset(emptyBuff->GetBuffer(),0,emptyBuff->GetLength());
 				glTexSubImage2D(
 				GL_TEXTURE_2D,
@@ -382,7 +382,7 @@ bool UITextRenderer::pushfont(unsigned short unicode)
 			error = glGetError();
 			glTexStorage2D(GL_TEXTURE_2D,1,GL_R8,FONT_TEX_SIZE,FONT_TEX_SIZE);
 
-			iBuffer * emptyBuff = CreateStandardBuffer(FONT_TEX_SIZE * FONT_TEX_SIZE);
+			IBuffer * emptyBuff = CreateStandardBuffer(FONT_TEX_SIZE * FONT_TEX_SIZE);
 			memset(emptyBuff->GetBuffer(),0,emptyBuff->GetLength());
 			glTexSubImage2D(
 			GL_TEXTURE_2D,

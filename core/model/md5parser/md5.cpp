@@ -107,7 +107,7 @@ namespace model
 		return 0;
 	}
 	
-	char * read_line(iBuffer * _pBuffer)
+	char * read_line(IBuffer * _pBuffer)
 	{
 		static char buffer[512];
 		int length ;
@@ -116,7 +116,7 @@ again:
 		memset(buffer,0,512);
 		while(true)
 		{
-			int ret = _pBuffer->Read((unsigned char *)buffer + length,1);
+			int ret = _pBuffer->Read( (int8_t*)buffer + length,1);
 			if(ret == 0 )
 			{
 				if(length == 0)
@@ -138,7 +138,7 @@ again:
 		return buffer;
 	}
 	
-	iBuffer * read_block_for_key(iBuffer * _pBuffer, const char * _key)
+	IBuffer * read_block_for_key(IBuffer * _pBuffer, const char * _key)
 	{
 		char * pLine = read_line(_pBuffer);
 		// 读key行
@@ -162,14 +162,14 @@ again:
 		char * pContent = (char * )_pBuffer->GetCurr();
 		char * pEnd = strchr(pContent,'}');
 		
-		iBuffer * pRet = CreateStandardBuffer(pEnd - pContent);
-		int n_read = _pBuffer->Read(pRet->GetBuffer(),pRet->GetLength() - 1);
-		assert(n_read == (int)pRet->GetLength() - 1);
+		IBuffer * pRet = CreateMemBuffer(pEnd - pContent);
+		int n_read = _pBuffer->Read(pRet->GetBuffer(),pRet->Size() - 1);
+		assert(n_read == (int32_t)pRet->Size() - 1);
 		_pBuffer->Seek(SEEK_CUR,1L);
 		return pRet;
 	}
 	
-	void ParseMeshJoints( iBuffer * _pBlockBuff, md5MeshModel* _pMeshModel, uint32_t _nJoints)
+	void ParseMeshJoints( IBuffer * _pBlockBuff, md5MeshModel* _pMeshModel, uint32_t _nJoints)
 	{
 		char * pLine = NULL;
 		md5Joint * pJoint;
@@ -201,7 +201,7 @@ again:
 		}
 	}
 	
-	void ParseMesh(iBuffer * _pBlockBuff, md5Mesh * _pMesh)
+	void ParseMesh(IBuffer * _pBlockBuff, md5Mesh * _pMesh)
 	{
 		// 取纹理
 		uint32_t ret = 0;
@@ -263,7 +263,7 @@ again:
 		}
 	}
 	
-	void InitMeshModel(md5MeshModel * _pMeshModel, iBuffer * _pBuffer)
+	void InitMeshModel(md5MeshModel * _pMeshModel, IBuffer * _pBuffer)
 	{
 		char * pLine = NULL;
 		int16_t scan_ret = 0;
@@ -289,7 +289,7 @@ again:
 		_pMeshModel->m_pJointMap = new md5JointMapA[_pMeshModel->m_nNumJoints];
 		_pMeshModel->m_pJoints = new md5Joint[_pMeshModel->m_nNumJoints];
 		_pMeshModel->m_pMeshes = new md5Mesh[_pMeshModel->m_nNumMeshes];
-		iBuffer * blockBuff;
+		IBuffer * blockBuff;
 		// 读取 joint结构map 和 默认绑定的joint骨骼数据		
 		blockBuff = read_block_for_key(_pBuffer,JOINTS);
 		ParseMeshJoints(blockBuff,_pMeshModel,_pMeshModel->m_nNumJoints);
@@ -314,7 +314,7 @@ again:
 		}
 	}
 	
-	void ParseAnimJoints(iBuffer * _pBuffer, md5AnimModel* _pAnimModel)
+	void ParseAnimJoints(IBuffer * _pBuffer, md5AnimModel* _pAnimModel)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -333,7 +333,7 @@ again:
 		}
 	}
 	
-	void ParseAnimBounds(iBuffer * _pBuffer, md5AnimModel* _pAnimModel)
+	void ParseAnimBounds(IBuffer * _pBuffer, md5AnimModel* _pAnimModel)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -353,7 +353,7 @@ again:
 		}
 	}
 	
-	void ParseBaseFrame(iBuffer * _pBuffer, md5Joint * _pJoints, uint16_t _nBones)
+	void ParseBaseFrame(IBuffer * _pBuffer, md5Joint * _pJoints, uint16_t _nBones)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -378,7 +378,7 @@ again:
 		}
 	}
 	
-	void ParseKeyFrame(iBuffer * _pBuffer, md5Joint * _pJoints, uint16_t _nBones)
+	void ParseKeyFrame(IBuffer * _pBuffer, md5Joint * _pJoints, uint16_t _nBones)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -408,7 +408,7 @@ again:
 		printf("count : %d \n",count);
 	}
 	
-	void InitAnimModel(md5AnimModel * _pAnimModel, iBuffer * _pBuffer)
+	void InitAnimModel(md5AnimModel * _pAnimModel, IBuffer * _pBuffer)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -455,7 +455,7 @@ again:
 		}
 		_pAnimModel->m_pJointMap = new md5JointMapB[_pAnimModel->m_nNumJoints];
 		// 读取joint map
-		iBuffer * blockBuffer = read_block_for_key(_pBuffer,HIERARCHY);
+		IBuffer * blockBuffer = read_block_for_key(_pBuffer,HIERARCHY);
 		ParseAnimJoints(blockBuffer,_pAnimModel);
 		// bound信息
 		blockBuffer = read_block_for_key(_pBuffer,BOUNDS);
@@ -517,10 +517,10 @@ again:
 	/*
 	 * utils
 	 * */
-	 iBuffer * GetUVBuffer(md5Mesh * _pMesh)
+	 IBuffer * GetUVBuffer(md5Mesh * _pMesh)
 	 {
 		unsigned int nUVSize = _pMesh->m_nNumVertices * 2 * sizeof(float);
-		iBuffer* pRet  = CreateStandardBuffer(nUVSize);
+		IBuffer* pRet  = CreateMemBuffer(nUVSize);
 		glm::vec2 * pVec = (glm::vec2*)pRet->GetBuffer();
 		for(int i = 0;i<_pMesh->m_nNumVertices;++i)
 		{

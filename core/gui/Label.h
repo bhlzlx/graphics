@@ -33,7 +33,7 @@ namespace gui
 	public:
 		Label();
 		~Label();
-		void Draw( Graphics::EffectOGL* _pEffect, TextRenderer* _pTextRenderer);		
+		void Draw( Graphics::EffectOGL* _pEffect, TextRenderer* _pTextRenderer);
 		static Label* CreateLabel( Rect<float>& _rc, glm::vec4 _color, float _fontSize);
 		
 		void Release();

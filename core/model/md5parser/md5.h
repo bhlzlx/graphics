@@ -103,11 +103,11 @@ namespace model
 		md5Joint**			m_pKeyFrames;
 	};
 	
-	void InitMeshModel(md5MeshModel * _pMeshModel, iBuffer * _pBuffer);
+	void InitMeshModel(md5MeshModel * _pMeshModel, IBuffer * _pBuffer);
 	void ClearMeshModel(md5MeshModel * _pMeshModel);
-	iBuffer * GetUVBuffer(md5Mesh * _pMesh);
+	IBuffer * GetUVBuffer(md5Mesh * _pMesh);
 	
-	void InitAnimModel(md5AnimModel * _pAnimModel, iBuffer * _pBuffer);
+	void InitAnimModel(md5AnimModel * _pAnimModel, IBuffer * _pBuffer);
 	void ClearAnimModel(md5AnimModel * _pAnimModel);
 }
 

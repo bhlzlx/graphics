@@ -25,7 +25,7 @@ namespace phantom
 		return 0;
 	}
 	
-	char * read_line(iBuffer * _pBuffer)
+	char * read_line(IBuffer * _pBuffer)
 	{
 		static char buffer[512];
 		int length ;
@@ -56,7 +56,7 @@ again:
 		return buffer;
 	}
 	
-	iBuffer * read_config_block(iBuffer * _pBuffer)
+	IBuffer * read_config_block(IBuffer * _pBuffer)
 	{
 		char * pLine = read_line(_pBuffer);
 		if(pLine == NULL)
@@ -67,14 +67,14 @@ again:
 		uint8_t * pContent = _pBuffer->GetCurr();
 		uint8_t * pEnd = (uint8_t*)strchr((char*)pContent,';');
 		int32_t nLen = pEnd - pContent - 1;
-		iBuffer *pRet = CreateBufferRef( pContent, nLen);
+		IBuffer *pRet = CreateBufferRef( pContent, nLen);
 		_pBuffer->Seek(SEEK_CUR,nLen + 4);
 		return pRet;
 	}
 	
-	uint8_t Config::Init( iBuffer *_pBuffer)
+	uint8_t Config::Init( IBuffer *_pBuffer)
 	{
-		iBuffer * bufferRef = (iBuffer*)0;
+		IBuffer * bufferRef = (IBuffer*)0;
 		while(bufferRef = read_config_block(_pBuffer) )
 		{
 			char * pLine = read_line( bufferRef );

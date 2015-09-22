@@ -41,6 +41,8 @@
     </VirtualDirectory>
     <File Name="common/EncodeCommon.h"/>
     <File Name="common/EncodeCommon.cpp"/>
+    <File Name="common/ResourcePool.h"/>
+    <File Name="common/ResourcePool.cpp"/>
   </VirtualDirectory>
   <Description/>
   <Dependencies/>
@@ -127,6 +129,10 @@
     <File Name="glsl/staticObject.vert"/>
     <File Name="glsl/uirender.frag"/>
     <File Name="glsl/uirender.vert"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="settings">
+    <File Name="settings/settings.cpp"/>
+    <File Name="settings/settings.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -216,10 +222,6 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="settings">
-    <File Name="settings/settings.cpp"/>
-    <File Name="settings/settings.h"/>
-  </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
 </CodeLite_Project>
