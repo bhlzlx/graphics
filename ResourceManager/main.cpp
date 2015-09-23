@@ -4,12 +4,12 @@
 
 int main(int argc, char **argv)
 {
-	ow::owFile * pFile = ow::CreateStdFile("Bob.md5anim","r+");
+	ow::owFile * pFile = ow::CreateStdFile("hellknight.png","rb");
 	
 	ow::owZip zip;
-	ow::owFile * zipFile = zip.Compress( pFile, 3);
+	ow::owFile * zipFile = zip.Compress( pFile, 9);
 	
-	ow::owFile * zipStdFile = ow::CreateStdFile("zip.bin","w+");
+	ow::owFile * zipStdFile = ow::CreateStdFile("zip.bin","wb+");
 	ow::owMemFile * zipMemFile = (ow::owMemFile *)zipFile;
 	zipStdFile->Write( zipMemFile->m_pMemBuffer->GetBuffer(), zipMemFile->m_pMemBuffer->Size());
 	zipStdFile->Release();
