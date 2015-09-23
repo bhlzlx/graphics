@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CodeLite_Workspace Name="graphics" Database="">
-  <Project Name="core" Path="core/core.project" Active="Yes"/>
-  <Project Name="ResourceManager" Path="ResourceManager/ResourceManager.project"/>
+  <Project Name="core" Path="core/core.project" Active="No"/>
+  <Project Name="ResourceManager" Path="ResourceManager/ResourceManager.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Project Name="core" ConfigName="Debug"/>

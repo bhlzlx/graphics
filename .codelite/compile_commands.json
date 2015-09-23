@@ -1,17 +1,9 @@
 [{
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -std=c++11 -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -MG -MP -MTE:/projects/builds/core/Debug/app_AppDelegate.cpp.o -MFE:/projects/builds/core/Debug/app_AppDelegate.cpp.o.d -MM app/AppDelegate.cpp",
-  "file": "F:\\gits\\graphics\\core\\app\\AppDelegate.cpp"
+  "directory": "F:\\gits\\graphics\\ResourceManager",
+  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -MG -MP -MTE:/projects/builds/ResourceManager/Debug/main.cpp.o -MFE:/projects/builds/ResourceManager/Debug/main.cpp.o.d -MM main.cpp",
+  "file": "F:\\gits\\graphics\\ResourceManager\\main.cpp"
  }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/main.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/main.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I.",
-  "file": "F:\\gits\\graphics\\core\\main.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/app/AppDelegate.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/app_AppDelegate.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I.",
-  "file": "F:\\gits\\graphics\\core\\app\\AppDelegate.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/scene/GameScene.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/scene_GameScene.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I.",
-  "file": "F:\\gits\\graphics\\core\\scene\\GameScene.cpp"
+  "directory": "F:\\gits\\graphics\\ResourceManager",
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/ResourceManager/main.cpp -g -O0 -Wall -o E:/projects/builds/ResourceManager/Debug/main.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I.",
+  "file": "F:\\gits\\graphics\\ResourceManager\\main.cpp"
  }]

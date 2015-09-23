@@ -8,6 +8,7 @@ struct IBuffer
 	virtual int32_t 	Size() = 0;
 	virtual void 		Seek( int8_t _flag, int32_t _offset) = 0;
 	virtual int32_t		Read( int8_t* _pOut, uint32_t _nSize) = 0;
+	virtual int32_t		Write( int8_t* _pIn, int32_t _nSize) = 0;
 	virtual bool 		Eof() = 0;
 	
 	virtual int8_t* 	GetCurr() = 0;
