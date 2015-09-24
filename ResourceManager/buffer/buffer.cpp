@@ -25,7 +25,7 @@ struct MemBuffer:public IBuffer
 		memcpy(m_pData, _pSrc, _nSize);
 		m_pData[_nSize] = 0x00;
 		m_pCurr = m_pData;
-		m_pEnd = m_pData + _nSize + 1;
+		m_pEnd = m_pData + _nSize;
 		m_nCapacity = _nSize;
 	}
 	
@@ -33,7 +33,7 @@ struct MemBuffer:public IBuffer
 	{
 		m_pData = (int8_t *)malloc( _nSize + 1);
 		m_pCurr = m_pData;
-		m_pEnd = m_pData + _nSize + 1;
+		m_pEnd = m_pData + _nSize;
 		m_nCapacity = _nSize;
 	}
 	

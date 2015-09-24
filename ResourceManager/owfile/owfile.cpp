@@ -44,8 +44,6 @@ namespace ow
 		FILE * file = fopen( _szFilepath, _szFlag);
 		if(file == NULL) return NULL;
 		
-
-		
 		owStdFile * pStdFile = new owStdFile();
 		
 		fseek(file,0,SEEK_END);

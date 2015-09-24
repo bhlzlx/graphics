@@ -1,5 +1,6 @@
 #include "owZip.h"
 #include <assert.h>
+#include <memory.h>
 
 namespace ow
 {
@@ -21,11 +22,18 @@ namespace ow
 
 	owZip::~owZip()
 	{
-		
+		m_pOutputChunkBuffer->Release();
+		m_pInputChunkBuffer->Release();
+		m_pTempBuffer->Release();
 	}
 	
 	owFile * owZip::Compress( owFile * _pFile , int32_t _nlevel)
 	{
+		_pFile->Seek( SEEK_SET, 0);
+		if(_pFile->Eof())
+		{
+			return NULL;
+		}
 		// 保证有充足的压缩空间
 		if(_pFile->Size() > m_pTempBuffer->Size())
 		{
@@ -76,6 +84,51 @@ namespace ow
 	
 	owFile * owZip::Uncompress( owFile * _pFile )
 	{
+		int retCode;
+		z_stream stream;
+		_pFile->Seek(SEEK_SET, 0);
+		memset(&stream, 0, sizeof(stream));
+		
+		retCode = inflateInit( &stream);
+		
+		if(retCode != Z_OK || _pFile->Eof())
+		{
+			return NULL;
+		}
+		
+		m_pTempBuffer->Seek( SEEK_SET, 0);
+		
+		while( true )
+		{
+			stream.avail_in = _pFile->Read( m_pInputChunkBuffer->GetBuffer(), m_pInputChunkBuffer->Size());
+			stream.next_in = (Bytef* )m_pInputChunkBuffer->GetBuffer();
+			while(stream.avail_in != 0)
+			{
+				stream.avail_out = m_pOutputChunkBuffer->Size();
+				stream.next_out = (Bytef*)m_pOutputChunkBuffer->GetBuffer();
+				
+				retCode = inflate(&stream, Z_NO_FLUSH);
+				assert( retCode != Z_STREAM_ERROR);
+				//switch(ret)				
+				int32_t chunkSize = m_pOutputChunkBuffer->Size() - stream.avail_out;
+				m_pTempBuffer->Write( m_pOutputChunkBuffer->GetBuffer(), chunkSize);
+			}
+			if(retCode == Z_STREAM_END)
+			{
+				break;
+			}
+		}
+		int32_t dataSize = m_pTempBuffer->GetCurr() - m_pTempBuffer->GetBuffer();
+		if(dataSize == 0)
+		{
+			return NULL;
+		}
+		else
+		{
+			owFile * pFile = CreateMemFile( dataSize );
+			pFile->Write( m_pTempBuffer->GetBuffer(), dataSize);
+			return pFile;
+		}
 		return NULL;
 	}
 

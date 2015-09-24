@@ -1,6 +1,9 @@
 #include "buffer.h"
-#include <cstdio>
+#include <stdio.h>
+#include <stdlib.h>
+#include <memory.h>
 #include <string.h>
+#include <assert.h>
 
 struct MemBuffer:public IBuffer
 {
@@ -18,19 +21,19 @@ struct MemBuffer:public IBuffer
 	
 	MemBuffer( const int8_t* _pSrc, int32_t& _nSize)
 	{
-		m_pData = new int8_t[_nSize + 1];
+		m_pData = (int8_t *)malloc( _nSize + 1);
 		memcpy(m_pData, _pSrc, _nSize);
 		m_pData[_nSize] = 0x00;
 		m_pCurr = m_pData;
-		m_pEnd = m_pData + _nSize + 1;
+		m_pEnd = m_pData + _nSize;
 		m_nCapacity = _nSize;
 	}
 	
 	MemBuffer( const int32_t& _nSize)
 	{
-		m_pData = new int8_t[_nSize + 1];
+		m_pData = (int8_t *)malloc( _nSize + 1);
 		m_pCurr = m_pData;
-		m_pEnd = m_pData + _nSize + 1;
+		m_pEnd = m_pData + _nSize;
 		m_nCapacity = _nSize;
 	}
 	
@@ -80,16 +83,28 @@ struct MemBuffer:public IBuffer
         return _nSize;
 	}
 	
+	int32_t Resize( int32_t _nSize)
+	{
+		assert(_nSize > this->m_nCapacity);
+		int32_t currOffset = m_pCurr - m_pData;
+		this->m_pData = (int8_t *)realloc( m_pData, _nSize + 1);
+		assert( m_pData );
+		
+		m_pData[_nSize] = 0x0;
+		m_nCapacity = _nSize;
+		m_pCurr = m_pData + currOffset;
+		m_pEnd = m_pData + _nSize + 1;
+		
+		return 0;
+	}
+	
 	int32_t Write( int8_t* _pIn, int32_t _nSize)
 	{
 		uint32_t sizeLeft = m_pEnd - m_pCurr;
-        if(!sizeLeft)
+		while(sizeLeft < _nSize)
 		{
-            return 0;
-		}
-        if(_nSize > sizeLeft)
-		{
-            _nSize = sizeLeft;
+			Resize( m_nCapacity * 2);
+			sizeLeft = m_pEnd - m_pCurr;
 		}
         memcpy(m_pCurr, _pIn, _nSize);
         m_pCurr += _nSize;
@@ -117,7 +132,7 @@ struct MemBuffer:public IBuffer
 
 	void Release()
 	{
-		delete []m_pData;
+		free( m_pData);
 		this->m_nCapacity = 0;
 		this->m_pCurr = this->m_pData = this->m_pEnd = NULL;
 		delete this;
@@ -132,6 +147,12 @@ struct MemBufferRef:public MemBuffer
 		m_pCurr = m_pData;
 		m_pEnd = m_pData + _nSize + 1;
 		m_nCapacity = _nSize;
+	}
+	
+	int32_t Resize( int32_t _nSize)
+	{
+		assert( false );
+		return -1;
 	}
 	
 	void Release()
