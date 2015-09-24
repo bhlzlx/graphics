@@ -2,14 +2,17 @@
 <CodeLite_Workspace Name="graphics" Database="">
   <Project Name="core" Path="core/core.project" Active="No"/>
   <Project Name="ResourceManager" Path="ResourceManager/ResourceManager.project" Active="Yes"/>
+  <Project Name="owPackager" Path="owPackager/owPackager.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Project Name="core" ConfigName="Debug"/>
       <Project Name="ResourceManager" ConfigName="Debug"/>
+      <Project Name="owPackager" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="core" ConfigName="Release"/>
       <Project Name="ResourceManager" ConfigName="Release"/>
+      <Project Name="owPackager" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>
