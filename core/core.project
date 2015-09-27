@@ -55,10 +55,6 @@
     <File Name="app/OpenGLViewController.cpp"/>
     <File Name="app/OpenGLViewController.h"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="buffer">
-    <File Name="buffer/buffer.cpp"/>
-    <File Name="buffer/buffer.h"/>
-  </VirtualDirectory>
   <VirtualDirectory Name="event">
     <File Name="event/MouseEvent.cpp"/>
     <File Name="event/MouseEvent.h"/>
@@ -79,10 +75,6 @@
     <File Name="scene/SceneObject.h"/>
     <File Name="scene/SceneObject.cpp"/>
     <VirtualDirectory Name="kdtree"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="algorithm">
-    <File Name="algorithm/md5.cpp"/>
-    <File Name="algorithm/md5.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="gui">
     <File Name="gui/Label.h"/>
@@ -222,6 +214,32 @@
       </Completion>
     </Configuration>
   </Settings>
+  <VirtualDirectory Name="algorithm">
+    <File Name="../ow/algorithm/md5.cpp"/>
+    <File Name="../ow/algorithm/md5.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="buffer">
+    <File Name="../ow/buffer/buffer.cpp"/>
+    <File Name="../ow/buffer/buffer.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="owZip">
+    <File Name="../ow/owZip/owZip.cpp"/>
+    <File Name="../ow/owZip/owZip.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="owcmn">
+    <File Name="../ow/owcmn/owcmn.cpp"/>
+    <File Name="../ow/owcmn/owcmn.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="owfile">
+    <File Name="../ow/owfile/owfile.cpp"/>
+    <File Name="../ow/owfile/owfile.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="package">
+    <File Name="../ow/package/owPackage.cpp"/>
+    <File Name="../ow/package/owPackage.h"/>
+    <File Name="../ow/package/package_common.cpp"/>
+    <File Name="../ow/package/package_common.h"/>
+  </VirtualDirectory>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
 </CodeLite_Project>

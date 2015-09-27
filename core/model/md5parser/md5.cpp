@@ -6,6 +6,7 @@
 #include <math.h>
 #include <string.h>
 #include <cctype>
+#include <buffer/buffer.h>
 
 #define VERSION_INFO    "MD5Version"
 #define NUM_JOINTS      "numJoints"
@@ -30,6 +31,8 @@
 
 
 #define LINE_LENGTH_MIN 4
+
+using namespace ow;
 
 namespace model
 {
@@ -107,7 +110,7 @@ namespace model
 		return 0;
 	}
 	
-	char * read_line(IBuffer * _pBuffer)
+	char * read_line(ow::IBuffer * _pBuffer)
 	{
 		static char buffer[512];
 		int length ;
@@ -138,7 +141,7 @@ again:
 		return buffer;
 	}
 	
-	IBuffer * read_block_for_key(IBuffer * _pBuffer, const char * _key)
+	ow::IBuffer * read_block_for_key(ow::IBuffer * _pBuffer, const char * _key)
 	{
 		char * pLine = read_line(_pBuffer);
 		// 读key行
@@ -162,14 +165,14 @@ again:
 		char * pContent = (char * )_pBuffer->GetCurr();
 		char * pEnd = strchr(pContent,'}');
 		
-		IBuffer * pRet = CreateMemBuffer(pEnd - pContent);
+		ow::IBuffer * pRet = ow::CreateMemBuffer(pEnd - pContent);
 		int n_read = _pBuffer->Read(pRet->GetBuffer(),pRet->Size() - 1);
 		assert(n_read == (int32_t)pRet->Size() - 1);
 		_pBuffer->Seek(SEEK_CUR,1L);
 		return pRet;
 	}
 	
-	void ParseMeshJoints( IBuffer * _pBlockBuff, md5MeshModel* _pMeshModel, uint32_t _nJoints)
+	void ParseMeshJoints( ow::IBuffer * _pBlockBuff, md5MeshModel* _pMeshModel, uint32_t _nJoints)
 	{
 		char * pLine = NULL;
 		md5Joint * pJoint;
@@ -201,7 +204,7 @@ again:
 		}
 	}
 	
-	void ParseMesh(IBuffer * _pBlockBuff, md5Mesh * _pMesh)
+	void ParseMesh(ow::IBuffer * _pBlockBuff, md5Mesh * _pMesh)
 	{
 		// 取纹理
 		uint32_t ret = 0;
@@ -263,7 +266,7 @@ again:
 		}
 	}
 	
-	void InitMeshModel(md5MeshModel * _pMeshModel, IBuffer * _pBuffer)
+	void InitMeshModel(md5MeshModel * _pMeshModel, ow::IBuffer * _pBuffer)
 	{
 		char * pLine = NULL;
 		int16_t scan_ret = 0;
@@ -289,7 +292,7 @@ again:
 		_pMeshModel->m_pJointMap = new md5JointMapA[_pMeshModel->m_nNumJoints];
 		_pMeshModel->m_pJoints = new md5Joint[_pMeshModel->m_nNumJoints];
 		_pMeshModel->m_pMeshes = new md5Mesh[_pMeshModel->m_nNumMeshes];
-		IBuffer * blockBuff;
+		ow::IBuffer * blockBuff;
 		// 读取 joint结构map 和 默认绑定的joint骨骼数据		
 		blockBuff = read_block_for_key(_pBuffer,JOINTS);
 		ParseMeshJoints(blockBuff,_pMeshModel,_pMeshModel->m_nNumJoints);
@@ -314,7 +317,7 @@ again:
 		}
 	}
 	
-	void ParseAnimJoints(IBuffer * _pBuffer, md5AnimModel* _pAnimModel)
+	void ParseAnimJoints(ow::IBuffer * _pBuffer, md5AnimModel* _pAnimModel)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -333,7 +336,7 @@ again:
 		}
 	}
 	
-	void ParseAnimBounds(IBuffer * _pBuffer, md5AnimModel* _pAnimModel)
+	void ParseAnimBounds(ow::IBuffer * _pBuffer, md5AnimModel* _pAnimModel)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -353,7 +356,7 @@ again:
 		}
 	}
 	
-	void ParseBaseFrame(IBuffer * _pBuffer, md5Joint * _pJoints, uint16_t _nBones)
+	void ParseBaseFrame(ow::IBuffer * _pBuffer, md5Joint * _pJoints, uint16_t _nBones)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -378,7 +381,7 @@ again:
 		}
 	}
 	
-	void ParseKeyFrame(IBuffer * _pBuffer, md5Joint * _pJoints, uint16_t _nBones)
+	void ParseKeyFrame(ow::IBuffer * _pBuffer, md5Joint * _pJoints, uint16_t _nBones)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;

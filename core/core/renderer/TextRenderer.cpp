@@ -76,9 +76,9 @@ namespace Graphics
 		IBuffer * pFontlibBuffer = BufferFromFile( _szFontLib);	
 		IBuffer * pUTFBuffer = CreateMemBuffer( pFontlibBuffer->Size() * 1.5);
 		
-		int8_t * ptr_in = pFontlibBuffer->GetBuffer();
+		owBYTE * ptr_in = pFontlibBuffer->GetBuffer();
 		uint32_t size_in = pFontlibBuffer->Size();
-		int8_t * ptr_out = pUTFBuffer->GetBuffer();
+		owBYTE * ptr_out = pUTFBuffer->GetBuffer();
 		uint32_t size_avail = pUTFBuffer->Size();
 		
 		uint32_t char_count = 0;

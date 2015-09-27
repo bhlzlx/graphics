@@ -2,6 +2,8 @@
 #include "md5Model.h"
 #include <string.h>
 
+using namespace ow;
+
 namespace Graphics
 {
 	struct weight_struct

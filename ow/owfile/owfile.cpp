@@ -3,27 +3,27 @@
 namespace ow
 {
 
-	uint32_t owStdFile::Read( int8_t* _ptr, uint32_t _nBytes )
+	owSIZE_T owStdFile::Read( owVOID* _ptr, owINT32 _nBytes )
 	{
 		return fread( _ptr, 1, _nBytes, m_pFile);
 	}
 
-	uint32_t owStdFile::Write( int8_t* _ptr, uint32_t _nBytes )
+	owSIZE_T owStdFile::Write( owVOID* _ptr, owINT32 _nBytes )
 	{
 		return fwrite( _ptr, 1, _nBytes, m_pFile);
 	}
 
-	uint32_t owStdFile::Seek( int8_t _flag, int64_t _nOffset)
+	owINT32 owStdFile::Seek( owINT32 _flag, owINT32 _nOffset)
 	{
 		return fseek( m_pFile, _nOffset, _flag);
 	}
 
-	int64_t owStdFile::Tell() 
+	owSIZE_T owStdFile::Tell() 
 	{
-		return ftell( m_pFile);
+		return ftell(m_pFile);
 	}
 	
-	int32_t owStdFile::Size()
+	owSIZE_T owStdFile::Size()
 	{
 		return m_iSize;
 	}
@@ -34,12 +34,17 @@ namespace ow
 		delete this;
 	}
 	
-	bool owStdFile::Eof()
+	owBOOL owStdFile::Eof()
 	{
 		return feof( m_pFile);
 	}
 	
-	owFile * CreateStdFile( const char * _szFilepath, const char * _szFlag )
+	owStdFile::~owStdFile()
+	{
+		
+	}
+	
+	owFile * CreateStdFile( const owCHAR * _szFilepath, const owCHAR * _szFlag )
 	{
 		FILE * file = fopen( _szFilepath, _szFlag);
 		if(file == NULL) return NULL;
@@ -54,50 +59,54 @@ namespace ow
 		return pStdFile;
 	}	
 	
-	uint32_t owMemFile::Read( int8_t* _ptr, uint32_t _nBytes )
+	owSIZE_T owMemFile::Read( owVOID* _ptr, owINT32 _nBytes )
 	{
 		return this->m_pMemBuffer->Read( _ptr, _nBytes);
 	}
 	
-	uint32_t owMemFile::Write( int8_t* _ptr, uint32_t _nBytes )
+	owSIZE_T owMemFile::Write( owVOID* _ptr, owINT32 _nBytes )
 	{
 		return this->m_pMemBuffer->Write( _ptr, _nBytes);
 	}
 	
-	uint32_t owMemFile::Seek( int8_t _flag, int64_t _nOffset)
+	owINT32 owMemFile::Seek( owINT32 _flag, owINT32 _nOffset)
 	{
 		m_pMemBuffer->Seek( _flag, _nOffset);
 		return 0;
 	}
 	
-	int64_t owMemFile::Tell()
+	owSIZE_T owMemFile::Tell()
 	{
 		return m_pMemBuffer->GetCurr() - m_pMemBuffer->GetBuffer();
 	}
 	
-	int32_t owMemFile::Size()
+	owSIZE_T owMemFile::Size()
 	{
 		return m_pMemBuffer->Size();
 	}
 	
-	bool owMemFile::Eof()
+	owBOOL owMemFile::Eof()
 	{
 		return m_pMemBuffer->Eof();
 	}
 	
-	void owMemFile::Release()
+	owVOID owMemFile::Release()
 	{
 		m_pMemBuffer->Release();
 		delete this;
 	}
 	
-	owFile * CreateMemFile( uint32_t _nSize )
+	owFile * CreateMemFile( owINT32 _nSize )
 	{
 		owMemFile * pMemFile = new owMemFile();
 		pMemFile->m_pMemBuffer = CreateMemBuffer( _nSize);
 		return pMemFile;
 	}
-
+	
+	owMemFile::~owMemFile()
+	{
+		
+	}
 
 }
 

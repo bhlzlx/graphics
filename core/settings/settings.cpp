@@ -4,6 +4,7 @@
 #include <cassert>
 #include <common/EncodeCommon.h>
 #include <common/ResourcePool.h>
+#include <owcmn/owcmn.h>
 
 namespace ow
 {
@@ -69,8 +70,8 @@ again:
 			return NULL;
 		}
 		// 找 ';'
-		int8_t * pContent = _pBuffer->GetCurr();
-		int8_t * pEnd = (int8_t*)strchr((char*)pContent,';');
+		owBYTE * pContent = _pBuffer->GetCurr();
+		owBYTE * pEnd = (owBYTE*)strchr((char*)pContent,';');
 		int32_t nLen = pEnd - pContent - 1;
 		IBuffer *pRet = CreateBufferRef( pContent, nLen);
 		_pBuffer->Seek(SEEK_CUR,nLen + 4);

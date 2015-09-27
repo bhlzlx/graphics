@@ -41,7 +41,7 @@ namespace Graphics
 void OpenGLViewController::OnInit()
 {	
 	__pViewController = this;
-	IBuffer * configBuff = BufferFromFile(szConfigPath);
+	ow::IBuffer * configBuff = BufferFromFile(szConfigPath);
 	ow::GetSettings().Init(configBuff);
 	m_pGameCamera = GetGameCamera();
 	m_viewport.width = DEFAULT_SCREEN_WIDTH;

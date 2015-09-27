@@ -1,13 +1,9 @@
 [{
-  "directory": "F:\\gits\\graphics\\ResourceManager",
-  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -std=c++11 -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -MG -MP -MTE:/projects/builds/ResourceManager/Debug/main.cpp.o -MFE:/projects/builds/ResourceManager/Debug/main.cpp.o.d -MM main.cpp",
-  "file": "F:\\gits\\graphics\\ResourceManager\\main.cpp"
+  "directory": "E:\\projects\\graphics\\ResourceManager",
+  "command": "F:/tdmgcc/bin/g++.exe -g -O0 -Wall -std=c++11 -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I. -MG -MP -MTE:/projects/builds/ResourceManager/Debug/package_owPackage.cpp.o -MFE:/projects/builds/ResourceManager/Debug/package_owPackage.cpp.o.d -MM ../ow/package/owPackage.cpp",
+  "file": "E:\\projects\\graphics\\ResourceManager\\..\\ow\\package\\owPackage.cpp"
  }, {
-  "directory": "F:\\gits\\graphics\\ResourceManager",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/ResourceManager/main.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/ResourceManager/Debug/main.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I.",
-  "file": "F:\\gits\\graphics\\ResourceManager\\main.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\ResourceManager",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/ResourceManager/package/package_common.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/ResourceManager/Debug/package_package_common.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I.",
-  "file": "F:\\gits\\graphics\\ResourceManager\\package\\package_common.cpp"
+  "directory": "E:\\projects\\graphics\\ResourceManager",
+  "command": "F:/tdmgcc/bin/g++.exe -c E:/projects/graphics/ow/package/owPackage.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/ResourceManager/Debug/package_owPackage.cpp.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
+  "file": "E:\\projects\\graphics\\ow\\package\\owPackage.cpp"
  }]
