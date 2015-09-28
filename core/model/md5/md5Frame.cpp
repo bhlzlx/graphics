@@ -2,7 +2,9 @@
 #include <memory.h>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/glm.hpp>
-#include <common/log/logger.h>
+#include <owcmn/log/logger.h>
+
+using namespace ow;
 
 namespace Graphics
 {
@@ -34,7 +36,7 @@ namespace Graphics
 			pMD5Mesh->m_pIndexBuffer = Graphics::VertexBuffer::CreateBuffer(pIndexBuffer,nIndexBufferSize);
 			 // 创建 uv buffer object
 			IBuffer * pUVBuffer = model::md5::GetUVBuffer(&_pFile->m_pMeshFile->m_pMeshes[i]);
-			pMD5Mesh->m_pUVBuffer = Graphics::VertexBuffer::CreateBuffer(pUVBuffer->GetBuffer(),pUVBuffer->GetLength());
+			pMD5Mesh->m_pUVBuffer = Graphics::VertexBuffer::CreateBuffer(pUVBuffer->GetBuffer(),pUVBuffer->Size());
 			pUVBuffer->Release();
 			// 创建 weight（权重）相关的 buffer object
 			// weight数量[1] - bias[4] - jointindex[4]
@@ -87,7 +89,7 @@ namespace Graphics
 		{
 			// 生成纹理
 			pMD5Mesh = _pModel->m_pMeshes + meshIdx;
-			IBufferPtr pImageBuffer = BufferFromFile(_pFile->m_pMeshFile->m_pMeshes[meshIdx].m_szTexture);
+			IBuffer * pImageBuffer = BufferFromFile(_pFile->m_pMeshFile->m_pMeshes[meshIdx].m_szTexture);
 			if(pImageBuffer)
 			{
 				Image * image = Image::ImageFromPng(pImageBuffer);
@@ -101,7 +103,7 @@ namespace Graphics
 			}			
 			// 创建 mesh vertex buffer
 			uint32_t nNumVertices = _pFile->m_pMeshFile->m_pMeshes[meshIdx].m_nNumVertices;
-			IBufferPtr pBindPoseBuffer = CreateStandardBuffer( nNumVertices * sizeof(float) * 3);
+			IBuffer * pBindPoseBuffer = CreateMemBuffer( nNumVertices * sizeof(float) * 3);
 			glm::vec3 * pVec = (glm::vec3 *)pBindPoseBuffer->GetBuffer();
 			// 计算bindpose的顶点坐标
 			for(int vertIdx = 0;vertIdx < nNumVertices ;++vertIdx)
@@ -120,7 +122,7 @@ namespace Graphics
 				pVec[vertIdx] = result;
 			}
 			// 创建 vbo
-			pMD5Mesh->m_pBindposeVertexBuffer = Graphics::VertexBuffer::CreateBuffer(pVec,pBindPoseBuffer->GetLength());
+			pMD5Mesh->m_pBindposeVertexBuffer = Graphics::VertexBuffer::CreateBuffer(pVec,pBindPoseBuffer->Size());
 			pMD5Mesh->m_pVertexArray->SetVertexBuffer(0,pMD5Mesh->m_pBindposeVertexBuffer,3,0,0);
 			pMD5Mesh->m_nNumVertices = _pFile->m_pMeshFile->m_pMeshes[meshIdx].m_nNumTriangles * 3;
 			pBindPoseBuffer->Release();
@@ -254,7 +256,7 @@ void GetMD5DefaultFrame(MD5FramePtr _pFrame,MD5FilePtr _pMD5File)
 		
 		VertexPtr pVertex = NULL;
 		// 分配vertex buffer 空间
-		pMesh->m_pFinalVertices = CreateStandardBuffer( numVertices * sizeof(float) * 3);
+		pMesh->m_pFinalVertices = CreateMemBuffer( numVertices * sizeof(float) * 3);
 		for(int j = 0; j<numVertices; ++j)
 		{
 			pVertex = pOrigVertices + j;
@@ -340,7 +342,7 @@ void GetMD5KeyFrame(MD5FramePtr _pFrame,MD5FilePtr _pMD5File,uint32_t _mSeconds)
 		
 		VertexPtr pVertex = NULL;
 		// 分配vertex buffer 空间
-		pMesh->m_pFinalVertices = CreateStandardBuffer( numVertices * sizeof(float) * 3);
+		pMesh->m_pFinalVertices = ow::CreateMemBuffer( numVertices * sizeof(float) * 3);
 		for(int j = 0; j<numVertices; ++j)
 		{
 			pVertex = pOrigVertices + j;

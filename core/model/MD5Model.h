@@ -1,9 +1,9 @@
 #ifndef __MD5_MODEL_H__
 #define __MD5_MODEL_H__
 
-#include <EffectOGL.h>
-#include <TexOGL.h>
-#include <BufferOGL.h>
+#include <core/EffectOGL.h>
+#include <core/TexOGL.h>
+#include <core/BufferOGL.h>
 #include "md5/md5Frame.h"
 #include <vector>
 

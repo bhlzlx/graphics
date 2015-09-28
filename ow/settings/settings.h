@@ -5,6 +5,7 @@
 #include <map>
 #include <string>
 #include <buffer/buffer.h>
+#include <owcmn/owcmn.h>
 
 namespace ow
 {
@@ -12,20 +13,21 @@ namespace ow
 	typedef std::map< std::string, float> Conf_float;
 	typedef std::map< std::string, int> Conf_int;
 	
-	struct Settings
+	struct Preference
 	{
 		Conf_string 	m_strings;
 		Conf_float 		m_floats;
 		Conf_int		m_ints;
+
+		owBOOL Init( const owCHAR * _szFilepath);
+		owBOOL Init( IBuffer * _pBuffer);
 		
-		uint8_t Init( IBuffer * _pBuffer);
-		
-		int& GetIntValue( const char * _szKey);
+		owINT32& GetIntValue( const char * _szKey);
 		std::string& GetStringValue( const char * _szKey);
 		float& GetFloatValue( const char * _szKey);
 	};
 	
-	Settings& GetSettings();
+	Preference & GetPreference();
 }
 
 #endif // __CONFIG_H__

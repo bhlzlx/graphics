@@ -7,8 +7,8 @@
 #include <cstdio>
 #include <glm/glm.hpp>
 
-#include <common/log/logger.h>
-#include <common/ResourcePool.h>
+#include <owcmn/log/logger.h>
+#include <owcmn/ResourcePool.h>
 
 ow::Logger * __logger__ = NULL;
 

@@ -17,7 +17,7 @@
 #include <math.h>
 
 #include <settings/settings.h>
-#include <common/EncodeCommon.h>
+#include <owcmn/EncodeCommon.h>
 
 const char * szConfigPath = "./config.txt";
 
@@ -41,8 +41,7 @@ namespace Graphics
 void OpenGLViewController::OnInit()
 {	
 	__pViewController = this;
-	ow::IBuffer * configBuff = BufferFromFile(szConfigPath);
-	ow::GetSettings().Init(configBuff);
+	ow::GetPreference().Init(szConfigPath);
 	m_pGameCamera = GetGameCamera();
 	m_viewport.width = DEFAULT_SCREEN_WIDTH;
 	m_viewport.height = DEFAULT_SCREEN_HEIGHT;
@@ -87,7 +86,7 @@ void OpenGLViewController::OnInit()
 	m_pGuiRenderer = new gui::GuiRenderer();
 	m_pGuiRenderer->Init();
 	Rect<float> labelRect(0,0,512,32);
-	ow::Settings &config = ow::GetSettings();
+	ow::Preference &config = ow::GetPreference();
 	float lableFontSize = config.GetFloatValue("GUI_FONT_SIZE");
 	glm::vec4 labelColor = glm::vec4(
 								config.GetFloatValue("GUI_COLOR_RED"),
@@ -99,7 +98,7 @@ void OpenGLViewController::OnInit()
 	m_pLabel = gui::Label::CreateLabel( labelRect, labelColor, lableFontSize);
 	
 	// 将utf8转换为unicode编码
-	std::string& labelText = ow::GetSettings().GetStringValue("LABEL_STRING");
+	std::string& labelText = ow::GetPreference().GetStringValue("LABEL_STRING");
 	IBuffer * pUTFBuffer = CreateMemBuffer( labelText.size() * 2);
 	uint16_t * ptr_in = (uint16_t *)labelText.c_str();
 	uint32_t size_in = labelText.size();

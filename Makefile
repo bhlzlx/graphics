@@ -1,8 +1,8 @@
 .PHONY: clean All
 
 All:
-	@echo "----------Building project:[ ResourceManager - Debug ]----------"
-	@cd "ResourceManager" && $(MAKE) -f  "ResourceManager.mk"
+	@echo "----------Building project:[ core - Debug ]----------"
+	@cd "core" && $(MAKE) -f  "core.mk"
 clean:
-	@echo "----------Cleaning project:[ ResourceManager - Debug ]----------"
-	@cd "ResourceManager" && $(MAKE) -f  "ResourceManager.mk" clean
+	@echo "----------Cleaning project:[ core - Debug ]----------"
+	@cd "core" && $(MAKE) -f  "core.mk" clean

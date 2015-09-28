@@ -333,7 +333,7 @@ namespace Graphics
 		if( __pTextureRenderer == NULL)
 		{
 			__pTextureRenderer = new TextRenderer();
-			ow::Settings & config = ow::GetSettings();
+			ow::Preference & config = ow::GetPreference();
 			const char * fontPath = config.m_strings["FONT_TTF"].c_str();
 			const char * charLib = config.m_strings["CHAR_LIB"].c_str();
 			FONT_BOUND = config.m_floats["FONT_BASIC_SIZE"];

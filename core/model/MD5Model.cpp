@@ -14,15 +14,15 @@ namespace _MD5_
             mesh.m_pVertexArray = Graphics::VertexArray::CreateVertexArray();
             mesh.m_pVertexArray->Bind();
             
-            mesh.m_pVertexBuffer = VertexBuffer::CreateBuffer(pMesh->m_pFinalVertices->GetBuffer(),pMesh->m_pFinalVertices->GetLength());
-            mesh.m_pUVBuffer = VertexBuffer::CreateBuffer(pMesh->m_pUVBuffer->GetBuffer(),pMesh->m_pUVBuffer->GetLength());
-            mesh.m_pIndexBuffer = VertexBuffer::CreateBuffer(pMesh->m_pIndicesBuffer->GetBuffer(),pMesh->m_pIndicesBuffer->GetLength());
+            mesh.m_pVertexBuffer = VertexBuffer::CreateBuffer(pMesh->m_pFinalVertices->GetBuffer(),pMesh->m_pFinalVertices->Size());
+            mesh.m_pUVBuffer = VertexBuffer::CreateBuffer(pMesh->m_pUVBuffer->GetBuffer(),pMesh->m_pUVBuffer->Size());
+            mesh.m_pIndexBuffer = VertexBuffer::CreateBuffer(pMesh->m_pIndicesBuffer->GetBuffer(),pMesh->m_pIndicesBuffer->Size());
 
             mesh.m_pVertexArray->SetVertexBuffer(0,mesh.m_pVertexBuffer,3,0,0);
             mesh.m_pVertexArray->SetVertexBuffer(2,mesh.m_pUVBuffer,2,0,0);
             mesh.m_pVertexArray->SetIndexBuffer(mesh.m_pIndexBuffer);
             mesh.m_nNumVertices = pMesh->m_nNumIndices;
-			IBuffer *pImageBuffer = BufferFromFile(pMesh->m_szTexDiffuse);
+			ow::IBuffer *pImageBuffer = ow::BufferFromFile(pMesh->m_szTexDiffuse);
 			if(pImageBuffer)
 			{
 				Image * pImage = Image::ImageFromPng(pImageBuffer);

@@ -1,4 +1,5 @@
 #include <package/package_common.h>
+#include <package/owPackage.h>
 #include <owfile/owfile.h>
 #include <owZip/owZip.h>
 #include <algorithm/md5.h>
@@ -8,14 +9,18 @@ namespace ow
 	
 	int32_t owSearchDir( const char *_szRoot, owNodeW *_pRootNode )
 	{
+		owPath * pPath = CreatePath(_szRoot);
+		
 		int32_t totalCount= 0;
 
 		std::vector<std::string> nodeNames;
-		DWORD attr= GetFileAttributesA( _szRoot );
+		DWORD attr= GetFileAttributesA( pPath->m_strFullpath.c_str() + 1 );
 		_pRootNode->m_strNodeName= "/";
 		_pRootNode->m_iFileType= FILETYPE_DIR;
 		_pRootNode->m_pParent= NULL;
-		_pRootNode->m_strFullpath= _szRoot;
+		_pRootNode->m_strFullpath= pPath->m_strFullpath.c_str() + 1;
+		
+		delete pPath;
 
 		if( attr == INVALID_FILE_ATTRIBUTES || !( attr & FILE_ATTRIBUTE_DIRECTORY ) )
 		{
@@ -35,7 +40,8 @@ namespace ow
 			nodeQueue.pop();
 			// 处理源文件
 			HANDLE firstFile;
-			std::string fileName= currfolder + "*.*";
+			std::string fileName= currfolder + "/*.*";
+			
 			firstFile= FindFirstFileA( fileName.c_str(), &findData );
 
 			if( INVALID_HANDLE_VALUE != firstFile )

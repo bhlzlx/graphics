@@ -44,6 +44,7 @@ namespace ow
 	
 	owBOOL owPackage::Init(const owCHAR* _szPackPath)
 	{
+		
 		m_pPackFile = ow::CreateStdFile( _szPackPath, "rb");
 		if(m_pPackFile == NULL)
 		{

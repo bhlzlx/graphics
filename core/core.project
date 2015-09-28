@@ -17,115 +17,98 @@
  }]]]>
     </Plugin>
   </Plugins>
+  <VirtualDirectory Name="scene">
+    <VirtualDirectory Name="aabb">
+      <File Name="scene/aabb/aabb.cpp"/>
+      <File Name="scene/aabb/aabb.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="octree">
+      <File Name="scene/octree/Octree.cpp"/>
+      <File Name="scene/octree/Octree.h"/>
+      <File Name="scene/octree/OctreeRenderNode.cpp"/>
+      <File Name="scene/octree/OctreeRenderNode.h"/>
+    </VirtualDirectory>
+    <File Name="scene/GameScene.cpp"/>
+    <File Name="scene/GameScene.h"/>
+    <File Name="scene/SceneObject.cpp"/>
+    <File Name="scene/SceneObject.h"/>
+  </VirtualDirectory>
   <VirtualDirectory Name="model">
+    <VirtualDirectory Name="md5">
+      <File Name="model/md5/main.cpp"/>
+      <File Name="model/md5/md5.cpp"/>
+      <File Name="model/md5/md5.h"/>
+      <File Name="model/md5/md5Frame.cpp"/>
+      <File Name="model/md5/md5Frame.h"/>
+    </VirtualDirectory>
     <VirtualDirectory Name="md5parser">
       <File Name="model/md5parser/md5.cpp"/>
       <File Name="model/md5parser/md5.h"/>
-      <File Name="model/md5parser/md5Model.h"/>
       <File Name="model/md5parser/md5Model.cpp"/>
+      <File Name="model/md5parser/md5Model.h"/>
     </VirtualDirectory>
-    <File Name="model/BasicModel.h"/>
     <File Name="model/BasicModel.cpp"/>
+    <File Name="model/BasicModel.h"/>
+    <File Name="model/MD5Model.cpp"/>
+    <File Name="model/MD5Model.h"/>
+    <File Name="model/models.cpp"/>
+    <File Name="model/models.h"/>
     <File Name="model/RenderObject.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="math">
     <File Name="math/Camera.cpp"/>
     <File Name="math/Camera.h"/>
-    <File Name="math/Variance.h"/>
     <File Name="math/Variance.cpp"/>
+    <File Name="math/Variance.h"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="common">
-    <VirtualDirectory Name="log">
-      <File Name="common/log/logger.cpp"/>
-      <File Name="common/log/logger.h"/>
+  <VirtualDirectory Name="ow">
+    <VirtualDirectory Name="owcmn">
+      <VirtualDirectory Name="log">
+        <File Name="../ow/owcmn/log/logger.cpp"/>
+        <File Name="../ow/owcmn/log/logger.h"/>
+      </VirtualDirectory>
+      <File Name="../ow/owcmn/EncodeCommon.cpp"/>
+      <File Name="../ow/owcmn/EncodeCommon.h"/>
+      <File Name="../ow/owcmn/owcmn.cpp"/>
+      <File Name="../ow/owcmn/owcmn.h"/>
+      <File Name="../ow/owcmn/ResourcePool.cpp"/>
+      <File Name="../ow/owcmn/ResourcePool.h"/>
     </VirtualDirectory>
-    <File Name="common/EncodeCommon.h"/>
-    <File Name="common/EncodeCommon.cpp"/>
-    <File Name="common/ResourcePool.h"/>
-    <File Name="common/ResourcePool.cpp"/>
+    <VirtualDirectory Name="algorithm">
+      <File Name="../ow/algorithm/md5.cpp"/>
+      <File Name="../ow/algorithm/md5.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="buffer">
+      <File Name="../ow/buffer/buffer.cpp"/>
+      <File Name="../ow/buffer/buffer.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="memory">
+      <File Name="../ow/memory/memory.cpp"/>
+      <File Name="../ow/memory/memory.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="owfile">
+      <File Name="../ow/owfile/owfile.cpp"/>
+      <File Name="../ow/owfile/owfile.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="owZip">
+      <File Name="../ow/owZip/owZip.cpp"/>
+      <File Name="../ow/owZip/owZip.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="package">
+      <File Name="../ow/package/owPackage.cpp"/>
+      <File Name="../ow/package/owPackage.h"/>
+      <File Name="../ow/package/package_common.cpp"/>
+      <File Name="../ow/package/package_common.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="settings">
+      <File Name="../ow/settings/settings.cpp"/>
+      <File Name="../ow/settings/settings.h"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <Description/>
   <Dependencies/>
-  <VirtualDirectory Name="src">
-    <File Name="main.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="app">
-    <File Name="app/AppDelegate.cpp"/>
-    <File Name="app/AppDelegate.h"/>
-    <File Name="app/OpenGLViewController.cpp"/>
-    <File Name="app/OpenGLViewController.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="event">
-    <File Name="event/MouseEvent.cpp"/>
-    <File Name="event/MouseEvent.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="scene">
-    <File Name="scene/GameScene.cpp"/>
-    <File Name="scene/GameScene.h"/>
-    <VirtualDirectory Name="aabb">
-      <File Name="scene/aabb/aabb.h"/>
-      <File Name="scene/aabb/aabb.cpp"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="octree">
-      <File Name="scene/octree/Octree.h"/>
-      <File Name="scene/octree/Octree.cpp"/>
-      <File Name="scene/octree/OctreeRenderNode.h"/>
-      <File Name="scene/octree/OctreeRenderNode.cpp"/>
-    </VirtualDirectory>
-    <File Name="scene/SceneObject.h"/>
-    <File Name="scene/SceneObject.cpp"/>
-    <VirtualDirectory Name="kdtree"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="gui">
-    <File Name="gui/Label.h"/>
-    <File Name="gui/Label.cpp"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="core">
-    <File Name="core/BufferOGL.cpp"/>
-    <File Name="core/BufferOGL.h"/>
-    <File Name="core/DepthStencilOGL.cpp"/>
-    <File Name="core/DepthStencilOGL.h"/>
-    <File Name="core/device.h"/>
-    <File Name="core/EffectOGL.cpp"/>
-    <File Name="core/EffectOGL.h"/>
-    <File Name="core/Image.cpp"/>
-    <File Name="core/RenderPipelineOGL.cpp"/>
-    <File Name="core/RenderPipelineOGL.h"/>
-    <File Name="core/RenderTargetOGL.cpp"/>
-    <File Name="core/RenderTargetOGL.h"/>
-    <File Name="core/ShaderOGL.cpp"/>
-    <File Name="core/ShaderOGL.h"/>
-    <File Name="core/TexOGL.cpp"/>
-    <File Name="core/TexOGL.h"/>
-    <VirtualDirectory Name="renderer">
-      <File Name="core/renderer/TextRenderer.h"/>
-      <File Name="core/renderer/TextRenderer.cpp"/>
-    </VirtualDirectory>
-  </VirtualDirectory>
-  <VirtualDirectory Name="memory">
-    <File Name="memory/memory.cpp"/>
-    <File Name="memory/memory.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="glsl">
-    <File Name="glsl/depthonly.frag"/>
-    <File Name="glsl/depthonly.vert"/>
-    <File Name="glsl/fontrender.frag"/>
-    <File Name="glsl/fontrender.vert"/>
-    <File Name="glsl/md5anim.frag"/>
-    <File Name="glsl/md5anim.vert"/>
-    <File Name="glsl/rendering.frag"/>
-    <File Name="glsl/rendering.vert"/>
-    <File Name="glsl/simple.frag"/>
-    <File Name="glsl/simple.vert"/>
-    <File Name="glsl/staticObject.frag"/>
-    <File Name="glsl/staticObject.vert"/>
-    <File Name="glsl/uirender.frag"/>
-    <File Name="glsl/uirender.vert"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="settings">
-    <File Name="settings/settings.cpp"/>
-    <File Name="settings/settings.h"/>
-  </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -139,6 +122,7 @@
     <Configuration Name="Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;-O0;-Wall;-std=c++11;" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
+        <IncludePath Value="../ow"/>
       </Compiler>
       <Linker Options="-lglew32 -lglfw3 -lpng -lz -lgdi32 -lopengl32 -lfreetype -liconv" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
@@ -214,32 +198,57 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="algorithm">
-    <File Name="../ow/algorithm/md5.cpp"/>
-    <File Name="../ow/algorithm/md5.h"/>
+  <VirtualDirectory Name="core">
+    <File Name="main.cpp"/>
+    <VirtualDirectory Name="renderer">
+      <File Name="core/renderer/TextRenderer.cpp"/>
+      <File Name="core/renderer/TextRenderer.h"/>
+    </VirtualDirectory>
+    <File Name="core/BufferOGL.cpp"/>
+    <File Name="core/BufferOGL.h"/>
+    <File Name="core/DepthStencilOGL.cpp"/>
+    <File Name="core/DepthStencilOGL.h"/>
+    <File Name="core/device.h"/>
+    <File Name="core/EffectOGL.cpp"/>
+    <File Name="core/EffectOGL.h"/>
+    <File Name="core/Image.cpp"/>
+    <File Name="core/RenderPipelineOGL.cpp"/>
+    <File Name="core/RenderPipelineOGL.h"/>
+    <File Name="core/RenderTargetOGL.cpp"/>
+    <File Name="core/RenderTargetOGL.h"/>
+    <File Name="core/ShaderOGL.cpp"/>
+    <File Name="core/ShaderOGL.h"/>
+    <File Name="core/TexOGL.cpp"/>
+    <File Name="core/TexOGL.h"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="buffer">
-    <File Name="../ow/buffer/buffer.cpp"/>
-    <File Name="../ow/buffer/buffer.h"/>
+  <VirtualDirectory Name="app">
+    <File Name="app/AppDelegate.cpp"/>
+    <File Name="app/AppDelegate.h"/>
+    <File Name="app/OpenGLViewController.cpp"/>
+    <File Name="app/OpenGLViewController.h"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="owZip">
-    <File Name="../ow/owZip/owZip.cpp"/>
-    <File Name="../ow/owZip/owZip.h"/>
+  <VirtualDirectory Name="event">
+    <File Name="event/MouseEvent.cpp"/>
+    <File Name="event/MouseEvent.h"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="owcmn">
-    <File Name="../ow/owcmn/owcmn.cpp"/>
-    <File Name="../ow/owcmn/owcmn.h"/>
+  <VirtualDirectory Name="glsl">
+    <File Name="glsl/depthonly.frag"/>
+    <File Name="glsl/depthonly.vert"/>
+    <File Name="glsl/fontrender.frag"/>
+    <File Name="glsl/fontrender.vert"/>
+    <File Name="glsl/md5anim.frag"/>
+    <File Name="glsl/md5anim.vert"/>
+    <File Name="glsl/rendering.frag"/>
+    <File Name="glsl/rendering.vert"/>
+    <File Name="glsl/simple.frag"/>
+    <File Name="glsl/simple.vert"/>
+    <File Name="glsl/staticObject.frag"/>
+    <File Name="glsl/staticObject.vert"/>
+    <File Name="glsl/uirender.frag"/>
+    <File Name="glsl/uirender.vert"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="owfile">
-    <File Name="../ow/owfile/owfile.cpp"/>
-    <File Name="../ow/owfile/owfile.h"/>
+  <VirtualDirectory Name="gui">
+    <File Name="gui/Label.cpp"/>
+    <File Name="gui/Label.h"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="package">
-    <File Name="../ow/package/owPackage.cpp"/>
-    <File Name="../ow/package/owPackage.h"/>
-    <File Name="../ow/package/package_common.cpp"/>
-    <File Name="../ow/package/package_common.h"/>
-  </VirtualDirectory>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
 </CodeLite_Project>

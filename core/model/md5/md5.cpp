@@ -30,6 +30,8 @@
 
 #define LINE_LENGTH_MIN 4
 
+using namespace ow;
+
 namespace model
 {
 	namespace md5
@@ -200,7 +202,7 @@ namespace model
 		// 读一行
 		// 自动跳过空行
 		// 文件尾返回NULL
-		char * read_line(IBuffer * _pBuffer)
+		char * read_line(ow::IBuffer * _pBuffer)
 		{
 			static char buffer[512];
 			int length ;
@@ -231,7 +233,7 @@ again:
 			return buffer;
 		}
 		// 读一个大括号模块
-		IBuffer * read_block_for_key(IBuffer * _pBuffer, const char * _key)
+		ow::IBuffer * read_block_for_key(ow::IBuffer * _pBuffer, const char * _key)
 		{
 			char * pLine = read_line(_pBuffer);
 			// 读key行
@@ -255,9 +257,9 @@ again:
 			char * pContent = (char * )_pBuffer->GetCurr();
 			char * pEnd = strchr(pContent,'}');
 			
-			IBuffer * pRet = CreateStandardBuffer(pEnd - pContent);
-			int n_read = _pBuffer->Read(pRet->GetBuffer(),pRet->GetLength() - 1);
-			assert(n_read == pRet->GetLength() - 1);
+			IBuffer * pRet = CreateMemBuffer(pEnd - pContent);
+			int n_read = _pBuffer->Read(pRet->GetBuffer(),pRet->Size() - 1);
+			assert(n_read == pRet->Size() - 1);
 			_pBuffer->Seek(SEEK_CUR,1L);            
 			return pRet;
 		}
@@ -651,15 +653,15 @@ again:
 		
 		IBuffer * GetIndexBuffer( MeshPtr _pMesh )
 		{
-			IBuffer* pRet = CreateStandardBuffer(_pMesh->m_nNumTriangles * sizeof(Triple<unsigned int>));
-			memcpy(pRet->GetBuffer(),&_pMesh->m_pTringles[0],pRet->GetLength());
+			IBuffer* pRet = CreateMemBuffer(_pMesh->m_nNumTriangles * sizeof(Triple<unsigned int>));
+			memcpy(pRet->GetBuffer(),&_pMesh->m_pTringles[0],pRet->Size());
 			return pRet;
 		}
 		
 		IBuffer * GetUVBuffer( MeshPtr _pMesh )
 		{
 			unsigned int nUVSize = _pMesh->m_nNumVertices * 2 * sizeof(float);
-			IBuffer* pRet  = CreateStandardBuffer(nUVSize);
+			IBuffer* pRet  = CreateMemBuffer(nUVSize);
 			glm::vec2 * pVec = (glm::vec2*)pRet->GetBuffer();
 			for(int i = 0;i<_pMesh->m_nNumVertices;++i)
 			{

@@ -4,8 +4,8 @@
 #include <cassert>
 #include <cstring>
 #include <cstdio>
-#include "common/log/logger.h"
-#include "ShaderOGL.h"
+#include <owcmn/log/logger.h>
+#include <core/ShaderOGL.h>
 
 namespace Graphics
 {

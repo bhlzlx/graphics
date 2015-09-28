@@ -2,9 +2,10 @@
 #include <string.h>
 #include <cstdio>
 #include <cassert>
-#include <common/EncodeCommon.h>
-#include <common/ResourcePool.h>
+#include <memory/memory.h>
 #include <owcmn/owcmn.h>
+#include <owcmn/EncodeCommon.h>
+#include <owcmn/ResourcePool.h>
 
 namespace ow
 {
@@ -78,8 +79,13 @@ again:
 		return pRet;
 	}
 	
-	uint8_t Settings::Init( IBuffer *_pBuffer)
+	owBOOL Preference::Init( const owCHAR * _szFilepath)
 	{
+		IBuffer * _pBuffer = BufferFromFile( _szFilepath);
+		if(_pBuffer == NULL)
+		{
+			return owFALSE;
+		}
 		IBuffer * bufferRef = (IBuffer*)0;
 		while(bufferRef = read_config_block(_pBuffer) )
 		{
@@ -123,18 +129,21 @@ again:
 				}
 			}
 		}
+		_pBuffer->Release();
+		
+		return owTRUE;
 	}
 	
-	Settings __setttings;
+	Preference __setttings;
 	
-	Settings& GetSettings()
+	Preference& GetPreference()
 	{
 		return __setttings;
 	}
 }
 
 
-float& ow::Settings::GetFloatValue(const char* _szKey)
+float& ow::Preference::GetFloatValue(const char* _szKey)
 {
 	Conf_float::iterator iter = m_floats.find(_szKey);
 	if(iter == m_floats.end())
@@ -146,7 +155,7 @@ float& ow::Settings::GetFloatValue(const char* _szKey)
 	return this->m_floats[_szKey];
 }
 
-int& ow::Settings::GetIntValue(const char* _szKey)
+int& ow::Preference::GetIntValue(const char* _szKey)
 {
 	Conf_int::iterator iter = m_ints.find(_szKey);
 	if(iter == m_ints.end())
@@ -158,7 +167,7 @@ int& ow::Settings::GetIntValue(const char* _szKey)
 	return this->m_ints[_szKey];
 }
 
-std::string& ow::Settings::GetStringValue(const char* _szKey)
+std::string& ow::Preference::GetStringValue(const char* _szKey)
 {
 	Conf_string::iterator iter = m_strings.find(_szKey);
 	if(iter == m_strings.end())

@@ -14,7 +14,7 @@ namespace gui
 						#include <glsl/uirender.frag>
 						
 		EffectDesc effectDesc;
-		int enableBlend = ow::GetSettings().GetIntValue("GUI_ENABLE_BLEND");
+		int enableBlend = ow::GetPreference().GetIntValue("GUI_ENABLE_BLEND");
 		if(enableBlend)
 		{
 			effectDesc.renderState.blendDest = BLEND_FACTOR_INVSRCALPHA;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="owPackager" InternalType="Console">
+<CodeLite_Project Name="packager" InternalType="Console">
   <Plugins>
     <Plugin Name="qmake">
       <![CDATA[00010001N0005Debug000000000000]]>
@@ -17,6 +17,44 @@
  }]]]>
     </Plugin>
   </Plugins>
+  <VirtualDirectory Name="ow">
+    <VirtualDirectory Name="algorithm">
+      <File Name="../ow/algorithm/md5.cpp"/>
+      <File Name="../ow/algorithm/md5.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="buffer">
+      <File Name="../ow/buffer/buffer.cpp"/>
+      <File Name="../ow/buffer/buffer.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="owcmn">
+      <File Name="../ow/owcmn/owcmn.cpp"/>
+      <File Name="../ow/owcmn/owcmn.h"/>
+      <File Name="../ow/owcmn/ResourcePool.cpp"/>
+      <File Name="../ow/owcmn/ResourcePool.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="owfile">
+      <File Name="../ow/owfile/owfile.cpp"/>
+      <File Name="../ow/owfile/owfile.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="owZip">
+      <File Name="../ow/owZip/owZip.cpp"/>
+      <File Name="../ow/owZip/owZip.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="package">
+      <File Name="../ow/package/owPackage.cpp"/>
+      <File Name="../ow/package/owPackage.h"/>
+      <File Name="../ow/package/package_common.cpp"/>
+      <File Name="../ow/package/package_common.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="Preference">
+      <File Name="../ow/settings/settings.cpp"/>
+      <File Name="../ow/settings/settings.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="memory">
+      <File Name="../ow/memory/memory.cpp"/>
+      <File Name="../ow/memory/memory.h"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
@@ -32,9 +70,10 @@
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
-    <Configuration Name="Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+    <Configuration Name="Debug" CompilerType="MinGW ( gcc.exe (tdm-1) 4.9.2 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-g;-O0;-Wall;-std=c++11" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
+        <IncludePath Value="../ow"/>
       </Compiler>
       <Linker Options="-lz -lgdi32 -luser32 -lkernel32" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
@@ -112,30 +151,4 @@
   </Settings>
   <Dependencies Name="Debug"/>
   <Dependencies Name="Release"/>
-  <VirtualDirectory Name="algorithm">
-    <File Name="../ow/algorithm/md5.cpp"/>
-    <File Name="../ow/algorithm/md5.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="buffer">
-    <File Name="../ow/buffer/buffer.cpp"/>
-    <File Name="../ow/buffer/buffer.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="owZip">
-    <File Name="../ow/owZip/owZip.cpp"/>
-    <File Name="../ow/owZip/owZip.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="owcmn">
-    <File Name="../ow/owcmn/owcmn.cpp"/>
-    <File Name="../ow/owcmn/owcmn.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="owfile">
-    <File Name="../ow/owfile/owfile.cpp"/>
-    <File Name="../ow/owfile/owfile.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="package">
-    <File Name="../ow/package/owPackage.cpp"/>
-    <File Name="../ow/package/owPackage.h"/>
-    <File Name="../ow/package/package_common.cpp"/>
-    <File Name="../ow/package/package_common.h"/>
-  </VirtualDirectory>
 </CodeLite_Project>
