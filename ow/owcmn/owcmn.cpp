@@ -16,7 +16,7 @@ void strrep(char * _szStr, char * _szKeys, char ch)
 		}
 	}
 }
-
+/*
 owINT32 stricmp( const char * _szStr1, const char * _szStr2)
 {
 	owINT32 len = strlen(_szStr1);
@@ -51,4 +51,4 @@ owINT32 stricmp( const char * _szStr1, const char * _szStr2)
 		}
 	}
 	return 0;
-}
+}*/

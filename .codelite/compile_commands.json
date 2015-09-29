@@ -1,57 +1,9 @@
 [{
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -std=c++11 -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -MG -MP -MTE:/projects/builds/core/Debug/app_OpenGLViewController.cpp.o -MFE:/projects/builds/core/Debug/app_OpenGLViewController.cpp.o.d -MM app/OpenGLViewController.cpp",
-  "file": "F:\\gits\\graphics\\core\\app\\OpenGLViewController.cpp"
+  "directory": "F:\\gits\\graphics\\audio",
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/audio/main.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/audio/Debug/main.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
+  "file": "F:\\gits\\graphics\\audio\\main.cpp"
  }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/scene/GameScene.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/scene_GameScene.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\scene\\GameScene.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/scene/SceneObject.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/scene_SceneObject.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\scene\\SceneObject.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/model/BasicModel.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/model_BasicModel.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\model\\BasicModel.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/main.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/main.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\main.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/core/DepthStencilOGL.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/core_DepthStencilOGL.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\core\\DepthStencilOGL.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/core/EffectOGL.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/core_EffectOGL.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\core\\EffectOGL.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/core/Image.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/core_Image.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\core\\Image.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/core/RenderPipelineOGL.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/core_RenderPipelineOGL.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\core\\RenderPipelineOGL.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/core/RenderTargetOGL.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/core_RenderTargetOGL.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\core\\RenderTargetOGL.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/core/TexOGL.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/core_TexOGL.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\core\\TexOGL.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/app/OpenGLViewController.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/app_OpenGLViewController.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\app\\OpenGLViewController.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/scene/octree/Octree.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/octree_Octree.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\scene\\octree\\Octree.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/scene/octree/OctreeRenderNode.cpp -g -O0 -Wall -std=c++11 -o E:/projects/builds/core/Debug/octree_OctreeRenderNode.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\scene\\octree\\OctreeRenderNode.cpp"
+  "directory": "F:\\gits\\graphics\\audio",
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/ow/audio/owAudio.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/audio/Debug/audio_owAudio.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
+  "file": "F:\\gits\\graphics\\ow\\audio\\owAudio.cpp"
  }]

@@ -14,6 +14,10 @@ typedef uint16_t	owUINT16;
 typedef uint32_t	owUINT32;
 typedef uint64_t	owUINT64;
 
+typedef float		owFLOAT;
+typedef double 		owDOUBLE;
+typedef long double owLDOUBLE;
+
 typedef char		owCHAR;
 typedef unsigned char\
 					owBYTE;
@@ -28,6 +32,6 @@ const owBOOL		owFALSE = 0;
 typedef size_t		owSIZE_T;
 
 owVOID strrep(char * _szStr, char * _szKeys, char ch);
-owINT32 stricmp( const char * _szStr1, const char * _szStr2);
+//owINT32 stricmp( const char * _szStr1, const char * _szStr2);
 
 #endif // __OW_CMN_H__

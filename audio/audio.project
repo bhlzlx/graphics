@@ -1,66 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="core" InternalType="Console">
+<CodeLite_Project Name="audio" InternalType="Console">
+  <Reconciliation>
+    <Regexes/>
+    <Excludepaths/>
+    <Ignorefiles/>
+    <Extensions>
+      <![CDATA[cpp;c;h;hpp;xrc;wxcp;fbp]]>
+    </Extensions>
+    <Topleveldir>../audio</Topleveldir>
+  </Reconciliation>
   <Plugins>
-    <Plugin Name="qmake">
-      <![CDATA[00010001N0005Debug000000000000]]>
-    </Plugin>
     <Plugin Name="CMakePlugin">
       <![CDATA[[{
   "name": "Debug",
   "enabled": false,
   "buildDirectory": "build",
   "sourceDirectory": "$(ProjectPath)",
-  "generator": "MinGW Makefiles",
-  "buildType": "Debug",
+  "generator": "",
+  "buildType": "",
   "arguments": [],
   "parentProject": ""
  }]]]>
     </Plugin>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
   </Plugins>
-  <VirtualDirectory Name="scene">
-    <VirtualDirectory Name="aabb">
-      <File Name="scene/aabb/aabb.cpp"/>
-      <File Name="scene/aabb/aabb.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="octree">
-      <File Name="scene/octree/Octree.cpp"/>
-      <File Name="scene/octree/Octree.h"/>
-      <File Name="scene/octree/OctreeRenderNode.cpp"/>
-      <File Name="scene/octree/OctreeRenderNode.h"/>
-    </VirtualDirectory>
-    <File Name="scene/GameScene.cpp"/>
-    <File Name="scene/GameScene.h"/>
-    <File Name="scene/SceneObject.cpp"/>
-    <File Name="scene/SceneObject.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="model">
-    <VirtualDirectory Name="md5">
-      <File Name="model/md5/main.cpp"/>
-      <File Name="model/md5/md5.cpp"/>
-      <File Name="model/md5/md5.h"/>
-      <File Name="model/md5/md5Frame.cpp"/>
-      <File Name="model/md5/md5Frame.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="md5parser">
-      <File Name="model/md5parser/md5.cpp"/>
-      <File Name="model/md5parser/md5.h"/>
-      <File Name="model/md5parser/md5Model.cpp"/>
-      <File Name="model/md5parser/md5Model.h"/>
-    </VirtualDirectory>
-    <File Name="model/BasicModel.cpp"/>
-    <File Name="model/BasicModel.h"/>
-    <File Name="model/MD5Model.cpp"/>
-    <File Name="model/MD5Model.h"/>
-    <File Name="model/models.cpp"/>
-    <File Name="model/models.h"/>
-    <File Name="model/RenderObject.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="math">
-    <File Name="math/Camera.cpp"/>
-    <File Name="math/Camera.h"/>
-    <File Name="math/Variance.cpp"/>
-    <File Name="math/Variance.h"/>
-  </VirtualDirectory>
   <VirtualDirectory Name="ow">
     <VirtualDirectory Name="owcmn">
       <VirtualDirectory Name="log">
@@ -77,6 +42,10 @@
     <VirtualDirectory Name="algorithm">
       <File Name="../ow/algorithm/md5.cpp"/>
       <File Name="../ow/algorithm/md5.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="audio">
+      <File Name="../ow/audio/owAudio.cpp"/>
+      <File Name="../ow/audio/owAudio.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="buffer">
       <File Name="../ow/buffer/buffer.cpp"/>
@@ -107,6 +76,9 @@
   </VirtualDirectory>
   <Description/>
   <Dependencies/>
+  <VirtualDirectory Name="src">
+    <File Name="main.cpp"/>
+  </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -117,12 +89,12 @@
       </Linker>
       <ResourceCompiler Options=""/>
     </GlobalSettings>
-    <Configuration Name="Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-O0;-Wall;-std=c++11;" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+    <Configuration Name="Debug" CompilerType="MinGW ( gcc.exe (tdm-1) 4.9.2 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g;-O0;-Wall;-std=gnu++0x" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <IncludePath Value="../ow"/>
       </Compiler>
-      <Linker Options="-lglew32 -lglfw3 -lpng -lz -lgdi32 -lopengl32 -lfreetype -liconv" Required="yes"/>
+      <Linker Options="-lz -lopenal32 -logg -lvorbisfile -liconv" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(BuildDir)/$(ProjectName)/$(ProjectName)" IntermediateDirectory="$(BuildDir)/$(ProjectName)/Debug" Command="$(BuildDir)/$(ProjectName)/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(BuildDir)/$(ProjectName)/" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
@@ -149,14 +121,14 @@
         <CustomPostBuild/>
         <CustomPreBuild/>
       </AdditionalRules>
-      <Completion EnableCpp11="yes" EnableCpp14="no">
+      <Completion EnableCpp11="no" EnableCpp14="no">
         <ClangCmpFlagsC/>
         <ClangCmpFlags/>
         <ClangPP/>
-        <SearchPaths>E:\projects\graphics\core</SearchPaths>
+        <SearchPaths/>
       </Completion>
     </Configuration>
-    <Configuration Name="Release" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+    <Configuration Name="Release" CompilerType="MinGW ( gcc.exe (tdm-1) 4.9.2 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
       <Compiler Options="-O2;-Wall" C_Options="-O2;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <Preprocessor Value="NDEBUG"/>
@@ -196,59 +168,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="core">
-    <File Name="main.cpp"/>
-    <VirtualDirectory Name="renderer">
-      <File Name="core/renderer/TextRenderer.cpp"/>
-      <File Name="core/renderer/TextRenderer.h"/>
-    </VirtualDirectory>
-    <File Name="core/BufferOGL.cpp"/>
-    <File Name="core/BufferOGL.h"/>
-    <File Name="core/DepthStencilOGL.cpp"/>
-    <File Name="core/DepthStencilOGL.h"/>
-    <File Name="core/device.h"/>
-    <File Name="core/EffectOGL.cpp"/>
-    <File Name="core/EffectOGL.h"/>
-    <File Name="core/Image.cpp"/>
-    <File Name="core/RenderPipelineOGL.cpp"/>
-    <File Name="core/RenderPipelineOGL.h"/>
-    <File Name="core/RenderTargetOGL.cpp"/>
-    <File Name="core/RenderTargetOGL.h"/>
-    <File Name="core/ShaderOGL.cpp"/>
-    <File Name="core/ShaderOGL.h"/>
-    <File Name="core/TexOGL.cpp"/>
-    <File Name="core/TexOGL.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="app">
-    <File Name="app/AppDelegate.cpp"/>
-    <File Name="app/AppDelegate.h"/>
-    <File Name="app/OpenGLViewController.cpp"/>
-    <File Name="app/OpenGLViewController.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="event">
-    <File Name="event/MouseEvent.cpp"/>
-    <File Name="event/MouseEvent.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="glsl">
-    <File Name="glsl/depthonly.frag"/>
-    <File Name="glsl/depthonly.vert"/>
-    <File Name="glsl/fontrender.frag"/>
-    <File Name="glsl/fontrender.vert"/>
-    <File Name="glsl/md5anim.frag"/>
-    <File Name="glsl/md5anim.vert"/>
-    <File Name="glsl/rendering.frag"/>
-    <File Name="glsl/rendering.vert"/>
-    <File Name="glsl/simple.frag"/>
-    <File Name="glsl/simple.vert"/>
-    <File Name="glsl/staticObject.frag"/>
-    <File Name="glsl/staticObject.vert"/>
-    <File Name="glsl/uirender.frag"/>
-    <File Name="glsl/uirender.vert"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="gui">
-    <File Name="gui/Label.cpp"/>
-    <File Name="gui/Label.h"/>
-  </VirtualDirectory>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
 </CodeLite_Project>

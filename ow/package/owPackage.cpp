@@ -43,8 +43,7 @@ namespace ow
 	}
 	
 	owBOOL owPackage::Init(const owCHAR* _szPackPath)
-	{
-		
+	{		
 		m_pPackFile = ow::CreateStdFile( _szPackPath, "rb");
 		if(m_pPackFile == NULL)
 		{
@@ -74,38 +73,7 @@ namespace ow
 				m_pNodes[i].m_pChildrenNodes = NULL;
 			}
 		}
-		
-		
-		
-		/*ow::owZip ziper;
-		ow::MD5 md5er;
-		
-		for(int32_t i = 0; i<nFiles; ++i)
-		{
-			if(pFileTags[i].m_iFileType == FILETYPE_FILE)
-			{
-				ow::owMemFile * memFile = (ow::owMemFile*)CreateMemFile( pFileTags[i].m_nBytes);
-				packFile->Seek( SEEK_SET, pFileTags[i].m_nDataOffset);
-				packFile->Read( memFile->m_pMemBuffer->GetBuffer(), pFileTags[i].m_nBytes);			
-				ow::owFile * file = ziper.Uncompress(memFile);
-				static char md5info[32];
-				md5er.Compute(file);
-				md5er.GetValue(&md5info[0]);
-				
-				printf("file : %s\n",pFileTags[i].m_szFileName);
-				
-				if(memcmp( md5info,pFileTags[i].m_md5,32) == 0)
-				{
-					printf("md5 check : pass!\n");
-				}
-				else
-				{
-					printf("md5 check : failed!\n");
-				}
-			}
-		}
-		 */
-		 return owTRUE;
+		return owTRUE;
 	}
 	
 	owFile* ow::owPackage::Open(const owCHAR* _szPath)
@@ -125,7 +93,7 @@ namespace ow
 			for(int i = 0; i < currFile->m_nBytes; ++i)
 			{
 				owFileTag * file = &this->m_pFileTags[ currNode->m_pChildrenNodes[i] ];
-				if(file->m_iFileType == FILETYPE_DIR && stricmp(file->m_szFileName,iter->c_str() ) == 0)
+				if(file->m_iFileType == FILETYPE_DIR && strcasecmp(file->m_szFileName,iter->c_str() ) == 0)
 				{
 					nextDir = &this->m_pNodes[ currNode->m_pChildrenNodes[i] ];
 					break;
@@ -145,7 +113,7 @@ namespace ow
 		for( int i = 0; i<currFile->m_nBytes; ++i)
 		{
 			owFileTag * file = &this->m_pFileTags[ currNode->m_pChildrenNodes[i] ];
-			if(file->m_iFileType == FILETYPE_FILE && stricmp(file->m_szFileName,iter->c_str() ) == 0)
+			if(file->m_iFileType == FILETYPE_FILE && strcasecmp(file->m_szFileName,iter->c_str() ) == 0)
 			{
 				targetFile = &this->m_pFileTags[ currNode->m_pChildrenNodes[i] ];
 				break;
