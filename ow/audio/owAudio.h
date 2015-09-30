@@ -165,6 +165,12 @@ namespace ow
 		ALCdevice *			m_pDevice;
 		ALCcontext *	    m_pContext;
 		
+		owAEDevice()
+		{
+			m_pDevice = NULL;
+			m_pContext = NULL;
+		}
+		
 		owBOOL Init();
 		owVOID Release();
 		

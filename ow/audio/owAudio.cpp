@@ -5,7 +5,7 @@
 namespace ow
 {
 	
-	#define FRAME_BUFFER_TIME_MS 200
+	#define FRAME_BUFFER_TIME_MS 500.0f
 	
 	size_t owAEVorbisRead( void * _pData, size_t _nElement, size_t _nCount, void * _pFile)
 	{
@@ -332,6 +332,7 @@ namespace ow
 			assert(false);
 			return;
 		}
+		this->m_vorbis.m_pBuffer = _pBuffer;
 		// 读取信息与注释
 		this->m_vorbis.m_pVorbisInfo = ov_info( &this->m_vorbis.m_vorbisFile, -1);
 		this->m_vorbis.m_pVorbisComment = ov_comment( &this->m_vorbis.m_vorbisFile, -1);
@@ -346,33 +347,37 @@ namespace ow
 			所以这里就是rate >> 1,位操作右移一位即可实现除2
 			但是最后还有个block对齐,这里因为是单声道,16位,两个字节的对齐
 		******************************************************/
+		// ogg格式位宽全部是16位，参见以下CASE
+		// 求一下单声道大小,然后根据声道数再乘
+		this->m_vorbis.m_nFrameBufferSize = this->m_vorbis.m_pVorbisInfo->rate * 2 * FRAME_BUFFER_TIME_MS / 1000.0f;
 		switch(this->m_vorbis.m_pVorbisInfo->channels)
 		{
 			// 单声道
 			case 1:
 				this->m_vorbis.m_iFormat=AL_FORMAT_MONO16;
-				this->m_vorbis.m_nFrameBufferSize = this->m_vorbis.m_pVorbisInfo->rate * 2 * FRAME_BUFFER_TIME_MS / 1000.0f;
+				//this->m_vorbis.m_nFrameBufferSize;
 				break;
 			// 双声道
 			case 2:
 				this->m_vorbis.m_iFormat=AL_FORMAT_STEREO16;
-				this->m_vorbis.m_nFrameBufferSize = this->m_vorbis.m_pVorbisInfo->rate * 2 * FRAME_BUFFER_TIME_MS * 2 / 1000.0f;
+				this->m_vorbis.m_nFrameBufferSize*=2;
 				break;
 			// 四声道
 			case 4:
 				this->m_vorbis.m_iFormat=alGetEnumValue("AL_FORMAT_QUAD16");
-				this->m_vorbis.m_nFrameBufferSize = this->m_vorbis.m_pVorbisInfo->rate * 2 * FRAME_BUFFER_TIME_MS * 4 / 1000.0f;
+				this->m_vorbis.m_nFrameBufferSize*=4;
 				break;
 			// 6声道
 			case 6:
 				this->m_vorbis.m_iFormat = alGetEnumValue("AL_FORMAT_51CHN16");
-				this->m_vorbis.m_nFrameBufferSize = this->m_vorbis.m_pVorbisInfo->rate * 2 * FRAME_BUFFER_TIME_MS * 6 / 1000.0f;
+				this->m_vorbis.m_nFrameBufferSize*=6;
 				break;
 			default:
 				ov_clear(&m_vorbis.m_vorbisFile);
 				return;
 		}
 		this->m_vorbis.m_pFrameBuffer = new owCHAR[ this->m_vorbis.m_nFrameBufferSize];
+		this->FillFirstCycle();
 	}
 
 	owVOID ow::owAEVorbisSource::Pause()
@@ -430,6 +435,7 @@ namespace ow
 		{
 			this->m_pDevice = alcOpenDevice( NULL);
 			this->m_pContext = alcCreateContext( m_pDevice, NULL);
+			alcMakeContextCurrent( m_pContext);
 		}
 		__CHECK_AL_ERROR__
 		return owTRUE;
@@ -440,6 +446,13 @@ namespace ow
 		alcDestroyContext( m_pContext);
 		alcCloseDevice( m_pDevice);
 		delete this;
+	}
+	
+	owAEDevice * CreateAudioDevice()
+	{
+		owAEDevice * pDevice = new owAEDevice;
+		pDevice->Init();
+		return pDevice;
 	}
 
 }

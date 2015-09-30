@@ -40,6 +40,10 @@ namespace Graphics
 
 void OpenGLViewController::OnInit()
 {	
+	this->m_pAudioDevice = ow::CreateAudioDevice();
+	ow::owBuffer * vorbisFile = ow::BufferFromFile("./greensleeves.ogg");
+	this->m_pVorbisSource = m_pAudioDevice->CreateVorbisSource( vorbisFile);
+	m_pVorbisSource->Play();
 	__pViewController = this;
 	ow::GetPreference().Init(szConfigPath);
 	m_pGameCamera = GetGameCamera();
@@ -125,7 +129,7 @@ void OpenGLViewController::OnUpdate()
 
 void OpenGLViewController::OnTimer()
 {
-	
+	m_pVorbisSource->UpdateBuffer();
 }
 
 OpenGLViewController::OpenGLViewController()

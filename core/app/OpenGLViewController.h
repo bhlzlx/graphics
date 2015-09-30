@@ -17,6 +17,7 @@
 #include <core/RenderPipelineOGL.h>
 #include <core/renderer/TextRenderer.h>
 #include <gui/Label.h>
+#include <audio/owAudio.h>
 
 using namespace Graphics;
 using namespace glm;
@@ -45,6 +46,9 @@ struct OpenGLViewController
 	
 	gui::GuiRenderer*	m_pGuiRenderer;
 	gui::Label*			m_pLabel;
+	
+	ow::owAEDevice*		m_pAudioDevice;
+	ow::owAEVorbisSource * m_pVorbisSource;
 
     OpenGLViewController();
 

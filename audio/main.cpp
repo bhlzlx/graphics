@@ -5,10 +5,10 @@ ow::owAEDevice*			_pDevice;
 
 int main(int argc, char **argv)
 {
-	_pDevice->Init();
-	
-	
-	
+	ow::owBuffer * vorbisFile = ow::BufferFromFile("./greensleeves.ogg");
+	assert(vorbisFile);
+	_pDevice = ow::CreateAudioDevice();
+	ow::owAEVorbisSource * pVorbisSource = _pDevice->CreateVorbisSource( vorbisFile);
 	_pDevice->Release();
 	return 0;
 }
