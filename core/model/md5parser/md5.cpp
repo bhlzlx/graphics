@@ -110,7 +110,7 @@ namespace model
 		return 0;
 	}
 	
-	char * read_line(ow::IBuffer * _pBuffer)
+	char * read_line(ow::owBuffer * _pBuffer)
 	{
 		static char buffer[512];
 		int length ;
@@ -141,7 +141,7 @@ again:
 		return buffer;
 	}
 	
-	ow::IBuffer * read_block_for_key(ow::IBuffer * _pBuffer, const char * _key)
+	ow::owBuffer * read_block_for_key(ow::owBuffer * _pBuffer, const char * _key)
 	{
 		char * pLine = read_line(_pBuffer);
 		// 读key行
@@ -165,14 +165,14 @@ again:
 		char * pContent = (char * )_pBuffer->GetCurr();
 		char * pEnd = strchr(pContent,'}');
 		
-		ow::IBuffer * pRet = ow::CreateMemBuffer(pEnd - pContent);
+		ow::owBuffer * pRet = ow::CreateMemBuffer(pEnd - pContent);
 		int n_read = _pBuffer->Read(pRet->GetBuffer(),pRet->Size() - 1);
 		assert(n_read == (int32_t)pRet->Size() - 1);
 		_pBuffer->Seek(SEEK_CUR,1L);
 		return pRet;
 	}
 	
-	void ParseMeshJoints( ow::IBuffer * _pBlockBuff, md5MeshModel* _pMeshModel, uint32_t _nJoints)
+	void ParseMeshJoints( ow::owBuffer * _pBlockBuff, md5MeshModel* _pMeshModel, uint32_t _nJoints)
 	{
 		char * pLine = NULL;
 		md5Joint * pJoint;
@@ -204,7 +204,7 @@ again:
 		}
 	}
 	
-	void ParseMesh(ow::IBuffer * _pBlockBuff, md5Mesh * _pMesh)
+	void ParseMesh(ow::owBuffer * _pBlockBuff, md5Mesh * _pMesh)
 	{
 		// 取纹理
 		uint32_t ret = 0;
@@ -266,7 +266,7 @@ again:
 		}
 	}
 	
-	void InitMeshModel(md5MeshModel * _pMeshModel, ow::IBuffer * _pBuffer)
+	void InitMeshModel(md5MeshModel * _pMeshModel, ow::owBuffer * _pBuffer)
 	{
 		char * pLine = NULL;
 		int16_t scan_ret = 0;
@@ -292,7 +292,7 @@ again:
 		_pMeshModel->m_pJointMap = new md5JointMapA[_pMeshModel->m_nNumJoints];
 		_pMeshModel->m_pJoints = new md5Joint[_pMeshModel->m_nNumJoints];
 		_pMeshModel->m_pMeshes = new md5Mesh[_pMeshModel->m_nNumMeshes];
-		ow::IBuffer * blockBuff;
+		ow::owBuffer * blockBuff;
 		// 读取 joint结构map 和 默认绑定的joint骨骼数据		
 		blockBuff = read_block_for_key(_pBuffer,JOINTS);
 		ParseMeshJoints(blockBuff,_pMeshModel,_pMeshModel->m_nNumJoints);
@@ -317,7 +317,7 @@ again:
 		}
 	}
 	
-	void ParseAnimJoints(ow::IBuffer * _pBuffer, md5AnimModel* _pAnimModel)
+	void ParseAnimJoints(ow::owBuffer * _pBuffer, md5AnimModel* _pAnimModel)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -336,7 +336,7 @@ again:
 		}
 	}
 	
-	void ParseAnimBounds(ow::IBuffer * _pBuffer, md5AnimModel* _pAnimModel)
+	void ParseAnimBounds(ow::owBuffer * _pBuffer, md5AnimModel* _pAnimModel)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -356,7 +356,7 @@ again:
 		}
 	}
 	
-	void ParseBaseFrame(ow::IBuffer * _pBuffer, md5Joint * _pJoints, uint16_t _nBones)
+	void ParseBaseFrame(ow::owBuffer * _pBuffer, md5Joint * _pJoints, uint16_t _nBones)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -381,7 +381,7 @@ again:
 		}
 	}
 	
-	void ParseKeyFrame(ow::IBuffer * _pBuffer, md5Joint * _pJoints, uint16_t _nBones)
+	void ParseKeyFrame(ow::owBuffer * _pBuffer, md5Joint * _pJoints, uint16_t _nBones)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -411,7 +411,7 @@ again:
 		printf("count : %d \n",count);
 	}
 	
-	void InitAnimModel(md5AnimModel * _pAnimModel, IBuffer * _pBuffer)
+	void InitAnimModel(md5AnimModel * _pAnimModel, owBuffer * _pBuffer)
 	{
 		char * pLine = NULL;
 		uint16_t scan_ret = 0;
@@ -458,7 +458,7 @@ again:
 		}
 		_pAnimModel->m_pJointMap = new md5JointMapB[_pAnimModel->m_nNumJoints];
 		// 读取joint map
-		IBuffer * blockBuffer = read_block_for_key(_pBuffer,HIERARCHY);
+		owBuffer * blockBuffer = read_block_for_key(_pBuffer,HIERARCHY);
 		ParseAnimJoints(blockBuffer,_pAnimModel);
 		// bound信息
 		blockBuffer = read_block_for_key(_pBuffer,BOUNDS);
@@ -520,10 +520,10 @@ again:
 	/*
 	 * utils
 	 * */
-	 IBuffer * GetUVBuffer(md5Mesh * _pMesh)
+	 owBuffer * GetUVBuffer(md5Mesh * _pMesh)
 	 {
 		unsigned int nUVSize = _pMesh->m_nNumVertices * 2 * sizeof(float);
-		IBuffer* pRet  = CreateMemBuffer(nUVSize);
+		owBuffer* pRet  = CreateMemBuffer(nUVSize);
 		glm::vec2 * pVec = (glm::vec2*)pRet->GetBuffer();
 		for(int i = 0;i<_pMesh->m_nNumVertices;++i)
 		{

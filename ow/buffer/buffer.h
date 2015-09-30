@@ -5,10 +5,10 @@
 
 namespace ow
 {
-	struct IBuffer
+	struct owBuffer
 	{
 		virtual owSIZE_T 	Size() = 0;
-		virtual owVOID 		Seek( owINT8 _flag, owINT32 _offset) = 0;
+		virtual owINT32		Seek( owINT8 _flag, owINT32 _offset) = 0;
 		virtual owINT32		Read( owVOID* _pOut, owINT32 _nSize) = 0;
 		virtual owINT32		Write( owVOID* _pIn, owINT32 _nSize) = 0;
 		/* return 0 if success, or return -1 if failed */
@@ -20,12 +20,12 @@ namespace ow
 		
 		virtual owVOID 		Release() = 0;
 		
-		virtual ~IBuffer(){};
+		virtual ~owBuffer(){};
 	};
 
-	IBuffer * CreateMemBuffer( owINT32 );
-	IBuffer * BufferFromFile( const owCHAR * szFile);
-	IBuffer * CreateBufferRef( owVOID * _pData, owINT32 _nLength);
+	owBuffer * CreateMemBuffer( owINT32 );
+	owBuffer * BufferFromFile( const owCHAR * szFile);
+	owBuffer * CreateBufferRef( owVOID * _pData, owINT32 _nLength);
 }
 
 

@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=28/09/2015
+Date                   :=30/09/2015
 CodeLitePath           :="E:\application\CodeLite"
 LinkerName             :=E:/tdmgcc32/bin/g++.exe
 SharedObjectLinkerName :=E:/tdmgcc32/bin/g++.exe -shared -fPIC
@@ -52,7 +52,7 @@ LibPath                :=$(LibraryPathSwitch)E:/tdmgcclib/lib $(LibraryPathSwitc
 AR       := E:/tdmgcc32/bin/ar.exe rcu
 CXX      := E:/tdmgcc32/bin/g++.exe
 CC       := E:/tdmgcc32/bin/gcc.exe
-CXXFLAGS :=  -g -O0 -Wall -std=c++11  $(Preprocessors)
+CXXFLAGS :=  -g -O0 -Wall -std=gnu++0x  $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := E:/tdmgcc32/bin/as.exe

@@ -35,7 +35,7 @@ namespace Graphics
 			char* pIndexBuffer = (char *)&_pFile->m_pMeshFile->m_pMeshes[i].m_pTringles[0];
 			pMD5Mesh->m_pIndexBuffer = Graphics::VertexBuffer::CreateBuffer(pIndexBuffer,nIndexBufferSize);
 			 // 创建 uv buffer object
-			IBuffer * pUVBuffer = model::md5::GetUVBuffer(&_pFile->m_pMeshFile->m_pMeshes[i]);
+			owBuffer * pUVBuffer = model::md5::GetUVBuffer(&_pFile->m_pMeshFile->m_pMeshes[i]);
 			pMD5Mesh->m_pUVBuffer = Graphics::VertexBuffer::CreateBuffer(pUVBuffer->GetBuffer(),pUVBuffer->Size());
 			pUVBuffer->Release();
 			// 创建 weight（权重）相关的 buffer object
@@ -89,7 +89,7 @@ namespace Graphics
 		{
 			// 生成纹理
 			pMD5Mesh = _pModel->m_pMeshes + meshIdx;
-			IBuffer * pImageBuffer = BufferFromFile(_pFile->m_pMeshFile->m_pMeshes[meshIdx].m_szTexture);
+			owBuffer * pImageBuffer = BufferFromFile(_pFile->m_pMeshFile->m_pMeshes[meshIdx].m_szTexture);
 			if(pImageBuffer)
 			{
 				Image * image = Image::ImageFromPng(pImageBuffer);
@@ -103,7 +103,7 @@ namespace Graphics
 			}			
 			// 创建 mesh vertex buffer
 			uint32_t nNumVertices = _pFile->m_pMeshFile->m_pMeshes[meshIdx].m_nNumVertices;
-			IBuffer * pBindPoseBuffer = CreateMemBuffer( nNumVertices * sizeof(float) * 3);
+			owBuffer * pBindPoseBuffer = CreateMemBuffer( nNumVertices * sizeof(float) * 3);
 			glm::vec3 * pVec = (glm::vec3 *)pBindPoseBuffer->GetBuffer();
 			// 计算bindpose的顶点坐标
 			for(int vertIdx = 0;vertIdx < nNumVertices ;++vertIdx)

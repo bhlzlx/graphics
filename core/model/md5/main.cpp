@@ -7,8 +7,8 @@ using namespace Graphics::MD5;
 
 int main(int argc, char **argv)
 {
-	IBuffer * pMeshBuff = BufferFromFile("./Bob.md5mesh");
-	IBuffer * pAnimBuff = BufferFromFile("./Bob.md5anim");
+	owBuffer * pMeshBuff = BufferFromFile("./Bob.md5mesh");
+	owBuffer * pAnimBuff = BufferFromFile("./Bob.md5anim");
 	// 断言
 	assert(pMeshBuff && pAnimBuff);
 	// 解析MD5文件

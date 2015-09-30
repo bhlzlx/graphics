@@ -27,7 +27,7 @@ namespace ow
 		m_pTempBuffer->Release();
 	}
 	
-	IBuffer * owZip::RefCompress(owFile * _pFile, int32_t _nLevel)
+	owBuffer * owZip::RefCompress(owFile * _pFile, int32_t _nLevel)
 	{
 		_pFile->Seek( SEEK_SET, 0);
 		if(_pFile->Eof())
@@ -84,7 +84,7 @@ namespace ow
 		}
 		else
 		{
-			IBuffer * pRet = CreateBufferRef( m_pTempBuffer->GetBuffer(), dataSize);
+			owBuffer * pRet = CreateBufferRef( m_pTempBuffer->GetBuffer(), dataSize);
 			return pRet;
 		}
 		return NULL;

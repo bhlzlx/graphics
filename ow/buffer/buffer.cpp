@@ -7,7 +7,7 @@
 
 namespace ow
 {
-	struct MemBuffer:public IBuffer
+	struct MemBuffer:public owBuffer
 	{
 		// 指针
 		owBYTE*		m_pData;
@@ -45,7 +45,7 @@ namespace ow
 			return m_nCapacity;
 		}
 		
-		void Seek( owINT8 _flag, owINT32 _offset)
+		owINT32 Seek( owINT8 _flag, owINT32 _offset)
 		{
 			switch(_flag)
 			{
@@ -68,6 +68,8 @@ namespace ow
 			{
 				m_pCurr = m_pData;
 			}
+			
+			return 1;
 		}
 		
 		owINT32 Read( owVOID* _pOut, owINT32 _nSize)
@@ -175,12 +177,12 @@ namespace ow
 		
 	};
 
-	IBuffer * CreateMemBuffer(owINT32 _nSize)
+	owBuffer * CreateMemBuffer(owINT32 _nSize)
 	{
 		return new MemBuffer(_nSize);
 	}
 
-	IBuffer * BufferFromFile(const owCHAR * _szFile)
+	owBuffer * BufferFromFile(const owCHAR * _szFile)
 	{
 		FILE * file = fopen(_szFile,"rb");
 		
@@ -197,7 +199,7 @@ namespace ow
 		return buffer;
 	}
 
-	IBuffer * CreateBufferRef( owVOID * _pData, owINT32 _nLength)
+	owBuffer * CreateBufferRef( owVOID * _pData, owINT32 _nLength)
 	{
 		return new MemBufferRef(_pData, _nLength);
 	}

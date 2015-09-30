@@ -9,7 +9,7 @@ namespace Graphics
 {    
     static void IBufferPNGReadFunc(png_structp s_ptr,png_bytep data,png_size_t size)
     {
-        ow::IBuffer * pBuff = (ow::IBuffer *)png_get_io_ptr(s_ptr);
+        ow::owBuffer * pBuff = (ow::owBuffer *)png_get_io_ptr(s_ptr);
         pBuff->Read((int8_t*)data,size);
     }
     
@@ -19,7 +19,7 @@ namespace Graphics
         delete this;
     }
     
-    Image * Image::ImageFromPng(ow::IBuffer * _pBuffer)
+    Image * Image::ImageFromPng(ow::owBuffer * _pBuffer)
     {
         if(!_pBuffer)
             return NULL;

@@ -73,8 +73,8 @@ namespace Graphics
 		
 		
 		// 将utf8转换为unicode编码
-		IBuffer * pFontlibBuffer = BufferFromFile( _szFontLib);	
-		IBuffer * pUTFBuffer = CreateMemBuffer( pFontlibBuffer->Size() * 1.5);
+		owBuffer * pFontlibBuffer = BufferFromFile( _szFontLib);	
+		owBuffer * pUTFBuffer = CreateMemBuffer( pFontlibBuffer->Size() * 1.5);
 		
 		owBYTE * ptr_in = pFontlibBuffer->GetBuffer();
 		uint32_t size_in = pFontlibBuffer->Size();
@@ -115,7 +115,7 @@ namespace Graphics
 		// 遍历字符
 		uint16_t* pChar = (uint16_t *)pUTFBuffer->GetBuffer();
 		// 
-		IBuffer * fontBuff = NULL;
+		owBuffer * fontBuff = NULL;
 		
 		int32_t iTexCoordBaseX = FONT_TEX_SIZE;
 		int32_t iTexCoordBaseY = FONT_TEX_SIZE;
@@ -196,7 +196,7 @@ namespace Graphics
 					pTex->ApplySamplerState( &sampler);
 					 */
 					pTex->Bind();
-					IBuffer * emptyBuff = CreateMemBuffer(FONT_TEX_SIZE * FONT_TEX_SIZE);
+					owBuffer * emptyBuff = CreateMemBuffer(FONT_TEX_SIZE * FONT_TEX_SIZE);
 					memset(emptyBuff->GetBuffer(),0,emptyBuff->Size());
 					glTexSubImage2D(
 						GL_TEXTURE_2D,

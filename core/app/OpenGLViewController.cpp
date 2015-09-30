@@ -99,7 +99,7 @@ void OpenGLViewController::OnInit()
 	
 	// 将utf8转换为unicode编码
 	std::string& labelText = ow::GetPreference().GetStringValue("LABEL_STRING");
-	IBuffer * pUTFBuffer = CreateMemBuffer( labelText.size() * 2);
+	owBuffer * pUTFBuffer = CreateMemBuffer( labelText.size() * 2);
 	uint16_t * ptr_in = (uint16_t *)labelText.c_str();
 	uint32_t size_in = labelText.size();
 	uint16_t * ptr_out = (uint16_t *)pUTFBuffer->GetBuffer();

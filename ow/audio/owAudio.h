@@ -25,7 +25,7 @@ typedef void (* AL_FLOAT_VEC_SETTER )(ALuint, ALenum, const ALfloat *);
 	owVOID Set_##PARAM( TYPE );
 
 #define AL_SOURCE_GET_SET_IMP( SPACE , TYPE, PARAM )\
-	TYPE SPACE::Get_##PARAM(){ \
+	TYPE SPACE::Get_##PARAM(){\
 		static TYPE value;\
 		owAESourceGetter_##TYPE( m_iSource, AL_##PARAM, &value);\
 		return value;\
@@ -34,8 +34,8 @@ typedef void (* AL_FLOAT_VEC_SETTER )(ALuint, ALenum, const ALfloat *);
 		owAESourceSetter_##TYPE(m_iSource, AL_##PARAM, value);\
 	}\
 	
-#define AL_SOURCE_GET_SET_VEC_DEF( TYPE, PARAM ) \
-	owVOID Get_##PARAM( TYPE * ); \
+#define AL_SOURCE_GET_SET_VEC_DEF( TYPE, PARAM )\
+	owVOID Get_##PARAM( TYPE * );\
 	owVOID Set_##PARAM( TYPE * );
 
 #define AL_SOURCE_GET_SET_VEC_IMP( SPACE , TYPE, PARAM )\
@@ -46,7 +46,7 @@ typedef void (* AL_FLOAT_VEC_SETTER )(ALuint, ALenum, const ALfloat *);
 		owAESourceGetter_vec_##TYPE( m_iSource, AL_##PARAM, _pValue);\
 	}\
 
-namespace ow	
+namespace ow
 {	
 	struct owAEBuffer
 	{
@@ -69,16 +69,18 @@ namespace ow
 		owINT32 GetDepthBits();
 		owINT32 GetChannels();
 		owINT32 GetSize();
+		owVOID Release();
 		~owAEBuffer();
 	};	
 	
 	struct owAESource
 	{
 		owUINT32		m_iSource;
-		owAEBuffer		m_pBuffer;
+		owAEBuffer*		m_pBuffer;
 		
 		owBOOL Init();
 		
+		owBOOL Valid();
 		owVOID Play();
 		owVOID Stop();
 		owVOID Pause();
@@ -88,6 +90,7 @@ namespace ow
 		owVOID SetInt( int* _pValue, owINT32 _attr);
 		owVOID GetFloat( float * _pValue, owINT32 _attr);
 		owVOID GetInt( int * _pValue, owINT32 _attr);
+		owVOID Release();
 		
 		AL_SOURCE_GET_SET_DEF( float, PITCH)
 		AL_SOURCE_GET_SET_DEF( float, GAIN)
@@ -117,10 +120,13 @@ namespace ow
 	
 	struct VorbisStruct
 	{
+		VorbisStruct()
+		{
+		}
 		// vorbis数据源
-		ow::IBuffer			m_pBuffer;
+		ow::owBuffer*		m_pBuffer;
 		// vorbis对象
-		OggVorbis_File		m_pVorbisFile;
+		OggVorbis_File		m_vorbisFile;
 		// vorbis文件信息
 		vorbis_info*		m_pVorbisInfo;
 		// vorbis脚注
@@ -128,7 +134,14 @@ namespace ow
 		// AL 格式
 		owINT32				m_iFormat;
 		// PCM 解码数据缓冲区
-		owBYTE*				m_pFrameBuffer;
+		owCHAR*				m_pFrameBuffer;
+		owINT32				m_nFrameBufferSize;
+		
+		owINT32 DecodeNextFrame();
+		owINT32 Size();
+		owINT32 Tell();
+		owBOOL Eof();
+		owVOID Clear();
 	};
 	
 	struct owAEVorbisSource
@@ -137,21 +150,29 @@ namespace ow
 		owUINT32		m_iSource;			// source 对象
 		VorbisStruct	m_vorbis;
 		
-		owVOID Init( IBuffer * _pBuffer);
+		owVOID Init( owBuffer * _pBuffer);
+		owBOOL UpdateBuffer();
 		owVOID Play();
 		owVOID Stop();
 		owVOID Pause();
 		owVOID Release();
 	private:
 		owVOID FillFirstCycle();
-	}
+	};
 	
 	struct owAEDevice
 	{
-		static ALCdevice *			m_pDevice;
-		static ALCcontext *			m_pContext;
+		ALCdevice *			m_pDevice;
+		ALCcontext *	    m_pContext;
 		
+		owBOOL Init();
+		owVOID Release();
 		
-	}
+		owAEBuffer * CreateBuffer();
+		owAESource * CreateSource();
+		owAEVorbisSource * CreateVorbisSource( ow::owBuffer * _pVorbisBuffer );
+	};
+	
+	owAEDevice * CreateAudioDevice();
 	
 };

@@ -14,13 +14,13 @@ namespace ow
 		// return a owFileObject for owFileType
 		owFile * Compress( owFile * _pFile , int32_t _nlevel );
 		// return a IBuffer Ref type, without memory copy
-		IBuffer * RefCompress(owFile * _pFile, int32_t _nLevel);
+		owBuffer * RefCompress(owFile * _pFile, int32_t _nLevel);
 		owFile * Uncompress( owFile * _pFile );
 		
 		// 辅助buffer
-		IBuffer * m_pInputChunkBuffer;
-		IBuffer * m_pOutputChunkBuffer;
-		IBuffer * m_pTempBuffer;
+		owBuffer * m_pInputChunkBuffer;
+		owBuffer * m_pOutputChunkBuffer;
+		owBuffer * m_pTempBuffer;
 	};
 
 }

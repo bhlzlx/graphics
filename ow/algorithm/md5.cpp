@@ -35,7 +35,7 @@ namespace ow
 		delete this;
 	}
 
-	MD5BufferA * MD5BufferA::MD5BufferForData( IBuffer * _pData)
+	MD5BufferA * MD5BufferA::MD5BufferForData( owBuffer * _pData)
 	{
 		MD5BufferA * pBuffer = new MD5BufferA();
 		pBuffer->m_pFileBuffer = _pData;
@@ -260,7 +260,7 @@ namespace ow
 		}
 	}
 
-	void MD5::Compute( IBuffer * _pData)
+	void MD5::Compute( owBuffer * _pData)
 	{
 		A = *(owUINT32*)chain_values;
 		B = *((owUINT32*)chain_values + 1);

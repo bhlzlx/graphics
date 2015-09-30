@@ -15,19 +15,19 @@ namespace ow
 {
 	struct MD5BufferA
 	{
-		IBuffer *			m_pFileBuffer;
-		IBuffer *			m_pFilledBuffer;
+		owBuffer *			m_pFileBuffer;
+		owBuffer *			m_pFilledBuffer;
 		uint32_t Read( int8_t * _pOut, uint32_t _nLength);
 		bool Eof();
 		void Release();
 		
-		static MD5BufferA * MD5BufferForData( IBuffer * _pData);
+		static MD5BufferA * MD5BufferForData( owBuffer * _pData);
 	};
 
 	struct MD5BufferB
 	{
 		ow::owFile *		m_pFileBuffer;
-		IBuffer *			m_pFilledBuffer;
+		owBuffer *			m_pFilledBuffer;
 		
 		uint32_t Read( int8_t * _pOut, uint32_t _nLength);
 		bool Eof();
@@ -52,7 +52,7 @@ namespace ow
 		void HH(owUINT32& a,owUINT32& b,owUINT32& c,owUINT32& d,owUINT32& x,owUINT32 y,owUINT32& z);
 		void II(owUINT32& a,owUINT32& b,owUINT32& c,owUINT32& d,owUINT32& x,owUINT32 y,owUINT32& z);
 		MD5();
-		void Compute( IBuffer * _pData);
+		void Compute( owBuffer * _pData);
 		void GetValue( char * _szBuffer);
 		void Compute( ow::owFile * _pFile);
 		void Turn( owUINT32 * chunk);

@@ -103,12 +103,12 @@ namespace model
 			AnimFile*         m_pAnimFile;
 		}MD5File, *MD5FilePtr;
 		
-		void ParseMD5( ow::IBuffer * _pMeshBuff, ow::IBuffer * _pAnimBuff ,MD5FilePtr _pMD5File);
+		void ParseMD5( ow::owBuffer * _pMeshBuff, ow::owBuffer * _pAnimBuff ,MD5FilePtr _pMD5File);
 		void ClearMD5( MD5FilePtr _pMD5File );
 		
-		ow::IBuffer * GetIndexBuffer(  MeshPtr _pMesh );
-		ow::IBuffer * GetUVBuffer(  MeshPtr _pMesh );
-		ow::IBuffer * GetBindPoseVertices(MeshPtr _pMesh);
+		ow::owBuffer * GetIndexBuffer(  MeshPtr _pMesh );
+		ow::owBuffer * GetUVBuffer(  MeshPtr _pMesh );
+		ow::owBuffer * GetBindPoseVertices(MeshPtr _pMesh);
 	}
 }
 

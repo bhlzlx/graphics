@@ -40,7 +40,7 @@ namespace ow
 	
 	struct owMemFile:public owFile
 	{
-		IBuffer * 		m_pMemBuffer;
+		owBuffer * 		m_pMemBuffer;
 		
 		owSIZE_T Read( owVOID* _ptr, owINT32 _nBytes );
 		owSIZE_T Write( owVOID* _ptr, owINT32 _nBytes );

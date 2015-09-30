@@ -29,7 +29,7 @@ namespace ow
 		return 0;
 	}
 	
-	char * read_line(IBuffer * _pBuffer)
+	char * read_line(owBuffer * _pBuffer)
 	{
 		static char buffer[512];
 		int length ;
@@ -63,7 +63,7 @@ again:
 		return buffer;
 	}
 	
-	IBuffer * read_config_block(IBuffer * _pBuffer)
+	owBuffer * read_config_block(owBuffer * _pBuffer)
 	{
 		char * pLine = read_line(_pBuffer);
 		if(pLine == NULL)
@@ -74,19 +74,19 @@ again:
 		owBYTE * pContent = _pBuffer->GetCurr();
 		owBYTE * pEnd = (owBYTE*)strchr((char*)pContent,';');
 		int32_t nLen = pEnd - pContent - 1;
-		IBuffer *pRet = CreateBufferRef( pContent, nLen);
+		owBuffer *pRet = CreateBufferRef( pContent, nLen);
 		_pBuffer->Seek(SEEK_CUR,nLen + 4);
 		return pRet;
 	}
 	
 	owBOOL Preference::Init( const owCHAR * _szFilepath)
 	{
-		IBuffer * _pBuffer = BufferFromFile( _szFilepath);
+		owBuffer * _pBuffer = BufferFromFile( _szFilepath);
 		if(_pBuffer == NULL)
 		{
 			return owFALSE;
 		}
-		IBuffer * bufferRef = (IBuffer*)0;
+		owBuffer * bufferRef = (owBuffer*)0;
 		while(bufferRef = read_config_block(_pBuffer) )
 		{
 			char * pLine = read_line( bufferRef );
@@ -100,7 +100,7 @@ again:
 			if(ch == 'S')
 			{
 				int8_t * pBuffer = (int8_t*)STRING_POOL_PTR->Alloc( _GLOBAL_STRING_BUFFER_MAX_ );
-				IBuffer * stringBuffer = CreateBufferRef(pBuffer,_GLOBAL_STRING_BUFFER_MAX_);
+				owBuffer * stringBuffer = CreateBufferRef(pBuffer,_GLOBAL_STRING_BUFFER_MAX_);
 				while( pLine = read_line(bufferRef))
 				{
 					sscanf(pLine,"%s = %s", &keybuffer[0], stringBuffer->GetBuffer());

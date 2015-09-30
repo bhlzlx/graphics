@@ -20,7 +20,7 @@ namespace ow
 		Conf_int		m_ints;
 
 		owBOOL Init( const owCHAR * _szFilepath);
-		owBOOL Init( IBuffer * _pBuffer);
+		owBOOL Init( owBuffer * _pBuffer);
 		
 		owINT32& GetIntValue( const char * _szKey);
 		std::string& GetStringValue( const char * _szKey);

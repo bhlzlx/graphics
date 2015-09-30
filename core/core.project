@@ -107,6 +107,61 @@
   </VirtualDirectory>
   <Description/>
   <Dependencies/>
+  <VirtualDirectory Name="core">
+    <File Name="main.cpp"/>
+    <VirtualDirectory Name="renderer">
+      <File Name="core/renderer/TextRenderer.cpp"/>
+      <File Name="core/renderer/TextRenderer.h"/>
+    </VirtualDirectory>
+    <File Name="core/BufferOGL.cpp"/>
+    <File Name="core/BufferOGL.h"/>
+    <File Name="core/DepthStencilOGL.cpp"/>
+    <File Name="core/DepthStencilOGL.h"/>
+    <File Name="core/device.h"/>
+    <File Name="core/EffectOGL.cpp"/>
+    <File Name="core/EffectOGL.h"/>
+    <File Name="core/Image.cpp"/>
+    <File Name="core/RenderPipelineOGL.cpp"/>
+    <File Name="core/RenderPipelineOGL.h"/>
+    <File Name="core/RenderTargetOGL.cpp"/>
+    <File Name="core/RenderTargetOGL.h"/>
+    <File Name="core/ShaderOGL.cpp"/>
+    <File Name="core/ShaderOGL.h"/>
+    <File Name="core/TexOGL.cpp"/>
+    <File Name="core/TexOGL.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="app">
+    <File Name="app/AppDelegate.cpp"/>
+    <File Name="app/AppDelegate.h"/>
+    <File Name="app/OpenGLViewController.cpp"/>
+    <File Name="app/OpenGLViewController.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="event">
+    <File Name="event/MouseEvent.cpp"/>
+    <File Name="event/MouseEvent.h"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="glsl">
+    <File Name="glsl/depthonly.frag"/>
+    <File Name="glsl/depthonly.vert"/>
+    <File Name="glsl/fontrender.frag"/>
+    <File Name="glsl/fontrender.vert"/>
+    <File Name="glsl/md5anim.frag"/>
+    <File Name="glsl/md5anim.vert"/>
+    <File Name="glsl/rendering.frag"/>
+    <File Name="glsl/rendering.vert"/>
+    <File Name="glsl/simple.frag"/>
+    <File Name="glsl/simple.vert"/>
+    <File Name="glsl/staticObject.frag"/>
+    <File Name="glsl/staticObject.vert"/>
+    <File Name="glsl/uirender.frag"/>
+    <File Name="glsl/uirender.vert"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="gui">
+    <File Name="gui/Label.cpp"/>
+    <File Name="gui/Label.h"/>
+  </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -118,7 +173,7 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-O0;-Wall;-std=c++11;" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-g;-O0;-Wall;-std=gnu++0x;" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <IncludePath Value="../ow"/>
       </Compiler>
@@ -196,59 +251,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="core">
-    <File Name="main.cpp"/>
-    <VirtualDirectory Name="renderer">
-      <File Name="core/renderer/TextRenderer.cpp"/>
-      <File Name="core/renderer/TextRenderer.h"/>
-    </VirtualDirectory>
-    <File Name="core/BufferOGL.cpp"/>
-    <File Name="core/BufferOGL.h"/>
-    <File Name="core/DepthStencilOGL.cpp"/>
-    <File Name="core/DepthStencilOGL.h"/>
-    <File Name="core/device.h"/>
-    <File Name="core/EffectOGL.cpp"/>
-    <File Name="core/EffectOGL.h"/>
-    <File Name="core/Image.cpp"/>
-    <File Name="core/RenderPipelineOGL.cpp"/>
-    <File Name="core/RenderPipelineOGL.h"/>
-    <File Name="core/RenderTargetOGL.cpp"/>
-    <File Name="core/RenderTargetOGL.h"/>
-    <File Name="core/ShaderOGL.cpp"/>
-    <File Name="core/ShaderOGL.h"/>
-    <File Name="core/TexOGL.cpp"/>
-    <File Name="core/TexOGL.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="app">
-    <File Name="app/AppDelegate.cpp"/>
-    <File Name="app/AppDelegate.h"/>
-    <File Name="app/OpenGLViewController.cpp"/>
-    <File Name="app/OpenGLViewController.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="event">
-    <File Name="event/MouseEvent.cpp"/>
-    <File Name="event/MouseEvent.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="glsl">
-    <File Name="glsl/depthonly.frag"/>
-    <File Name="glsl/depthonly.vert"/>
-    <File Name="glsl/fontrender.frag"/>
-    <File Name="glsl/fontrender.vert"/>
-    <File Name="glsl/md5anim.frag"/>
-    <File Name="glsl/md5anim.vert"/>
-    <File Name="glsl/rendering.frag"/>
-    <File Name="glsl/rendering.vert"/>
-    <File Name="glsl/simple.frag"/>
-    <File Name="glsl/simple.vert"/>
-    <File Name="glsl/staticObject.frag"/>
-    <File Name="glsl/staticObject.vert"/>
-    <File Name="glsl/uirender.frag"/>
-    <File Name="glsl/uirender.vert"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="gui">
-    <File Name="gui/Label.cpp"/>
-    <File Name="gui/Label.h"/>
-  </VirtualDirectory>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
 </CodeLite_Project>

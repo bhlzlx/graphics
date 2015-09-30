@@ -50,10 +50,10 @@ namespace Graphics
 
 typedef struct
 {
-	ow::IBuffer * 			m_pUVBuffer;
-	ow::IBuffer * 			m_pIndicesBuffer;
+	ow::owBuffer * 			m_pUVBuffer;
+	ow::owBuffer * 			m_pIndicesBuffer;
 	
-	ow::IBuffer *			m_pFinalVertices;
+	ow::owBuffer *			m_pFinalVertices;
 	
 	uint32_t			m_nNumVertices;
     uint32_t            m_nNumIndices;

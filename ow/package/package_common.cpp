@@ -137,7 +137,7 @@ namespace ow
 		ow::owZip zipObject;
 		MD5 md5er;
 		ow::owFile *stdFile= NULL;
-		IBuffer *packBuffer= NULL;
+		owBuffer *packBuffer= NULL;
 
 		for( size_t i= 0; i < linearNodes.size(); ++i )
 		{
