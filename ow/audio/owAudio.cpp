@@ -448,11 +448,16 @@ namespace ow
 		delete this;
 	}
 	
-	owAEDevice * CreateAudioDevice()
+	owAEDevice * __pDevice = NULL;
+	
+	owAEDevice * GetAudioDevice()
 	{
-		owAEDevice * pDevice = new owAEDevice;
-		pDevice->Init();
-		return pDevice;
+		if(__pDevice == NULL)
+		{
+			__pDevice = new owAEDevice;
+			__pDevice->Init();
+		}
+		return __pDevice;
 	}
 
 }

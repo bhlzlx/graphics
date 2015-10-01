@@ -179,6 +179,6 @@ namespace ow
 		owAEVorbisSource * CreateVorbisSource( ow::owBuffer * _pVorbisBuffer );
 	};
 	
-	owAEDevice * CreateAudioDevice();
+	owAEDevice * GetAudioDevice();
 	
 };
