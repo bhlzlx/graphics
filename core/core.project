@@ -61,7 +61,7 @@
     <File Name="math/Variance.cpp"/>
     <File Name="math/Variance.h"/>
   </VirtualDirectory>
-  <VirtualDirectory Name="ow">
+  <VirtualDirectory Name="_ow">
     <VirtualDirectory Name="owcmn">
       <VirtualDirectory Name="log">
         <File Name="../ow/owcmn/log/logger.cpp"/>
@@ -107,6 +107,8 @@
     <VirtualDirectory Name="audio">
       <File Name="../ow/audio/owAudio.cpp"/>
       <File Name="../ow/audio/owAudio.h"/>
+      <File Name="../ow/audio/owAEPlayer.cpp"/>
+      <File Name="../ow/audio/owAEPlayer.h"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <Description/>

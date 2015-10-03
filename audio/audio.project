@@ -46,8 +46,10 @@
     <VirtualDirectory Name="audio">
       <File Name="../ow/audio/owAudio.cpp"/>
       <File Name="../ow/audio/owAudio.h"/>
+      <File Name="../ow/audio/owAEPlayer.h"/>
+      <File Name="../ow/audio/owAEPlayer.cpp"/>
     </VirtualDirectory>
-    <VirtualDirectory Name="buffer">
+    <VirtualDirectory Name="owbuffer">
       <File Name="../ow/buffer/buffer.cpp"/>
       <File Name="../ow/buffer/buffer.h"/>
     </VirtualDirectory>
@@ -59,7 +61,7 @@
       <File Name="../ow/owfile/owfile.cpp"/>
       <File Name="../ow/owfile/owfile.h"/>
     </VirtualDirectory>
-    <VirtualDirectory Name="owZip">
+    <VirtualDirectory Name="owzip">
       <File Name="../ow/owZip/owZip.cpp"/>
       <File Name="../ow/owZip/owZip.h"/>
     </VirtualDirectory>

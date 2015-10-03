@@ -1,9 +1,9 @@
 [{
   "directory": "E:\\projects\\graphics\\core",
-  "command": "F:/tdmgcc/bin/g++.exe -g -O0 -Wall -std=gnu++0x -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I. -I../ow -MG -MP -MTE:/projects/builds/core/Debug/audio_owAudio.cpp.o -MFE:/projects/builds/core/Debug/audio_owAudio.cpp.o.d -MM ../ow/audio/owAudio.cpp",
-  "file": "E:\\projects\\graphics\\core\\..\\ow\\audio\\owAudio.cpp"
+  "command": "F:/tdmgcc/bin/g++.exe -g -O0 -Wall -std=gnu++0x -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I. -I../ow -MG -MP -MTE:/projects/builds/core/Debug/audio_owAEPlayer.cpp.o -MFE:/projects/builds/core/Debug/audio_owAEPlayer.cpp.o.d -MM ../ow/audio/owAEPlayer.cpp",
+  "file": "E:\\projects\\graphics\\core\\..\\ow\\audio\\owAEPlayer.cpp"
  }, {
   "directory": "E:\\projects\\graphics\\core",
-  "command": "F:/tdmgcc/bin/g++.exe -c E:/projects/graphics/ow/audio/owAudio.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/core/Debug/audio_owAudio.cpp.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I. -I../ow",
-  "file": "E:\\projects\\graphics\\ow\\audio\\owAudio.cpp"
+  "command": "F:/tdmgcc/bin/g++.exe -c E:/projects/graphics/ow/audio/owAEPlayer.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/core/Debug/audio_owAEPlayer.cpp.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I. -I../ow",
+  "file": "E:\\projects\\graphics\\ow\\audio\\owAEPlayer.cpp"
  }]

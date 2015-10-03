@@ -63,8 +63,8 @@ AS       := F:/tdmgcc/bin/as.exe
 ##
 CodeLiteDir:=D:\app\CodeLite
 BuildDir:=E:/projects/builds
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_owcmn.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_ResourcePool.cpp$(ObjectSuffix) $(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/audio_owAudio.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/memory_memory.cpp$(ObjectSuffix) $(IntermediateDirectory)/owfile_owfile.cpp$(ObjectSuffix) $(IntermediateDirectory)/owZip_owZip.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/package_owPackage.cpp$(ObjectSuffix) $(IntermediateDirectory)/package_package_common.cpp$(ObjectSuffix) $(IntermediateDirectory)/settings_settings.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_owcmn.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_ResourcePool.cpp$(ObjectSuffix) $(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/audio_owAudio.cpp$(ObjectSuffix) $(IntermediateDirectory)/audio_owAEPlayer.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/memory_memory.cpp$(ObjectSuffix) $(IntermediateDirectory)/owfile_owfile.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/owZip_owZip.cpp$(ObjectSuffix) $(IntermediateDirectory)/package_owPackage.cpp$(ObjectSuffix) $(IntermediateDirectory)/package_package_common.cpp$(ObjectSuffix) $(IntermediateDirectory)/settings_settings.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) 
 
 
 
@@ -142,6 +142,14 @@ $(IntermediateDirectory)/audio_owAudio.cpp$(DependSuffix): ../ow/audio/owAudio.c
 
 $(IntermediateDirectory)/audio_owAudio.cpp$(PreprocessSuffix): ../ow/audio/owAudio.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/audio_owAudio.cpp$(PreprocessSuffix) "../ow/audio/owAudio.cpp"
+
+$(IntermediateDirectory)/audio_owAEPlayer.cpp$(ObjectSuffix): ../ow/audio/owAEPlayer.cpp $(IntermediateDirectory)/audio_owAEPlayer.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/ow/audio/owAEPlayer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/audio_owAEPlayer.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/audio_owAEPlayer.cpp$(DependSuffix): ../ow/audio/owAEPlayer.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/audio_owAEPlayer.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/audio_owAEPlayer.cpp$(DependSuffix) -MM "../ow/audio/owAEPlayer.cpp"
+
+$(IntermediateDirectory)/audio_owAEPlayer.cpp$(PreprocessSuffix): ../ow/audio/owAEPlayer.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/audio_owAEPlayer.cpp$(PreprocessSuffix) "../ow/audio/owAEPlayer.cpp"
 
 $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix): ../ow/buffer/buffer.cpp $(IntermediateDirectory)/buffer_buffer.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/ow/buffer/buffer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IncludePath)

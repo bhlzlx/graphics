@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=phantom
-Date                   :=01/10/2015
+Date                   :=03/10/2015
 CodeLitePath           :="D:\app\CodeLite"
 LinkerName             :=F:/tdmgcc/bin/g++.exe
 SharedObjectLinkerName :=F:/tdmgcc/bin/g++.exe -shared -fPIC
@@ -67,7 +67,7 @@ Objects0=$(IntermediateDirectory)/scene_GameScene.cpp$(ObjectSuffix) $(Intermedi
 	$(IntermediateDirectory)/core_EffectOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_Image.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderPipelineOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderTargetOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_TexOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_AppDelegate.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_OpenGLViewController.cpp$(ObjectSuffix) $(IntermediateDirectory)/event_MouseEvent.cpp$(ObjectSuffix) $(IntermediateDirectory)/gui_Label.cpp$(ObjectSuffix) \
 	$(IntermediateDirectory)/aabb_aabb.cpp$(ObjectSuffix) $(IntermediateDirectory)/octree_Octree.cpp$(ObjectSuffix) $(IntermediateDirectory)/octree_OctreeRenderNode.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_main.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_md5Frame.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_owcmn.cpp$(ObjectSuffix) \
 	$(IntermediateDirectory)/owcmn_ResourcePool.cpp$(ObjectSuffix) $(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/memory_memory.cpp$(ObjectSuffix) $(IntermediateDirectory)/owfile_owfile.cpp$(ObjectSuffix) $(IntermediateDirectory)/owZip_owZip.cpp$(ObjectSuffix) $(IntermediateDirectory)/package_owPackage.cpp$(ObjectSuffix) $(IntermediateDirectory)/package_package_common.cpp$(ObjectSuffix) $(IntermediateDirectory)/settings_settings.cpp$(ObjectSuffix) $(IntermediateDirectory)/audio_owAudio.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/renderer_TextRenderer.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) 
+	$(IntermediateDirectory)/audio_owAEPlayer.cpp$(ObjectSuffix) $(IntermediateDirectory)/renderer_TextRenderer.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) 
 
 
 
@@ -417,6 +417,14 @@ $(IntermediateDirectory)/audio_owAudio.cpp$(DependSuffix): ../ow/audio/owAudio.c
 
 $(IntermediateDirectory)/audio_owAudio.cpp$(PreprocessSuffix): ../ow/audio/owAudio.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/audio_owAudio.cpp$(PreprocessSuffix) "../ow/audio/owAudio.cpp"
+
+$(IntermediateDirectory)/audio_owAEPlayer.cpp$(ObjectSuffix): ../ow/audio/owAEPlayer.cpp $(IntermediateDirectory)/audio_owAEPlayer.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/ow/audio/owAEPlayer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/audio_owAEPlayer.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/audio_owAEPlayer.cpp$(DependSuffix): ../ow/audio/owAEPlayer.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/audio_owAEPlayer.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/audio_owAEPlayer.cpp$(DependSuffix) -MM "../ow/audio/owAEPlayer.cpp"
+
+$(IntermediateDirectory)/audio_owAEPlayer.cpp$(PreprocessSuffix): ../ow/audio/owAEPlayer.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/audio_owAEPlayer.cpp$(PreprocessSuffix) "../ow/audio/owAEPlayer.cpp"
 
 $(IntermediateDirectory)/renderer_TextRenderer.cpp$(ObjectSuffix): core/renderer/TextRenderer.cpp $(IntermediateDirectory)/renderer_TextRenderer.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/core/core/renderer/TextRenderer.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/renderer_TextRenderer.cpp$(ObjectSuffix) $(IncludePath)

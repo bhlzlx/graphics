@@ -1,3 +1,6 @@
+#ifndef __OW_AUDIO_H__
+#define __OW_AUDIO_H__
+
 #include <al/al.h>
 #include <al/alc.h>
 #include <vorbis/vorbisfile.h>
@@ -180,5 +183,6 @@ namespace ow
 	};
 	
 	owAEDevice * GetAudioDevice();
-	
 };
+
+#endif

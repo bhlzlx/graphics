@@ -18,6 +18,7 @@
 #include <core/renderer/TextRenderer.h>
 #include <gui/Label.h>
 #include <audio/owAudio.h>
+#include <audio/owAEPlayer.h>
 
 using namespace Graphics;
 using namespace glm;
@@ -48,7 +49,7 @@ struct OpenGLViewController
 	gui::Label*			m_pLabel;
 	
 	ow::owAEDevice*		m_pAudioDevice;
-	ow::owAEVorbisSource * m_pVorbisSource;
+	ow::owAEMusicPlayer * m_pPlayer;;
 
     OpenGLViewController();
 

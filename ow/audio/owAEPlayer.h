@@ -35,6 +35,9 @@ namespace ow
 		pthread_t	    		m_thread_t;
 		AEMessageQueue * 		m_pMsgQueue;
 		AEMSG			 		m_state;
+		
+		pthread_cond_t 			m_waitCond;
+		pthread_mutex_t 		m_waitMutex;
 
 
 	private:

@@ -80,6 +80,9 @@ namespace ow
 		m_pMsgQueue = new AEMessageQueue();
 		m_state.type=eAEIdle;
 		pthread_create(&this->m_thread_t,NULL,owAEMusicPlayer::MusicThreadProc,this);
+		
+		pthread_mutex_init( &this->m_waitMutex, NULL);
+		pthread_cond_init( &this->m_waitCond, NULL);
 
 		return true;
 	}
@@ -130,7 +133,7 @@ namespace ow
 	{
 		if(m_state.type==eAEPlay)
 		{
-			m_pMusicSrc->Stop();
+			m_pMusicSrc->Pause();
 			m_state.type=eAEPause;
 		}
 		
@@ -176,16 +179,13 @@ namespace ow
 					pPlayer->m_pMusicSrc->UpdateBuffer();
 				}
 			}
-			
-			static pthread_t thread;
-			static pthread_cond_t cond;
-			static pthread_mutex_t mutex;
-			struct timeval now;
-			struct timespec outtime;
+			// 避免栈中频繁分配 使用static关键字，提高效率
+			static struct timeval now;
+			static struct timespec outtime;
 			gettimeofday(&now, NULL);
 			outtime.tv_sec = now.tv_sec;
 			outtime.tv_nsec = (now.tv_usec + 400 * 1000) * 1000; // 400 毫秒
-			pthread_cond_timedwait(&cond, &mutex, &outtime);
+			pthread_cond_timedwait(&pPlayer->m_waitCond, &pPlayer->m_waitMutex, &outtime);
 		}
 	}
 }
