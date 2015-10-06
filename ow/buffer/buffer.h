@@ -24,7 +24,7 @@ namespace ow
 	};
 
 	owBuffer * CreateMemBuffer( owINT32 );
-	owBuffer * BufferFromFile( const owCHAR * szFile);
+	owBuffer * CreateFileBuffer( const owCHAR * szFile);
 	owBuffer * CreateBufferRef( owVOID * _pData, owINT32 _nLength);
 }
 

@@ -22,7 +22,7 @@ namespace _MD5_
             mesh.m_pVertexArray->SetVertexBuffer(2,mesh.m_pUVBuffer,2,0,0);
             mesh.m_pVertexArray->SetIndexBuffer(mesh.m_pIndexBuffer);
             mesh.m_nNumVertices = pMesh->m_nNumIndices;
-			ow::owBuffer *pImageBuffer = ow::BufferFromFile(pMesh->m_szTexDiffuse);
+			ow::owBuffer *pImageBuffer = ow::CreateFileBuffer(pMesh->m_szTexDiffuse);
 			if(pImageBuffer)
 			{
 				Image * pImage = Image::ImageFromPng(pImageBuffer);

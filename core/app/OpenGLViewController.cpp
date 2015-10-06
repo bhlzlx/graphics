@@ -42,11 +42,11 @@ void OpenGLViewController::OnInit()
 {	
 	this->m_pAudioDevice = ow::GetAudioDevice();
 	m_pPlayer = new ow::owAEMusicPlayer();
-	ow::owBuffer * vorbisFile = ow::BufferFromFile("./greensleeves.ogg");
+	ow::owBuffer * vorbisFile = ow::CreateFileBuffer("./greensleeves.ogg");
 	m_pPlayer->Init(vorbisFile);
 	m_pPlayer->Play();
 	
-	owBuffer * vorbisSound = BufferFromFile( "ring.ogg");
+	owBuffer * vorbisSound = CreateFileBuffer( "ring.ogg");
 	ow::owAEBuffer* pAEBuffer = m_pAudioDevice->CreateBufferVorbis( vorbisSound);
 	ow::owAESource * pAESource = m_pAudioDevice->CreateSource();
 	pAESource->SetBuffer( pAEBuffer);

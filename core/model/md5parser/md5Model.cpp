@@ -15,7 +15,7 @@ namespace Graphics
 	// 解析 并 创建mesh相关的 buffer object
 	void md5Model::Init( const char * _szMeshFile )
 	{
-		owBuffer * pBuffer = BufferFromFile(_szMeshFile);
+		owBuffer * pBuffer = CreateFileBuffer(_szMeshFile);
 		assert(pBuffer);
 		
 		model::InitMeshModel( &this->m_meshModel, pBuffer);
@@ -35,7 +35,7 @@ namespace Graphics
 			pSubMesh = m_meshModel.m_pMeshes + meshIndex;
 			pSubMeshBuffer = this->m_pMeshBuffers + meshIndex;
 			// 生成纹理
-			owBuffer * imageBuffer = BufferFromFile(pSubMesh->m_szTexture);
+			owBuffer * imageBuffer = CreateFileBuffer(pSubMesh->m_szTexture);
 			if(imageBuffer)
 			{
 				Image * image = Image::ImageFromPng(imageBuffer);
@@ -148,7 +148,7 @@ namespace Graphics
 	{
 		if(this->m_nNumAnimation < ANIMATION_MAX)
 		{
-			owBuffer * pBuffer = BufferFromFile(_szAnimFile);
+			owBuffer * pBuffer = CreateFileBuffer(_szAnimFile);
 			assert(pBuffer);
 			model::InitAnimModel(&this->m_animModels[m_nNumAnimation],pBuffer);
 			m_nNumAnimation++;

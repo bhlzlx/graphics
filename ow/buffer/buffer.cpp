@@ -182,7 +182,7 @@ namespace ow
 		return new MemBuffer(_nSize);
 	}
 
-	owBuffer * BufferFromFile(const owCHAR * _szFile)
+	owBuffer * CreateFileBuffer(const owCHAR * _szFile)
 	{
 		FILE * file = fopen(_szFile,"rb");
 		

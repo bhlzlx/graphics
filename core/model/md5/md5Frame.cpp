@@ -89,7 +89,7 @@ namespace Graphics
 		{
 			// 生成纹理
 			pMD5Mesh = _pModel->m_pMeshes + meshIdx;
-			owBuffer * pImageBuffer = BufferFromFile(_pFile->m_pMeshFile->m_pMeshes[meshIdx].m_szTexture);
+			owBuffer * pImageBuffer = CreateFileBuffer(_pFile->m_pMeshFile->m_pMeshes[meshIdx].m_szTexture);
 			if(pImageBuffer)
 			{
 				Image * image = Image::ImageFromPng(pImageBuffer);

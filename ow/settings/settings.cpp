@@ -81,7 +81,7 @@ again:
 	
 	owBOOL Preference::Init( const owCHAR * _szFilepath)
 	{
-		owBuffer * _pBuffer = BufferFromFile( _szFilepath);
+		owBuffer * _pBuffer = CreateFileBuffer( _szFilepath);
 		if(_pBuffer == NULL)
 		{
 			return owFALSE;

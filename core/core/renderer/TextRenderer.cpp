@@ -73,7 +73,7 @@ namespace Graphics
 		
 		
 		// 将utf8转换为unicode编码
-		owBuffer * pFontlibBuffer = BufferFromFile( _szFontLib);	
+		owBuffer * pFontlibBuffer = CreateFileBuffer( _szFontLib);	
 		owBuffer * pUTFBuffer = CreateMemBuffer( pFontlibBuffer->Size() * 1.5);
 		
 		owBYTE * ptr_in = pFontlibBuffer->GetBuffer();
