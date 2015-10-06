@@ -1,6 +1,11 @@
 #ifndef __OW_AUDIO_H__
 #define __OW_AUDIO_H__
 
+/************************************************************************
+ *  OpenAL - libogg - libvorbis 相关代码，由于匆忙，没有定义接口（用于扩展其它格式）
+ *  直接写下定义
+ ***********************************************************************/
+
 #include <al/al.h>
 #include <al/alc.h>
 #include <vorbis/vorbisfile.h>
@@ -125,6 +130,14 @@ namespace ow
 	{
 		VorbisStruct()
 		{
+			m_pFrameBuffer = NULL;
+		}
+		~VorbisStruct()
+		{
+			if(m_pFrameBuffer)
+			{
+				delete []m_pFrameBuffer;
+			}
 		}
 		// vorbis数据源
 		ow::owBuffer*		m_pBuffer;
@@ -178,7 +191,17 @@ namespace ow
 		owVOID Release();
 		
 		owAEBuffer * CreateBuffer();
+		/**
+		 * @brief : Create wav & ogg buffer for sound effects
+		 */
+		owAEBuffer * CreateBufferWav( ow::owBuffer * _pWavBuffer);
+		owAEBuffer * CreateBufferVorbis( ow::owBuffer * _pVorbisBuffer);
+		
 		owAESource * CreateSource();
+		/**
+		 * @brief : function for creating a source for music playing!
+		 * @param : _pVorbisBuffer : an ogg file buffer
+		 */
 		owAEVorbisSource * CreateVorbisSource( ow::owBuffer * _pVorbisBuffer );
 	};
 	

@@ -12,14 +12,14 @@ namespace ow
 		return this->m_pFileBuffer->Eof() && this->m_pFilledBuffer->Eof();
 	}
 
-	uint32_t MD5BufferA::Read(int8_t * _pOut,uint32_t _nLength)
+	owUINT32 MD5BufferA::Read(owVOID * _pOut,owUINT32 _nLength)
 	{
 		if(!this->m_pFileBuffer->Eof())
 		{
-			uint32_t ret = m_pFileBuffer->Read(_pOut,_nLength);
+			owUINT32 ret = m_pFileBuffer->Read(_pOut,_nLength);
 			if(ret < _nLength)
 			{
-				ret += m_pFilledBuffer->Read( _pOut + ret, _nLength - ret );
+				ret += m_pFilledBuffer->Read( (owBYTE*)_pOut + ret, _nLength - ret );
 			}
 			return ret;
 		}
@@ -39,27 +39,27 @@ namespace ow
 	{
 		MD5BufferA * pBuffer = new MD5BufferA();
 		pBuffer->m_pFileBuffer = _pData;
-		int64_t filesize =pBuffer->m_pFileBuffer->Size();
-		uint32_t filledSize = calc_md5_fill_n(filesize) + sizeof(int64_t);
+		owINT64 filesize =pBuffer->m_pFileBuffer->Size();
+		owUINT32 filledSize = calc_md5_fill_n(filesize) + sizeof(owINT64);
 		pBuffer->m_pFilledBuffer = CreateMemBuffer(filledSize);
 		owBYTE * ptr = pBuffer->m_pFilledBuffer->GetBuffer();
 		memset(ptr,0,filledSize);
 		*ptr = 0b10000000;
-		ptr += filledSize - sizeof(int64_t);
+		ptr += filledSize - sizeof(owINT64);
 		filesize = filesize * 8;
-		memcpy( ptr,&filesize,sizeof(int64_t) );
+		memcpy( ptr,&filesize,sizeof(owINT64) );
 		
 		return pBuffer;
 	}
 
-	uint32_t MD5BufferB::Read(int8_t * _pOut,uint32_t _nLength)
+	owUINT32 MD5BufferB::Read(owVOID * _pOut,owUINT32 _nLength)
 	{
 		if(!this->m_pFileBuffer->Eof())
 		{
-			uint32_t ret = m_pFileBuffer->Read(_pOut,_nLength);
+			owUINT32 ret = m_pFileBuffer->Read(_pOut,_nLength);
 			if(ret < _nLength)
 			{
-				ret += m_pFilledBuffer->Read( _pOut + ret, _nLength - ret );
+				ret += m_pFilledBuffer->Read( (owBYTE*)_pOut + ret, _nLength - ret );
 			}
 			return ret;
 		}
@@ -84,15 +84,15 @@ namespace ow
 	{
 		MD5BufferB * pBuffer = new MD5BufferB();
 		pBuffer->m_pFileBuffer = _pFile;
-		int64_t filesize =pBuffer->m_pFileBuffer->Size();
-		uint32_t filledSize = calc_md5_fill_n(filesize) + sizeof(int64_t);
+		owINT64 filesize =pBuffer->m_pFileBuffer->Size();
+		owUINT32 filledSize = calc_md5_fill_n(filesize) + sizeof(owINT64);
 		pBuffer->m_pFilledBuffer = CreateMemBuffer(filledSize);
 		owBYTE * ptr = pBuffer->m_pFilledBuffer->GetBuffer();
 		memset(ptr,0,filledSize);
 		*ptr = 0b10000000;
-		ptr += filledSize - sizeof(int64_t);
+		ptr += filledSize - sizeof(owINT64);
 		filesize = filesize * 8;
-		memcpy( ptr,&filesize,sizeof(int64_t) );
+		memcpy( ptr,&filesize,sizeof(owINT64) );
 		
 		return pBuffer;
 	}
@@ -143,9 +143,9 @@ namespace ow
 	}
 	*/
 	 
-	const size_t align_size = 64;
-	const size_t align_mod_size = 56;
-	const size_t align_end_size = sizeof(long long int); //
+	const owSIZE_T align_size = 64;
+	const owSIZE_T align_mod_size = 56;
+	const owSIZE_T align_end_size = sizeof(long long int); //
 	 
 	unsigned int CLS_32( unsigned int i , unsigned int offset)
 	{
@@ -240,7 +240,7 @@ namespace ow
 		_szBuffer[32] = 0;
 	}
 	 
-	size_t calc_md5_fill_n( size_t nData )
+	owSIZE_T calc_md5_fill_n( owSIZE_T nData )
 	{
 		if(nData & (align_size-1))
 		{

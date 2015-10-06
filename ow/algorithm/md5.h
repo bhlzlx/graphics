@@ -7,9 +7,9 @@
 #include <buffer/buffer.h>
 #include <owfile/owfile.h>
  
-const extern size_t align_size;
-const extern size_t align_mod_size;
-const extern size_t align_end_size; // 8 ×ú 64
+const extern owSIZE_T align_size;
+const extern owSIZE_T align_mod_size;
+const extern owSIZE_T align_end_size; // 8 ×ú 64
 
 namespace ow
 {
@@ -17,7 +17,7 @@ namespace ow
 	{
 		owBuffer *			m_pFileBuffer;
 		owBuffer *			m_pFilledBuffer;
-		uint32_t Read( int8_t * _pOut, uint32_t _nLength);
+		owUINT32 Read( owVOID * _pOut, owUINT32 _nLength);
 		bool Eof();
 		void Release();
 		
@@ -27,9 +27,9 @@ namespace ow
 	struct MD5BufferB
 	{
 		ow::owFile *		m_pFileBuffer;
-		owBuffer *			m_pFilledBuffer;
+		ow::owBuffer *			m_pFilledBuffer;
 		
-		uint32_t Read( int8_t * _pOut, uint32_t _nLength);
+		owUINT32 Read( owVOID * _pOut, owUINT32 _nLength);
 		bool Eof();
 		void Release();
 		static MD5BufferB * MD5BufferForFile( ow::owFile * _pFile);
@@ -53,11 +53,11 @@ namespace ow
 		void II(owUINT32& a,owUINT32& b,owUINT32& c,owUINT32& d,owUINT32& x,owUINT32 y,owUINT32& z);
 		MD5();
 		void Compute( owBuffer * _pData);
-		void GetValue( char * _szBuffer);
+		void GetValue( owCHAR * _szBuffer);
 		void Compute( ow::owFile * _pFile);
 		void Turn( owUINT32 * chunk);
 	};
 	 
-	size_t calc_md5_fill_n( size_t nData );
+	owSIZE_T calc_md5_fill_n( owSIZE_T nData );
 }
 #endif // MD5_H_INCLUDED

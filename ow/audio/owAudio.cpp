@@ -1,11 +1,152 @@
 #include "owAudio.h"
 #include <memory.h>
 #include <owcmn/owcmn.h>
+#include <buffer/buffer.h>
+#include <memory.h>
 
 namespace ow
 {
 	
 	#define FRAME_BUFFER_TIME_MS 500.0f
+	
+	struct RIFF_HEADER
+	{
+		owCHAR szRiffID[4];  // 'R','I','F','F'
+		owINT32 dwRiffSize;
+		owCHAR szRiffFormat[4]; // 'W','A','V','E'
+	};
+
+	struct WAVE_FORMAT
+	{
+		owINT16 wFormatTag;
+		owINT16 wChannels;
+		owINT32 dwSamplesPerSec;
+		owINT32 dwAvgBytesPerSec;
+		owINT16 wBlockAlign;
+		owINT16 wBitsPerSample;
+	};
+
+	struct FMT_BLOCK
+	{
+		owCHAR  szFmtID[4]; // 'f','m','t',' '
+		owINT32  dwFmtSize;
+		WAVE_FORMAT wavFormat;
+	};
+
+	struct CHUNK_INFO
+	{
+		owCHAR  szChunkID[4];
+		owINT32  dwChunkSize;
+	};
+
+	struct DATA_CHUNK
+	{
+		ALsizei					nDataSize;
+		ALchar*					pData;
+	};
+
+	struct WAVE_INFO
+	{
+		DATA_CHUNK	m_DataChunk;
+		owINT32		m_format;
+		owINT32		m_samplePerSec;
+	};
+	
+	int WAVEFormat2AL(FMT_BLOCK * pFMT)
+	{
+		ALenum result = 0;
+		if (pFMT->wavFormat.wChannels == 1)
+		{
+			switch(pFMT->wavFormat.wBitsPerSample)
+			{
+			case 4:
+				result = alGetEnumValue("AL_FORMAT_MONO_IMA4");
+				break;
+			case 8:
+				result = alGetEnumValue("AL_FORMAT_MONO8");
+				break;
+			case 16:
+				result = alGetEnumValue("AL_FORMAT_MONO16");
+				break;
+			}
+		}
+		else if (pFMT->wavFormat.wChannels == 2)
+		{
+			switch(pFMT->wavFormat.wBitsPerSample)
+			{
+			case 4:
+				result = alGetEnumValue("AL_FORMAT_STEREO4");
+				break;
+			case 8:
+				result = alGetEnumValue("AL_FORMAT_STEREO8");
+				break;
+			case 16:
+				result = alGetEnumValue("AL_FORMAT_STEREO16");
+				break;
+			}
+		}
+		else if(pFMT->wavFormat.wChannels == 4 && pFMT->wavFormat.wBitsPerSample == 16)
+		{
+			result = alGetEnumValue("AL_FORMAT_QUAD16");
+		}
+		return result;
+	}
+	
+	owBOOL LoadWAVEAudio( owBuffer * _pBuffer , WAVE_INFO * info)
+	{
+		// read header information
+		RIFF_HEADER riffHeader;
+		_pBuffer->Read( &riffHeader, sizeof(riffHeader));
+		if (memcmp(riffHeader.szRiffID,"RIFF",4)!= 0 || memcmp(riffHeader.szRiffFormat,"WAVE",4)!= 0)
+		{
+			return owFALSE;
+		}
+		FMT_BLOCK fmtblock;
+		_pBuffer->Read(&fmtblock, sizeof(FMT_BLOCK) );
+		if (memcmp(fmtblock.szFmtID,"fmt ",4) != 0)
+		{
+			return owFALSE;
+		}
+		// fmtBlock 大小只有16或者18这两种可能
+		if (fmtblock.dwFmtSize == 16 || fmtblock.dwFmtSize== 18)
+		{
+			if (fmtblock.dwFmtSize == 18)
+			{
+				unsigned int addition;
+				_pBuffer->Read(&addition,sizeof(unsigned int));
+			}
+		}
+		else
+		{
+			return owFALSE;
+		}
+		// 
+		info->m_format = WAVEFormat2AL(&fmtblock);
+		info->m_samplePerSec = fmtblock.wavFormat.dwSamplesPerSec;
+		// read data blocks
+		CHUNK_INFO chunkInfo;
+		while (_pBuffer->Read(&chunkInfo,sizeof(chunkInfo)) == sizeof(chunkInfo))
+		{
+			// get audio buffer data only
+			if (memcmp(chunkInfo.szChunkID,"data",4) == 0)
+			{
+				DATA_CHUNK  &dataChunk = info->m_DataChunk;
+				dataChunk.nDataSize = chunkInfo.dwChunkSize;
+				dataChunk.pData = new owCHAR[dataChunk.nDataSize];
+				if(_pBuffer->Read(dataChunk.pData,dataChunk.nDataSize) != dataChunk.nDataSize)
+				{
+					return owFALSE;
+				}
+				break;
+			}
+			else
+			{
+				// 跳过这片数据区域
+				_pBuffer->Seek(SEEK_CUR ,chunkInfo.dwChunkSize);
+			}
+		}
+		return owTRUE;
+	}
 	
 	size_t owAEVorbisRead( void * _pData, size_t _nElement, size_t _nCount, void * _pFile)
 	{
@@ -413,30 +554,111 @@ namespace ow
 		pBuffer->Init();
 		return pBuffer;
 	}
+	
+	owAEBuffer* owAEDevice::CreateBufferVorbis(ow::owBuffer* _pVorbisBuffer)
+	{
+		VorbisStruct vorbis;
+		owINT32 error = ov_open_callbacks( _pVorbisBuffer, &vorbis.m_vorbisFile,NULL,0,OW_CALLBACKS_VORBIS);
+		if( error != 0)
+		{
+			assert(false);
+			return NULL;
+		}
+		vorbis.m_pBuffer = _pVorbisBuffer;
+		// 读取信息与注释
+		vorbis.m_pVorbisInfo = ov_info( &vorbis.m_vorbisFile, -1);
+		vorbis.m_pVorbisComment = ov_comment( &vorbis.m_vorbisFile, -1);
+		// 分析音频 format
+		vorbis.m_nFrameBufferSize = vorbis.m_pVorbisInfo->rate * 2 * FRAME_BUFFER_TIME_MS / 1000.0f;
+		switch(vorbis.m_pVorbisInfo->channels)
+		{
+			// 单声道
+			case 1:
+				vorbis.m_iFormat=AL_FORMAT_MONO16;
+				break;
+			// 双声道
+			case 2:
+				vorbis.m_iFormat=AL_FORMAT_STEREO16;
+				vorbis.m_nFrameBufferSize*=2;
+				break;
+			// 四声道
+			case 4:
+				vorbis.m_iFormat=alGetEnumValue("AL_FORMAT_QUAD16");
+				vorbis.m_nFrameBufferSize*=4;
+				break;
+			// 6声道
+			case 6:
+				vorbis.m_iFormat = alGetEnumValue("AL_FORMAT_51CHN16");
+				vorbis.m_nFrameBufferSize*=6;
+				break;
+			default:
+				ov_clear(&vorbis.m_vorbisFile);
+				return NULL;
+		}
+		vorbis.m_pFrameBuffer = new owCHAR[ vorbis.m_nFrameBufferSize];
+		// 从vorbis里读取数据
+		owINT32 pcmSize = ov_pcm_total(&vorbis.m_vorbisFile,-1);
+		owBuffer * pPcmBuffer = CreateMemBuffer( pcmSize ); // 默认保留5s的大小，避免频繁的realloc
+		while(vorbis.Eof() == owFALSE)
+		{
+			owINT32 decodeSize = vorbis.DecodeNextFrame();
+			pPcmBuffer->Write(vorbis.m_pFrameBuffer, decodeSize);
+		}
+		owAEBuffer * pAEBuffer = new owAEBuffer;
+		pAEBuffer->Init();
+		pAEBuffer->BufferData(
+					vorbis.m_iFormat,
+					pPcmBuffer->GetBuffer(),
+					pPcmBuffer->Size(),
+					vorbis.m_pVorbisInfo->rate
+					);
+		return pAEBuffer;
+	}
 
-	owAESource* ow::owAEDevice::CreateSource()
+	owAEBuffer* owAEDevice::CreateBufferWav(ow::owBuffer* _pWavBuffer)
+	{
+		WAVE_INFO waveInfo;
+		owBOOL ret = LoadWAVEAudio(_pWavBuffer, &waveInfo);
+		if(ret == owFALSE)
+		{
+			return NULL;
+		}
+		owAEBuffer * pAEBuffer = new owAEBuffer;
+		pAEBuffer->Init();
+		pAEBuffer->BufferData(
+				waveInfo.m_format,
+				waveInfo.m_DataChunk.pData,
+				waveInfo.m_DataChunk.nDataSize,
+				waveInfo.m_samplePerSec
+				);
+		return pAEBuffer;
+	}
+
+	owAESource* owAEDevice::CreateSource()
 	{
 		owAESource * pSource = new owAESource();
 		pSource->Init();
 		return pSource;
 	}
 
-	owAEVorbisSource* ow::owAEDevice::CreateVorbisSource( ow::owBuffer * _pVorbisBuffer )
+	owAEVorbisSource* owAEDevice::CreateVorbisSource( ow::owBuffer * _pVorbisBuffer )
 	{
 		owAEVorbisSource * pVorbisSource = new owAEVorbisSource();
 		pVorbisSource->Init( _pVorbisBuffer);
 		return pVorbisSource;
 	}
 
-	owBOOL ow::owAEDevice::Init()
+	owBOOL owAEDevice::Init()
 	{
 		__CLEAR_AL_ERROR__
+		
 		if(m_pContext == NULL)
 		{
 			this->m_pDevice = alcOpenDevice( NULL);
 			this->m_pContext = alcCreateContext( m_pDevice, NULL);
 			alcMakeContextCurrent( m_pContext);
 		}
+		
 		__CHECK_AL_ERROR__
 		return owTRUE;
 	}
@@ -461,8 +683,5 @@ namespace ow
 	}
 
 }
-
-
-
 
 

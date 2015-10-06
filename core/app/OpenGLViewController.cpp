@@ -46,6 +46,12 @@ void OpenGLViewController::OnInit()
 	m_pPlayer->Init(vorbisFile);
 	m_pPlayer->Play();
 	
+	owBuffer * vorbisSound = BufferFromFile( "ring.ogg");
+	ow::owAEBuffer* pAEBuffer = m_pAudioDevice->CreateBufferVorbis( vorbisSound);
+	ow::owAESource * pAESource = m_pAudioDevice->CreateSource();
+	pAESource->SetBuffer( pAEBuffer);
+	pAESource->Play();
+	
 	__pViewController = this;
 	ow::GetPreference().Init(szConfigPath);
 	m_pGameCamera = GetGameCamera();

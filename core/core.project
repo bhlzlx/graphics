@@ -183,7 +183,7 @@
         <IncludePath Value="."/>
         <IncludePath Value="../ow"/>
       </Compiler>
-      <Linker Options="-lglew32 -lglfw3 -lpng -lz -lgdi32 -lopengl32 -lfreetype -liconv -lopenal32 -logg -lvorbisfile" Required="yes"/>
+      <Linker Options="-lglew32 -lglfw3 -lpng -lz -lgdi32 -lopengl32 -lfreetype -liconv -lopenal32 -logg.dll -lvorbisfile.dll" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(BuildDir)/$(ProjectName)/$(ProjectName)" IntermediateDirectory="$(BuildDir)/$(ProjectName)/Debug" Command="$(BuildDir)/$(ProjectName)/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(BuildDir)/$(ProjectName)/" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
