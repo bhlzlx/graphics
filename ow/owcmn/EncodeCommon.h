@@ -3,6 +3,6 @@
 
 #include <stdint.h>
 
-uint32_t UTF82Unicode( uint16_t * _pUTF8, uint32_t _nDataLen, uint16_t* _pUnicode, uint32_t _nBufferSize);
+uint32_t UTF82Unicode( const  uint16_t * _pUTF8, uint32_t _nDataLen, uint16_t* _pUnicode, uint32_t _nBufferSize);
 
 #endif // __EncodeCommon_H__

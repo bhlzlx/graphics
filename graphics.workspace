@@ -3,8 +3,8 @@
   <Environment>
     <![CDATA[]]>
   </Environment>
-  <Project Name="packager" Path="packager/packager.project" Active="Yes"/>
-  <Project Name="core" Path="core/core.project" Active="No"/>
+  <Project Name="packager" Path="packager/packager.project" Active="No"/>
+  <Project Name="core" Path="core/core.project" Active="Yes"/>
   <Project Name="core" Path="audio/audio.project" Active="Yes"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">

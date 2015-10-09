@@ -128,9 +128,10 @@ namespace ow
 	
 	struct VorbisStruct
 	{
-		VorbisStruct()
+		VorbisStruct( owBOOL _bLoop = owTRUE)
 		{
 			m_pFrameBuffer = NULL;
+			m_bLoop = _bLoop;
 		}
 		~VorbisStruct()
 		{
@@ -139,6 +140,7 @@ namespace ow
 				delete []m_pFrameBuffer;
 			}
 		}
+		owBOOL				m_bLoop;
 		// vorbis数据源
 		ow::owBuffer*		m_pBuffer;
 		// vorbis对象
@@ -154,6 +156,7 @@ namespace ow
 		owINT32				m_nFrameBufferSize;
 		
 		owINT32 DecodeNextFrame();
+		owINT32 DecodeBytes( owBYTE * _pBuff, owINT32 _nBytes );
 		owINT32 Size();
 		owINT32 Tell();
 		owBOOL Eof();

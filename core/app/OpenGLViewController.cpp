@@ -18,6 +18,8 @@
 
 #include <settings/settings.h>
 #include <owcmn/EncodeCommon.h>
+#include <owcmn/ResourcePool.h>
+#include <owcmn/owcmn.h>
 
 const char * szConfigPath = "./config.txt";
 
@@ -40,20 +42,33 @@ namespace Graphics
 
 void OpenGLViewController::OnInit()
 {	
+	
+	ow::GetPreference().Init(szConfigPath);
+
 	this->m_pAudioDevice = ow::GetAudioDevice();
 	m_pPlayer = new ow::owAEMusicPlayer();
-	ow::owBuffer * vorbisFile = ow::CreateFileBuffer("./greensleeves.ogg");
-	m_pPlayer->Init(vorbisFile);
-	m_pPlayer->Play();
 	
-	owBuffer * vorbisSound = CreateFileBuffer( "ring.ogg");
-	ow::owAEBuffer* pAEBuffer = m_pAudioDevice->CreateBufferVorbis( vorbisSound);
-	ow::owAESource * pAESource = m_pAudioDevice->CreateSource();
-	pAESource->SetBuffer( pAEBuffer);
-	pAESource->Play();
+	std::string& bgm = ow::GetPreference().GetStringValue("BGM");
+	ow::owBuffer * vorbisFile = ow::CreateFileBuffer(bgm.c_str());
+	if(vorbisFile)
+	{
+		m_pPlayer->Init(vorbisFile);
+		m_pPlayer->Play();
+	}
+
+	std::string& sound = ow::GetPreference().GetStringValue("SOUND");
+	owBuffer * vorbisSound = CreateFileBuffer( sound.c_str() );
+	if(vorbisSound)
+	{
+		ow::owAEBuffer* pAEBuffer = m_pAudioDevice->CreateBufferVorbis( vorbisSound);
+		ow::owAESource * pAESource = m_pAudioDevice->CreateSource();
+		pAESource->SetBuffer( pAEBuffer);
+		pAESource->Play();
+		vorbisSound->Release();
+	}
 	
 	__pViewController = this;
-	ow::GetPreference().Init(szConfigPath);
+	
 	m_pGameCamera = GetGameCamera();
 	m_viewport.width = DEFAULT_SCREEN_WIDTH;
 	m_viewport.height = DEFAULT_SCREEN_HEIGHT;

@@ -261,6 +261,42 @@ namespace ow
 	{
 		return ov_raw_tell( &this->m_vorbisFile);
 	}
+	
+	owINT32 VorbisStruct::DecodeBytes( owBYTE * _pBuff, owINT32 _nBytes )
+	{
+		owINT32 decodeSize = 0;
+		owINT32 result;
+		owINT32 section;
+		while(decodeSize < _nBytes)
+		{
+			result=ov_read(
+			&this->m_vorbisFile,
+			(char *)_pBuff+decodeSize,
+			_nBytes-decodeSize,
+			0,
+			2,
+			1,
+			&section
+			);
+			// 文件尾
+			if(result == 0 )
+			{
+				break;
+			}
+			// 正常读取
+			else if( result > 0)
+			{
+				decodeSize += result;
+			}
+			// 发生错误
+			else
+			{
+				assert( result != OV_HOLE && result != OV_EBADLINK && result != OV_EINVAL);
+				break;
+			}
+		}
+		return decodeSize;
+	}
 	 
 	 owINT32 VorbisStruct::DecodeNextFrame()
 	 {
@@ -279,14 +315,19 @@ namespace ow
 			&section
 			);
 			// 文件尾
-			if(result == 0)
+			if(result == 0 )
 			{
+				size += result;
+				if(m_bLoop)
+				{
+					ov_pcm_seek( &m_vorbisFile, 0);
+				}
 				break;
 			}
 			// 正常读取
 			else if( result > 0)
 			{
-				size=result+size;
+				size += result;
 			}
 			// 发生错误
 			else
@@ -300,7 +341,9 @@ namespace ow
 	
 	owBOOL VorbisStruct::Eof()
 	{
-		return ( this->Size() == this->Tell() );
+		owINT32 nSize = this->Size();
+		owINT32 nTell = this->Tell();
+		return nSize == nTell;
 	}
 	
 	owBOOL owAESource::Init()
@@ -557,7 +600,7 @@ namespace ow
 	
 	owAEBuffer* owAEDevice::CreateBufferVorbis(ow::owBuffer* _pVorbisBuffer)
 	{
-		VorbisStruct vorbis;
+		VorbisStruct vorbis( owFALSE);
 		owINT32 error = ov_open_callbacks( _pVorbisBuffer, &vorbis.m_vorbisFile,NULL,0,OW_CALLBACKS_VORBIS);
 		if( error != 0)
 		{
@@ -595,15 +638,13 @@ namespace ow
 				ov_clear(&vorbis.m_vorbisFile);
 				return NULL;
 		}
-		vorbis.m_pFrameBuffer = new owCHAR[ vorbis.m_nFrameBufferSize];
 		// 从vorbis里读取数据
-		owINT32 pcmSize = ov_pcm_total(&vorbis.m_vorbisFile,-1);
-		owBuffer * pPcmBuffer = CreateMemBuffer( pcmSize ); // 默认保留5s的大小，避免频繁的realloc
-		while(vorbis.Eof() == owFALSE)
-		{
-			owINT32 decodeSize = vorbis.DecodeNextFrame();
-			pPcmBuffer->Write(vorbis.m_pFrameBuffer, decodeSize);
-		}
+		ov_pcm_seek(&vorbis.m_vorbisFile,0);
+		// 对于pcm数据大小的计算是这样的：ov_pcm_total返回整个文件的采样数，而每个采样在OGG里有16位
+		// 全部都是16位（2 bytes!）,所以pcm大小的计算是采样数 * 声道数 * 2 bytes!
+		owINT32 pcmSize = ov_pcm_total(&vorbis.m_vorbisFile,-1) * vorbis.m_pVorbisInfo->channels * 2;
+		owBuffer * pPcmBuffer = CreateMemBuffer( pcmSize ); // 获取pcm数据大小，并创建相应大小的buffer
+		vorbis.DecodeBytes( (owBYTE*)pPcmBuffer->GetBuffer(), pcmSize );
 		owAEBuffer * pAEBuffer = new owAEBuffer;
 		pAEBuffer->Init();
 		pAEBuffer->BufferData(
@@ -612,6 +653,7 @@ namespace ow
 					pPcmBuffer->Size(),
 					vorbis.m_pVorbisInfo->rate
 					);
+		pPcmBuffer->Release();
 		return pAEBuffer;
 	}
 
