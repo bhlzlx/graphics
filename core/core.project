@@ -114,7 +114,6 @@
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="core">
-    <File Name="main.cpp"/>
     <VirtualDirectory Name="renderer">
       <File Name="core/renderer/TextRenderer.cpp"/>
       <File Name="core/renderer/TextRenderer.h"/>
@@ -257,4 +256,7 @@
       </Completion>
     </Configuration>
   </Settings>
+  <VirtualDirectory Name="src">
+    <File Name="main.cpp"/>
+  </VirtualDirectory>
 </CodeLite_Project>
