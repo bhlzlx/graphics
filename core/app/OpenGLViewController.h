@@ -19,6 +19,7 @@
 #include <gui/Label.h>
 #include <audio/owAudio.h>
 #include <audio/owAEPlayer.h>
+#include <package/owPackage.h>
 
 using namespace Graphics;
 using namespace glm;
@@ -32,6 +33,8 @@ struct OpenGLViewController
                         m_pMiniRenderPipeline;
 
 	GameScene			m_gameScene;
+	
+	ow::owPackage*		m_pPackage;
     
 	wchar_t				m_szTextSample[1024];
 	

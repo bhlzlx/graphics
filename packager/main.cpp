@@ -45,4 +45,5 @@ int main(int argc, char **argv)
 		file->Release();
 	}
 	ReleaseResourcePool();
+	system("pause");
 }

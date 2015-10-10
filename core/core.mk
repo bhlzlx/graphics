@@ -2,12 +2,12 @@
 ## Auto Generated makefile by CodeLite IDE
 ## any manual changes will be erased      
 ##
-## Debug
+## Release
 ProjectName            :=core
-ConfigurationName      :=Debug
+ConfigurationName      :=Release
 WorkspacePath          := "F:\gits\graphics"
 ProjectPath            := "F:\gits\graphics\core"
-IntermediateDirectory  :=$(BuildDir)/$(ProjectName)/Debug
+IntermediateDirectory  :=$(BuildDir)/$(ProjectName)/Release
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
@@ -27,8 +27,8 @@ OutputSwitch           :=-o
 LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
-OutputFile             :=$(BuildDir)/$(ProjectName)/$(ProjectName)
-Preprocessors          :=
+OutputFile             :=$(BuildDir)/$(ProjectName)/$(ProjectName)_release
+Preprocessors          :=$(PreprocessorSwitch)NDEBUG 
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
@@ -52,8 +52,8 @@ LibPath                :=$(LibraryPathSwitch)E:/tdmgcclib/lib $(LibraryPathSwitc
 AR       := E:/tdmgcc32/bin/ar.exe rcu
 CXX      := E:/tdmgcc32/bin/g++.exe
 CC       := E:/tdmgcc32/bin/gcc.exe
-CXXFLAGS :=  -g -O0 -Wall -std=gnu++0x  $(Preprocessors)
-CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -O2 -Wall -std=gnu++0x  $(Preprocessors)
+CFLAGS   :=  -O2 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := E:/tdmgcc32/bin/as.exe
 
@@ -88,11 +88,11 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
 MakeIntermediateDirs:
-	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Debug"
+	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Release"
 
 
 $(IntermediateDirectory)/.d:
-	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Debug"
+	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Release"
 
 PreBuild:
 
@@ -450,6 +450,6 @@ $(IntermediateDirectory)/log_logger.cpp$(PreprocessSuffix): ../ow/owcmn/log/logg
 ## Clean
 ##
 clean:
-	$(RM) -r $(BuildDir)/$(ProjectName)/Debug/
+	$(RM) -r $(BuildDir)/$(ProjectName)/Release/
 
 

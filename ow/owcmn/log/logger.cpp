@@ -13,6 +13,7 @@ Logger::Logger()
 
 Logger::~Logger()
 {
+	
 }
 
 void Logger::Write(const char * szText)
@@ -24,8 +25,8 @@ void Logger::Write(const char * szText)
 
 void Logger::Release()
 {
-    if(this->file)
         fclose(this->file);
+    if(this->file)
     delete this;
 }
 

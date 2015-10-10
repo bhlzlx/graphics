@@ -43,7 +43,7 @@ namespace Graphics
 		TextRenderer();
 		~TextRenderer();
 		
-		uint8_t Init( const char * _szFontpath, const char * _szFontLib );
+		uint8_t Init( owBuffer * _pFontBuffer, owBuffer * _pCharBuffer );
 		
 		void SetFontSize( float _fFontSize);
 		void SetFontColor( float _r, float _g, float _b, float _a);

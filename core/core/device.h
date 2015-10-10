@@ -2,10 +2,8 @@
 #define __GPAPHICS_DEVICE_H__
 
 #include <stdint.h>
-#include "buffer/buffer.h"
+#include <buffer/buffer.h>
 #include <gl/glew.h>
-
-#define BOOL GLboolean
 
 #define __check_error__  uint32_t error = glGetError(); if(error != GL_OK)
 
@@ -197,20 +195,20 @@ namespace Graphics
     
     struct RenderState
     {
-        BOOL            depthWritable;
-        BOOL            depthTestable;
+        owBOOL            depthWritable;
+        owBOOL            depthTestable;
         CMP_FUNC        depthFunc;
         
-        BOOL            redChannelWritable;
-        BOOL            greenChannelWritable;
-        BOOL            blueChannelWritable;
-        BOOL            alphaChannelWritable;
+        owBOOL            redChannelWritable;
+        owBOOL            greenChannelWritable;
+        owBOOL            blueChannelWritable;
+        owBOOL            alphaChannelWritable;
         
         CULL_MODE       cullMode;
         
-        BOOL            scissorable;
+        owBOOL            scissorable;
         
-        BOOL            blendable;
+        owBOOL            blendable;
         BLEND_FACTOR    blendSrc;
         BLEND_FACTOR    blendDest;
         BLEND_OP        blendOpt;

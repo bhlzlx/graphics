@@ -29,7 +29,10 @@ namespace gui
 	
 	void GuiRenderer::Render( GuiObject * _pGuiObject )
 	{
-		_pGuiObject->Draw( m_pEffect, m_pTextRenderer);
+		if(m_pEffect && m_pTextRenderer)
+		{
+			_pGuiObject->Draw( m_pEffect, m_pTextRenderer);
+		}
 	}
 	
 	Label::Label()
@@ -47,6 +50,7 @@ namespace gui
 		// 画文字
 		_pTextRenderer->SetFontColor( this->m_vecColor.x ,this->m_vecColor.y, this->m_vecColor.z, this->m_vecColor.w);
 		_pTextRenderer->SetFontSize( this->m_fFontSize);
+		 
 		_pTextRenderer->Render(m_pTex,m_offset,m_szText,m_nTextLen);
 		// 将文字渲染到主界面
 		RenderPipelineDefault * pPipeline = RenderPipelineDefault::GetRenderPipelineDefault( NULL );
@@ -63,6 +67,7 @@ namespace gui
 		_pEffect->m_pShader->SetUniformData(&drawRect,"DRAW_RECT");
 		_pEffect->m_pShader->SetTexture(0,this->m_pTex);
 		glDrawArrays(GL_TRIANGLES,0,6);
+		
 		_pEffect->End();
 	}
 
@@ -78,6 +83,8 @@ namespace gui
 		texDesc.size.width = _rc.width;
 		texDesc.size.height = _rc.height;
 		pLabel->m_pTex = Graphics::TexOGL::CreateTex( &texDesc, false);
+		
+		return pLabel;
 	}
 }
 

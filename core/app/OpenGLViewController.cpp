@@ -20,6 +20,7 @@
 #include <owcmn/EncodeCommon.h>
 #include <owcmn/ResourcePool.h>
 #include <owcmn/owcmn.h>
+#include <package/owPackage.h>
 
 const char * szConfigPath = "./config.txt";
 
@@ -41,26 +42,35 @@ namespace Graphics
 }
 
 void OpenGLViewController::OnInit()
-{	
+{
+	m_pPackage = new ow::owPackage();
+	m_pPackage->Init("package.pkg");
 	
-	ow::GetPreference().Init(szConfigPath);
-
+	owMemFile * pConfigFile = (owMemFile*)m_pPackage->Open("config.txt");
+	assert(pConfigFile);
+	ow::GetPreference().Init( pConfigFile->m_pMemBuffer);
+	pConfigFile->Release();
+	
 	this->m_pAudioDevice = ow::GetAudioDevice();
 	m_pPlayer = new ow::owAEMusicPlayer();
 	
+	
 	std::string& bgm = ow::GetPreference().GetStringValue("BGM");
-	ow::owBuffer * vorbisFile = ow::CreateFileBuffer(bgm.c_str());
+	
+	owMemFile * vorbisFile = (owMemFile*)m_pPackage->Open(bgm.c_str());
+	assert(vorbisFile);
 	if(vorbisFile)
 	{
-		m_pPlayer->Init(vorbisFile);
+		m_pPlayer->Init(vorbisFile->m_pMemBuffer);
 		m_pPlayer->Play();
 	}
 
 	std::string& sound = ow::GetPreference().GetStringValue("SOUND");
-	owBuffer * vorbisSound = CreateFileBuffer( sound.c_str() );
+	owMemFile * vorbisSound = (owMemFile * )m_pPackage->Open(sound.c_str());
+	assert(vorbisSound);
 	if(vorbisSound)
 	{
-		ow::owAEBuffer* pAEBuffer = m_pAudioDevice->CreateBufferVorbis( vorbisSound);
+		ow::owAEBuffer* pAEBuffer = m_pAudioDevice->CreateBufferVorbis( vorbisSound->m_pMemBuffer);
 		ow::owAESource * pAESource = m_pAudioDevice->CreateSource();
 		pAESource->SetBuffer( pAEBuffer);
 		pAESource->Play();
@@ -122,7 +132,7 @@ void OpenGLViewController::OnInit()
 								config.GetFloatValue("GUI_COLOR_ALPHA")
 							);
 							
-	m_pLabel = gui::Label::CreateLabel( labelRect, labelColor, lableFontSize);
+	
 	
 	// 将utf8转换为unicode编码
 	std::string& labelText = ow::GetPreference().GetStringValue("LABEL_STRING");
@@ -132,7 +142,10 @@ void OpenGLViewController::OnInit()
 	uint16_t * ptr_out = (uint16_t *)pUTFBuffer->GetBuffer();
 	uint32_t size_avail = pUTFBuffer->Size();
 	uint32_t count = UTF82Unicode(ptr_in,size_in,ptr_out,size_avail);
-	m_pLabel->m_szText = new uint16_t[count];
+	
+	m_pLabel = gui::Label::CreateLabel( labelRect, labelColor, lableFontSize);
+	m_pLabel->m_szText = new uint16_t[count + 1];
+	m_pLabel->m_szText[count] = 0;
 	memcpy(m_pLabel->m_szText, pUTFBuffer->GetBuffer(),sizeof(uint16_t) * count);
 	pUTFBuffer->Release();
 	m_pLabel->m_nTextLen = count;
@@ -144,7 +157,7 @@ void OpenGLViewController::OnUpdate()
 	
 	m_pRenderPipelineDefault->Begin();
 	m_gameScene.Render(timepassed);
-	
+
 	m_pGuiRenderer->Render( m_pLabel);
 	
     m_pRenderPipelineDefault->End();

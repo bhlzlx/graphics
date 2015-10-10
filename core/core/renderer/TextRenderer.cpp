@@ -8,6 +8,8 @@
 #include <core/depthstencilogl.h>
 
 #include <settings/settings.h>
+#include <owFile/owFile.h>
+#include <app/openglviewcontroller.h>
 
 namespace Graphics
 {
@@ -27,17 +29,8 @@ namespace Graphics
 	{
 	}
 
-	uint8_t TextRenderer::Init( const char * _szFontpath, const char * _szFontLib )
-	{
-		// 判断文件可读性
-		FILE * file = NULL;
-		file = fopen(_szFontLib,"r");
-		assert(file);
-		fclose(file);
-		file = fopen(_szFontpath,"r");
-		assert(file);
-		fclose(file);
-		
+	uint8_t TextRenderer::Init( owBuffer * _pFontBuffer, owBuffer * _pCharBuffer )
+	{		
 		// 初始化 shader effect
 		Graphics::EffectDesc effectDesc;
 		effectDesc.renderState.blendDest = BLEND_FACTOR_INVSRCALPHA;
@@ -73,7 +66,7 @@ namespace Graphics
 		
 		
 		// 将utf8转换为unicode编码
-		owBuffer * pFontlibBuffer = CreateFileBuffer( _szFontLib);	
+		owBuffer * pFontlibBuffer = _pCharBuffer;	
 		owBuffer * pUTFBuffer = CreateMemBuffer( pFontlibBuffer->Size() * 1.5);
 		
 		owBYTE * ptr_in = pFontlibBuffer->GetBuffer();
@@ -97,8 +90,6 @@ namespace Graphics
 		char_count =  (pUTFBuffer->Size() - size_avail) / sizeof(uint16_t);
 		// 关闭转换流
 		iconv_close(conv);
-		// 销毁文件缓冲
-		pFontlibBuffer->Release();
 		// 创建Font内存池
 		this->m_pMemPool = new ow::SMemPool(32,sizeof(FontCharacter));
 		// 分配满FontChar位,置零
@@ -109,7 +100,7 @@ namespace Graphics
 		FT_Face			freetype_face;
 		
 		error = FT_Init_FreeType( &freetype_lib);
-		error = FT_New_Face( freetype_lib, _szFontpath, 0, &freetype_face);
+		error = FT_New_Memory_Face( freetype_lib, _pFontBuffer->GetBuffer(), _pFontBuffer->Size(), 0, &freetype_face);
 		error = FT_Select_Charmap(freetype_face,FT_ENCODING_UNICODE);
 		error = FT_Set_Char_Size(freetype_face, 0, FONT_BOUND*64, PPI, PPI);
 		// 遍历字符
@@ -333,11 +324,17 @@ namespace Graphics
 		if( __pTextureRenderer == NULL)
 		{
 			__pTextureRenderer = new TextRenderer();
+			
 			ow::Preference & config = ow::GetPreference();
 			const char * fontPath = config.m_strings["FONT_TTF"].c_str();
 			const char * charLib = config.m_strings["CHAR_LIB"].c_str();
 			FONT_BOUND = config.m_floats["FONT_BASIC_SIZE"];
-			__pTextureRenderer->Init( fontPath, charLib);
+			
+			owMemFile * fontFile = (owMemFile*)__pViewController->m_pPackage->Open(fontPath);
+			owMemFile * charFile = (owMemFile*)__pViewController->m_pPackage->Open(charLib);
+			__pTextureRenderer->Init( fontFile->m_pMemBuffer, charFile->m_pMemBuffer);
+			fontFile->Release();
+			charFile->Release();
 		}
 		return __pTextureRenderer;
 	}

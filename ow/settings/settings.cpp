@@ -79,6 +79,59 @@ again:
 		return pRet;
 	}
 	
+	owBOOL Preference::Init( owBuffer * _pFileBuffer)
+	{
+		owBuffer * _pBuffer = _pFileBuffer;
+		if(_pBuffer == NULL)
+		{
+			return owFALSE;
+		}
+		owBuffer * bufferRef = (owBuffer*)0;
+		while(bufferRef = read_config_block(_pBuffer) )
+		{
+			char * pLine = read_line( bufferRef );
+			char ch;
+			int32_t ret = 0;
+			ret = sscanf(pLine,"< %c >",&ch);
+			assert(ret != 0);
+			
+			char keybuffer[32];
+			
+			if(ch == 'S')
+			{
+				int8_t * pBuffer = (int8_t*)STRING_POOL_PTR->Alloc( _GLOBAL_STRING_BUFFER_MAX_ );
+				owBuffer * stringBuffer = CreateBufferRef(pBuffer,_GLOBAL_STRING_BUFFER_MAX_);
+				while( pLine = read_line(bufferRef))
+				{
+					sscanf(pLine,"%s = %s", &keybuffer[0], stringBuffer->GetBuffer());
+					this->m_strings[keybuffer] = (char*)stringBuffer->GetBuffer();
+				}
+				stringBuffer->Release();
+				STRING_POOL_PTR->Recycle(pBuffer);
+			}
+			
+			else if(ch == 'F')
+			{
+				float value;
+				while( pLine = read_line(bufferRef))
+				{
+					sscanf(pLine, "%s = %f", &keybuffer[0], &value);
+					this->m_floats[keybuffer] = value;
+				}
+			}
+			else if(ch == 'I')
+			{
+				int value;
+				while( pLine = read_line(bufferRef))
+				{
+					sscanf(pLine, "%s = %d", &keybuffer[0], &value);
+					this->m_ints[keybuffer] = value;
+				}
+			}
+		}
+		return owTRUE;
+	}
+	
 	owBOOL Preference::Init( const owCHAR * _szFilepath)
 	{
 		owBuffer * _pBuffer = CreateFileBuffer( _szFilepath);

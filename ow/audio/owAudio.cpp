@@ -3,6 +3,7 @@
 #include <owcmn/owcmn.h>
 #include <buffer/buffer.h>
 #include <memory.h>
+#include <owcmn/log/logger.h>
 
 namespace ow
 {
@@ -613,6 +614,12 @@ namespace ow
 		vorbis.m_pVorbisComment = ov_comment( &vorbis.m_vorbisFile, -1);
 		// 分析音频 format
 		vorbis.m_nFrameBufferSize = vorbis.m_pVorbisInfo->rate * 2 * FRAME_BUFFER_TIME_MS / 1000.0f;
+		
+		if( vorbis.m_pVorbisInfo->channels != 1 )
+		{
+			ow::Logger::GetInstance(NULL)->Write("warning : sound effect is not mono type!");
+		}
+		
 		switch(vorbis.m_pVorbisInfo->channels)
 		{
 			// 单声道
