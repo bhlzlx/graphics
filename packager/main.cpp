@@ -22,11 +22,25 @@ int main(int argc, char **argv)
 	owINT32 pack_type = ow::GetPreference().GetIntValue("PACK_TYPE");
 	if(pack_type == 0 )
 	{
-		ow::owNodeW * rootNode = new owNodeW;	
+		ow::owNodeW * rootNode = new owNodeW;
 		owINT32 nodeNum = ow::owSearchDir( ow::GetPreference().GetStringValue("PACK_DIR").c_str(), rootNode);
+		if(nodeNum == 0)
+		{
+			printf("invalid directory : %s \n", ow::GetPreference().GetStringValue("PACK_DIR").c_str());
+			system("pause");
+			return -1;
+		}
 		rootNode->Sort();
 		rootNode->Print(0);
-		owCreatePackage( rootNode, nodeNum, ow::GetPreference().GetStringValue("TARGET_PACK").c_str());
+		owBOOL succeed = owCreatePackage( rootNode, nodeNum, ow::GetPreference().GetStringValue("TARGET_PACK").c_str());
+		if(succeed == owTRUE)
+		{
+			printf("create package succeed~\n");
+		}
+		else
+		{
+			printf("create package failed~\n");
+		}
 		rootNode->Release();
 	}
 	else

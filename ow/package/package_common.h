@@ -20,9 +20,6 @@
 
 namespace ow
 {
-
-
-
 	struct owPackHeader
 	{
 		// 版本号
@@ -65,8 +62,7 @@ namespace ow
 
 		void Print( int _nAlignSpace);
 
-		void Release()
-		;
+		void Release();
 	};
 
 	struct owNodeR
@@ -76,7 +72,6 @@ namespace ow
 	};
 
 	int32_t owSearchDir(const char * _szRoot, owNodeW * _pRootNode);
-
 	owBOOL owCreatePackage( ow::owNodeW* _pRootNode, owINT32 _nNodeNum, const owCHAR * _szFilepath);
 
 }

@@ -2,18 +2,18 @@
 ## Auto Generated makefile by CodeLite IDE
 ## any manual changes will be erased      
 ##
-## Debug
+## Release
 ProjectName            :=packager
-ConfigurationName      :=Debug
+ConfigurationName      :=Release
 WorkspacePath          := "F:\gits\graphics"
 ProjectPath            := "F:\gits\graphics\packager"
-IntermediateDirectory  :=$(BuildDir)/$(ProjectName)/Debug
+IntermediateDirectory  :=$(BuildDir)/$(ProjectName)/Release
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=10/10/2015
+Date                   :=12/10/2015
 CodeLitePath           :="E:\application\CodeLite"
 LinkerName             :=E:/tdmgcc32/bin/g++.exe
 SharedObjectLinkerName :=E:/tdmgcc32/bin/g++.exe -shared -fPIC
@@ -27,8 +27,8 @@ OutputSwitch           :=-o
 LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
-OutputFile             :=$(BuildDir)/$(ProjectName)/$(ProjectName)
-Preprocessors          :=
+OutputFile             :=$(BuildDir)/$(ProjectName)/$(ProjectName)_release
+Preprocessors          :=$(PreprocessorSwitch)NDEBUG 
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
@@ -37,7 +37,7 @@ PCHCompileFlags        :=
 MakeDirCommand         :=makedir
 RcCmpOptions           := 
 RcCompilerName         :=E:/tdmgcc32/bin/windres.exe
-LinkOptions            :=  -lz -lgdi32 -luser32 -lkernel32
+LinkOptions            :=  -lz
 IncludePath            := $(IncludeSwitch)E:/tdmgcclib/include $(IncludeSwitch)E:/tdmgcclib/include/freetype $(IncludeSwitch)F:/opengl/wxWidgets-3.0.2/include $(IncludeSwitch)F:/opengl/wxWidgets-3.0.2  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)../ow 
 IncludePCH             := 
 RcIncludePath          := 
@@ -52,8 +52,8 @@ LibPath                :=$(LibraryPathSwitch)E:/tdmgcclib/lib $(LibraryPathSwitc
 AR       := E:/tdmgcc32/bin/ar.exe rcu
 CXX      := E:/tdmgcc32/bin/g++.exe
 CC       := E:/tdmgcc32/bin/gcc.exe
-CXXFLAGS :=  -g -O0 -Wall -std=gnu++0x $(Preprocessors)
-CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
+CXXFLAGS :=  -O2 -Wall -std=gnu++0x $(Preprocessors)
+CFLAGS   :=  -O2 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := E:/tdmgcc32/bin/as.exe
 
@@ -85,11 +85,11 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
 MakeIntermediateDirs:
-	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Debug"
+	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Release"
 
 
 $(IntermediateDirectory)/.d:
-	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Debug"
+	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Release"
 
 PreBuild:
 
@@ -191,6 +191,6 @@ $(IntermediateDirectory)/memory_memory.cpp$(PreprocessSuffix): ../ow/memory/memo
 ## Clean
 ##
 clean:
-	$(RM) -r $(BuildDir)/$(ProjectName)/Debug/
+	$(RM) -r $(BuildDir)/$(ProjectName)/Release/
 
 
