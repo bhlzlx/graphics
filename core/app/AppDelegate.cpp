@@ -8,7 +8,7 @@
 #include <glm/glm.hpp>
 
 #include <owcmn/log/logger.h>
-#include <owcmn/ResourcePool.h>
+#include <owcmn/resources.h>
 
 ow::Logger * __logger__ = NULL;
 
@@ -28,13 +28,13 @@ void AppDelegate::AppMouseAction(MouseEvent * event)
 void AppDelegate::AppDidStart()
 {
     printf("OpenGL Application Started~\n");
-	InitResourcePool();
+	resource::Init();
     this->m_pViewController->OnInit();
 }
 
 void AppDelegate::AppWillTerminate()
 {
-	ReleaseResourcePool();
+	resource::Release();
     m_pViewController->Release();
 }
 

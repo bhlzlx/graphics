@@ -36,8 +36,8 @@
       <File Name="../ow/owcmn/EncodeCommon.h"/>
       <File Name="../ow/owcmn/owcmn.cpp"/>
       <File Name="../ow/owcmn/owcmn.h"/>
-      <File Name="../ow/owcmn/ResourcePool.cpp"/>
-      <File Name="../ow/owcmn/ResourcePool.h"/>
+      <File Name="../ow/owcmn/resources.h"/>
+      <File Name="../ow/owcmn/resources.cpp"/>
     </VirtualDirectory>
     <VirtualDirectory Name="algorithm">
       <File Name="../ow/algorithm/md5.cpp"/>

@@ -55,6 +55,7 @@ struct CCamera
 	mat4& GetProjectionMatrix();
 	
 	void updateFrustumPlane();
+	void updateListener();
 	bool InFrustumBoundBox(float _x, float _y, float _z);
 	bool InFrustumBoundBox( Graphics::aabb & _box );
 	

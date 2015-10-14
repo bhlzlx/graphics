@@ -20,6 +20,7 @@
 #include <audio/owAudio.h>
 #include <audio/owAEPlayer.h>
 #include <package/owPackage.h>
+#include <audioManager/AudioManager.h>
 
 using namespace Graphics;
 using namespace glm;
@@ -51,8 +52,7 @@ struct OpenGLViewController
 	gui::GuiRenderer*	m_pGuiRenderer;
 	gui::Label*			m_pLabel;
 	
-	ow::owAEDevice*		m_pAudioDevice;
-	ow::owAEMusicPlayer * m_pPlayer;;
+	app::AudioManager*	m_pAudioManager;
 
     OpenGLViewController();
 

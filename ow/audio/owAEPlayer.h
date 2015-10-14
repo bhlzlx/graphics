@@ -15,13 +15,16 @@ namespace ow
 		eAEPlay,
 		eAEPause,
 		eAEStop,
+		eAEUnload,
 		eAEDestroy,
+		eAESetupSource,
 		eAEIdle
 	} MSGType;
 
 	struct AEMSG
 	{
-		MSGType type;
+		MSGType 	type;
+		owVOID * 	ptr;
 	};
 
 	struct AEMessageQueue;
@@ -39,23 +42,28 @@ namespace ow
 		pthread_cond_t 			m_waitCond;
 		pthread_mutex_t 		m_waitMutex;
 
-
 	private:
 		void __Release();
 		void __Play();
 		void __Pause();
 		void __Stop();
+		void __Unload();
+		void __SetupMusic( void * ptr );
 
 		
 	public:
 		owAEMusicPlayer(void);
 		~owAEMusicPlayer(void);
-		bool Init( ow::owBuffer * _pFileBuffer);
+		bool Init();
 
+		void SetupMusic( ow::owBuffer * _pFileBuffer );
 		void Release();
 		void Play();
 		void Pause();
 		void Stop();
+		void Unload();
+		MSGType GetState();
+		
 		
 		static void * MusicThreadProc(void *);
 	};

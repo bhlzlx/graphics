@@ -5,6 +5,7 @@
 #include "Camera.h"
 #include <cstring>
 #include <cstdio>
+#include <audio/owAudio.h>
 
 #define M_PI		3.14159265358979323846
 
@@ -46,6 +47,7 @@ void CCamera::Forward(float iden)
     m_viewMatrix = m_rotateMatrix * m_offsetMatrix;
 	m_vpMat = m_projectionMatrix * m_viewMatrix;
 	updateFrustumPlane();
+	updateListener();
 }
 
 void CCamera::Leftward(float iden)
@@ -59,6 +61,7 @@ void CCamera::Leftward(float iden)
     m_viewMatrix = m_rotateMatrix * m_offsetMatrix;
 	m_vpMat = m_projectionMatrix * m_viewMatrix;
 	updateFrustumPlane();
+	updateListener();
 }
 void CCamera::Rightward(float iden)
 {
@@ -71,6 +74,7 @@ void CCamera::Rightward(float iden)
     m_viewMatrix = m_rotateMatrix * m_offsetMatrix;
 	m_vpMat = m_projectionMatrix * m_viewMatrix;
 	updateFrustumPlane();
+	updateListener();
 }
 
 void CCamera::Translate(vec4 &offset)
@@ -92,6 +96,7 @@ void CCamera::ApplyRotate()
     m_viewMatrix = m_rotateMatrix * m_offsetMatrix;
 	m_vpMat = m_projectionMatrix * m_viewMatrix;
 	updateFrustumPlane();
+	updateListener();
    // memcpy(&m_viewMatrix[3][0],&modelOffset[0],sizeof(float)*3);
 }
 
@@ -259,6 +264,19 @@ bool CCamera::InFrustumBoundBox(Graphics::aabb& _box)
 		}
 	}
 	return true;
+}
+
+void CCamera::updateListener()
+{
+	vec4 forward_vec = glm::inverse(m_rotateMatrix) * default_normal;
+	vec4 top_vec = glm::inverse( m_rotateMatrix) * default_top;
+	forward_vec += this->m_position;
+	top_vec += this->m_position;
+	ow::GetAudioDevice()->SetListenerPosition( &forward_vec.x);
+	vec3 oritation[2];
+	memcpy( &oritation[0].x, &forward_vec.x, sizeof(vec3));
+	memcpy( &oritation[1].x, &top_vec.x, sizeof(vec3));	
+	ow::GetAudioDevice()->SetListenerOritation( &oritation[0].x);
 }
 
 

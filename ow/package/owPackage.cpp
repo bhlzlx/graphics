@@ -76,7 +76,7 @@ namespace ow
 		return owTRUE;
 	}
 	
-	owFile* ow::owPackage::Open(const owCHAR* _szPath)
+	owFile* owPackage::Open(const owCHAR* _szPath)
 	{
 		owPath * path = CreatePath(_szPath);
 		ow::owNodeR * currNode = &this->m_pNodes[0];
@@ -147,12 +147,17 @@ namespace ow
 		return file;
 	}
 
-	ow::owPackage::owPackage()
+	owPackage::owPackage()
 	{
 		
 	}
 
-	ow::owPackage::~owPackage()
+	owPackage::~owPackage()
+	{
+		
+	}
+	
+	owVOID owPackage::Release()
 	{
 		
 	}

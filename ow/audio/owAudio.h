@@ -206,6 +206,16 @@ namespace ow
 		 * @param : _pVorbisBuffer : an ogg file buffer
 		 */
 		owAEVorbisSource * CreateVorbisSource( ow::owBuffer * _pVorbisBuffer );
+		
+		// 增益
+		owVOID SetListenerGain( owFLOAT _fGain);
+		// 位置
+		owVOID SetListenerPosition( owFLOAT * _pValues );
+		owVOID GetListenerPosition( owFLOAT * _pValues );
+		// 速度
+		owVOID SetListenerVelocity( owFLOAT * _pValues );
+		// 朝向 Lookat 位置 和 Up 向量
+		owVOID SetListenerOritation( owFLOAT * _pValues );
 	};
 	
 	owAEDevice * GetAudioDevice();

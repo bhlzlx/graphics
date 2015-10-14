@@ -5,7 +5,7 @@
 #include <memory/memory.h>
 #include <owcmn/owcmn.h>
 #include <owcmn/EncodeCommon.h>
-#include <owcmn/ResourcePool.h>
+#include <owcmn/resources.h>
 
 namespace ow
 {
@@ -99,15 +99,15 @@ again:
 			
 			if(ch == 'S')
 			{
-				int8_t * pBuffer = (int8_t*)STRING_POOL_PTR->Alloc( _GLOBAL_STRING_BUFFER_MAX_ );
-				owBuffer * stringBuffer = CreateBufferRef(pBuffer,_GLOBAL_STRING_BUFFER_MAX_);
+				int8_t * pBuffer = (int8_t*)resource::AllocString();
+				owBuffer * stringBuffer = CreateBufferRef(pBuffer,RESOURCE_STRING_LENGTH_MAX);
 				while( pLine = read_line(bufferRef))
 				{
 					sscanf(pLine,"%s = %s", &keybuffer[0], stringBuffer->GetBuffer());
 					this->m_strings[keybuffer] = (char*)stringBuffer->GetBuffer();
 				}
 				stringBuffer->Release();
-				STRING_POOL_PTR->Recycle(pBuffer);
+				resource::ReleaseString(pBuffer);
 			}
 			
 			else if(ch == 'F')
@@ -152,15 +152,15 @@ again:
 			
 			if(ch == 'S')
 			{
-				int8_t * pBuffer = (int8_t*)STRING_POOL_PTR->Alloc( _GLOBAL_STRING_BUFFER_MAX_ );
-				owBuffer * stringBuffer = CreateBufferRef(pBuffer,_GLOBAL_STRING_BUFFER_MAX_);
+				int8_t * pBuffer = (int8_t*)resource::AllocString();
+				owBuffer * stringBuffer = CreateBufferRef(pBuffer, resource::STRING_LENGTH_MAX);
 				while( pLine = read_line(bufferRef))
 				{
 					sscanf(pLine,"%s = %s", &keybuffer[0], stringBuffer->GetBuffer());
 					this->m_strings[keybuffer] = (char*)stringBuffer->GetBuffer();
 				}
 				stringBuffer->Release();
-				STRING_POOL_PTR->Recycle(pBuffer);
+				resource::ReleaseString(pBuffer);
 			}
 			
 			else if(ch == 'F')

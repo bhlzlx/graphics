@@ -18,9 +18,10 @@
 
 #include <settings/settings.h>
 #include <owcmn/EncodeCommon.h>
-#include <owcmn/ResourcePool.h>
+#include <owcmn/resources.h>
 #include <owcmn/owcmn.h>
 #include <package/owPackage.h>
+
 
 const char * szConfigPath = "./config.txt";
 
@@ -43,39 +44,9 @@ namespace Graphics
 
 void OpenGLViewController::OnInit()
 {
-	m_pPackage = new ow::owPackage();
-	m_pPackage->Init("package.pkg");
-	
-	owMemFile * pConfigFile = (owMemFile*)m_pPackage->Open("config.txt");
-	assert(pConfigFile);
-	ow::GetPreference().Init( pConfigFile->m_pMemBuffer);
-	pConfigFile->Release();
-	
-	this->m_pAudioDevice = ow::GetAudioDevice();
-	m_pPlayer = new ow::owAEMusicPlayer();
-	
-	
-	std::string& bgm = ow::GetPreference().GetStringValue("BGM");
-	
-	owMemFile * vorbisFile = (owMemFile*)m_pPackage->Open(bgm.c_str());
-	assert(vorbisFile);
-	if(vorbisFile)
-	{
-		m_pPlayer->Init(vorbisFile->m_pMemBuffer);
-		m_pPlayer->Play();
-	}
-
-	std::string& sound = ow::GetPreference().GetStringValue("SOUND");
-	owMemFile * vorbisSound = (owMemFile * )m_pPackage->Open(sound.c_str());
-	assert(vorbisSound);
-	if(vorbisSound)
-	{
-		ow::owAEBuffer* pAEBuffer = m_pAudioDevice->CreateBufferVorbis( vorbisSound->m_pMemBuffer);
-		ow::owAESource * pAESource = m_pAudioDevice->CreateSource();
-		pAESource->SetBuffer( pAEBuffer);
-		pAESource->Play();
-		vorbisSound->Release();
-	}
+	m_pAudioManager = app::GetAudioManager();
+	m_pAudioManager->PlaySound2D( 1 );
+	m_pAudioManager->PlayMusic( 1 );
 	
 	__pViewController = this;
 	
@@ -131,9 +102,7 @@ void OpenGLViewController::OnInit()
 								config.GetFloatValue("GUI_COLOR_BLUE"),
 								config.GetFloatValue("GUI_COLOR_ALPHA")
 							);
-							
-	
-	
+
 	// 将utf8转换为unicode编码
 	std::string& labelText = ow::GetPreference().GetStringValue("LABEL_STRING");
 	owBuffer * pUTFBuffer = CreateMemBuffer( labelText.size() * 2);
@@ -271,5 +240,6 @@ void OpenGLViewController::Release()
 {
     this->m_pMiniRenderPipeline->Release();
     this->m_pRenderPipelineDefault->Release();
+	this->m_pAudioManager->Release();
     delete this;
 }

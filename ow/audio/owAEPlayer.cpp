@@ -67,6 +67,11 @@ namespace ow
 	{
 
 	}
+	
+	MSGType owAEMusicPlayer::GetState()
+	{
+		return this->m_state.type;
+	}
 
 
 	owAEMusicPlayer::~owAEMusicPlayer(void)
@@ -74,9 +79,9 @@ namespace ow
 
 	}
 
-	bool owAEMusicPlayer::Init( ow::owBuffer * _pFileBuffer)
+	bool owAEMusicPlayer::Init()
 	{
-		m_pMusicSrc = GetAudioDevice()->CreateVorbisSource( _pFileBuffer);
+		m_pMusicSrc = NULL;
 		m_pMsgQueue = new AEMessageQueue();
 		m_state.type=eAEIdle;
 		pthread_create(&this->m_thread_t,NULL,owAEMusicPlayer::MusicThreadProc,this);
@@ -99,6 +104,15 @@ namespace ow
 		aemsg.type=eAEPlay;
 		m_pMsgQueue->PostMsg(aemsg);
 	}
+	
+	void owAEMusicPlayer::SetupMusic( ow::owBuffer * _pFileBuffer )
+	{
+		AEMSG aemsg;
+		aemsg.type=eAESetupSource;
+		aemsg.ptr = (void *)_pFileBuffer;
+		m_pMsgQueue->PostMsg(aemsg);
+	}
+	
 	void owAEMusicPlayer::Pause()
 	{
 		AEMSG aemsg;
@@ -111,36 +125,71 @@ namespace ow
 		aemsg.type=eAEStop;
 		m_pMsgQueue->PostMsg(aemsg);
 	}
+	
+	void owAEMusicPlayer::Unload()
+	{
+		AEMSG aemsg;
+		aemsg.type=eAEUnload;
+		m_pMsgQueue->PostMsg(aemsg);
+	}
 
 	void owAEMusicPlayer::__Release()
 	{
-		this->m_pMusicSrc->Release();
+		if( m_pMusicSrc )
+		{
+			this->m_pMusicSrc->Release();
+		}
 		this->m_pMsgQueue->Release();
 		delete this;
 	}
 
 	void owAEMusicPlayer::__Play()
 	{
-		if(m_state.type != eAEPlay)
+		if(m_state.type != eAEPlay && m_pMusicSrc)
 		{
 			m_pMusicSrc->Play();
 			m_state.type=eAEPlay;
 		}
 		
 	}
+	
+	void owAEMusicPlayer::__SetupMusic( void * ptr )
+	{
+		// 停止播放
+		if(this->m_state.type == eAEPlay)
+		{
+			this->__Stop();
+		}
+		// 卸载资源
+		this->__Unload();
+		// 重新分配资源
+		ow::owBuffer * pBuffer = (ow::owBuffer *)ptr;
+		this->m_pMusicSrc = ow::GetAudioDevice()->CreateVorbisSource( pBuffer);
+	}
 
 	void owAEMusicPlayer::__Pause()
 	{
-		if(m_state.type==eAEPlay)
+		if(m_state.type==eAEPlay && m_pMusicSrc)
 		{
 			m_pMusicSrc->Pause();
 			m_state.type=eAEPause;
 		}
 		
 	}
+	
+	void owAEMusicPlayer::__Unload()
+	{
+		if(this->m_pMusicSrc)
+		{
+			m_pMusicSrc->Release();
+			m_pMusicSrc = NULL;
+		}
+		this->m_state.type = eAEPause;
+	}
+	
 	void owAEMusicPlayer::__Stop()
 	{
-		if(m_state.type==eAEPlay)
+		if(m_state.type==eAEPlay && m_pMusicSrc)
 		{
 			m_pMusicSrc->Stop();
 			m_state.type=eAEPause;
@@ -152,12 +201,15 @@ namespace ow
 		owAEMusicPlayer * pPlayer = (owAEMusicPlayer *)_ptr;
 		while(true)
 		{
-			AEMSG msg;
+			static AEMSG msg;
 			bool r = pPlayer->m_pMsgQueue->GetMsg(msg);
 			if(r)
 			{
 				switch(msg.type)
 				{
+				case eAESetupSource:
+					pPlayer->__SetupMusic(msg.ptr);
+					break;
 				case eAEPlay:
 					  pPlayer->__Play();
 					break;
@@ -167,6 +219,9 @@ namespace ow
 				case eAEStop:
 					pPlayer->__Stop();
 					break;
+				case eAEUnload:
+					pPlayer->__Unload();
+					break;
 				case eAEDestroy:
 					pPlayer->__Release();
 					return NULL;
@@ -174,7 +229,7 @@ namespace ow
 			}
 			else
 			{
-				if(pPlayer->m_state.type == eAEPlay)
+				if(pPlayer->m_state.type == eAEPlay && pPlayer->m_pMusicSrc )
 				{
 					pPlayer->m_pMusicSrc->UpdateBuffer();
 				}

@@ -9,7 +9,7 @@
 
 #include <settings/settings.h>
 #include <owFile/owFile.h>
-#include <app/openglviewcontroller.h>
+#include <owcmn/resources.h>
 
 namespace Graphics
 {
@@ -330,8 +330,8 @@ namespace Graphics
 			const char * charLib = config.m_strings["CHAR_LIB"].c_str();
 			FONT_BOUND = config.m_floats["FONT_BASIC_SIZE"];
 			
-			owMemFile * fontFile = (owMemFile*)__pViewController->m_pPackage->Open(fontPath);
-			owMemFile * charFile = (owMemFile*)__pViewController->m_pPackage->Open(charLib);
+			owMemFile * fontFile = (owMemFile*)resource::GetPackage()->Open(fontPath);
+			owMemFile * charFile = (owMemFile*)resource::GetPackage()->Open(charLib);
 			__pTextureRenderer->Init( fontFile->m_pMemBuffer, charFile->m_pMemBuffer);
 			fontFile->Release();
 			charFile->Release();

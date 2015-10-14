@@ -363,7 +363,6 @@ namespace ow
 	{
 		if( Valid() )
 		{
-			this->m_pBuffer->Release();
 			alDeleteSources( 1, &m_iSource );
 		}
 		memset( this, 0, sizeof( owAESource));
@@ -449,7 +448,7 @@ namespace ow
 	 * 
 	 * ********************************************************/
 
-	owVOID ow::owAEVorbisSource::FillFirstCycle()
+	owVOID owAEVorbisSource::FillFirstCycle()
 	{
 		__CLEAR_AL_ERROR__
 		owINT32 size;
@@ -505,7 +504,7 @@ namespace ow
 		alSourceQueueBuffers(m_iSource,num,&bufferarray[0]);
 	}
 
-	owVOID ow::owAEVorbisSource::Init(owBuffer* _pBuffer)
+	owVOID owAEVorbisSource::Init(owBuffer* _pBuffer)
 	{
 		// 从owBuffer读取OGG信息
 		owUINT32 error;
@@ -565,24 +564,24 @@ namespace ow
 		this->FillFirstCycle();
 	}
 
-	owVOID ow::owAEVorbisSource::Pause()
+	owVOID owAEVorbisSource::Pause()
 	{
 		alSourcePause( m_iSource);
 	}
 
-	owVOID ow::owAEVorbisSource::Play()
+	owVOID owAEVorbisSource::Play()
 	{
 		alSourcePlay( m_iSource);
 	}
 
-	owVOID ow::owAEVorbisSource::Release()
+	owVOID owAEVorbisSource::Release()
 	{
 		alDeleteBuffers( 3, &this->m_vecBuffers[0]);
 		alDeleteSources( 1, &this->m_iSource);
 		this->m_vorbis.Clear();
 	}
 
-	owVOID ow::owAEVorbisSource::Stop()
+	owVOID owAEVorbisSource::Stop()
 	{
 		alSourceStop( m_iSource);
 		alDeleteSources(1,&m_iSource);
@@ -592,7 +591,7 @@ namespace ow
 	}
 	
 	
-	owAEBuffer* ow::owAEDevice::CreateBuffer()
+	owAEBuffer* owAEDevice::CreateBuffer()
 	{
 		owAEBuffer * pBuffer = new owAEBuffer;
 		pBuffer->Init();
@@ -696,6 +695,31 @@ namespace ow
 		pVorbisSource->Init( _pVorbisBuffer);
 		return pVorbisSource;
 	}
+	
+	// 增益
+	owVOID owAEDevice::SetListenerGain( owFLOAT _fGain)
+	{
+		alListenerf( AL_GAIN, _fGain);
+	}
+	// 位置
+	owVOID owAEDevice::SetListenerPosition( owFLOAT * _pValues )
+	{
+		alListenerfv( AL_POSITION, _pValues);
+	}
+	owVOID owAEDevice::GetListenerPosition( owFLOAT * _pValues )
+	{
+		alGetListenerfv( AL_POSITION, _pValues);
+	}
+	// 速度
+	owVOID owAEDevice::SetListenerVelocity( owFLOAT * _pValues )
+	{
+		alListenerfv( AL_VELOCITY, _pValues);
+	}
+	// 朝向 Lookat 位置 和 Up 向量
+	owVOID owAEDevice::SetListenerOritation( owFLOAT * _pValues )
+	{
+		alListenerfv( AL_ORIENTATION, _pValues);
+	}
 
 	owBOOL owAEDevice::Init()
 	{
@@ -712,7 +736,7 @@ namespace ow
 		return owTRUE;
 	}
 
-	owVOID ow::owAEDevice::Release()
+	owVOID owAEDevice::Release()
 	{
 		alcDestroyContext( m_pContext);
 		alcCloseDevice( m_pDevice);

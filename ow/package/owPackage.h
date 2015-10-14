@@ -24,6 +24,7 @@ namespace ow
 		owBOOL Init(const owCHAR * _szPackPath);
 		
 		owFile * Open( const owCHAR * _szPath );
+		owVOID Release();
 		
 		owFile*			m_pPackFile;
 		

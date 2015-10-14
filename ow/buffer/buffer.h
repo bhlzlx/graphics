@@ -14,12 +14,9 @@ namespace ow
 		/* return 0 if success, or return -1 if failed */
 		virtual owINT32 	Resize( owINT32 _nSize) = 0;
 		virtual owBOOL 		Eof() = 0;
-		
 		virtual owBYTE* 	GetCurr() = 0;
 		virtual owBYTE* 	GetBuffer() = 0;
-		
 		virtual owVOID 		Release() = 0;
-		
 		virtual ~owBuffer(){};
 	};
 

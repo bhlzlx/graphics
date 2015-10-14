@@ -29,6 +29,8 @@ public:
 	Graphics::VertexArray* 		m_pAABBVAO;
 	
 	Graphics::RenderObjectBase* m_pModel;
+	
+	
 };
 
 #endif // __SCENE_OBJECT_H__
