@@ -64,7 +64,7 @@ namespace Graphics
         glGenBuffers(1,&pBuffer->m_buffer);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,pBuffer->m_buffer);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER,_nSize,_ptr,GL_STATIC_DRAW);
-        
+		return pBuffer;
     }
     
     void IndexBuffer::Release()

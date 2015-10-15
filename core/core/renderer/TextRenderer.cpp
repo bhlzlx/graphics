@@ -253,6 +253,7 @@ namespace Graphics
 		pUTFBuffer->Release();
 		//glGenerateMipmap(GL_TEXTURE_2D);
 		glPixelStorei(GL_UNPACK_ALIGNMENT, 4);
+		return owTRUE;
 	}
 	
 	Rect<float>& TextRenderer::GetCharRect( uint16_t _uChar )

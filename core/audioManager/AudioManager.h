@@ -6,10 +6,9 @@
 #include <map>
 #include <vector>
 
-typedef std::map< owINT32, ow::owAEBuffer* > owAEBufferCache;
-
 typedef std::vector< ow::owAESource* > owAESourceArray;
-typedef std::map< owINT32, owAESourceArray *> owAESourceCache;
+typedef std::map< owINT32, owAESourceArray* > owAESourceCache;
+typedef std::map< owINT32, ow::owAEBuffer*  > owAEBufferCache;
 
 namespace app
 {

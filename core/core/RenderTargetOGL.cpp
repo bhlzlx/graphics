@@ -40,7 +40,7 @@ namespace Graphics
     
     RenderTargetDesc* RenderTargetOGL::GetDesc()
     {
-        &this->m_desc;
+        return &this->m_desc;
     }
     
 	void RenderTargetOGL::SetColorTex(ITex* _pTex)

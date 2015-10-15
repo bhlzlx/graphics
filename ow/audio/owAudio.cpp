@@ -352,6 +352,7 @@ namespace ow
 		__CLEAR_AL_ERROR__
 		alGenSources( 1, &m_iSource);
 		__CHECK_AL_ERROR__
+		return owTRUE;
 	}
 	
 	owBOOL owAESource::Valid()
@@ -502,6 +503,7 @@ namespace ow
 		}
 		// 将更新的buffer重新装载进source
 		alSourceQueueBuffers(m_iSource,num,&bufferarray[0]);
+		return owTRUE;
 	}
 
 	owVOID owAEVorbisSource::Init(owBuffer* _pBuffer)
@@ -741,8 +743,9 @@ namespace ow
 			this->m_pContext = alcCreateContext( m_pDevice, NULL);
 			alcMakeContextCurrent( m_pContext);
 			alDistanceModel(AL_EXPONENT_DISTANCE_CLAMPED);
+			//alDistanceModel(AL_INVERSE_DISTANCE_CLAMPED);
+			//alDistanceModel(AL_LINEAR_DISTANCE_CLAMPED);
 		}
-		
 		__CHECK_AL_ERROR__
 		return owTRUE;
 	}

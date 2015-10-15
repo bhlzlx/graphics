@@ -44,9 +44,10 @@ namespace ow
 		owCHAR * buff = resource::AllocString();
 		owINT32 ret = sprintf(buff, _szFormat, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9] );
 		assert(ret < resource::STRING_LENGTH_MAX);
-		const char * error = "fatal error : sprintf() access out of bounds!";
+		
 		if(ret >= resource::STRING_LENGTH_MAX)
 		{
+			const char * error = "fatal error : sprintf() access out of bounds!";
 			fwrite( error,1,strlen(error),this->file);
 			fwrite("\r\n",1,2,this->file);
 		}

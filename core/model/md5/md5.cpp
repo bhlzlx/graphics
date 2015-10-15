@@ -315,6 +315,7 @@ again:
 				}
 				pch = strtok (NULL, " \t");
 			}
+			return true;
 		}
 		
 		bool ParseJoints(owBuffer * _pBuffer,MeshFilePtr _pMesh)
@@ -358,6 +359,7 @@ again:
 				float z = atof(joint_data.access.szOrientZ);
 				pJointArray[i].m_quaOrient = make_quat(x,y,z);
 			}
+			return true;
 		}
 		
 		void ParseMesh(owBuffer * _pBuffer ,MeshFilePtr _pMesh,int _index)

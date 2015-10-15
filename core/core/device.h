@@ -295,6 +295,7 @@ namespace Graphics
     {
 		virtual Size<uint32_t>& GetSize() = 0;
         virtual void Release() = 0;
+		virtual ~ITex(){}
     };
     
     struct IRenderTarget
@@ -303,6 +304,7 @@ namespace Graphics
 		virtual void  SetColorTex( ITex * _pTex) = 0;
         virtual const RenderTargetDesc * GetDesc() = 0;
         virtual void Release() = 0;
+		virtual ~IRenderTarget(){}
     };
     
     struct IDepthStencil

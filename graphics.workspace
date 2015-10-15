@@ -7,12 +7,12 @@
   <Project Name="core" Path="core/core.project" Active="Yes"/>
   <Project Name="core" Path="audio/audio.project" Active="Yes"/>
   <BuildMatrix>
-    <WorkspaceConfiguration Name="Debug" Selected="yes">
+    <WorkspaceConfiguration Name="Debug" Selected="no">
       <Project Name="packager" ConfigName="Debug"/>
       <Project Name="core" ConfigName="Debug"/>
       <Project Name="core" ConfigName="Debug"/>
     </WorkspaceConfiguration>
-    <WorkspaceConfiguration Name="Release" Selected="no">
+    <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="packager" ConfigName="Release"/>
       <Project Name="core" ConfigName="Release"/>
       <Project Name="core" ConfigName="Release"/>

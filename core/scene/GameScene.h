@@ -29,7 +29,7 @@ public:
 	
 	CCamera*							m_pGameCamera;
 	
-	Graphics::Octree*								m_pOctree;
+	Graphics::Octree*					m_pOctree;
 
 	void Init();
 	void Render( uint64_t time);

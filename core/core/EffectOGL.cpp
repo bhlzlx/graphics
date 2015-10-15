@@ -130,6 +130,7 @@ namespace Graphics
 		{
 			glDisable(GL_BLEND);
 		}
+		return true;
     }
     
     void EffectOGL::End()

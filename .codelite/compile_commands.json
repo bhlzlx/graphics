@@ -1,9 +1,29 @@
 [{
   "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -std=gnu++0x -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -MG -MP -MTE:/projects/builds/core/Debug/scene_SceneObject.cpp.o -MFE:/projects/builds/core/Debug/scene_SceneObject.cpp.o.d -MM scene/SceneObject.cpp",
-  "file": "F:\\gits\\graphics\\core\\scene\\SceneObject.cpp"
+  "command": "E:/tdmgcc32/bin/g++.exe -O2 -Wall -std=gnu++0x -DNDEBUG -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -MG -MP -MTE:/projects/builds/core/Release/log_logger.cpp.o -MFE:/projects/builds/core/Release/log_logger.cpp.o.d -MM ../ow/owcmn/log/logger.cpp",
+  "file": "F:\\gits\\graphics\\core\\..\\ow\\owcmn\\log\\logger.cpp"
  }, {
   "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/scene/SceneObject.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/core/Debug/scene_SceneObject.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\scene\\SceneObject.cpp"
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/scene/GameScene.cpp -O2 -Wall -std=gnu++0x -DNDEBUG -o E:/projects/builds/core/Release/scene_GameScene.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
+  "file": "F:\\gits\\graphics\\core\\scene\\GameScene.cpp"
+ }, {
+  "directory": "F:\\gits\\graphics\\core",
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/app/AppDelegate.cpp -O2 -Wall -std=gnu++0x -DNDEBUG -o E:/projects/builds/core/Release/app_AppDelegate.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
+  "file": "F:\\gits\\graphics\\core\\app\\AppDelegate.cpp"
+ }, {
+  "directory": "F:\\gits\\graphics\\core",
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/app/OpenGLViewController.cpp -O2 -Wall -std=gnu++0x -DNDEBUG -o E:/projects/builds/core/Release/app_OpenGLViewController.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
+  "file": "F:\\gits\\graphics\\core\\app\\OpenGLViewController.cpp"
+ }, {
+  "directory": "F:\\gits\\graphics\\core",
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/gui/Label.cpp -O2 -Wall -std=gnu++0x -DNDEBUG -o E:/projects/builds/core/Release/gui_Label.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
+  "file": "F:\\gits\\graphics\\core\\gui\\Label.cpp"
+ }, {
+  "directory": "F:\\gits\\graphics\\core",
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/main.cpp -O2 -Wall -std=gnu++0x -DNDEBUG -o E:/projects/builds/core/Release/main.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
+  "file": "F:\\gits\\graphics\\core\\main.cpp"
+ }, {
+  "directory": "F:\\gits\\graphics\\core",
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/ow/owcmn/log/logger.cpp -O2 -Wall -std=gnu++0x -DNDEBUG -o E:/projects/builds/core/Release/log_logger.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
+  "file": "F:\\gits\\graphics\\ow\\owcmn\\log\\logger.cpp"
  }]

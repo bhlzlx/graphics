@@ -27,7 +27,9 @@ namespace Graphics
             case TEX_FILTER_POINT: return GL_NEAREST;
             case TEX_FILTER_MIP_LINEAR: return GL_LINEAR_MIPMAP_LINEAR;
             case TEX_FILTER_MIP_POINT: return GL_NEAREST_MIPMAP_NEAREST;
+			case TEX_FILTER_NONE: return GL_NEAREST;
         }
+		return GL_NEAREST;
     }
     GLenum PixelFormat2OGL( PIXEL_FORMAT format)
     {
@@ -119,7 +121,6 @@ namespace Graphics
         unsigned bitmap[64][64] = {black_color};
 
         int _s,_ss,_w,_ww;
-        unsigned color;
         for(int i = 0;i<64;++i)
         {
             _ss = 1;
