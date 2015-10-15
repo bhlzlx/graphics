@@ -20,10 +20,11 @@ GLuint load_shader(const char* szShader, GLuint mode)
 
     GLint compileState;
     glGetShaderiv(id, GL_COMPILE_STATUS, &compileState);
-    if(compileState == GL_FALSE) {
+    if(compileState == GL_FALSE) 
+	{
         char error[1024];
         glGetShaderInfoLog(id, 1024, NULL, error);
-        ow::Logger::GetInstance(NULL)->Write(error);
+        ow::Logger::GetInstance(NULL)->Write("shader compiling error : [[\r\n%s\r\n]]", error);
         glDeleteShader(id);
         return 0;
     } else {
@@ -90,11 +91,11 @@ GLuint ShaderOGL::shaderFuncFromStringWithMode(const char* szShader, GLuint mode
     // �������ǲ���������
     GLint compileState;
     glGetShaderiv(id, GL_COMPILE_STATUS, &compileState);
-    if(compileState == GL_FALSE) {
+    if(compileState == GL_FALSE) 
+	{
         static char error[1024];
         glGetShaderInfoLog(id, 1024, NULL, error);
-        printf("%s\n",error);
-        ow::Logger::GetInstance(NULL)->Write(error);
+        ow::Logger::GetInstance(NULL)->Write("shader compiling error : [[\r\n%s\r\n]]", error);
         glDeleteShader(id);
         return 0;
     } else {

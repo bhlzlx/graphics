@@ -40,7 +40,6 @@ namespace app
 		
 		ow::owAEMusicPlayer * 	m_pMusicPlayer;
 		owINT32 				m_iMusicId;
-		
 		AudioCache				m_soundCache;
 		
 		void PlaySound2D( owINT32 _id );

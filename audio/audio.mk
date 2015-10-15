@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=14/10/2015
+Date                   :=15/10/2015
 CodeLitePath           :="E:\application\CodeLite"
 LinkerName             :=E:/tdmgcc32/bin/g++.exe
 SharedObjectLinkerName :=E:/tdmgcc32/bin/g++.exe -shared -fPIC
@@ -65,7 +65,7 @@ CodeLiteDir:=E:\application\CodeLite
 BuildDir:=E:/projects/builds
 WXWIN:=G:/wxwidgets
 WXCFG:=gcc_lib/mswud
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_owcmn.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_ResourcePool.cpp$(ObjectSuffix) $(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/audio_owAudio.cpp$(ObjectSuffix) $(IntermediateDirectory)/audio_owAEPlayer.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/memory_memory.cpp$(ObjectSuffix) $(IntermediateDirectory)/owfile_owfile.cpp$(ObjectSuffix) \
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_owcmn.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_resources.cpp$(ObjectSuffix) $(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/audio_owAudio.cpp$(ObjectSuffix) $(IntermediateDirectory)/audio_owAEPlayer.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/memory_memory.cpp$(ObjectSuffix) $(IntermediateDirectory)/owfile_owfile.cpp$(ObjectSuffix) \
 	$(IntermediateDirectory)/owZip_owZip.cpp$(ObjectSuffix) $(IntermediateDirectory)/package_owPackage.cpp$(ObjectSuffix) $(IntermediateDirectory)/package_package_common.cpp$(ObjectSuffix) $(IntermediateDirectory)/settings_settings.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) 
 
 
@@ -121,13 +121,13 @@ $(IntermediateDirectory)/owcmn_owcmn.cpp$(DependSuffix): ../ow/owcmn/owcmn.cpp
 $(IntermediateDirectory)/owcmn_owcmn.cpp$(PreprocessSuffix): ../ow/owcmn/owcmn.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/owcmn_owcmn.cpp$(PreprocessSuffix) "../ow/owcmn/owcmn.cpp"
 
-$(IntermediateDirectory)/owcmn_ResourcePool.cpp$(ObjectSuffix): ../ow/owcmn/ResourcePool.cpp $(IntermediateDirectory)/owcmn_ResourcePool.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/ow/owcmn/ResourcePool.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/owcmn_ResourcePool.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/owcmn_ResourcePool.cpp$(DependSuffix): ../ow/owcmn/ResourcePool.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/owcmn_ResourcePool.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/owcmn_ResourcePool.cpp$(DependSuffix) -MM "../ow/owcmn/ResourcePool.cpp"
+$(IntermediateDirectory)/owcmn_resources.cpp$(ObjectSuffix): ../ow/owcmn/resources.cpp $(IntermediateDirectory)/owcmn_resources.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/ow/owcmn/resources.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/owcmn_resources.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/owcmn_resources.cpp$(DependSuffix): ../ow/owcmn/resources.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/owcmn_resources.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/owcmn_resources.cpp$(DependSuffix) -MM "../ow/owcmn/resources.cpp"
 
-$(IntermediateDirectory)/owcmn_ResourcePool.cpp$(PreprocessSuffix): ../ow/owcmn/ResourcePool.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/owcmn_ResourcePool.cpp$(PreprocessSuffix) "../ow/owcmn/ResourcePool.cpp"
+$(IntermediateDirectory)/owcmn_resources.cpp$(PreprocessSuffix): ../ow/owcmn/resources.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/owcmn_resources.cpp$(PreprocessSuffix) "../ow/owcmn/resources.cpp"
 
 $(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix): ../ow/algorithm/md5.cpp $(IntermediateDirectory)/algorithm_md5.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/ow/algorithm/md5.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IncludePath)

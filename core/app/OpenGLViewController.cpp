@@ -21,6 +21,7 @@
 #include <owcmn/resources.h>
 #include <owcmn/owcmn.h>
 #include <package/owPackage.h>
+#include <owcmn/log/logger.h>
 
 
 const char * szConfigPath = "./config.txt";

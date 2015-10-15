@@ -10,7 +10,8 @@ class Logger
 {
     public:
     
-    void Write(const char * szText);
+    //void Write(const char * szText);
+	void Write( const char * _szFormat, ...);
     void Release();
     
     static Logger * GetInstance( const char * szFilepath );

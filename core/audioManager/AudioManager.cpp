@@ -117,14 +117,16 @@ namespace app
 	
 	/*************************************************
 	 * 	Audio Manager
-	 * *********************************************/
+	 * **********************************************/
 
 	AudioManager::AudioManager()
 	{
+		
 	}
-
+	
 	AudioManager::~AudioManager()
 	{
+		
 	}
 	
 	void AudioManager::PlaySound2D( owINT32 _id )
@@ -215,6 +217,7 @@ namespace app
 				pFile->Release();
 				this->m_pMusicPlayer->SetupMusic( strongBuffer );
 				this->m_pMusicPlayer->Play();
+				m_iMusicId = _id;
 			}
 			else
 			{
@@ -241,9 +244,22 @@ namespace app
 	
 	owVOID AudioManager::Release()
 	{
-		// m_soundCache 会在析构时清理 buffer, source.
-		m_pMusicPlayer->Release();
-		m_pAudioDevice->Release();
+		/*
+		 * m_pMusicPlayer调用的方法全部都是异步的，
+		 * 但是 m_pAudioDevice 却是同步的，就是说m_pAudioDevice执行完，
+		 * m_pMusicPlayer还没销毁，因为导致内存泄漏，但是一般程序退出才会执行此处
+		 * 所以，不需要特别在意，最完美的方法是将audiodevice也改为异步的
+		 * audio 相关的销毁了再终止程序
+		 */
+		if(m_pMusicPlayer)
+		{
+			m_pMusicPlayer->Release();
+		}
+		if(m_pAudioDevice)
+		{
+			m_pAudioDevice->Release();
+		}
+		delete this;
 	}
 	
 	AudioManager * __AudioManager = NULL;
@@ -255,7 +271,7 @@ namespace app
 			__AudioManager = new AudioManager();
 			if( __AudioManager->Init() != owTRUE)
 			{
-				delete __AudioManager;
+				__AudioManager->Release();
 				__AudioManager = NULL;
 			}
 		}
