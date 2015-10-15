@@ -46,8 +46,8 @@ namespace Graphics
 void OpenGLViewController::OnInit()
 {
 	m_pAudioManager = app::GetAudioManager();
-	m_pAudioManager->PlaySound2D( 1 );
-	m_pAudioManager->PlayMusic( 1 );
+	//m_pAudioManager->PlaySound2D( 1 );
+	//m_pAudioManager->PlayMusic( 1 );
 	
 	__pViewController = this;
 	

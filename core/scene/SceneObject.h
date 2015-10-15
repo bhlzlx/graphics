@@ -5,6 +5,8 @@
 #include <core/bufferogl.h>
 #include <model/RenderObject.h>
 
+#undef PlaySound
+
 class SceneObject
 {
 public:
@@ -16,6 +18,8 @@ public:
 	virtual void SetScale(float _scale);
 	virtual void Release();
 	virtual void Render(Graphics::EffectOGL * _pEffect);
+	
+	void Beep( owBOOL _bLoop );
 	
 	static SceneObject * CreateSceneObject( Graphics::RenderObjectBase * _pRenderObject );
 public:
@@ -30,6 +34,7 @@ public:
 	
 	Graphics::RenderObjectBase* m_pModel;
 	
+	owINT32			m_iSoundID;
 	
 };
 

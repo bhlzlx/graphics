@@ -1,9 +1,9 @@
 [{
   "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -std=gnu++0x -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -MG -MP -MTE:/projects/builds/core/Debug/log_logger.cpp.o -MFE:/projects/builds/core/Debug/log_logger.cpp.o.d -MM ../ow/owcmn/log/logger.cpp",
-  "file": "F:\\gits\\graphics\\core\\..\\ow\\owcmn\\log\\logger.cpp"
+  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -std=gnu++0x -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -MG -MP -MTE:/projects/builds/core/Debug/scene_SceneObject.cpp.o -MFE:/projects/builds/core/Debug/scene_SceneObject.cpp.o.d -MM scene/SceneObject.cpp",
+  "file": "F:\\gits\\graphics\\core\\scene\\SceneObject.cpp"
  }, {
   "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/ow/owcmn/log/logger.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/core/Debug/log_logger.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\ow\\owcmn\\log\\logger.cpp"
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/scene/SceneObject.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/core/Debug/scene_SceneObject.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
+  "file": "F:\\gits\\graphics\\core\\scene\\SceneObject.cpp"
  }]

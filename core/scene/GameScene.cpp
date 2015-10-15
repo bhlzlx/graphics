@@ -45,15 +45,18 @@ void GameScene::Init()
 	this->m_pOctree = new Octree;
 	this->m_pOctree->Init( glm::vec3(0.0f,0.0f,0.0f), glm::vec3(32.0f,32.0f,32.0f),3);
 
-	for(int i = 0; i< 32; ++i)
+	for(int i = 0; i< 4; ++i)
 	{
 		SceneObject * pSceneObject = SceneObject::CreateSceneObject( m_pCubeModel);
-		glm::vec3 pos = glm::vec3( i%7 * 8 - 2 * 8 + 4 +2,4,i/7 * 8 + 4);
+		glm::vec3 pos = glm::vec3( i * 8, 4 , 0 );
 		pSceneObject->SetPosition(pos);
 		pSceneObject->SetScale(1.0f);
 		OctreeRenderNode * pRenderNode = OctreeRenderNode::CreateRenderNode(pSceneObject);
 		this->m_pOctree->InsertRenderNode( pRenderNode);
 		this->m_staticObjects.push_back(pSceneObject);
+		
+		pSceneObject->m_iSoundID = 1;
+		pSceneObject->Beep( owTRUE);
 	}
 }
 

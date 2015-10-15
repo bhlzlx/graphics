@@ -129,7 +129,7 @@ namespace app
 		
 	}
 	
-	void AudioManager::PlaySound2D( owINT32 _id )
+	void AudioManager::PlaySound2D( owINT32 _id, owFLOAT _volume, owBOOL _bLoop )
 	{
 		ow::owAESource * pSource = this->m_soundCache.FindSource( _id);
 		if(pSource == NULL)
@@ -140,10 +140,7 @@ namespace app
 				ow::owMemFile * pFile = (ow::owMemFile *)SoundFileForId( _id);
 				if(pFile == NULL)
 				{
-					owCHAR * message = resource::AllocString();
-					sprintf(message, "invalid sound id : %d", _id);
-					ow::Logger::GetInstance(NULL)->Write(message);
-					resource::ReleaseString( message);
+					ow::Logger::GetInstance(NULL)->Write("invalid sound id : %d", _id);
 					return;
 				}
 				else
@@ -153,15 +150,20 @@ namespace app
 				}
 			}
 			pSource = ow::GetAudioDevice()->CreateSource();
-			pSource->SetBuffer( pBuffer);
+			pSource->SetBuffer( pBuffer);			
+			pSource->Set_MIN_GAIN( 0.0f);
+			pSource->Set_MAX_GAIN( 10.0f);
+			pSource->Set_GAIN( _volume );
+			pSource->Set_MAX_DISTANCE( m_pAudioDevice->GetReferenceDistanceMax() );
 		}
 		owFLOAT vecPos[3];
 		ow::GetAudioDevice()->GetListenerPosition(&vecPos[0]);
 		pSource->Set_POSITION(&vecPos[0]);
+		pSource->Set_LOOPING(_bLoop);
 		pSource->Play();
 	}
 	
-	void AudioManager::PlaySound3D( owINT32 _id, owFLOAT _x, owFLOAT _y, owFLOAT _z )
+	void AudioManager::PlaySound3D( owINT32 _id, owFLOAT _x, owFLOAT _y, owFLOAT _z, owFLOAT _volume, owBOOL _bLoop )
 	{
 		ow::owAESource * pSource = this->m_soundCache.FindSource( _id);
 		if(pSource == NULL)
@@ -172,10 +174,7 @@ namespace app
 				ow::owMemFile * pFile = (ow::owMemFile *)SoundFileForId( _id);
 				if(pFile == NULL)
 				{
-					owCHAR * message = resource::AllocString();
-					sprintf(message, "invalid sound id : %d", _id);
-					ow::Logger::GetInstance(NULL)->Write(message);
-					resource::ReleaseString( message);
+					ow::Logger::GetInstance(NULL)->Write("invalid sound id : %d", _id);
 					return;
 				}
 				else
@@ -185,14 +184,24 @@ namespace app
 				}
 			}
 			pSource = ow::GetAudioDevice()->CreateSource();
-			pSource->SetBuffer( pBuffer);
+			pSource->SetBuffer( pBuffer);			
+			pSource->Set_MIN_GAIN( 0.0f);
+			pSource->Set_MAX_GAIN( 10.0f);
+			pSource->Set_GAIN( _volume );
+			pSource->Set_MAX_DISTANCE( m_pAudioDevice->GetReferenceDistanceMax() );
 		}
 		owFLOAT vecPos[3] = { _x, _y, _z };
 		pSource->Set_POSITION(&vecPos[0]);
+		pSource->Set_LOOPING(_bLoop);
 		pSource->Play();
 	}
 	
-	void AudioManager::PlayMusic( owINT32 _id )
+	void AudioManager::SetReferenceDistanceMax( owFLOAT _fDistance )
+	{
+		this->m_pAudioDevice->SetReferneceDistanceMax( _fDistance);
+	}
+	
+	void AudioManager::PlayMusic( owINT32 _id, owFLOAT _volume )
 	{
 		// 判断当前音乐播放状态
 		if(m_iMusicId == _id)
@@ -221,10 +230,7 @@ namespace app
 			}
 			else
 			{
-				owCHAR * message = resource::AllocString();
-				sprintf(message, "invalid music id : %d", _id);
-				ow::Logger::GetInstance(NULL)->Write(message);
-				resource::ReleaseString( message);
+				ow::Logger::GetInstance(NULL)->Write("invalid music id : %d", _id);
 			}
 		}
 	}
@@ -236,6 +242,7 @@ namespace app
 		{
 			return owFALSE;
 		}
+		m_pAudioDevice->SetReferneceDistanceMax( 100.0f );
 		this->m_pMusicPlayer = new ow::owAEMusicPlayer();
 		m_pMusicPlayer->Init();
 		m_iMusicId = 0xffffffff;

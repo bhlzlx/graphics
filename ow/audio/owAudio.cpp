@@ -720,6 +720,16 @@ namespace ow
 	{
 		alListenerfv( AL_ORIENTATION, _pValues);
 	}
+	
+	owVOID owAEDevice::SetReferneceDistanceMax( owFLOAT _fDistance)
+	{
+		m_fReferenceDistanceMax = _fDistance;
+	}
+	
+	owFLOAT owAEDevice::GetReferenceDistanceMax()
+	{
+		return m_fReferenceDistanceMax;
+	}
 
 	owBOOL owAEDevice::Init()
 	{
@@ -730,6 +740,7 @@ namespace ow
 			this->m_pDevice = alcOpenDevice( NULL);
 			this->m_pContext = alcCreateContext( m_pDevice, NULL);
 			alcMakeContextCurrent( m_pContext);
+			alDistanceModel(AL_EXPONENT_DISTANCE_CLAMPED);
 		}
 		
 		__CHECK_AL_ERROR__

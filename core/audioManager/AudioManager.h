@@ -42,9 +42,11 @@ namespace app
 		owINT32 				m_iMusicId;
 		AudioCache				m_soundCache;
 		
-		void PlaySound2D( owINT32 _id );
-		void PlaySound3D( owINT32 _id, owFLOAT _x, owFLOAT _y, owFLOAT _z );
-		void PlayMusic( owINT32 _id );
+		void PlaySound2D( owINT32 _id, owFLOAT _volume, owBOOL _bLoop = owFALSE );
+		void PlaySound3D( owINT32 _id, owFLOAT _x, owFLOAT _y, owFLOAT _z, owFLOAT _volume, owBOOL _bLoop = owFALSE);
+		void PlayMusic( owINT32 _id, owFLOAT _volume);
+		
+		void SetReferenceDistanceMax( owFLOAT _fDistance );
 		
 		owBOOL Init();
 		owVOID Release();

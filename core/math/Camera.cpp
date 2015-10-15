@@ -268,15 +268,16 @@ bool CCamera::InFrustumBoundBox(Graphics::aabb& _box)
 
 void CCamera::updateListener()
 {
+	// 设置听者位置
+	ow::GetAudioDevice()->SetListenerPosition( &this->m_position.x);
+	// 计算听者角度
 	vec4 forward_vec = glm::inverse(m_rotateMatrix) * default_normal;
 	vec4 top_vec = glm::inverse( m_rotateMatrix) * default_top;
-	forward_vec += this->m_position;
-	top_vec += this->m_position;
-	ow::GetAudioDevice()->SetListenerPosition( &forward_vec.x);
 	vec3 oritation[2];
 	memcpy( &oritation[0].x, &forward_vec.x, sizeof(vec3));
-	memcpy( &oritation[1].x, &top_vec.x, sizeof(vec3));	
+	memcpy( &oritation[1].x, &top_vec.x, sizeof(vec3));
 	ow::GetAudioDevice()->SetListenerOritation( &oritation[0].x);
+	ow::GetAudioDevice()->GetListenerPosition(&top_vec.x);
 }
 
 

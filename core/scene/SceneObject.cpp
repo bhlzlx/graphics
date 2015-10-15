@@ -1,4 +1,5 @@
 #include "SceneObject.h"
+#include <audioManager/AudioManager.h>
 
 SceneObject::SceneObject()
 {
@@ -6,6 +7,11 @@ SceneObject::SceneObject()
 
 SceneObject::~SceneObject()
 {
+}
+
+void SceneObject::Beep( owBOOL _bLoop )
+{
+	app::GetAudioManager()->PlaySound3D( this->m_iSoundID, this->m_vOffset.x, this->m_vOffset.y, this->m_vOffset.z, 2.0f , _bLoop);
 }
 
 void SceneObject::SetPosition( glm::vec3 & _position )

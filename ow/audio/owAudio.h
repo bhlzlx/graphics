@@ -48,10 +48,10 @@ typedef void (* AL_FLOAT_VEC_SETTER )(ALuint, ALenum, const ALfloat *);
 
 #define AL_SOURCE_GET_SET_VEC_IMP( SPACE , TYPE, PARAM )\
 	owVOID SPACE::Get_##PARAM( TYPE * _pValue){\
-		owAESourceSetter_vec_##TYPE( m_iSource, AL_##PARAM, _pValue);\
+		owAESourceGetter_vec_##TYPE( m_iSource, AL_##PARAM, _pValue);\
 	}\
 	owVOID SPACE::Set_##PARAM( TYPE * _pValue){\
-		owAESourceGetter_vec_##TYPE( m_iSource, AL_##PARAM, _pValue);\
+		owAESourceSetter_vec_##TYPE( m_iSource, AL_##PARAM, _pValue);\
 	}\
 
 namespace ow
@@ -184,6 +184,8 @@ namespace ow
 		ALCdevice *			m_pDevice;
 		ALCcontext *	    m_pContext;
 		
+		owFLOAT				m_fReferenceDistanceMax;
+		
 		owAEDevice()
 		{
 			m_pDevice = NULL;
@@ -216,6 +218,9 @@ namespace ow
 		owVOID SetListenerVelocity( owFLOAT * _pValues );
 		// 朝向 Lookat 位置 和 Up 向量
 		owVOID SetListenerOritation( owFLOAT * _pValues );
+		// 设置声音有效范围
+		owVOID SetReferneceDistanceMax( owFLOAT _fDistance);
+		owFLOAT GetReferenceDistanceMax();
 	};
 	
 	owAEDevice * GetAudioDevice();
