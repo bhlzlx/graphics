@@ -122,7 +122,6 @@ namespace Graphics
     {
         TEX_ADDRESS     AddressU;
         TEX_ADDRESS     AddressV;
-        TEX_ADDRESS     AddressW;
         
         TEX_FILTER      MinFilter;
         TEX_FILTER      MagFilter;
@@ -175,6 +174,7 @@ namespace Graphics
             bClearDepth = GL_TRUE;
             fDepthValue = 1.0f;
             bClearStencil = false;
+			nStencilValue = 0;
         }
         
         void SetClearColor(float red,float green,float blue,float alpha)
@@ -197,14 +197,14 @@ namespace Graphics
     {
         owBOOL            depthWritable;
         owBOOL            depthTestable;
-        CMP_FUNC        depthFunc;
+        CMP_FUNC          depthFunc;
         
         owBOOL            redChannelWritable;
         owBOOL            greenChannelWritable;
         owBOOL            blueChannelWritable;
         owBOOL            alphaChannelWritable;
         
-        CULL_MODE       cullMode;
+        CULL_MODE         cullMode;
         
         owBOOL            scissorable;
         
@@ -221,6 +221,8 @@ namespace Graphics
             redChannelWritable = true;
             greenChannelWritable = true;
             blueChannelWritable = true;
+			alphaChannelWritable = true;
+			blendOpt = BLEND_OP_ADD;
 			
 			blendDest = BLEND_FACTOR_ZERO;
 			blendSrc = BLEND_FACTOR_ONE;
@@ -287,7 +289,7 @@ namespace Graphics
         SamplerState            samplerState;
         EffectDesc()
         {
-            
+            szVertexShaderText = szPixelShaderText = NULL;
         }
     };
     

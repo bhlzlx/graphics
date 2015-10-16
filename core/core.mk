@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=15/10/2015
+Date                   :=16/10/2015
 CodeLitePath           :="E:\application\CodeLite"
 LinkerName             :=E:/tdmgcc32/bin/g++.exe
 SharedObjectLinkerName :=E:/tdmgcc32/bin/g++.exe -shared -fPIC
@@ -67,9 +67,9 @@ WXWIN:=G:/wxwidgets
 WXCFG:=gcc_lib/mswud
 Objects0=$(IntermediateDirectory)/scene_GameScene.cpp$(ObjectSuffix) $(IntermediateDirectory)/scene_SceneObject.cpp$(ObjectSuffix) $(IntermediateDirectory)/model_BasicModel.cpp$(ObjectSuffix) $(IntermediateDirectory)/model_MD5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/model_models.cpp$(ObjectSuffix) $(IntermediateDirectory)/math_Camera.cpp$(ObjectSuffix) $(IntermediateDirectory)/math_Variance.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_BufferOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_DepthStencilOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_EffectOGL.cpp$(ObjectSuffix) \
 	$(IntermediateDirectory)/core_Image.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderPipelineOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_RenderTargetOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_ShaderOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/core_TexOGL.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_AppDelegate.cpp$(ObjectSuffix) $(IntermediateDirectory)/app_OpenGLViewController.cpp$(ObjectSuffix) $(IntermediateDirectory)/event_MouseEvent.cpp$(ObjectSuffix) $(IntermediateDirectory)/gui_Label.cpp$(ObjectSuffix) $(IntermediateDirectory)/main.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/audioManager_AudioManager.cpp$(ObjectSuffix) $(IntermediateDirectory)/aabb_aabb.cpp$(ObjectSuffix) $(IntermediateDirectory)/octree_Octree.cpp$(ObjectSuffix) $(IntermediateDirectory)/octree_OctreeRenderNode.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_main.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5_md5Frame.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/owcmn_owcmn.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_resources.cpp$(ObjectSuffix) $(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/memory_memory.cpp$(ObjectSuffix) $(IntermediateDirectory)/owfile_owfile.cpp$(ObjectSuffix) $(IntermediateDirectory)/owZip_owZip.cpp$(ObjectSuffix) $(IntermediateDirectory)/package_owPackage.cpp$(ObjectSuffix) $(IntermediateDirectory)/package_package_common.cpp$(ObjectSuffix) $(IntermediateDirectory)/settings_settings.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/audio_owAudio.cpp$(ObjectSuffix) $(IntermediateDirectory)/audio_owAEPlayer.cpp$(ObjectSuffix) $(IntermediateDirectory)/renderer_TextRenderer.cpp$(ObjectSuffix) $(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) 
+	$(IntermediateDirectory)/audioManager_AudioManager.cpp$(ObjectSuffix) $(IntermediateDirectory)/aabb_aabb.cpp$(ObjectSuffix) $(IntermediateDirectory)/octree_Octree.cpp$(ObjectSuffix) $(IntermediateDirectory)/octree_OctreeRenderNode.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/md5parser_md5Model.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_owcmn.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_resources.cpp$(ObjectSuffix) $(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/memory_memory.cpp$(ObjectSuffix) $(IntermediateDirectory)/owfile_owfile.cpp$(ObjectSuffix) $(IntermediateDirectory)/owZip_owZip.cpp$(ObjectSuffix) $(IntermediateDirectory)/package_owPackage.cpp$(ObjectSuffix) $(IntermediateDirectory)/package_package_common.cpp$(ObjectSuffix) $(IntermediateDirectory)/settings_settings.cpp$(ObjectSuffix) $(IntermediateDirectory)/audio_owAudio.cpp$(ObjectSuffix) $(IntermediateDirectory)/audio_owAEPlayer.cpp$(ObjectSuffix) $(IntermediateDirectory)/renderer_TextRenderer.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/log_logger.cpp$(ObjectSuffix) 
 
 
 
@@ -291,30 +291,6 @@ $(IntermediateDirectory)/octree_OctreeRenderNode.cpp$(DependSuffix): scene/octre
 
 $(IntermediateDirectory)/octree_OctreeRenderNode.cpp$(PreprocessSuffix): scene/octree/OctreeRenderNode.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/octree_OctreeRenderNode.cpp$(PreprocessSuffix) "scene/octree/OctreeRenderNode.cpp"
-
-$(IntermediateDirectory)/md5_main.cpp$(ObjectSuffix): model/md5/main.cpp $(IntermediateDirectory)/md5_main.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/core/model/md5/main.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5_main.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/md5_main.cpp$(DependSuffix): model/md5/main.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/md5_main.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/md5_main.cpp$(DependSuffix) -MM "model/md5/main.cpp"
-
-$(IntermediateDirectory)/md5_main.cpp$(PreprocessSuffix): model/md5/main.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/md5_main.cpp$(PreprocessSuffix) "model/md5/main.cpp"
-
-$(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix): model/md5/md5.cpp $(IntermediateDirectory)/md5_md5.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/core/model/md5/md5.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/md5_md5.cpp$(DependSuffix): model/md5/md5.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/md5_md5.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/md5_md5.cpp$(DependSuffix) -MM "model/md5/md5.cpp"
-
-$(IntermediateDirectory)/md5_md5.cpp$(PreprocessSuffix): model/md5/md5.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/md5_md5.cpp$(PreprocessSuffix) "model/md5/md5.cpp"
-
-$(IntermediateDirectory)/md5_md5Frame.cpp$(ObjectSuffix): model/md5/md5Frame.cpp $(IntermediateDirectory)/md5_md5Frame.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/core/model/md5/md5Frame.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5_md5Frame.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/md5_md5Frame.cpp$(DependSuffix): model/md5/md5Frame.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/md5_md5Frame.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/md5_md5Frame.cpp$(DependSuffix) -MM "model/md5/md5Frame.cpp"
-
-$(IntermediateDirectory)/md5_md5Frame.cpp$(PreprocessSuffix): model/md5/md5Frame.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/md5_md5Frame.cpp$(PreprocessSuffix) "model/md5/md5Frame.cpp"
 
 $(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix): model/md5parser/md5.cpp $(IntermediateDirectory)/md5parser_md5.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/core/model/md5parser/md5.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/md5parser_md5.cpp$(ObjectSuffix) $(IncludePath)

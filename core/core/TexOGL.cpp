@@ -38,7 +38,6 @@ namespace Graphics
             case PIXEL_FORMAT_RGBA8888:
             {
                 return GL_RGBA;
-                break;
             }
             case PIXEL_FORMAT_A8:
             {
@@ -120,9 +119,10 @@ namespace Graphics
 
         unsigned bitmap[64][64] = {black_color};
 
-        int _s,_ss,_w,_ww;
+        int _w,_ww;
         for(int i = 0;i<64;++i)
         {
+			int _s,_ss;
             _ss = 1;
             _s = i/4;
             if( _s % 2 == 0)

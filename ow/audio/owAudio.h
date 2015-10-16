@@ -132,6 +132,12 @@ namespace ow
 		{
 			m_pFrameBuffer = NULL;
 			m_bLoop = _bLoop;
+			m_pBuffer = NULL;
+			m_pFrameBuffer = NULL;
+			m_pVorbisComment = NULL;
+			m_pVorbisInfo = NULL;
+			m_iFormat = 0;
+			m_nFrameBufferSize = 0;
 		}
 		~VorbisStruct()
 		{
@@ -190,6 +196,7 @@ namespace ow
 		{
 			m_pDevice = NULL;
 			m_pContext = NULL;
+			m_fReferenceDistanceMax = 1000.0f;
 		}
 		
 		owBOOL Init();

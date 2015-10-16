@@ -37,6 +37,11 @@ namespace Graphics
 		{
 			glm::vec4 	m_vecFontColor;
 			float 		m_fFontSize;
+			FontRenderState()
+			{
+				m_fFontSize = 16;
+				m_vecFontColor = glm::vec4(1.0f,1.0f,1.0f,1.0f);
+			}
 		};
 		
 	public:

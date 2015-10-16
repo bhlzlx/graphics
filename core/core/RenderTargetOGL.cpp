@@ -6,6 +6,7 @@ namespace Graphics
 
     RenderTargetOGL::RenderTargetOGL()
     {
+		m_pTexture = NULL;
     }
 
     RenderTargetOGL::~RenderTargetOGL()

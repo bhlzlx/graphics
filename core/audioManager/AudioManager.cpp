@@ -71,7 +71,7 @@ namespace app
 	owVOID AudioCache::InsertSource( owINT32 _id, ow::owAESource * _pSource )
 	{
 		// 检查有没有对应的数组对象，如果没有，则需要创建一个对象
-		assert( _pSource->Valid() );
+		assert( _pSource->Valid() == owTRUE );
 		owAESourceCache::iterator iter = this->m_sourceCache.find( _id );
 		if(iter == m_sourceCache.end() )
 		{
@@ -121,7 +121,9 @@ namespace app
 
 	AudioManager::AudioManager()
 	{
-		
+		m_pAudioDevice = NULL;
+		m_pMusicPlayer = NULL;
+		m_iMusicId = 0xffffffff;
 	}
 	
 	AudioManager::~AudioManager()

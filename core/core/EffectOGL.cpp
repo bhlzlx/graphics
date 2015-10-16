@@ -63,6 +63,7 @@ namespace Graphics
 
     EffectOGL::EffectOGL()
     {
+		m_pShader = NULL;
     }
 
     EffectOGL::~EffectOGL()

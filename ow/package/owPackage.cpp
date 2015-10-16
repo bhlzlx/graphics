@@ -87,7 +87,7 @@ namespace ow
 		while(iter != iterLast)
 		{
 			ow::owFileTag * currFile = &m_pFileTags[currNode->m_iNodeID];
-			assert(currFile->m_iFileType = FILETYPE_DIR);
+			assert(currFile->m_iFileType == FILETYPE_DIR);
 			
 			ow::owNodeR * nextDir = NULL;
 			for(int i = 0; i < currFile->m_nBytes; ++i)

@@ -30,7 +30,7 @@ namespace Graphics
         if(_pDesc->pDepthStencil != NULL)
         {
             //
-            DepthStencilOGL * pDepthStecil = (DepthStencilOGL*)_pDesc->pDepthStencil;
+            DepthStencilOGL * pDepthStecil = static_cast<DepthStencilOGL *>(_pDesc->pDepthStencil);
             TexOGL * pDepthTex = pDepthStecil->m_pDepthTex;
 //            TexOGL * pStencilTex = pDepthStecil->m_pStencilTex;
             glFramebufferTexture(GL_FRAMEBUFFER,GL_DEPTH_ATTACHMENT,pDepthTex->m_texture,0);

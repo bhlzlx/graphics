@@ -5,6 +5,7 @@
 #include <math.h>
 #include <string.h>
 #include <glm/glm.hpp>
+#include <owcmn/log/logger.h>
 
 #define VERSION_INFO    "MD5Version"
 #define NUM_JOINTS      "numJoints"
@@ -260,6 +261,10 @@ again:
 			owBuffer * pRet = CreateMemBuffer(pEnd - pContent);
 			int n_read = _pBuffer->Read(pRet->GetBuffer(),pRet->Size() - 1);
 			assert(n_read == pRet->Size() - 1);
+			if(n_read != pRet->Size() - 1)
+			{
+				ow::Logger::GetInstance(NULL)->Write("md5.cpp :: read_block_for_key :: buffer read error!");
+			}
 			_pBuffer->Seek(SEEK_CUR,1L);            
 			return pRet;
 		}

@@ -23,6 +23,12 @@ namespace Graphics
 
 	TextRenderer::TextRenderer()
 	{
+		m_pMemPool = NULL;
+		m_pFontMap = NULL;
+		m_nFontTexCount = 0;
+		m_fDefSize = 0.0f;
+		m_pFramebuffer = NULL;
+		m_pEffect = NULL;
 	}
 
 	TextRenderer::~TextRenderer()

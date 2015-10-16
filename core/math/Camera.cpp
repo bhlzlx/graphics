@@ -140,13 +140,12 @@ bool CCamera::InFrustumBoundBox(float _x, float _y, float _z)
 void CCamera::updateFrustumPlane()
 {
 	float * matPtr = (float *)&m_vpMat;
-	float t = 0.0f;
 	g_frustumPlanes[0][0] = matPtr[3] - matPtr[0];
     g_frustumPlanes[0][1] = matPtr[7] - matPtr[4];
     g_frustumPlanes[0][2] = matPtr[11] - matPtr[8];
     g_frustumPlanes[0][3] = matPtr[15] - matPtr[12];
 
-    t = (float) sqrt( g_frustumPlanes[0][0] * g_frustumPlanes[0][0] +
+    float t = (float) sqrt( g_frustumPlanes[0][0] * g_frustumPlanes[0][0] +
                       g_frustumPlanes[0][1] * g_frustumPlanes[0][1] +
                       g_frustumPlanes[0][2] * g_frustumPlanes[0][2] );
 
@@ -251,9 +250,10 @@ bool CCamera::InFrustumBoundBox(Graphics::aabb& _box)
 	glm::vec3 center = (_box.m_vecMin + _box.m_vecMax) / 2.0f;
 	glm::vec3 half = (_box.m_vecMax - _box.m_vecMin) / 2.0f;
 	float rad = pow( (pow(half.x,2) + pow(half.y,2) + pow(half.z,2)),0.5);
-	float distance = 0.0f;
+	
 	for(int face = 0; face<6; ++face)
 	{
+		float distance = 0.0f;
 		distance = 	g_frustumPlanes[face][0] * center.x + \
 					g_frustumPlanes[face][1] * center.y + 
 					g_frustumPlanes[face][2] * center.z + 

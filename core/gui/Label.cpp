@@ -37,12 +37,24 @@ namespace gui
 	
 	Label::Label()
 	{
-		
+		m_pTex = NULL;
+		m_szText = NULL;
+		m_nTextLen = 0;
+		m_fFontSize = 16.0f;
 	}
 
 	Label::~Label()
 	{
-		
+		if(m_szText != NULL)
+		{
+			delete m_szText;
+		}
+		if(m_pTex != NULL)
+		{
+			m_pTex->Release();
+		}
+		m_szText = NULL;
+		m_pTex = NULL;
 	}
 	
 	void Label::Draw( Graphics::EffectOGL* _pEffect, TextRenderer* _pTextRenderer)

@@ -43,13 +43,6 @@
     <File Name="scene/SceneObject.h"/>
   </VirtualDirectory>
   <VirtualDirectory Name="model">
-    <VirtualDirectory Name="md5">
-      <File Name="model/md5/main.cpp"/>
-      <File Name="model/md5/md5.cpp"/>
-      <File Name="model/md5/md5.h"/>
-      <File Name="model/md5/md5Frame.cpp"/>
-      <File Name="model/md5/md5Frame.h"/>
-    </VirtualDirectory>
     <VirtualDirectory Name="md5parser">
       <File Name="model/md5parser/md5.cpp"/>
       <File Name="model/md5parser/md5.h"/>

@@ -142,7 +142,13 @@ OpenGLViewController::OpenGLViewController()
 {
 	m_lightRotation = 0;
 	m_pRenderPipelineDefault = NULL;
-	m_pMiniRenderPipeline = NULL;
+	m_pMiniRenderPipeline = NULL;	
+	m_pGameCamera = NULL;
+	m_pGuiRenderer = NULL;
+	m_pLabel = NULL;
+	m_pAudioManager = NULL;
+	m_pTextRenderer = NULL;
+	
 	m_startTime = glfwGetTime();
 }
 
