@@ -167,10 +167,12 @@
     <File Name="gui/Label.cpp"/>
     <File Name="gui/Label.h"/>
   </VirtualDirectory>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
   <VirtualDirectory Name="src">
     <File Name="main.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="audioManager">
+    <File Name="audioManager/AudioManager.h"/>
+    <File Name="audioManager/AudioManager.cpp"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -183,7 +185,7 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-O0;-Wall;-std=gnu++0x;" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-gstabs;-O0;-Wall;-std=gnu++0x" C_Options="-gstabs;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <IncludePath Value="../ow"/>
       </Compiler>
@@ -262,8 +264,6 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="audioManager">
-    <File Name="audioManager/AudioManager.h"/>
-    <File Name="audioManager/AudioManager.cpp"/>
-  </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
 </CodeLite_Project>

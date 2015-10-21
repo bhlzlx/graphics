@@ -1,8 +1,8 @@
 .PHONY: clean All
 
 All:
-	@echo "----------Building project:[ core - Release ]----------"
-	@cd "core" && "$(MAKE)" -f  "core.mk"
+	@echo "----------Building project:[ excel - Debug ]----------"
+	@cd "excel" && "$(MAKE)" -f  "excel.mk"
 clean:
-	@echo "----------Cleaning project:[ core - Release ]----------"
-	@cd "core" && "$(MAKE)" -f  "core.mk" clean
+	@echo "----------Cleaning project:[ excel - Debug ]----------"
+	@cd "excel" && "$(MAKE)" -f  "excel.mk" clean

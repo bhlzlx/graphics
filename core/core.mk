@@ -2,18 +2,18 @@
 ## Auto Generated makefile by CodeLite IDE
 ## any manual changes will be erased      
 ##
-## Release
+## Debug
 ProjectName            :=core
-ConfigurationName      :=Release
+ConfigurationName      :=Debug
 WorkspacePath          := "F:\gits\graphics"
 ProjectPath            := "F:\gits\graphics\core"
-IntermediateDirectory  :=$(BuildDir)/$(ProjectName)/Release
+IntermediateDirectory  :=$(BuildDir)/$(ProjectName)/Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=Administrator
-Date                   :=16/10/2015
+Date                   :=21/10/2015
 CodeLitePath           :="E:\application\CodeLite"
 LinkerName             :=E:/tdmgcc32/bin/g++.exe
 SharedObjectLinkerName :=E:/tdmgcc32/bin/g++.exe -shared -fPIC
@@ -27,8 +27,8 @@ OutputSwitch           :=-o
 LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
-OutputFile             :=$(BuildDir)/$(ProjectName)/$(ProjectName)_release
-Preprocessors          :=$(PreprocessorSwitch)NDEBUG 
+OutputFile             :=$(BuildDir)/$(ProjectName)/$(ProjectName)_debug
+Preprocessors          :=
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
@@ -52,8 +52,8 @@ LibPath                :=$(LibraryPathSwitch)E:/tdmgcclib/lib $(LibraryPathSwitc
 AR       := E:/tdmgcc32/bin/ar.exe rcu
 CXX      := E:/tdmgcc32/bin/g++.exe
 CC       := E:/tdmgcc32/bin/gcc.exe
-CXXFLAGS :=  -O2 -Wall -std=gnu++0x  $(Preprocessors)
-CFLAGS   :=  -O2 -Wall $(Preprocessors)
+CXXFLAGS :=  -gstabs -O0 -Wall -std=gnu++0x $(Preprocessors)
+CFLAGS   :=  -gstabs -O0 -Wall $(Preprocessors)
 ASFLAGS  := 
 AS       := E:/tdmgcc32/bin/as.exe
 
@@ -88,11 +88,11 @@ $(OutputFile): $(IntermediateDirectory)/.d $(Objects)
 	$(LinkerName) $(OutputSwitch)$(OutputFile) @$(ObjectsFileList) $(LibPath) $(Libs) $(LinkOptions)
 
 MakeIntermediateDirs:
-	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Release"
+	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Debug"
 
 
 $(IntermediateDirectory)/.d:
-	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Release"
+	@$(MakeDirCommand) "$(BuildDir)/$(ProjectName)/Debug"
 
 PreBuild:
 
@@ -434,6 +434,6 @@ $(IntermediateDirectory)/log_logger.cpp$(PreprocessSuffix): ../ow/owcmn/log/logg
 ## Clean
 ##
 clean:
-	$(RM) -r $(BuildDir)/$(ProjectName)/Release/
+	$(RM) -r $(BuildDir)/$(ProjectName)/Debug/
 
 

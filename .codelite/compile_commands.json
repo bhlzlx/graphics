@@ -1,9 +1,17 @@
 [{
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -O2 -Wall -std=gnu++0x -DNDEBUG -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -MG -MP -MTE:/projects/builds/core/Release/renderer_TextRenderer.cpp.o -MFE:/projects/builds/core/Release/renderer_TextRenderer.cpp.o.d -MM core/renderer/TextRenderer.cpp",
-  "file": "F:\\gits\\graphics\\core\\core\\renderer\\TextRenderer.cpp"
+  "directory": "F:\\gits\\graphics\\packager",
+  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -std=gnu++0x -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -MG -MP -MTE:/projects/builds/packager/Debug/main.cpp.o -MFE:/projects/builds/packager/Debug/main.cpp.o.d -MM main.cpp",
+  "file": "F:\\gits\\graphics\\packager\\main.cpp"
  }, {
-  "directory": "F:\\gits\\graphics\\core",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/core/core/renderer/TextRenderer.cpp -O2 -Wall -std=gnu++0x -DNDEBUG -o E:/projects/builds/core/Release/renderer_TextRenderer.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
-  "file": "F:\\gits\\graphics\\core\\core\\renderer\\TextRenderer.cpp"
+  "directory": "F:\\gits\\graphics\\packager",
+  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -std=gnu++0x -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -MG -MP -MTE:/projects/builds/packager/Debug/algorithm_md5.cpp.o -MFE:/projects/builds/packager/Debug/algorithm_md5.cpp.o.d -MM ../ow/algorithm/md5.cpp",
+  "file": "F:\\gits\\graphics\\packager\\..\\ow\\algorithm\\md5.cpp"
+ }, {
+  "directory": "F:\\gits\\graphics\\packager",
+  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -std=gnu++0x -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -MG -MP -MTE:/projects/builds/packager/Debug/buffer_buffer.cpp.o -MFE:/projects/builds/packager/Debug/buffer_buffer.cpp.o.d -MM ../ow/buffer/buffer.cpp",
+  "file": "F:\\gits\\graphics\\packager\\..\\ow\\buffer\\buffer.cpp"
+ }, {
+  "directory": "F:\\gits\\graphics\\packager",
+  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -std=gnu++0x -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -MG -MP -MTE:/projects/builds/packager/Debug/owcmn_owcmn.cpp.o -MFE:/projects/builds/packager/Debug/owcmn_owcmn.cpp.o.d -MM ../ow/owcmn/owcmn.cpp",
+  "file": "F:\\gits\\graphics\\packager\\..\\ow\\owcmn\\owcmn.cpp"
  }]
