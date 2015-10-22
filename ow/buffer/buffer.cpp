@@ -90,7 +90,7 @@ namespace ow
 		
 		owINT32 Resize( owINT32 _nSize)
 		{
-			assert( _nSize > this->m_nCapacity);
+			assert( (owUINT32)_nSize > this->m_nCapacity);
 			owINT32 currOffset = m_pCurr - m_pData;
 			this->m_pData = (owBYTE *)realloc( m_pData, _nSize + 1);
 			assert( m_pData );

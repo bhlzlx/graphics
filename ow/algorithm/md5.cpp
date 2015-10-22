@@ -97,7 +97,7 @@ namespace ow
 		return pBuffer;
 	}
 	 
-	char chain_values[] =
+	unsigned char chain_values[] =
 	{
 		0x01,0x23,0x45,0x67,
 		0x89,0xab,0xcd,0xef,
