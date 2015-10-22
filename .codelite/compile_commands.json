@@ -6,20 +6,4 @@
   "directory": "F:\\gits\\graphics\\excel",
   "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/excel/main.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/excel/Debug/main.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -I./ow",
   "file": "F:\\gits\\graphics\\excel\\main.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\excel",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/ow/memory/memory.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/excel/Debug/memory_memory.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -I./ow",
-  "file": "F:\\gits\\graphics\\ow\\memory\\memory.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\excel",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/ow/owfile/owfile.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/excel/Debug/owfile_owfile.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -I./ow",
-  "file": "F:\\gits\\graphics\\ow\\owfile\\owfile.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\excel",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/excel/ow/excel/excel.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/excel/Debug/excel_excel.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -I./ow",
-  "file": "F:\\gits\\graphics\\excel\\ow\\excel\\excel.cpp"
- }, {
-  "directory": "F:\\gits\\graphics\\excel",
-  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/excel/ow/excel/excel_def_imp.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/excel/Debug/excel_excel_def_imp.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -I./ow",
-  "file": "F:\\gits\\graphics\\excel\\ow\\excel\\excel_def_imp.cpp"
  }]

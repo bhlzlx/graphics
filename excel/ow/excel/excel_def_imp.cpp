@@ -32,7 +32,7 @@ namespace ow
 		void init_##tb_name##_var_def( excel_table_info * pTableInfo )\
 		{\
 			pTableInfo->m_release_func = NULL;\
-			pTableInfo->m_pTable = &__tb_##tb_name;\
+			pTableInfo->m_pTable = &t_##tb_name;\
 			value_info info;\
 			typedef l_##tb_name LineType;
 		#define TB_DEF_VAR( type, name )\
@@ -51,7 +51,7 @@ namespace ow
 			pTableInfo->m_release_func = NULL;\
 			pTableInfo->m_init_func = NULL;\
 			pTableInfo->m_typeInfo.clear();\
-			for( l_##tb_name * pLine : __tb_##tb_name.m_vecLines)\
+			for( l_##tb_name * pLine : t_##tb_name.m_vecLines)\
 			{\
 				delete pLine;\
 			}
@@ -98,7 +98,7 @@ namespace ow
 			return NULL;\
 		}\
 		\
-		excel_##tb_name __tb_##tb_name;
+		excel_##tb_name t_##tb_name;
 		// 定义表值存储结构
 		#define TB_DEF_VAR(type, name)
 		#define TB_DEF_END()
@@ -114,7 +114,7 @@ namespace ow
 			pTableInfo->m_init_func =  init_##tb_name##_var_def;\
 			__excelManager.m_tableMap[ szTableName ] = pTableInfo;\
 		}\
-		__excelManager.m_tableMap[ szTableName ]->m_pTable =  (void *)&__tb_##tb_name;
+		__excelManager.m_tableMap[ szTableName ]->m_pTable =  (void *)&t_##tb_name;
 		#define TB_DEF_VAR( type, name )
 		#define TB_DEF_END()
 		void init_excel_manager()

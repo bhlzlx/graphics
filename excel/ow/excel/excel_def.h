@@ -123,7 +123,7 @@ namespace ow
 			l_##tb_name * GetLineByIndex( owUINT32 _index );\
 			l_##tb_name * GetLineById( owINT32 _id );\
 		};\
-		extern excel_##tb_name __tb_##tb_name;
+		extern excel_##tb_name t_##tb_name;
 		// 定义表值存储结构
 		#define TB_DEF_VAR(type, name)
 		#define TB_DEF_END()
