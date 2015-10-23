@@ -159,7 +159,7 @@ namespace ow
 							{
 								memcpy( valueBuff, cellBuffer.GetBuffer(), cellBuffer.Size() );
 								valueBuff[cellBuffer.Size()] = 0;
-								sscanf(valueBuff,"%d", &value);
+								sscanf(valueBuff,"%f", &value);
 							}
 							memdata_set(lineObject, vInfo.vOffset, value );
 							break;
