@@ -19,9 +19,9 @@ namespace ow
 
     struct SMemPool
     {
-        unsigned short                 m_nUnitCount;
-        unsigned short                 m_nUnitSize;
-        ow::MemoryBlock*           m_pHeadNode;
+        unsigned short                 	m_nUnitCount;
+        unsigned short                 	m_nUnitSize;
+        ow::MemoryBlock*         		m_pHeadNode;
 
         SMemPool(unsigned short nUnitCount,unsigned short nUnitSize);
         ~SMemPool();
@@ -30,7 +30,7 @@ namespace ow
         static void DestroyMemoryBlock(MemoryBlock * p);
 
         void * Alloc(size_t _size);
-        void   Recycle(void *p);
+        bool   Recycle(void *p);
     };
 };
 

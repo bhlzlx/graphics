@@ -90,7 +90,11 @@ namespace ow
 		
 		owINT32 Resize( owINT32 _nSize)
 		{
+<<<<<<< HEAD
 			assert( (owUINT32)_nSize > this->m_nCapacity);
+=======
+			assert( static_cast<owSIZE_T>(_nSize) > this->m_nCapacity);
+>>>>>>> 8cb7e13... 添加excel分配管理堆，改动内存池
 			owINT32 currOffset = m_pCurr - m_pData;
 			this->m_pData = (owBYTE *)realloc( m_pData, _nSize + 1);
 			assert( m_pData );
@@ -148,6 +152,104 @@ namespace ow
 			return ;
 		}
 	};
+	
+		owBufferRef::owBufferRef( owVOID * _pSrc, owINT32 & _nSize)
+		{
+			m_pData = static_cast<owBYTE*>(_pSrc);
+			m_pCurr = m_pData;
+			m_pEnd = m_pData + _nSize;
+			m_nCapacity = _nSize;
+		}
+		
+		owSIZE_T owBufferRef::Size()
+		{
+			return m_nCapacity;
+		}
+		
+		owINT32 owBufferRef::Seek( owINT8 _flag, owINT32 _offset)
+		{
+			switch(_flag)
+			{
+			case SEEK_SET:
+				m_pCurr = m_pData + _offset;
+				break;
+			case SEEK_CUR:
+				m_pCurr += _offset;
+				break;
+			case SEEK_END:
+				m_pCurr = m_pEnd + _offset;
+				break;
+			}
+			
+			if((m_pEnd - m_pCurr) < 0)
+			{
+				m_pCurr = m_pEnd;
+			}
+			else if(m_pCurr < m_pData)
+			{
+				m_pCurr = m_pData;
+			}
+			
+			return 1;
+		}
+		
+		owINT32 owBufferRef::Read( owVOID* _pOut, owINT32 _nSize)
+		{
+			owINT32 sizeLeft = m_pEnd - m_pCurr;
+			if(!sizeLeft)
+			{
+				return 0;
+			}
+			if(_nSize > sizeLeft)
+			{
+				_nSize = sizeLeft;
+			}
+			memcpy(_pOut,m_pCurr,_nSize);
+			m_pCurr += _nSize;
+			return _nSize;
+		}
+		
+		owINT32 owBufferRef::Write( owVOID* _pIn, owINT32 _nSize)
+		{
+			owINT32 sizeLeft = m_pEnd - m_pCurr;
+			if(sizeLeft < _nSize)
+			{
+				memcpy(m_pCurr, _pIn, sizeLeft);
+				return sizeLeft;
+			}
+			memcpy(m_pCurr, _pIn, _nSize);
+			m_pCurr += _nSize;
+			return _nSize;
+		}
+		
+		owBOOL owBufferRef::Eof()
+		{
+			if(m_pCurr>=m_pEnd)
+			{
+				return true;
+			}
+			return false;
+		}
+		
+		owBYTE* owBufferRef::GetCurr()
+		{
+			return m_pCurr;
+		}
+		
+		owBYTE* owBufferRef::GetBuffer()
+		{
+			return m_pData;
+		}
+
+		owVOID owBufferRef::Release()
+		{
+			delete this;
+		}
+		
+		owBufferRef::~owBufferRef()
+		{
+			return ;
+		}
 
 	struct MemBufferRef:public MemBuffer
 	{
@@ -202,6 +304,11 @@ namespace ow
 	owBuffer * CreateBufferRef( owVOID * _pData, owINT32 _nLength)
 	{
 		return new MemBufferRef(_pData, _nLength);
+	}
+	
+	owBufferRef CreateBufferRef2( owVOID * _pData, owINT32 _nLength )
+	{
+		return owBufferRef( _pData, _nLength);
 	}
 
 }

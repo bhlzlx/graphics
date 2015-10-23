@@ -19,8 +19,8 @@
   </Plugins>
   <VirtualDirectory Name="ow">
     <VirtualDirectory Name="owcmn">
-      <File Name="../ow/owcmn/EncodeCommon.cpp" ExcludeProjConfig="Debug"/>
-      <File Name="../ow/owcmn/EncodeCommon.h" ExcludeProjConfig="Debug"/>
+      <File Name="../ow/owcmn/EncodeCommon.cpp" ExcludeProjConfig=""/>
+      <File Name="../ow/owcmn/EncodeCommon.h" ExcludeProjConfig=""/>
       <File Name="../ow/owcmn/owcmn.cpp"/>
       <File Name="../ow/owcmn/owcmn.h"/>
       <File Name="../ow/owcmn/resources.cpp" ExcludeProjConfig="Debug"/>
@@ -69,12 +69,12 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="MinGW ( gcc.exe (tdm-1) 4.9.2 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-O0;-Wall;-std=gnu++0x" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-g;-pg;-O0;-Wall;-std=gnu++0x" C_Options="-g;-pg;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <IncludePath Value="../ow"/>
         <IncludePath Value="./ow"/>
       </Compiler>
-      <Linker Options="" Required="yes"/>
+      <Linker Options="-liconv;-pg;" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(BuildDir)/$(ProjectName)/$(ProjectName)" IntermediateDirectory="$(BuildDir)/$(ProjectName)/Debug" Command="$(BuildDir)/$(ProjectName)/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(BuildDir)/$(ProjectName)/" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">

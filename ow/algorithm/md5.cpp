@@ -97,7 +97,11 @@ namespace ow
 		return pBuffer;
 	}
 	 
+<<<<<<< HEAD
 	unsigned char chain_values[] =
+=======
+	owBYTE chain_values[] =
+>>>>>>> 8cb7e13... 添加excel分配管理堆，改动内存池
 	{
 		0x01,0x23,0x45,0x67,
 		0x89,0xab,0xcd,0xef,

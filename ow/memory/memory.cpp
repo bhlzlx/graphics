@@ -58,7 +58,7 @@ namespace ow
     {
         if(_size> this->m_nUnitSize)
         {
-            return malloc(_size);
+            return NULL;
         }
         else
         {
@@ -93,12 +93,12 @@ namespace ow
         }
     }
 
-    void SMemPool::Recycle(void * p)
+    bool SMemPool::Recycle(void * p)
     {
         assert(m_pHeadNode);
         if(!m_pHeadNode)
         {
-            return;
+            return false;
         }
         MemoryBlock * pLast = NULL;
         MemoryBlock * pEnum = m_pHeadNode;
@@ -125,11 +125,11 @@ namespace ow
                     }
                     SMemPool::DestroyMemoryBlock(pEnum);
                 }
-                return;
+                return true;
             }
             pLast = pEnum;
             pEnum = pEnum->m_pNext;
         }
-        free(p);
+        return false;
     }
 }

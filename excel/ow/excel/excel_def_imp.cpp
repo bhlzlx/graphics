@@ -61,6 +61,8 @@ namespace ow
 		#include "excel_meta_def.h"
 		#include "excel_undef.h"
 		
+		
+		
 		#define TB_DEF_BEGIN( tb_name ) \
 		l_##tb_name * excel_##tb_name::GetLineByIndex( owUINT32 _index )\
 		{\
@@ -89,7 +91,7 @@ namespace ow
 			}\
 			for( l_##tb_name * pLine : m_vecLines)\
 			{\
-				int id = memdata_get<l_##tb_name, int>((void *)pLine, offset);\
+				int id = memdata_get<int>((void *)pLine, offset);\
 				if(id == _id)\
 				{\
 					return pLine;\
@@ -102,6 +104,20 @@ namespace ow
 		// 定义表值存储结构
 		#define TB_DEF_VAR(type, name)
 		#define TB_DEF_END()
+		#include "excel_meta_def.h"
+		#include "excel_undef.h"
+		
+		// 定义存储添加行函数
+		#define TB_DEF_BEGIN( tb_name )\
+		void * tb_name##_insert( void * _pTable )\
+		{\
+			l_##tb_name * pLine = new l_##tb_name();\
+			t_##tb_name.m_vecLines.push_back(pLine);\
+			return (void *)pLine;\
+		}
+		#define TB_DEF_VAR( type, name )
+		#define TB_DEF_END()
+		
 		#include "excel_meta_def.h"
 		#include "excel_undef.h"
 		

@@ -12,11 +12,19 @@ OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
+<<<<<<< HEAD
 User                   :=phantom
 Date                   :=22/10/2015
 CodeLitePath           :="D:\app\CodeLite"
 LinkerName             :=F:/tdmgcc/bin/g++.exe
 SharedObjectLinkerName :=F:/tdmgcc/bin/g++.exe -shared -fPIC
+=======
+User                   :=Administrator
+Date                   :=23/10/2015
+CodeLitePath           :="E:\application\CodeLite"
+LinkerName             :=E:/tdmgcc32/bin/g++.exe
+SharedObjectLinkerName :=E:/tdmgcc32/bin/g++.exe -shared -fPIC
+>>>>>>> 8cb7e13... 添加excel分配管理堆，改动内存池
 ObjectSuffix           :=.o
 DependSuffix           :=.o.d
 PreprocessSuffix       :=.i
@@ -36,9 +44,15 @@ ObjectsFileList        :="excel.txt"
 PCHCompileFlags        :=
 MakeDirCommand         :=makedir
 RcCmpOptions           := 
+<<<<<<< HEAD
 RcCompilerName         :=F:/tdmgcc/bin/windres.exe
 LinkOptions            :=  
 IncludePath            := $(IncludeSwitch)F:/tdmgcclib/include $(IncludeSwitch)F:/tdmgcclib/include/freetype $(IncludeSwitch)E:/projects/graphics/ow  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)../ow $(IncludeSwitch)./ow 
+=======
+RcCompilerName         :=E:/tdmgcc32/bin/windres.exe
+LinkOptions            :=  -liconv -pg 
+IncludePath            := $(IncludeSwitch)E:/tdmgcclib/include $(IncludeSwitch)E:/tdmgcclib/include/freetype $(IncludeSwitch)F:/opengl/wxWidgets-3.0.2/include $(IncludeSwitch)F:/opengl/wxWidgets-3.0.2  $(IncludeSwitch). $(IncludeSwitch). $(IncludeSwitch)../ow $(IncludeSwitch)./ow 
+>>>>>>> 8cb7e13... 添加excel分配管理堆，改动内存池
 IncludePCH             := 
 RcIncludePath          := 
 Libs                   := 
@@ -49,11 +63,19 @@ LibPath                :=$(LibraryPathSwitch)F:/tdmgcclib/lib  $(LibraryPathSwit
 ## Common variables
 ## AR, CXX, CC, AS, CXXFLAGS and CFLAGS can be overriden using an environment variables
 ##
+<<<<<<< HEAD
 AR       := F:/tdmgcc/bin/ar.exe rcu
 CXX      := F:/tdmgcc/bin/g++.exe
 CC       := F:/tdmgcc/bin/gcc.exe
 CXXFLAGS :=  -g -O0 -Wall -std=gnu++0x $(Preprocessors)
 CFLAGS   :=  -g -O0 -Wall $(Preprocessors)
+=======
+AR       := E:/tdmgcc32/bin/ar.exe rcu
+CXX      := E:/tdmgcc32/bin/g++.exe
+CC       := E:/tdmgcc32/bin/gcc.exe
+CXXFLAGS :=  -g -pg -O0 -Wall -std=gnu++0x $(Preprocessors)
+CFLAGS   :=  -g -pg -O0 -Wall $(Preprocessors)
+>>>>>>> 8cb7e13... 添加excel分配管理堆，改动内存池
 ASFLAGS  := 
 AS       := F:/tdmgcc/bin/as.exe
 
@@ -63,7 +85,13 @@ AS       := F:/tdmgcc/bin/as.exe
 ##
 CodeLiteDir:=D:\app\CodeLite
 BuildDir:=E:/projects/builds
+<<<<<<< HEAD
 Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_owcmn.cpp$(ObjectSuffix) $(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/memory_memory.cpp$(ObjectSuffix) $(IntermediateDirectory)/owfile_owfile.cpp$(ObjectSuffix) $(IntermediateDirectory)/excel_excel.cpp$(ObjectSuffix) $(IntermediateDirectory)/excel_excel_def_imp.cpp$(ObjectSuffix) 
+=======
+WXWIN:=G:/wxwidgets
+WXCFG:=gcc_lib/mswud
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(ObjectSuffix) $(IntermediateDirectory)/owcmn_owcmn.cpp$(ObjectSuffix) $(IntermediateDirectory)/algorithm_md5.cpp$(ObjectSuffix) $(IntermediateDirectory)/buffer_buffer.cpp$(ObjectSuffix) $(IntermediateDirectory)/memory_memory.cpp$(ObjectSuffix) $(IntermediateDirectory)/owfile_owfile.cpp$(ObjectSuffix) $(IntermediateDirectory)/excel_excel.cpp$(ObjectSuffix) $(IntermediateDirectory)/excel_excel_def_imp.cpp$(ObjectSuffix) 
+>>>>>>> 8cb7e13... 添加excel分配管理堆，改动内存池
 
 
 
@@ -101,6 +129,14 @@ $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 
 $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) "main.cpp"
+
+$(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(ObjectSuffix): ../ow/owcmn/EncodeCommon.cpp $(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "F:/gits/graphics/ow/owcmn/EncodeCommon.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(DependSuffix): ../ow/owcmn/EncodeCommon.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(DependSuffix) -MM "../ow/owcmn/EncodeCommon.cpp"
+
+$(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(PreprocessSuffix): ../ow/owcmn/EncodeCommon.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/owcmn_EncodeCommon.cpp$(PreprocessSuffix) "../ow/owcmn/EncodeCommon.cpp"
 
 $(IntermediateDirectory)/owcmn_owcmn.cpp$(ObjectSuffix): ../ow/owcmn/owcmn.cpp $(IntermediateDirectory)/owcmn_owcmn.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "E:/projects/graphics/ow/owcmn/owcmn.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/owcmn_owcmn.cpp$(ObjectSuffix) $(IncludePath)

@@ -1,4 +1,5 @@
 [{
+<<<<<<< HEAD
   "directory": "E:\\projects\\graphics\\excel",
   "command": "F:/tdmgcc/bin/g++.exe -g -O0 -Wall -std=gnu++0x -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I. -I../ow -I./ow -MG -MP -MTE:/projects/builds/excel/Debug/main.cpp.o -MFE:/projects/builds/excel/Debug/main.cpp.o.d -MM main.cpp",
   "file": "E:\\projects\\graphics\\excel\\main.cpp"
@@ -62,4 +63,13 @@
   "directory": "E:\\projects\\graphics\\excel",
   "command": "F:/tdmgcc/bin/g++.exe -c E:/projects/graphics/excel/ow/excel/excel_def_imp.cpp -g -O0 -Wall -std=gnu++0x -o E:/projects/builds/excel/Debug/excel_excel_def_imp.cpp.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I. -I../ow -I./ow",
   "file": "E:\\projects\\graphics\\excel\\ow\\excel\\excel_def_imp.cpp"
+=======
+  "directory": "F:\\gits\\graphics\\excel",
+  "command": "E:/tdmgcc32/bin/g++.exe -g -pg -O0 -Wall -std=gnu++0x -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -I./ow -MG -MP -MTE:/projects/builds/excel/Debug/owcmn_EncodeCommon.cpp.o -MFE:/projects/builds/excel/Debug/owcmn_EncodeCommon.cpp.o.d -MM ../ow/owcmn/EncodeCommon.cpp",
+  "file": "F:\\gits\\graphics\\excel\\..\\ow\\owcmn\\EncodeCommon.cpp"
+ }, {
+  "directory": "F:\\gits\\graphics\\excel",
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/ow/owcmn/EncodeCommon.cpp -g -pg -O0 -Wall -std=gnu++0x -o E:/projects/builds/excel/Debug/owcmn_EncodeCommon.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -I./ow",
+  "file": "F:\\gits\\graphics\\ow\\owcmn\\EncodeCommon.cpp"
+>>>>>>> 8cb7e13... 添加excel分配管理堆，改动内存池
  }]

@@ -5,6 +5,7 @@ using namespace ow::excel;
 
 int main(int argc, char **argv)
 {
+	ow::excel::ExcelHeap::InitHeap();
 	ow::excel::__excelManager.Init();
 	ow::excel::excel_table_info * pTableInfo = ow::excel::__excelManager.m_tableMap["Index"];
 	for(auto& typeInfo : pTableInfo->m_typeInfo )
