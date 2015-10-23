@@ -54,7 +54,7 @@ namespace ow
 		
 		owVOID ExcelHeap::InitHeap()
 		{
-			owUINT32 nUnitSize = CELL_SIZE_MIN;
+			owINT32 nUnitSize = CELL_SIZE_MIN;
 			while(nUnitSize <= CELL_SIZE_MAX)
 			{
 				SMemPool * pNewPool = new SMemPool( 64, nUnitSize);

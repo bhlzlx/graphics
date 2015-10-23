@@ -90,11 +90,7 @@ namespace ow
 		
 		owINT32 Resize( owINT32 _nSize)
 		{
-<<<<<<< HEAD
-			assert( (owUINT32)_nSize > this->m_nCapacity);
-=======
 			assert( static_cast<owSIZE_T>(_nSize) > this->m_nCapacity);
->>>>>>> 8cb7e13... 添加excel分配管理堆，改动内存池
 			owINT32 currOffset = m_pCurr - m_pData;
 			this->m_pData = (owBYTE *)realloc( m_pData, _nSize + 1);
 			assert( m_pData );
