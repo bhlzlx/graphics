@@ -31,7 +31,6 @@ namespace ow
 		#define TB_DEF_BEGIN( tb_name )\
 		void init_##tb_name##_var_def( excel_table_info * pTableInfo )\
 		{\
-			pTableInfo->m_release_func = NULL;\
 			pTableInfo->m_pTable = &t_##tb_name;\
 			value_info info;\
 			typedef l_##tb_name LineType;
@@ -128,6 +127,8 @@ namespace ow
 		{\
 			excel_table_info * pTableInfo = new excel_table_info();\
 			pTableInfo->m_init_func =  init_##tb_name##_var_def;\
+			pTableInfo->m_insert_func = tb_name##_insert;\
+			pTableInfo->m_release_func = release_##tb_name##_var_def;\
 			__excelManager.m_tableMap[ szTableName ] = pTableInfo;\
 		}\
 		__excelManager.m_tableMap[ szTableName ]->m_pTable =  (void *)&t_##tb_name;

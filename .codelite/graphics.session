@@ -1,124 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="F:\gits\graphics\graphics.workspace">
+<Session Name="E:\projects\graphics\graphics.workspace">
   <int Value="0" Name="m_selectedTab"/>
-  <wxString Value="F:\gits\graphics\graphics.workspace" Name="m_workspaceName"/>
+  <wxString Value="E:\projects\graphics\graphics.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="F:\gits\graphics\excel\main.cpp" Name="FileName"/>
+      <wxString Value="E:\projects\graphics\excel\main.cpp" Name="FileName"/>
       <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="23" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\excel\ow\excel\excel.h" Name="FileName"/>
-      <int Value="51" Name="FirstVisibleLine"/>
-      <int Value="50" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\excel\ow\excel\excel.cpp" Name="FileName"/>
-      <int Value="100" Name="FirstVisibleLine"/>
-      <int Value="183" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\packager\main.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="21" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\excel\ow\excel\excel_meta_def.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="8" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\excel\ow\excel\excel_def.h" Name="FileName"/>
-      <int Value="6" Name="FirstVisibleLine"/>
-      <int Value="13" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\excel\ow\excel\excel_undef.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="2" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\excel\ow\excel\excel_def_imp.cpp" Name="FileName"/>
-      <int Value="70" Name="FirstVisibleLine"/>
-      <int Value="89" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\ow\owcmn\resources.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="3" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\ow\package\owPackage.cpp" Name="FileName"/>
-      <int Value="135" Name="FirstVisibleLine"/>
-      <int Value="157" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="E:\tdmgcclib\include\vorbis\vorbisfile.h" Name="FileName"/>
-      <int Value="61" Name="FirstVisibleLine"/>
-      <int Value="74" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\ow\algorithm\md5.cpp" Name="FileName"/>
-      <int Value="110" Name="FirstVisibleLine"/>
-      <int Value="112" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\ow\buffer\buffer.cpp" Name="FileName"/>
-      <int Value="270" Name="FirstVisibleLine"/>
-      <int Value="304" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\ow\buffer\buffer.h" Name="FileName"/>
-      <int Value="15" Name="FirstVisibleLine"/>
-      <int Value="36" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\ow\memory\memory.h" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="31" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\ow\memory\memory.cpp" Name="FileName"/>
-      <int Value="96" Name="FirstVisibleLine"/>
-      <int Value="127" Name="CurrentLine"/>
-      <wxArrayString Name="Bookmarks"/>
-      <IntVector Name="CollapsedFolds"/>
-    </TabInfo>
-    <TabInfo>
-      <wxString Value="F:\gits\graphics\ow\owcmn\EncodeCommon.cpp" Name="FileName"/>
-      <int Value="0" Name="FirstVisibleLine"/>
-      <int Value="11" Name="CurrentLine"/>
+      <int Value="7" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

@@ -7,6 +7,8 @@
 #include <vector>
 #include <map>
 
+//#define EXCEL_USE_UNICODE
+
 namespace ow
 {
 	namespace excel

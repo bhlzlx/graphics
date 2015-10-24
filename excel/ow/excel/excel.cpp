@@ -19,19 +19,19 @@ namespace ow
 				if(*pEnd == '\r' && *(pEnd+1)=='\n')
 				{
 					owINT32 length = (owBYTE*)pEnd - pSet;
-					_pTableBuffer->Seek( SEEK_SET, length + 2);
+					_pTableBuffer->Seek( SEEK_CUR, length + 2);
 					return owBufferRef( pSet, length);
 				}
 				pEnd++;
 			}
 			owINT32 length = (owBYTE*)pEnd - pSet;
-			_pTableBuffer->Seek( SEEK_SET, length);
+			_pTableBuffer->Seek( SEEK_CUR, length);
 			return owBufferRef(pSet, length);
 		}
 		
 		owBufferRef ReadBufferCell( owBufferRef * _pLine )
 		{
-			owBYTE * pSet = _pLine->GetBuffer();
+			owBYTE * pSet = _pLine->GetCurr();
 			owCHAR * pEnd = (owCHAR*)pSet;
 			owCHAR * pBufferEnd = (owCHAR*)_pLine->GetBuffer() + _pLine->Size();
 			while(pEnd < pBufferEnd)
@@ -39,13 +39,13 @@ namespace ow
 				if( *pEnd == '\t')
 				{
 					owINT32 length = (owBYTE *)pEnd - pSet;
-					_pLine->Seek(SEEK_SET, length + 1);
+					_pLine->Seek(SEEK_CUR, length + 1);
 					return owBufferRef( pSet, length);
 				}
 				pEnd++;
 			}
 			owINT32 length = (owBYTE*)pEnd - pSet;
-			_pLine->Seek( SEEK_SET, length);
+			_pLine->Seek( SEEK_CUR, length);
 			return owBufferRef(pSet, length);
 		}
 		
@@ -123,7 +123,7 @@ namespace ow
 			{
 				return owFALSE;
 			}
-			_pBuffer->Seek( SEEK_SET, 0);
+			_pBuffer->Seek( SEEK_CUR, 0);
 			// 跳过表头
 			// 先不验证表头了
 			ReadBufferLine( _pBuffer );
@@ -132,10 +132,10 @@ namespace ow
 			while( _pBuffer->Eof() == owFALSE )
 			{
 				ow::owBufferRef lineBuffer = ReadBufferLine( _pBuffer );
+				void * lineObject = pTableInfo->m_insert_func( pTableInfo->m_pTable);
 				for( value_info& vInfo : pTableInfo->m_typeInfo)
 				{
 					ow::owBufferRef cellBuffer = ReadBufferCell( &lineBuffer );
-					void * lineObject = pTableInfo->m_insert_func( pTableInfo->m_pTable);
 					switch(vInfo.vType)
 					{
 						case type_int:
@@ -167,24 +167,33 @@ namespace ow
 						case type_string:
 						{
 							// if it's string, alloc from excel string heap~
-							char * szValue = NULL;
+							owVOID * szValue = NULL;
 							if(cellBuffer.Eof() == owFALSE)
 							{
-								owUINT16* szUTF8Buff = (owUINT16 *)ExcelHeap::alloc( cellBuffer.Size() );
-								owUINT16 * szUnicodeBuff = (owUINT16 *)ExcelHeap::alloc( cellBuffer.Size() * 1.5 );
-								owUINT32 nConv = UTF82Unicode(szUTF8Buff, cellBuffer.Size(), szUnicodeBuff,cellBuffer.Size() * 1.5);
-								szValue = (char *)ExcelHeap::alloc( (nConv + 1) * 2);
+#ifdef EXCEL_USE_UNICODE
+								owUINT16 * szUnicodeBuff = (owUINT16 *)ExcelHeap::alloc( cellBuffer.Size() * 2);
+								owUINT32 nConv = UTF82Unicode(
+												(owUINT16*)cellBuffer.GetBuffer(),
+												cellBuffer.Size(),
+												(owUINT16*)szUnicodeBuff,
+												cellBuffer.Size()*2
+												);
+								szValue = ExcelHeap::alloc( (nConv + 1) * 2);
 								memset( szValue, 0, (nConv+1) * 2);
 								memcpy( szValue, szUnicodeBuff, nConv * 2 );
 								ExcelHeap::dealloc( szUnicodeBuff);
-								ExcelHeap::dealloc( szUTF8Buff);
+#else
+								szValue = ExcelHeap::alloc( cellBuffer.Size() + 2);
+								memset(szValue, 0, cellBuffer.Size() + 2);
+								memcpy( szValue, cellBuffer.GetBuffer(), cellBuffer.Size() );
+#endif
 							}
 							memdata_set(lineObject, vInfo.vOffset, szValue);
+							break;
 						}
 					}
 				}
 			}
-			void * pLineObject = pTableInfo->m_insert_func(pTableInfo->m_pTable);
 			return owTRUE;
 		}
 		

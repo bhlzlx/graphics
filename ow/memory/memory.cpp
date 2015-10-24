@@ -95,7 +95,7 @@ namespace ow
 
     bool SMemPool::Recycle(void * p)
     {
-        assert(m_pHeadNode);
+        //assert(m_pHeadNode);
         if(!m_pHeadNode)
         {
             return false;
