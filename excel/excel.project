@@ -43,12 +43,12 @@
       <File Name="../ow/owfile/owfile.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="excel">
-      <File Name="ow/excel/excel.h"/>
-      <File Name="ow/excel/excel.cpp"/>
-      <File Name="ow/excel/excel_meta_def.h"/>
-      <File Name="ow/excel/excel_def.h"/>
-      <File Name="ow/excel/excel_undef.h"/>
-      <File Name="ow/excel/excel_def_imp.cpp"/>
+      <File Name="../ow/excel/excel.cpp"/>
+      <File Name="../ow/excel/excel.h"/>
+      <File Name="../ow/excel/excel_def.h"/>
+      <File Name="../ow/excel/excel_def_imp.cpp"/>
+      <File Name="../ow/excel/excel_meta_def.h"/>
+      <File Name="../ow/excel/excel_undef.h"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <Description/>
