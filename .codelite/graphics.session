@@ -1,12 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Session Name="F:\gits\graphics\graphics.workspace">
-  <int Value="0" Name="m_selectedTab"/>
-  <wxString Value="F:\gits\graphics\graphics.workspace" Name="m_workspaceName"/>
+<Session Name="E:\projects\graphics\graphics.workspace">
+  <int Value="7" Name="m_selectedTab"/>
+  <wxString Value="E:\projects\graphics\graphics.workspace" Name="m_workspaceName"/>
   <TabInfoArray Name="TabInfoArray">
     <TabInfo>
-      <wxString Value="F:\gits\graphics\excel\main.cpp" Name="FileName"/>
+      <wxString Value="E:\projects\graphics\excel\main.cpp" Name="FileName"/>
       <int Value="3" Name="FirstVisibleLine"/>
-      <int Value="26" Name="CurrentLine"/>
+      <int Value="5" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="E:\projects\graphics\ow\buffer\buffer.cpp" Name="FileName"/>
+      <int Value="146" Name="FirstVisibleLine"/>
+      <int Value="157" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="E:\projects\graphics\ow\owcmn\EncodeCommon.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="7" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="E:\projects\graphics\ow\buffer\buffer.h" Name="FileName"/>
+      <int Value="27" Name="FirstVisibleLine"/>
+      <int Value="15" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="E:\projects\graphics\ow\memory\memory.cpp" Name="FileName"/>
+      <int Value="117" Name="FirstVisibleLine"/>
+      <int Value="131" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="E:\projects\graphics\ow\memory\memory.h" Name="FileName"/>
+      <int Value="18" Name="FirstVisibleLine"/>
+      <int Value="19" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="F:\tdmgcc\lib\gcc\mingw32\4.9.2\include\c++\bits\stl_map.h" Name="FileName"/>
+      <int Value="514" Name="FirstVisibleLine"/>
+      <int Value="515" Name="CurrentLine"/>
+      <wxArrayString Name="Bookmarks"/>
+      <IntVector Name="CollapsedFolds"/>
+    </TabInfo>
+    <TabInfo>
+      <wxString Value="E:\projects\graphics\scriptEngine\main.cpp" Name="FileName"/>
+      <int Value="0" Name="FirstVisibleLine"/>
+      <int Value="8" Name="CurrentLine"/>
       <wxArrayString Name="Bookmarks"/>
       <IntVector Name="CollapsedFolds"/>
     </TabInfo>

@@ -1,9 +1,9 @@
 [{
-  "directory": "F:\\gits\\graphics\\scriptEngine",
-  "command": "E:/tdmgcc32/bin/gcc.exe -g -O0 -Wall -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -MG -MP -MT./Debug/lua_lua.c.o -MF./Debug/lua_lua.c.o.d -MM lua/lua.c",
-  "file": "F:\\gits\\graphics\\scriptEngine\\lua\\lua.c"
+  "directory": "E:\\projects\\graphics\\scriptEngine",
+  "command": "F:/tdmgcc/bin/g++.exe -g -O0 -Wall -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I. -MG -MP -MTE:/projects/builds/scriptEngine/Debug/main.cpp.o -MFE:/projects/builds/scriptEngine/Debug/main.cpp.o.d -MM main.cpp",
+  "file": "E:\\projects\\graphics\\scriptEngine\\main.cpp"
  }, {
-  "directory": "F:\\gits\\graphics\\scriptEngine",
-  "command": "E:/tdmgcc32/bin/gcc.exe -c F:/gits/graphics/scriptEngine/lua/lua.c -g -O0 -Wall -o ./Debug/lua_lua.c.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I.",
-  "file": "F:\\gits\\graphics\\scriptEngine\\lua\\lua.c"
+  "directory": "E:\\projects\\graphics\\scriptEngine",
+  "command": "F:/tdmgcc/bin/g++.exe -c E:/projects/graphics/scriptEngine/main.cpp -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/main.cpp.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
+  "file": "E:\\projects\\graphics\\scriptEngine\\main.cpp"
  }]
