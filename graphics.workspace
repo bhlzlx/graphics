@@ -4,18 +4,21 @@
     <![CDATA[]]>
   </Environment>
   <Project Name="packager" Path="packager/packager.project" Active="No"/>
-  <Project Name="core" Path="audio/audio.project" Active="No"/>
-  <Project Name="excel" Path="excel/excel.project" Active="Yes"/>
+  <Project Name="core" Path="audio/audio.project" Active="Yes"/>
+  <Project Name="excel" Path="excel/excel.project" Active="No"/>
+  <Project Name="core" Path="core/core.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
       <Project Name="packager" ConfigName="Debug"/>
       <Project Name="core" ConfigName="Debug"/>
       <Project Name="excel" ConfigName="Debug"/>
+      <Project Name="core" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
       <Project Name="packager" ConfigName="Release"/>
       <Project Name="core" ConfigName="Release"/>
       <Project Name="excel" ConfigName="Release"/>
+      <Project Name="core" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>
