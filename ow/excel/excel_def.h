@@ -47,7 +47,7 @@ namespace ow
 		#include "excel_undef.h"
 		
 		// 全局 excel 表格管理器对象
-		extern excel_manager __excelManager;
+		extern excel_manager ExcelManager_G;
 	}
 }
 	

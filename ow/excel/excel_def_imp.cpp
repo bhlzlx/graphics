@@ -6,7 +6,7 @@ namespace ow
 	namespace excel
 	{
 		// 全局变换定义
-		excel_manager __excelManager;
+		excel_manager ExcelManager_G;
 		
 		// 功能函数定义
 		value_type TypeForName( const char * _szTypeName)
@@ -75,7 +75,7 @@ namespace ow
 		l_##tb_name * excel_##tb_name::GetLineById( owINT32 _id )\
 		{\
 			size_t offset = 0xffffffff;\
-			excel_table_info * pTableInfo = __excelManager.m_tableMap[ #tb_name ];\
+			excel_table_info * pTableInfo = ExcelManager_G.m_tableMap[ #tb_name ];\
 			for( const value_info& vf: pTableInfo->m_typeInfo)\
 			{\
 				if(vf.vType == type_int)\
@@ -123,15 +123,15 @@ namespace ow
 		// 初始化表格管理器(表头信息)
 		#define TB_DEF_BEGIN( tb_name )\
 		szTableName = #tb_name;\
-		if( __excelManager.m_tableMap[ szTableName ] == NULL)\
+		if( ExcelManager_G.m_tableMap[ szTableName ] == NULL)\
 		{\
 			excel_table_info * pTableInfo = new excel_table_info();\
 			pTableInfo->m_init_func =  init_##tb_name##_var_def;\
 			pTableInfo->m_insert_func = tb_name##_insert;\
 			pTableInfo->m_release_func = release_##tb_name##_var_def;\
-			__excelManager.m_tableMap[ szTableName ] = pTableInfo;\
+			ExcelManager_G.m_tableMap[ szTableName ] = pTableInfo;\
 		}\
-		__excelManager.m_tableMap[ szTableName ]->m_pTable =  (void *)&t_##tb_name;
+		ExcelManager_G.m_tableMap[ szTableName ]->m_pTable =  (void *)&t_##tb_name;
 		#define TB_DEF_VAR( type, name )
 		#define TB_DEF_END()
 		void init_excel_manager()
@@ -144,12 +144,12 @@ namespace ow
 		// 销毁表格管理器(表头信息)
 		void clear_excel_manager()
 		{
-			for(auto& p : __excelManager.m_tableMap)
+			for(auto& p : ExcelManager_G.m_tableMap)
 			{
 				p.second->m_release_func(p.second);
 				delete p.second;
 			}
-			__excelManager.m_tableMap.clear();
+			ExcelManager_G.m_tableMap.clear();
 		}
 	}
 	
