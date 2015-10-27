@@ -4,7 +4,7 @@
 #include <scriptEngine/ScriptEngine.h>
 
 #include <string>
-#include <buffer/buffer.h>
+#include <buffer.h>
 
 using namespace luabridge;
 
@@ -22,12 +22,16 @@ int main(int argc, char **argv)
 		
 		engine.CallVoidScript("script_VoidParam1",iValue);
 		iValue = engine.CallScript<int>("script_Param1",iValue);
-	
 		printf("%d %f %s",iValue,fValue,strValue.c_str());
 		
-		ow::owBuffer * pBuffer = engine.CallScript<ow::owBuffer*>("script_MemBufferRet");
-		printf("owBuffer test : %s", pBuffer->GetBuffer());
-		engine.CallVoidScript("script_MemBufferRelease");
+		owINT32 (ow::MemBuffer::* fp)(const owVOID* ,owINT32) = &ow::MemBuffer::Write;
+		ow::MemBuffer * pBuff = ow::CreateMemBuffer( 32);
+		(pBuff->*fp)("hello,world!",13);
+		engine.CallVoidScript("script_MemBufferWrite",pBuff,"Hello,World!",13);
+		
+		//ow::owBuffer * pBuffer = engine.CallScript<ow::owBuffer*>("script_MemBufferRet");
+		//printf("owBuffer test : %s", pBuffer->GetBuffer());
+		//engine.CallVoidScript("script_MemBufferRelease");
 		
 	}
 	catch( luabridge::LuaException& e)

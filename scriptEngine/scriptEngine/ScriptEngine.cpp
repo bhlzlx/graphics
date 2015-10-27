@@ -2,7 +2,7 @@
 #include <vector>
 #include <stdio.h>
 #include <stdlib.h>
-#include <buffer/buffer.h>
+#include <buffer.h>
 
 namespace ow
 {

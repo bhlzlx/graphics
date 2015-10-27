@@ -24,6 +24,9 @@ using namespace luabridge;
 #define REG_FREE_FUNC( __func )							.addFunction( #__func, &__func )
 
 #define REG_CLASS_BEGIN( __class )						.beginClass<__class>( #__class )
+#define REG_CLASS_DERIVE( __classA, __classB)			.deriveClass <__classB, __classA>(#__classB)
+#define REG_CLASS_DERIVE_EXT( __classA, __classB, __name)\
+														.deriveClass <__classB, __classA>(__name)
 #define REG_CLASS_BEGIN_EXT( __class, __name )			.beginClass<__class>( __name )
 #define REG_CLASS_END									.endClass()
 #define REG_CLASS_DATA( __class, __data )				.addData( #__data, &__class::__data )

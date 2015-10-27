@@ -103,7 +103,7 @@ namespace ow
 			return 0;
 		}
 		
-		owINT32 Write( owVOID* _pIn, owINT32 _nSize)
+		owINT32 Write( const owVOID* _pIn, owINT32 _nSize)
 		{
 			owINT32 sizeLeft = m_pEnd - m_pCurr;
 			while(sizeLeft < _nSize)

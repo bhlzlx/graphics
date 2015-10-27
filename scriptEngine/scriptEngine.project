@@ -17,12 +17,6 @@
  }]]]>
     </Plugin>
   </Plugins>
-  <VirtualDirectory Name="ow">
-    <VirtualDirectory Name="buffer">
-      <File Name="../ow/buffer/buffer.cpp"/>
-      <File Name="../ow/buffer/buffer.h"/>
-    </VirtualDirectory>
-  </VirtualDirectory>
   <VirtualDirectory Name="LuaBridge">
     <VirtualDirectory Name="detail">
       <File Name="LuaBridge/detail/CFunctions.h"/>
@@ -48,6 +42,7 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="main.cpp"/>
+    <File Name="buffer.cpp"/>
   </VirtualDirectory>
   <VirtualDirectory Name="lua">
     <File Name="lua/lapi.c"/>
@@ -55,8 +50,12 @@
     <File Name="lua/lauxlib.c"/>
     <File Name="lua/lauxlib.h"/>
     <File Name="lua/lbaselib.c"/>
+    <File Name="lua/lbitlib.c"/>
     <File Name="lua/lcode.c"/>
     <File Name="lua/lcode.h"/>
+    <File Name="lua/lcorolib.c"/>
+    <File Name="lua/lctype.c"/>
+    <File Name="lua/lctype.h"/>
     <File Name="lua/ldblib.c"/>
     <File Name="lua/ldebug.c"/>
     <File Name="lua/ldebug.h"/>
@@ -95,7 +94,8 @@
     <File Name="lua/ltm.h"/>
     <File Name="lua/lua.c"/>
     <File Name="lua/lua.h"/>
-    <File Name="lua/luac.c" ExcludeProjConfig="Debug"/>
+    <File Name="lua/lua.hpp"/>
+    <File Name="lua/luac.c"/>
     <File Name="lua/luaconf.h"/>
     <File Name="lua/lualib.h"/>
     <File Name="lua/lundump.c"/>
@@ -104,7 +104,6 @@
     <File Name="lua/lvm.h"/>
     <File Name="lua/lzio.c"/>
     <File Name="lua/lzio.h"/>
-    <File Name="lua/print.c"/>
   </VirtualDirectory>
   <VirtualDirectory Name="scriptEngine">
     <File Name="scriptEngine/ScriptEngine.h"/>
@@ -122,9 +121,8 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="MinGW ( gcc.exe (tdm-1) 4.9.2 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-O0;-Wall;-std=gnu++0x" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
-        <IncludePath Value="../ow"/>
       </Compiler>
       <Linker Options="" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
