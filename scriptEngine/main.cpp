@@ -1,44 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
-extern "C"
-{
-	#include <lua/lua.h>
-	#include <lua/luaconf.h>
-	#include <lua/lualib.h>
-	#include <lua/lauxlib.h>
-}
+#include <exception>
+#include <scriptEngine/ScriptEngine.h>
 
-#include <LuaBridge/LuaBridge.h>
-
-struct Object
-{
-	int 	m_type;
-	void trace()
-	{
-		printf("Object::trace()::m_type = %d\n",m_type);
-	}
-};
+#include <string>
+#include <buffer/buffer.h>
 
 using namespace luabridge;
 
 int main(int argc, char **argv)
 {
-	lua_State * L = luaL_newstate();
-	luaopen_base(L);
-	luaL_openlibs(L);
+	try
+	{
+		ow::ScriptEngine &engine = ow::scriptEngine_g;
+		engine.Init();
+		engine.LoadScript("script.lua");
+		engine.CallVoidScript("script_VoidFunction");
+		int iValue = engine.CallScript<int>("script_GetIntValue");
+		float fValue = engine.CallScript<float>("script_GetFloatValue");
+		std::string strValue = engine.CallScript<std::string>("script_GetStringValue");
+		
+		engine.CallVoidScript("script_VoidParam1",iValue);
+		iValue = engine.CallScript<int>("script_Param1",iValue);
 	
-	getGlobalNamespace(L)
-		.beginClass<Object>("Object")
-			.addConstructor<void(*)(void)>()
-			.addData("m_type", &Object::m_type)
-			.addFunction("trace", &Object::trace)
-		.endClass();
-	
-	luaL_dofile(L,"script.lua");
-	
-	LuaRef trace = getGlobal (L, "trace");
-	trace();
-	
+		printf("%d %f %s",iValue,fValue,strValue.c_str());
+		
+		ow::owBuffer * pBuffer = engine.CallScript<ow::owBuffer*>("script_MemBufferRet");
+		printf("owBuffer test : %s", pBuffer->GetBuffer());
+		engine.CallVoidScript("script_MemBufferRelease");
+		
+	}
+	catch( luabridge::LuaException& e)
+	{
+		printf( e.what() );
+	}
+
 	system("pause");
 	return 0;
 }
