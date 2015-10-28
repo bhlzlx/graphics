@@ -27,12 +27,12 @@ int main(int argc, char **argv)
 		owINT32 (ow::MemBuffer::* fp)(const owVOID* ,owINT32) = &ow::MemBuffer::Write;
 		ow::MemBuffer * pBuff = ow::CreateMemBuffer( 32);
 		(pBuff->*fp)("hello,world!",13);
-		engine.CallVoidScript("script_MemBufferWrite",pBuff,"Hello,World!",13);
-		
-		//ow::owBuffer * pBuffer = engine.CallScript<ow::owBuffer*>("script_MemBufferRet");
-		//printf("owBuffer test : %s", pBuffer->GetBuffer());
-		//engine.CallVoidScript("script_MemBufferRelease");
-		
+		int size = engine.CallScript<int>("script_MemBufferSize", pBuff);
+		printf("buffer size : %d", size);
+		engine.CallVoidScript("script_MemBufferResize",pBuff,64);
+		size = engine.CallScript<int>("script_MemBufferSize", pBuff);
+		printf("buffer size : %d", size);
+		engine.CallVoidScript("script_MemBufferWrite",pBuff,(void*)&size,sizeof(int));
 	}
 	catch( luabridge::LuaException& e)
 	{

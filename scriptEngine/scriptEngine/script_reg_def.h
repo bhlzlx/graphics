@@ -1,6 +1,4 @@
 
-#define BUFFER_WRITE_PARAMS const owVOID*,owINT32
-
 REG_SCRIPT_BEGIN
 	REG_NAMESPACE_BEGIN( std )
 		REG_CLASS_BEGIN_EXT( std::vector<int>, "vec_int")
@@ -17,7 +15,7 @@ REG_SCRIPT_BEGIN
 			REG_CLASS_FUNC( ow::MemBuffer, Size)
 			REG_CLASS_FUNC( ow::MemBuffer, Seek)
 			REG_CLASS_FUNC( ow::MemBuffer, Read)
-			REG_CLASS_FUNC_EXT( ow::MemBuffer, Write, owINT32, BUFFER_WRITE_PARAMS)
+			REG_CLASS_FUNC( ow::MemBuffer, Write)
 			REG_CLASS_FUNC( ow::MemBuffer, Resize)
 			REG_CLASS_FUNC( ow::MemBuffer, Eof)
 			REG_CLASS_FUNC( ow::MemBuffer, GetCurr)

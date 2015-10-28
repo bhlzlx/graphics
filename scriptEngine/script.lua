@@ -20,18 +20,14 @@ function script_Param1( value )
 	return value + 1;
 end
 
-function script_MemBufferRet()
-	local memBuffer = ow.CreateMemBuffer(1024);
-	memBuffer:Release();
-	memBuffer:Resize(2046);
-	--[[
-	local str = "Hello,World!";
-	local len = 13;
-	memBuffer:Write(str, 13);
-	return memBuffer;
-	]]
+function script_MemBufferSize( _memBuffer )
+	return _memBuffer:Size();
 end
 
-function script_MemBufferRelease( memBuffer )
-	memBuffer:Release();
+function script_MemBufferResize( _memBuffer, _size )
+	_memBuffer:Resize(_size);
+end
+
+function script_MemBufferWrite( _memBuffer, _data, _len )
+	_memBuffer:Write(_data, _len);
 end

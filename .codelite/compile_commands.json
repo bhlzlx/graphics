@@ -1,113 +1,17 @@
 [{
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/g++.exe -c E:/projects/graphics/scriptEngine/main.cpp -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/main.cpp.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\main.cpp"
+  "directory": "F:\\gits\\graphics\\scriptEngine",
+  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -MG -MP -MTE:/projects/builds/scriptEngine/Debug/main.cpp.o -MFE:/projects/builds/scriptEngine/Debug/main.cpp.o.d -MM main.cpp",
+  "file": "F:\\gits\\graphics\\scriptEngine\\main.cpp"
  }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/ldebug.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_ldebug.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\ldebug.c"
+  "directory": "F:\\gits\\graphics\\scriptEngine",
+  "command": "E:/tdmgcc32/bin/g++.exe -g -O0 -Wall -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow -MG -MP -MTE:/projects/builds/scriptEngine/Debug/scriptEngine_ScriptEngine.cpp.o -MFE:/projects/builds/scriptEngine/Debug/scriptEngine_ScriptEngine.cpp.o.d -MM scriptEngine/ScriptEngine.cpp",
+  "file": "F:\\gits\\graphics\\scriptEngine\\scriptEngine\\ScriptEngine.cpp"
  }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/ldo.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_ldo.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\ldo.c"
+  "directory": "F:\\gits\\graphics\\scriptEngine",
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/scriptEngine/main.cpp -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/main.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
+  "file": "F:\\gits\\graphics\\scriptEngine\\main.cpp"
  }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/ldump.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_ldump.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\ldump.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lfunc.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lfunc.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lfunc.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lgc.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lgc.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lgc.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/linit.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_linit.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\linit.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/liolib.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_liolib.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\liolib.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/llex.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_llex.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\llex.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lmathlib.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lmathlib.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lmathlib.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lmem.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lmem.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lmem.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/loadlib.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_loadlib.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\loadlib.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lobject.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lobject.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lobject.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lopcodes.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lopcodes.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lopcodes.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/loslib.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_loslib.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\loslib.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lparser.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lparser.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lparser.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lstate.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lstate.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lstate.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lstring.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lstring.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lstring.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lstrlib.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lstrlib.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lstrlib.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/ltable.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_ltable.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\ltable.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/ltablib.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_ltablib.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\ltablib.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/ltm.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_ltm.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\ltm.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lua.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lua.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lua.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/luac.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_luac.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\luac.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lundump.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lundump.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lundump.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lvm.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lvm.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lvm.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/gcc.exe -c E:/projects/graphics/scriptEngine/lua/lzio.c -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/lua_lzio.c.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\lua\\lzio.c"
- }, {
-  "directory": "E:\\projects\\graphics\\scriptEngine",
-  "command": "F:/tdmgcc/bin/g++.exe -c E:/projects/graphics/scriptEngine/scriptEngine/ScriptEngine.cpp -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/scriptEngine_ScriptEngine.cpp.o -IF:/tdmgcclib/include -IF:/tdmgcclib/include/freetype -IE:/projects/graphics/ow -I. -I.",
-  "file": "E:\\projects\\graphics\\scriptEngine\\scriptEngine\\ScriptEngine.cpp"
+  "directory": "F:\\gits\\graphics\\scriptEngine",
+  "command": "E:/tdmgcc32/bin/g++.exe -c F:/gits/graphics/scriptEngine/scriptEngine/ScriptEngine.cpp -g -O0 -Wall -o E:/projects/builds/scriptEngine/Debug/scriptEngine_ScriptEngine.cpp.o -IE:/tdmgcclib/include -IE:/tdmgcclib/include/freetype -IF:/opengl/wxWidgets-3.0.2/include -IF:/opengl/wxWidgets-3.0.2 -I. -I. -I../ow",
+  "file": "F:\\gits\\graphics\\scriptEngine\\scriptEngine\\ScriptEngine.cpp"
  }]
