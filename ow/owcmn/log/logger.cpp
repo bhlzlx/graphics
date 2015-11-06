@@ -41,7 +41,7 @@ namespace ow
 		}
 		va_end(argptr);
 		
-		owCHAR * buff = resource::AllocString();
+		owCHAR buff[1024];
 		owINT32 ret = sprintf(buff, _szFormat, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9] );
 		assert(ret < resource::STRING_LENGTH_MAX);
 		

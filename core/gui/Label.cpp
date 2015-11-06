@@ -2,7 +2,6 @@
 #include <core/texogl.h>
 #include <core/device.h>
 #include <app/openglviewcontroller.h>
-#include <settings/settings.h>
 
 namespace gui
 {

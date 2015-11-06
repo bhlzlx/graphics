@@ -16,7 +16,6 @@
 #include <string.h>
 #include <math.h>
 
-#include <settings/settings.h>
 #include <owcmn/EncodeCommon.h>
 #include <owcmn/resources.h>
 #include <owcmn/owcmn.h>

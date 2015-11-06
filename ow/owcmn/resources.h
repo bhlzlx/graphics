@@ -3,7 +3,6 @@
 
 #include <memory/memory.h>
 #include <package/owPackage.h>
-#include <settings/settings.h>
 
 #define RESOURCE_STRING_LENGTH_MAX 2048
 

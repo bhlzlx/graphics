@@ -38,8 +38,6 @@
     <VirtualDirectory Name="owcmn">
       <File Name="../ow/owcmn/owcmn.cpp"/>
       <File Name="../ow/owcmn/owcmn.h"/>
-      <File Name="../ow/owcmn/ResourcePool.cpp"/>
-      <File Name="../ow/owcmn/ResourcePool.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="owfile">
       <File Name="../ow/owfile/owfile.cpp"/>
@@ -55,13 +53,20 @@
       <File Name="../ow/package/package_common.cpp"/>
       <File Name="../ow/package/package_common.h"/>
     </VirtualDirectory>
-    <VirtualDirectory Name="Preference">
-      <File Name="../ow/settings/settings.cpp"/>
-      <File Name="../ow/settings/settings.h"/>
-    </VirtualDirectory>
     <VirtualDirectory Name="memory">
       <File Name="../ow/memory/memory.cpp"/>
       <File Name="../ow/memory/memory.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="archive">
+      <File Name="../ow/archive/owArchive.h"/>
+      <File Name="../ow/archive/owArchive.cpp"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="foundation">
+      <File Name="../ow/foundation/owVector.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="owstring">
+      <File Name="../ow/owcmn/owstring.cpp"/>
+      <File Name="../ow/owcmn/owstring.h"/>
     </VirtualDirectory>
   </VirtualDirectory>
   <Description/>
@@ -84,7 +89,7 @@
         <IncludePath Value="."/>
         <IncludePath Value="../ow"/>
       </Compiler>
-      <Linker Options="-lz -lgdi32 -luser32 -lkernel32" Required="yes"/>
+      <Linker Options="-lz -lgdi32 -luser32 -lkernel32 -liconv" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(BuildDir)/$(ProjectName)/$(ProjectName)" IntermediateDirectory="$(BuildDir)/$(ProjectName)/Debug" Command="$(BuildDir)/$(ProjectName)/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(BuildDir)/$(ProjectName)/" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">

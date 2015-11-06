@@ -26,6 +26,158 @@
  }]]]>
     </Plugin>
   </Plugins>
+  <VirtualDirectory Name="__libow">
+    <VirtualDirectory Name="script">
+      <VirtualDirectory Name="LuaBridge">
+        <VirtualDirectory Name="detail">
+          <File Name="../ow/script/LuaBridge/detail/CFunctions.h"/>
+          <File Name="../ow/script/LuaBridge/detail/ClassInfo.h"/>
+          <File Name="../ow/script/LuaBridge/detail/Constructor.h"/>
+          <File Name="../ow/script/LuaBridge/detail/dump.h"/>
+          <File Name="../ow/script/LuaBridge/detail/FuncTraits.h"/>
+          <File Name="../ow/script/LuaBridge/detail/Iterator.h"/>
+          <File Name="../ow/script/LuaBridge/detail/LuaException.h"/>
+          <File Name="../ow/script/LuaBridge/detail/LuaHelpers.h"/>
+          <File Name="../ow/script/LuaBridge/detail/LuaRef.h"/>
+          <File Name="../ow/script/LuaBridge/detail/Namespace.h"/>
+          <File Name="../ow/script/LuaBridge/detail/Stack.h"/>
+          <File Name="../ow/script/LuaBridge/detail/TypeList.h"/>
+          <File Name="../ow/script/LuaBridge/detail/TypeTraits.h"/>
+          <File Name="../ow/script/LuaBridge/detail/Userdata.h"/>
+        </VirtualDirectory>
+        <File Name="../ow/script/LuaBridge/LuaBridge.h"/>
+        <File Name="../ow/script/LuaBridge/RefCountedObject.h"/>
+        <File Name="../ow/script/LuaBridge/RefCountedPtr.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="lua">
+        <File Name="../ow/script/lua/lapi.c"/>
+        <File Name="../ow/script/lua/lapi.h"/>
+        <File Name="../ow/script/lua/lauxlib.c"/>
+        <File Name="../ow/script/lua/lauxlib.h"/>
+        <File Name="../ow/script/lua/lbaselib.c"/>
+        <File Name="../ow/script/lua/lbitlib.c"/>
+        <File Name="../ow/script/lua/lcode.c"/>
+        <File Name="../ow/script/lua/lcode.h"/>
+        <File Name="../ow/script/lua/lcorolib.c"/>
+        <File Name="../ow/script/lua/lctype.c"/>
+        <File Name="../ow/script/lua/lctype.h"/>
+        <File Name="../ow/script/lua/ldblib.c"/>
+        <File Name="../ow/script/lua/ldebug.c"/>
+        <File Name="../ow/script/lua/ldebug.h"/>
+        <File Name="../ow/script/lua/ldo.c"/>
+        <File Name="../ow/script/lua/ldo.h"/>
+        <File Name="../ow/script/lua/ldump.c"/>
+        <File Name="../ow/script/lua/lfunc.c"/>
+        <File Name="../ow/script/lua/lfunc.h"/>
+        <File Name="../ow/script/lua/lgc.c"/>
+        <File Name="../ow/script/lua/lgc.h"/>
+        <File Name="../ow/script/lua/linit.c"/>
+        <File Name="../ow/script/lua/liolib.c"/>
+        <File Name="../ow/script/lua/llex.c"/>
+        <File Name="../ow/script/lua/llex.h"/>
+        <File Name="../ow/script/lua/llimits.h"/>
+        <File Name="../ow/script/lua/lmathlib.c"/>
+        <File Name="../ow/script/lua/lmem.c"/>
+        <File Name="../ow/script/lua/lmem.h"/>
+        <File Name="../ow/script/lua/loadlib.c"/>
+        <File Name="../ow/script/lua/lobject.c"/>
+        <File Name="../ow/script/lua/lobject.h"/>
+        <File Name="../ow/script/lua/lopcodes.c"/>
+        <File Name="../ow/script/lua/lopcodes.h"/>
+        <File Name="../ow/script/lua/loslib.c"/>
+        <File Name="../ow/script/lua/lparser.c"/>
+        <File Name="../ow/script/lua/lparser.h"/>
+        <File Name="../ow/script/lua/lstate.c"/>
+        <File Name="../ow/script/lua/lstate.h"/>
+        <File Name="../ow/script/lua/lstring.c"/>
+        <File Name="../ow/script/lua/lstring.h"/>
+        <File Name="../ow/script/lua/lstrlib.c"/>
+        <File Name="../ow/script/lua/ltable.c"/>
+        <File Name="../ow/script/lua/ltable.h"/>
+        <File Name="../ow/script/lua/ltablib.c"/>
+        <File Name="../ow/script/lua/ltm.c"/>
+        <File Name="../ow/script/lua/ltm.h"/>
+        <File Name="../ow/script/lua/lua.c"/>
+        <File Name="../ow/script/lua/lua.h"/>
+        <File Name="../ow/script/lua/lua.hpp"/>
+        <File Name="../ow/script/lua/luac.c"/>
+        <File Name="../ow/script/lua/luaconf.h"/>
+        <File Name="../ow/script/lua/lualib.h"/>
+        <File Name="../ow/script/lua/lundump.c"/>
+        <File Name="../ow/script/lua/lundump.h"/>
+        <File Name="../ow/script/lua/lvm.c"/>
+        <File Name="../ow/script/lua/lvm.h"/>
+        <File Name="../ow/script/lua/lzio.c"/>
+        <File Name="../ow/script/lua/lzio.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="scriptEngine">
+        <File Name="../ow/script/scriptEngine/ScriptEngine.cpp"/>
+        <File Name="../ow/script/scriptEngine/ScriptEngine.h"/>
+        <File Name="../ow/script/scriptEngine/script_reg_def.h"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <VirtualDirectory Name="owcmn">
+      <VirtualDirectory Name="log">
+        <File Name="../ow/owcmn/log/logger.cpp"/>
+        <File Name="../ow/owcmn/log/logger.h"/>
+      </VirtualDirectory>
+      <File Name="../ow/owcmn/EncodeCommon.cpp"/>
+      <File Name="../ow/owcmn/EncodeCommon.h"/>
+      <File Name="../ow/owcmn/owcmn.cpp"/>
+      <File Name="../ow/owcmn/owcmn.h"/>
+      <File Name="../ow/owcmn/owstring.cpp"/>
+      <File Name="../ow/owcmn/owstring.h"/>
+      <File Name="../ow/owcmn/resources.cpp"/>
+      <File Name="../ow/owcmn/resources.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="algorithm">
+      <File Name="../ow/algorithm/md5.cpp"/>
+      <File Name="../ow/algorithm/md5.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="archive">
+      <File Name="../ow/archive/owArchive.cpp"/>
+      <File Name="../ow/archive/owArchive.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="audio">
+      <File Name="../ow/audio/owAEPlayer.cpp"/>
+      <File Name="../ow/audio/owAEPlayer.h"/>
+      <File Name="../ow/audio/owAudio.cpp"/>
+      <File Name="../ow/audio/owAudio.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="buffer">
+      <File Name="../ow/buffer/buffer.cpp"/>
+      <File Name="../ow/buffer/buffer.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="excel">
+      <File Name="../ow/excel/excel.cpp"/>
+      <File Name="../ow/excel/excel.h"/>
+      <File Name="../ow/excel/excel_def.h"/>
+      <File Name="../ow/excel/excel_def_imp.cpp"/>
+      <File Name="../ow/excel/excel_meta_def.h"/>
+      <File Name="../ow/excel/excel_undef.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="foundation">
+      <File Name="../ow/foundation/owVector.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="memory">
+      <File Name="../ow/memory/memory.cpp"/>
+      <File Name="../ow/memory/memory.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="owZip">
+      <File Name="../ow/owZip/owZip.cpp"/>
+      <File Name="../ow/owZip/owZip.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="owfile">
+      <File Name="../ow/owfile/owfile.cpp"/>
+      <File Name="../ow/owfile/owfile.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="package">
+      <File Name="../ow/package/owPackage.cpp"/>
+      <File Name="../ow/package/owPackage.h"/>
+      <File Name="../ow/package/package_common.cpp"/>
+      <File Name="../ow/package/package_common.h"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
   <VirtualDirectory Name="scene">
     <VirtualDirectory Name="aabb">
       <File Name="scene/aabb/aabb.cpp"/>
@@ -62,56 +214,6 @@
     <File Name="math/Camera.h"/>
     <File Name="math/Variance.cpp"/>
     <File Name="math/Variance.h"/>
-  </VirtualDirectory>
-  <VirtualDirectory Name="_ow">
-    <VirtualDirectory Name="owcmn">
-      <VirtualDirectory Name="log">
-        <File Name="../ow/owcmn/log/logger.cpp"/>
-        <File Name="../ow/owcmn/log/logger.h"/>
-      </VirtualDirectory>
-      <File Name="../ow/owcmn/EncodeCommon.cpp"/>
-      <File Name="../ow/owcmn/EncodeCommon.h"/>
-      <File Name="../ow/owcmn/owcmn.cpp"/>
-      <File Name="../ow/owcmn/owcmn.h"/>
-      <File Name="../ow/owcmn/resources.h"/>
-      <File Name="../ow/owcmn/resources.cpp"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="algorithm">
-      <File Name="../ow/algorithm/md5.cpp"/>
-      <File Name="../ow/algorithm/md5.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="buffer">
-      <File Name="../ow/buffer/buffer.cpp"/>
-      <File Name="../ow/buffer/buffer.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="memory">
-      <File Name="../ow/memory/memory.cpp"/>
-      <File Name="../ow/memory/memory.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="owfile">
-      <File Name="../ow/owfile/owfile.cpp"/>
-      <File Name="../ow/owfile/owfile.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="owZip">
-      <File Name="../ow/owZip/owZip.cpp"/>
-      <File Name="../ow/owZip/owZip.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="package">
-      <File Name="../ow/package/owPackage.cpp"/>
-      <File Name="../ow/package/owPackage.h"/>
-      <File Name="../ow/package/package_common.cpp"/>
-      <File Name="../ow/package/package_common.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="settings">
-      <File Name="../ow/settings/settings.cpp"/>
-      <File Name="../ow/settings/settings.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="audio">
-      <File Name="../ow/audio/owAudio.cpp"/>
-      <File Name="../ow/audio/owAudio.h"/>
-      <File Name="../ow/audio/owAEPlayer.cpp"/>
-      <File Name="../ow/audio/owAEPlayer.h"/>
-    </VirtualDirectory>
   </VirtualDirectory>
   <Description/>
   <Dependencies/>

@@ -3,6 +3,7 @@
 #include <string>
 #include <algorithm>
 #include <cstring>
+#include <owcmn/owstring.h>
 #include <algorithm/md5.h>
 
 namespace ow
@@ -27,6 +28,7 @@ namespace ow
 			}
 			else
 			{
+				tolowercase(pch,strlen(pch));
 				pathList.push_back(pch);
 			}
 			pch = strtok (NULL, "/\\");
@@ -45,6 +47,7 @@ namespace ow
 	owBOOL owPackage::Init(const owCHAR* _szPackPath)
 	{		
 		m_pPackFile = ow::CreateStdFile( _szPackPath, "rb");
+		m_pPath = CreatePath( _szPackPath);
 		if(m_pPackFile == NULL)
 		{
 			return owFALSE;
@@ -101,6 +104,7 @@ namespace ow
 			}
 			if(nextDir == NULL)
 			{
+				delete path;
 				return NULL;
 			}
 			currNode = &m_pNodes[ nextDir->m_iNodeID ];
@@ -121,6 +125,7 @@ namespace ow
 		}
 		if(targetFile == NULL)
 		{
+			delete path;
 			return NULL;
 		}
 		// 解压文件，创建buffer,校验md5
@@ -144,6 +149,7 @@ namespace ow
 		}
 		
 		file->Seek( SEEK_SET, 0);
+		delete path;
 		return file;
 	}
 
@@ -159,7 +165,11 @@ namespace ow
 	
 	owVOID owPackage::Release()
 	{
-		
+		delete []this->m_pFileTags;
+		delete []this->m_pNodes;
+		delete this->m_pPath;
+		this->m_pPackFile->Release();
+		delete this;
 	}
 }
 
