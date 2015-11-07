@@ -1,0 +1,11 @@
+<I>id	<I>	<F>	<S>	<S>
+1		24		字体大小
+2		1.0		红
+3		0.0		绿
+4		0.0		蓝
+5		1.0		Alpha
+6			phantom lancer!~OpenGL哈哈!@$	显示文字
+7	0			开启blend选项
+8			./resource/font/mnjxdx.TTF	文字路径
+9			./resource/font/charlib.txt	字库文件
+10		18		字号

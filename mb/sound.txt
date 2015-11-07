@@ -1,0 +1,2 @@
+<I>id	<S>sound
+1	./resource/sound/ring.ogg
