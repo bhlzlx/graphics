@@ -121,8 +121,6 @@
         <File Name="../ow/owcmn/log/logger.cpp"/>
         <File Name="../ow/owcmn/log/logger.h"/>
       </VirtualDirectory>
-      <File Name="../ow/owcmn/EncodeCommon.cpp"/>
-      <File Name="../ow/owcmn/EncodeCommon.h"/>
       <File Name="../ow/owcmn/owcmn.cpp"/>
       <File Name="../ow/owcmn/owcmn.h"/>
       <File Name="../ow/owcmn/owstring.cpp"/>
@@ -276,6 +274,8 @@
     <File Name="audioManager/AudioManager.h"/>
     <File Name="audioManager/AudioManager.cpp"/>
   </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Dependencies Name="Release"/>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -287,9 +287,10 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="MinGW ( TDM-GCC-32 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-gstabs;-O0;-Wall;-std=gnu++0x" C_Options="-gstabs;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-g;-O0;-Wall;-std=gnu++0x" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
         <IncludePath Value="../ow"/>
+        <IncludePath Value="../ow/script"/>
       </Compiler>
       <Linker Options="-lglew32 -lglfw3 -lpng -lz -lgdi32 -lopengl32 -lfreetype -liconv -lopenal32 -logg.dll -lvorbisfile.dll" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
@@ -366,6 +367,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
 </CodeLite_Project>

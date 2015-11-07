@@ -15,14 +15,14 @@
 #include <model/md5/md5Frame.h>
 #include <string.h>
 #include <math.h>
-
-#include <owcmn/EncodeCommon.h>
 #include <owcmn/resources.h>
 #include <owcmn/owcmn.h>
 #include <package/owPackage.h>
 #include <owcmn/log/logger.h>
+#include <excel/excel_def.h>
+#include <owcmn/owstring.h>
 
-
+using namespace ow::excel;
 const char * szConfigPath = "./config.txt";
 
 const uint16_t STRING_TEST[2] = {0x4f60,0x597d};
@@ -94,23 +94,21 @@ void OpenGLViewController::OnInit()
 	m_pGuiRenderer = new gui::GuiRenderer();
 	m_pGuiRenderer->Init();
 	Rect<float> labelRect(0,0,512,32);
-	ow::Preference &config = ow::GetPreference();
-	float lableFontSize = config.GetFloatValue("GUI_FONT_SIZE");
-	glm::vec4 labelColor = glm::vec4(
-								config.GetFloatValue("GUI_COLOR_RED"),
-								config.GetFloatValue("GUI_COLOR_GREEN"),
-								config.GetFloatValue("GUI_COLOR_BLUE"),
-								config.GetFloatValue("GUI_COLOR_ALPHA")
-							);
+	
+	l_Preference * pLine = t_Preference.GetLineById(1);
+	float lableFontSize = pLine->fValue;
+	float r,g,b,a;
+	r = t_Preference.GetLineById(2)->fValue;
+	g = t_Preference.GetLineById(3)->fValue;
+	b = t_Preference.GetLineById(4)->fValue;
+	a = t_Preference.GetLineById(5)->fValue;
+	glm::vec4 labelColor = glm::vec4(r,g,b,a);
 
 	// 将utf8转换为unicode编码
-	std::string& labelText = ow::GetPreference().GetStringValue("LABEL_STRING");
-	owBuffer * pUTFBuffer = CreateMemBuffer( labelText.size() * 2);
-	uint16_t * ptr_in = (uint16_t *)labelText.c_str();
-	uint32_t size_in = labelText.size();
-	uint16_t * ptr_out = (uint16_t *)pUTFBuffer->GetBuffer();
-	uint32_t size_avail = pUTFBuffer->Size();
-	uint32_t count = UTF82Unicode(ptr_in,size_in,ptr_out,size_avail);
+	char * szText = t_Preference.GetLineById(6)->szString;
+	owBuffer * pUTFBuffer = CreateMemBuffer( strlen( szText) * 2);
+	char* ptr_out = (char*)pUTFBuffer->GetBuffer();
+	uint32_t count = utf82ucsle(szText,strlen(szText),ptr_out,pUTFBuffer->Size());
 	
 	m_pLabel = gui::Label::CreateLabel( labelRect, labelColor, lableFontSize);
 	m_pLabel->m_szText = new uint16_t[count + 1];

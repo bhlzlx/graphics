@@ -1,27 +1,36 @@
 #include "AudioManager.h"
 #include <owcmn/log/logger.h>
 #include <owcmn/resources.h>
+#include <archive/owArchive.h>
+#include <excel/excel_def.h>
+
+using namespace ow::excel;
+using namespace ow;
 
 namespace app
 {
 	ow::owFile * SoundFileForId( owINT32 _id )
 	{
-		if( _id == 1)
+		l_Sound * pLine = t_Sound.GetLineById( _id);
+		if(pLine == NULL)
 		{
-			ow::owFile * file = resource::GetPackage()->Open("ring.ogg");
-			return file;
+			return NULL;
 		}
-		return NULL;
+		char * path = pLine->szPath;
+		owFile * pFile = ow::GetArchive()->Open(path);
+		return pFile;
 	}
 	
 	ow::owFile * MusicFileForId( owINT32 _id )
 	{
-		if( _id == 1)
+		l_Music * pLine = t_Music.GetLineById( _id);
+		if(pLine == NULL)
 		{
-			ow::owFile * file = resource::GetPackage()->Open("clannad.ogg");
-			return file;
+			return NULL;
 		}
-		return NULL;
+		char * path = pLine->szPath;
+		owFile * pFile = ow::GetArchive()->Open(path);
+		return pFile;
 	}
 	
 	/************************************************************
@@ -173,7 +182,7 @@ namespace app
 			ow::owAEBuffer * pBuffer = this->m_soundCache.FindBuffer( _id);
 			if(pBuffer == NULL)
 			{
-				ow::owMemFile * pFile = (ow::owMemFile *)SoundFileForId( _id);
+				owFile* pFile = SoundFileForId( _id);
 				if(pFile == NULL)
 				{
 					ow::Logger::GetInstance(NULL)->Write("invalid sound id : %d", _id);
@@ -181,7 +190,7 @@ namespace app
 				}
 				else
 				{
-					pBuffer = ow::GetAudioDevice()->CreateBufferVorbis( pFile->m_pMemBuffer);
+					pBuffer = ow::GetAudioDevice()->CreateBufferVorbis( pFile->GetBuffer());
 					m_soundCache.InsertBuffer( _id, pBuffer);
 				}
 			}
@@ -222,8 +231,8 @@ namespace app
 			ow::owMemFile * pFile = (ow::owMemFile *)MusicFileForId( _id );
 			if(pFile)
 			{
-				ow::owBuffer * strongBuffer = ow::CreateMemBuffer( pFile->m_pMemBuffer->Size());
-				strongBuffer->Write( pFile->m_pMemBuffer->GetBuffer(), pFile->m_pMemBuffer->Size() );
+				ow::owBuffer * strongBuffer = ow::CreateMemBuffer( pFile->GetBuffer()->Size());
+				strongBuffer->Write( pFile->GetBuffer()->GetBuffer(), pFile->GetBuffer()->Size() );
 				strongBuffer->Seek( SEEK_SET, 0);
 				pFile->Release();
 				this->m_pMusicPlayer->SetupMusic( strongBuffer );

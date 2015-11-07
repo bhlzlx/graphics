@@ -17,6 +17,7 @@ namespace ow
 		virtual owSIZE_T Size() = 0;
 		virtual owBOOL	 Eof() = 0;
 		virtual owVOID Release() = 0;
+		virtual owBuffer* GetBuffer() = 0;
 		virtual ~owFile(){};
 	};
 	
@@ -24,6 +25,7 @@ namespace ow
 	{
 		FILE* 		m_pFile;
 		owSIZE_T 	m_iSize;
+		owBuffer*   m_pMemBuffer;
 		
 		owSIZE_T Read( owVOID* _ptr, owINT32 _nBytes );
 		owSIZE_T Write( owVOID* _ptr, owINT32 _nBytes );
@@ -31,7 +33,8 @@ namespace ow
 		owSIZE_T Tell();
 		owSIZE_T Size();
 		owBOOL	 Eof();
-		owVOID Release();
+		owVOID   Release();
+		owBuffer* GetBuffer();
 		
 		~owStdFile();
 	};
@@ -49,6 +52,7 @@ namespace ow
 		owSIZE_T Size();
 		owBOOL	 Eof();
 		owVOID Release();
+		owBuffer* GetBuffer();
 		
 		~owMemFile();
 	};

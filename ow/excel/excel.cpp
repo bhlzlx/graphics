@@ -1,7 +1,6 @@
 #include "excel.h"
 #include <assert.h>
 #include <memory.h>
-#include <owcmn/EncodeCommon.h>
 
 using namespace ow;
 
@@ -186,6 +185,7 @@ namespace ow
 								szValue = ExcelHeap::alloc( cellBuffer.Size() + 2);
 								memset(szValue, 0, cellBuffer.Size() + 2);
 								memcpy( szValue, cellBuffer.GetBuffer(), cellBuffer.Size() );
+								//printf("%s",cellBuffer.GetBuffer());
 #endif
 							}
 							memdata_set(lineObject, vInfo.vOffset, szValue);

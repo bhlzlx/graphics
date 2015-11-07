@@ -22,7 +22,7 @@ namespace ow
 	}
 	
 	
-	uint32_t utf82ucsle( char* _pUTF8, uint32_t _nDataLen, char* _pUnicode, uint32_t _nBufferSize)
+	uint32_t utf82ucsle(char* _pUTF8, uint32_t _nDataLen, char* _pUnicode, uint32_t _nBufferSize)
 	{
 		// utf8转unicode内码大小极端情况下内存占用是原来的2倍
 		assert(_nDataLen*2 <= _nBufferSize);

@@ -6,16 +6,23 @@
 #include <gl/glew.h>
 #include <cstdio>
 #include <glm/glm.hpp>
-
+#include <archive/owArchive.h>
 #include <owcmn/log/logger.h>
 #include <owcmn/resources.h>
+
+using namespace ow;
 
 ow::Logger * __logger__ = NULL;
 
 void AppDelegate::AppWillStart()
 {
+	owArchive * pArchive = NULL;
+	pArchive = ow::GetArchive();
+	pArchive->Init(".","./package.pkg");
+	
     __logger__ = ow::Logger::GetInstance("./log.txt");
     assert(__logger__);
+	// 初始化文件包
     m_pViewController = new OpenGLViewController();
 }
 

@@ -39,9 +39,15 @@ namespace ow
 		return feof( m_pFile);
 	}
 	
+	owBuffer * owStdFile::GetBuffer()
+	{
+		return this->m_pMemBuffer;
+	}
+	
 	owStdFile::~owStdFile()
 	{
-		
+		fclose(m_pFile);
+		m_pMemBuffer->Release();
 	}
 	
 	owFile * CreateStdFile( const owCHAR * _szFilepath, const owCHAR * _szFlag )
@@ -56,6 +62,11 @@ namespace ow
 		fseek(file,0,SEEK_SET);
 		
 		pStdFile->m_pFile = file;
+		pStdFile->m_pMemBuffer= CreateMemBuffer( pStdFile->m_iSize);
+		long pos = ftell(pStdFile->m_pFile);
+		fseek(pStdFile->m_pFile, 0, SEEK_SET);
+		fread(pStdFile->m_pMemBuffer->GetBuffer(), 1, pStdFile->m_iSize, pStdFile->m_pFile);
+		fseek(pStdFile->m_pFile, 0, SEEK_SET);
 		return pStdFile;
 	}	
 	
@@ -101,6 +112,11 @@ namespace ow
 		owMemFile * pMemFile = new owMemFile();
 		pMemFile->m_pMemBuffer = CreateMemBuffer( _nSize);
 		return pMemFile;
+	}
+	
+	owBuffer *owMemFile::GetBuffer()
+	{
+		return this->m_pMemBuffer;
 	}
 	
 	owMemFile::~owMemFile()

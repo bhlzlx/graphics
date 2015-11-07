@@ -7,9 +7,13 @@
 #include <core/rendertargetogl.h>
 #include <core/depthstencilogl.h>
 
-#include <settings/settings.h>
 #include <owFile/owFile.h>
 #include <owcmn/resources.h>
+#include <excel/excel_def.h>
+#include <archive/owArchive.h>
+
+using namespace ow::excel;
+using namespace ow;
 
 namespace Graphics
 {
@@ -332,16 +336,16 @@ namespace Graphics
 		{
 			__pTextureRenderer = new TextRenderer();
 			
-			ow::Preference & config = ow::GetPreference();
-			const char * fontPath = config.m_strings["FONT_TTF"].c_str();
-			const char * charLib = config.m_strings["CHAR_LIB"].c_str();
-			FONT_BOUND = config.m_floats["FONT_BASIC_SIZE"];
+			const char * fontPath = t_Preference.GetLineById(8)->szString;
+			const char * charLib = t_Preference.GetLineById(9)->szString;
+			FONT_BOUND = t_Preference.GetLineById(10)->fValue;
 			
-			owMemFile * fontFile = (owMemFile*)resource::GetPackage()->Open(fontPath);
-			owMemFile * charFile = (owMemFile*)resource::GetPackage()->Open(charLib);
-			__pTextureRenderer->Init( fontFile->m_pMemBuffer, charFile->m_pMemBuffer);
+			owArchive * archive = GetArchive();
+			owFile * fontFile = archive->Open( fontPath);
+			owFile * libFile = archive->Open( charLib);
+			__pTextureRenderer->Init( fontFile->GetBuffer(), libFile->GetBuffer());
 			fontFile->Release();
-			charFile->Release();
+			libFile->Release();
 		}
 		return __pTextureRenderer;
 	}

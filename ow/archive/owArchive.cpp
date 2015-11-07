@@ -2,6 +2,16 @@
 
 namespace ow
 {
+	owArchive* archive__ = NULL;
+	
+	owArchive * GetArchive()
+	{
+		if(archive__ == NULL)
+		{
+			archive__ = new owArchive;
+		}
+		return archive__;
+	}
 
 	owArchive::owArchive()
 	{
@@ -18,6 +28,7 @@ namespace ow
 	
 	void owArchive::Init( const char * _szRootpath, const char * _szRootpackpath )
 	{
+		memset(&m_pathPrefix[0],0, 64);
 		this->m_pRootPackage = new owPackage;
 		owBOOL ret = m_pRootPackage->Init( _szRootpackpath);
 		if(ret == owFALSE)
@@ -25,7 +36,8 @@ namespace ow
 			delete m_pRootPackage;
 			m_pRootPackage = NULL;
 		}
-		strcpy( &m_pathPrefix[0], _szRootpath);
+		
+		memcpy(m_pathPrefix, _szRootpath, strlen(_szRootpath));
 	}
 	
 	owFile * owArchive::Open( const char * _szFilepath)

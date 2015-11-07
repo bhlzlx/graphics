@@ -2,18 +2,21 @@
 #include <core/texogl.h>
 #include <core/device.h>
 #include <app/openglviewcontroller.h>
+#include <excel/excel_def.h>
+using namespace ow::excel;
 
 namespace gui
 {
 	void GuiRenderer::Init()
 	{
+		
 		const char * szVertShader = 
 						#include <glsl/uirender.vert>
 		const char * szFragShader =
 						#include <glsl/uirender.frag>
 						
 		EffectDesc effectDesc;
-		int enableBlend = ow::GetPreference().GetIntValue("GUI_ENABLE_BLEND");
+		int enableBlend = t_Preference.GetLineById(7)->iValue;;
 		if(enableBlend)
 		{
 			effectDesc.renderState.blendDest = BLEND_FACTOR_INVSRCALPHA;
