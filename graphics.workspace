@@ -3,25 +3,26 @@
   <Environment>
     <![CDATA[]]>
   </Environment>
-  <Project Name="packager" Path="packager/packager.project" Active="No"/>
   <Project Name="excel" Path="excel/excel.project" Active="No"/>
-  <Project Name="core" Path="core/core.project" Active="Yes"/>
-  <Project Name="scriptEngine" Path="scriptEngine/scriptEngine.project" Active="No"/>
-  <Project Name="core" Path="core/core.project" Active="No"/>
+  <Project Name="graphics" Path="graphics/graphics.project" Active="Yes"/>
+  <Project Name="packager" Path="packager/packager.project" Active="No"/>
+  <Project Name="script" Path="script/script.project" Active="No"/>
   <BuildMatrix>
     <WorkspaceConfiguration Name="Debug" Selected="yes">
-      <Project Name="packager" ConfigName="Debug"/>
+      <Project Name="core" ConfigName="Debug"/>
+      <Project Name="application" ConfigName="Debug"/>
       <Project Name="excel" ConfigName="Debug"/>
-      <Project Name="core" ConfigName="Debug"/>
-      <Project Name="scriptEngine" ConfigName="Debug"/>
-      <Project Name="core" ConfigName="Debug"/>
+      <Project Name="graphics" ConfigName="Debug"/>
+      <Project Name="packager" ConfigName="Debug"/>
+      <Project Name="script" ConfigName="Debug"/>
     </WorkspaceConfiguration>
     <WorkspaceConfiguration Name="Release" Selected="yes">
-      <Project Name="packager" ConfigName="Release"/>
+      <Project Name="core" ConfigName="Release"/>
+      <Project Name="application" ConfigName="Release"/>
       <Project Name="excel" ConfigName="Release"/>
-      <Project Name="core" ConfigName="Release"/>
-      <Project Name="scriptEngine" ConfigName="Release"/>
-      <Project Name="core" ConfigName="Release"/>
+      <Project Name="graphics" ConfigName="Debug"/>
+      <Project Name="packager" ConfigName="Release"/>
+      <Project Name="script" ConfigName="Release"/>
     </WorkspaceConfiguration>
   </BuildMatrix>
 </CodeLite_Workspace>

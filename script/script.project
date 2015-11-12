@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="excel" InternalType="Console">
+<CodeLite_Project Name="script" InternalType="Console">
   <Plugins>
-    <Plugin Name="qmake">
-      <![CDATA[00010001N0005Debug000000000000]]>
-    </Plugin>
     <Plugin Name="CMakePlugin">
       <![CDATA[[{
   "name": "Debug",
   "enabled": true,
   "buildDirectory": "..\\builds\\$(ProjectName)\\Debug",
-  "sourceDirectory": ".\\excel",
-  "generator": "MinGW Makefiles",
-  "buildType": "Debug",
+  "sourceDirectory": ".\\script",
+  "generator": "",
+  "buildType": "",
   "arguments": [],
   "parentProject": ""
  }]]]>
     </Plugin>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
   </Plugins>
+  <Description/>
+  <Dependencies/>
   <VirtualDirectory Name="src">
     <VirtualDirectory Name="ow">
-      <VirtualDirectory Name="script">
-        <VirtualDirectory Name="scriptEngine">
-          <File Name="../src/ow/script/scriptEngine/ScriptEngine.cpp"/>
-          <File Name="../src/ow/script/scriptEngine/ScriptEngine.h"/>
-          <File Name="../src/ow/script/scriptEngine/script_reg_def.h"/>
-        </VirtualDirectory>
-      </VirtualDirectory>
       <VirtualDirectory Name="cmn">
         <VirtualDirectory Name="log">
           <File Name="../src/ow/cmn/log/logger.cpp"/>
@@ -81,14 +76,103 @@
         <File Name="../src/ow/package/package_common.cpp"/>
         <File Name="../src/ow/package/package_common.h"/>
       </VirtualDirectory>
+      <VirtualDirectory Name="script">
+        <File Name="../src/ow/script/ScriptEngine.cpp"/>
+        <File Name="../src/ow/script/ScriptEngine.h"/>
+        <File Name="../src/ow/script/script_reg_def.h"/>
+      </VirtualDirectory>
       <VirtualDirectory Name="zip">
         <File Name="../src/ow/zip/owZip.cpp"/>
         <File Name="../src/ow/zip/owZip.h"/>
       </VirtualDirectory>
     </VirtualDirectory>
+    <VirtualDirectory Name="3rd">
+      <VirtualDirectory Name="LuaBridge">
+        <VirtualDirectory Name="detail">
+          <File Name="../src/3rd/LuaBridge/detail/CFunctions.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/ClassInfo.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/Constructor.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/dump.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/FuncTraits.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/Iterator.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/LuaException.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/LuaHelpers.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/LuaRef.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/Namespace.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/Stack.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/TypeList.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/TypeTraits.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/Userdata.h"/>
+        </VirtualDirectory>
+        <File Name="../src/3rd/LuaBridge/LuaBridge.h"/>
+        <File Name="../src/3rd/LuaBridge/RefCountedObject.h"/>
+        <File Name="../src/3rd/LuaBridge/RefCountedPtr.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="lua">
+        <File Name="../src/3rd/lua/lapi.c"/>
+        <File Name="../src/3rd/lua/lapi.h"/>
+        <File Name="../src/3rd/lua/lauxlib.c"/>
+        <File Name="../src/3rd/lua/lauxlib.h"/>
+        <File Name="../src/3rd/lua/lbaselib.c"/>
+        <File Name="../src/3rd/lua/lbitlib.c"/>
+        <File Name="../src/3rd/lua/lcode.c"/>
+        <File Name="../src/3rd/lua/lcode.h"/>
+        <File Name="../src/3rd/lua/lcorolib.c"/>
+        <File Name="../src/3rd/lua/lctype.c"/>
+        <File Name="../src/3rd/lua/lctype.h"/>
+        <File Name="../src/3rd/lua/ldblib.c"/>
+        <File Name="../src/3rd/lua/ldebug.c"/>
+        <File Name="../src/3rd/lua/ldebug.h"/>
+        <File Name="../src/3rd/lua/ldo.c"/>
+        <File Name="../src/3rd/lua/ldo.h"/>
+        <File Name="../src/3rd/lua/ldump.c"/>
+        <File Name="../src/3rd/lua/lfunc.c"/>
+        <File Name="../src/3rd/lua/lfunc.h"/>
+        <File Name="../src/3rd/lua/lgc.c"/>
+        <File Name="../src/3rd/lua/lgc.h"/>
+        <File Name="../src/3rd/lua/linit.c"/>
+        <File Name="../src/3rd/lua/liolib.c"/>
+        <File Name="../src/3rd/lua/llex.c"/>
+        <File Name="../src/3rd/lua/llex.h"/>
+        <File Name="../src/3rd/lua/llimits.h"/>
+        <File Name="../src/3rd/lua/lmathlib.c"/>
+        <File Name="../src/3rd/lua/lmem.c"/>
+        <File Name="../src/3rd/lua/lmem.h"/>
+        <File Name="../src/3rd/lua/loadlib.c"/>
+        <File Name="../src/3rd/lua/lobject.c"/>
+        <File Name="../src/3rd/lua/lobject.h"/>
+        <File Name="../src/3rd/lua/lopcodes.c"/>
+        <File Name="../src/3rd/lua/lopcodes.h"/>
+        <File Name="../src/3rd/lua/loslib.c"/>
+        <File Name="../src/3rd/lua/lparser.c"/>
+        <File Name="../src/3rd/lua/lparser.h"/>
+        <File Name="../src/3rd/lua/lstate.c"/>
+        <File Name="../src/3rd/lua/lstate.h"/>
+        <File Name="../src/3rd/lua/lstring.c"/>
+        <File Name="../src/3rd/lua/lstring.h"/>
+        <File Name="../src/3rd/lua/lstrlib.c"/>
+        <File Name="../src/3rd/lua/ltable.c"/>
+        <File Name="../src/3rd/lua/ltable.h"/>
+        <File Name="../src/3rd/lua/ltablib.c"/>
+        <File Name="../src/3rd/lua/ltm.c"/>
+        <File Name="../src/3rd/lua/ltm.h"/>
+        <File Name="../src/3rd/lua/lua.c"/>
+        <File Name="../src/3rd/lua/lua.h"/>
+        <File Name="../src/3rd/lua/lua.hpp"/>
+        <File Name="../src/3rd/lua/luac.c"/>
+        <File Name="../src/3rd/lua/luaconf.h"/>
+        <File Name="../src/3rd/lua/lualib.h"/>
+        <File Name="../src/3rd/lua/lundump.c"/>
+        <File Name="../src/3rd/lua/lundump.h"/>
+        <File Name="../src/3rd/lua/lvm.c"/>
+        <File Name="../src/3rd/lua/lvm.h"/>
+        <File Name="../src/3rd/lua/lzio.c"/>
+        <File Name="../src/3rd/lua/lzio.h"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <File Name="main.cpp"/>
+    <File Name="../src/libowconf.h"/>
   </VirtualDirectory>
-  <Description/>
-  <Dependencies/>
   <Settings Type="Executable">
     <GlobalSettings>
       <Compiler Options="" C_Options="" Assembler="">
@@ -100,14 +184,12 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="MinGW ( gcc.exe (tdm-1) 4.9.2 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-pg;-O0;-Wall;-std=gnu++0x;" C_Options="-g;-pg;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+      <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <IncludePath Value="."/>
-        <IncludePath Value="../ow"/>
-        <IncludePath Value="./ow"/>
       </Compiler>
-      <Linker Options="-liconv;-pg;" Required="yes"/>
+      <Linker Options="" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(BuildDir)/$(ProjectName)/$(ProjectName)" IntermediateDirectory="$(BuildDir)/$(ProjectName)/Debug" Command="Debug/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../builds/$(ProjectName)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
@@ -150,7 +232,7 @@
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
-      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="yes">
         <DebuggerSearchPaths/>
         <PostConnectCommands/>
         <StartupCommands/>
@@ -179,9 +261,4 @@
       </Completion>
     </Configuration>
   </Settings>
-  <VirtualDirectory Name="excel">
-    <File Name="main.cpp"/>
-  </VirtualDirectory>
-  <Dependencies Name="Debug"/>
-  <Dependencies Name="Release"/>
 </CodeLite_Project>

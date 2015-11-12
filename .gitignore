@@ -43,3 +43,7 @@ Temporary Items
 .apdisk
 *.db
 *.tags
+/core/*.cmake_dirty
+*.cmake_dirty
+/core/*.mk
+*.mk

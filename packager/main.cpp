@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include <stdint.h>
-#include <owfile/owfile.h>
-#include <owZip/owZip.h>
-#include <algorithm/md5.h>
+#include <file/owfile.h>
+#include <zip/owZip.h>
+#include <crypto/md5.h>
 #include <archive/owArchive.h>
-#include <owfile/owfile.h>
 
 using namespace ow;
 

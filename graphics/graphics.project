@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeLite_Project Name="graphics" InternalType="">
+  <Plugins>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
+    <Plugin Name="CMakePlugin">
+      <![CDATA[[{
+  "name": "Debug",
+  "enabled": true,
+  "buildDirectory": "..\\builds\\$(ProjectName)\\Debug",
+  "sourceDirectory": ".\\graphics",
+  "generator": "MinGW Makefiles",
+  "buildType": "Debug",
+  "arguments": [],
+  "parentProject": ""
+ }]]]>
+    </Plugin>
+  </Plugins>
+  <VirtualDirectory Name="src">
+    <VirtualDirectory Name="ow">
+      <VirtualDirectory Name="script">
+        <VirtualDirectory Name="scriptEngine">
+          <File Name="../src/ow/script/scriptEngine/ScriptEngine.cpp"/>
+          <File Name="../src/ow/script/scriptEngine/ScriptEngine.h"/>
+          <File Name="../src/ow/script/scriptEngine/script_reg_def.h"/>
+        </VirtualDirectory>
+      </VirtualDirectory>
+      <VirtualDirectory Name="cmn">
+        <VirtualDirectory Name="log">
+          <File Name="../src/ow/cmn/log/logger.cpp"/>
+          <File Name="../src/ow/cmn/log/logger.h"/>
+        </VirtualDirectory>
+        <File Name="../src/ow/cmn/owcmn.cpp"/>
+        <File Name="../src/ow/cmn/owcmn.h"/>
+        <File Name="../src/ow/cmn/owstring.cpp"/>
+        <File Name="../src/ow/cmn/owstring.h"/>
+        <File Name="../src/ow/cmn/resources.cpp"/>
+        <File Name="../src/ow/cmn/resources.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="archive">
+        <File Name="../src/ow/archive/owArchive.cpp"/>
+        <File Name="../src/ow/archive/owArchive.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="audio">
+        <File Name="../src/ow/audio/owAEPlayer.cpp"/>
+        <File Name="../src/ow/audio/owAEPlayer.h"/>
+        <File Name="../src/ow/audio/owAudio.cpp"/>
+        <File Name="../src/ow/audio/owAudio.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="buffer">
+        <File Name="../src/ow/buffer/buffer.cpp"/>
+        <File Name="../src/ow/buffer/buffer.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="crypto">
+        <File Name="../src/ow/crypto/md5.cpp"/>
+        <File Name="../src/ow/crypto/md5.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="excel">
+        <File Name="../src/ow/excel/excel.cpp"/>
+        <File Name="../src/ow/excel/excel.h"/>
+        <File Name="../src/ow/excel/excel_def.h"/>
+        <File Name="../src/ow/excel/excel_def_imp.cpp"/>
+        <File Name="../src/ow/excel/excel_meta_def.h"/>
+        <File Name="../src/ow/excel/excel_undef.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="file">
+        <File Name="../src/ow/file/owfile.cpp"/>
+        <File Name="../src/ow/file/owfile.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="foundation">
+        <File Name="../src/ow/foundation/owVector.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="memory">
+        <File Name="../src/ow/memory/memory.cpp"/>
+        <File Name="../src/ow/memory/memory.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="package">
+        <File Name="../src/ow/package/owPackage.cpp"/>
+        <File Name="../src/ow/package/owPackage.h"/>
+        <File Name="../src/ow/package/package_common.cpp"/>
+        <File Name="../src/ow/package/package_common.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="zip">
+        <File Name="../src/ow/zip/owZip.cpp"/>
+        <File Name="../src/ow/zip/owZip.h"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <VirtualDirectory Name="3rd">
+      <VirtualDirectory Name="LuaBridge">
+        <VirtualDirectory Name="detail">
+          <File Name="../src/3rd/LuaBridge/detail/CFunctions.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/ClassInfo.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/Constructor.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/dump.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/FuncTraits.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/Iterator.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/LuaException.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/LuaHelpers.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/LuaRef.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/Namespace.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/Stack.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/TypeList.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/TypeTraits.h"/>
+          <File Name="../src/3rd/LuaBridge/detail/Userdata.h"/>
+        </VirtualDirectory>
+        <File Name="../src/3rd/LuaBridge/LuaBridge.h"/>
+        <File Name="../src/3rd/LuaBridge/RefCountedObject.h"/>
+        <File Name="../src/3rd/LuaBridge/RefCountedPtr.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="lua">
+        <File Name="../src/3rd/lua/lapi.c"/>
+        <File Name="../src/3rd/lua/lapi.h"/>
+        <File Name="../src/3rd/lua/lauxlib.c"/>
+        <File Name="../src/3rd/lua/lauxlib.h"/>
+        <File Name="../src/3rd/lua/lbaselib.c"/>
+        <File Name="../src/3rd/lua/lbitlib.c"/>
+        <File Name="../src/3rd/lua/lcode.c"/>
+        <File Name="../src/3rd/lua/lcode.h"/>
+        <File Name="../src/3rd/lua/lcorolib.c"/>
+        <File Name="../src/3rd/lua/lctype.c"/>
+        <File Name="../src/3rd/lua/lctype.h"/>
+        <File Name="../src/3rd/lua/ldblib.c"/>
+        <File Name="../src/3rd/lua/ldebug.c"/>
+        <File Name="../src/3rd/lua/ldebug.h"/>
+        <File Name="../src/3rd/lua/ldo.c"/>
+        <File Name="../src/3rd/lua/ldo.h"/>
+        <File Name="../src/3rd/lua/ldump.c"/>
+        <File Name="../src/3rd/lua/lfunc.c"/>
+        <File Name="../src/3rd/lua/lfunc.h"/>
+        <File Name="../src/3rd/lua/lgc.c"/>
+        <File Name="../src/3rd/lua/lgc.h"/>
+        <File Name="../src/3rd/lua/linit.c"/>
+        <File Name="../src/3rd/lua/liolib.c"/>
+        <File Name="../src/3rd/lua/llex.c"/>
+        <File Name="../src/3rd/lua/llex.h"/>
+        <File Name="../src/3rd/lua/llimits.h"/>
+        <File Name="../src/3rd/lua/lmathlib.c"/>
+        <File Name="../src/3rd/lua/lmem.c"/>
+        <File Name="../src/3rd/lua/lmem.h"/>
+        <File Name="../src/3rd/lua/loadlib.c"/>
+        <File Name="../src/3rd/lua/lobject.c"/>
+        <File Name="../src/3rd/lua/lobject.h"/>
+        <File Name="../src/3rd/lua/lopcodes.c"/>
+        <File Name="../src/3rd/lua/lopcodes.h"/>
+        <File Name="../src/3rd/lua/loslib.c"/>
+        <File Name="../src/3rd/lua/lparser.c"/>
+        <File Name="../src/3rd/lua/lparser.h"/>
+        <File Name="../src/3rd/lua/lstate.c"/>
+        <File Name="../src/3rd/lua/lstate.h"/>
+        <File Name="../src/3rd/lua/lstring.c"/>
+        <File Name="../src/3rd/lua/lstring.h"/>
+        <File Name="../src/3rd/lua/lstrlib.c"/>
+        <File Name="../src/3rd/lua/ltable.c"/>
+        <File Name="../src/3rd/lua/ltable.h"/>
+        <File Name="../src/3rd/lua/ltablib.c"/>
+        <File Name="../src/3rd/lua/ltm.c"/>
+        <File Name="../src/3rd/lua/ltm.h"/>
+        <File Name="../src/3rd/lua/lua.c"/>
+        <File Name="../src/3rd/lua/lua.h"/>
+        <File Name="../src/3rd/lua/lua.hpp"/>
+        <File Name="../src/3rd/lua/luac.c"/>
+        <File Name="../src/3rd/lua/luaconf.h"/>
+        <File Name="../src/3rd/lua/lualib.h"/>
+        <File Name="../src/3rd/lua/lundump.c"/>
+        <File Name="../src/3rd/lua/lundump.h"/>
+        <File Name="../src/3rd/lua/lvm.c"/>
+        <File Name="../src/3rd/lua/lvm.h"/>
+        <File Name="../src/3rd/lua/lzio.c"/>
+        <File Name="../src/3rd/lua/lzio.h"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <VirtualDirectory Name="app">
+    <VirtualDirectory Name="scene">
+      <VirtualDirectory Name="aabb">
+        <File Name="app/scene/aabb/aabb.cpp"/>
+        <File Name="app/scene/aabb/aabb.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="octree">
+        <File Name="app/scene/octree/Octree.cpp"/>
+        <File Name="app/scene/octree/Octree.h"/>
+        <File Name="app/scene/octree/OctreeRenderNode.cpp"/>
+        <File Name="app/scene/octree/OctreeRenderNode.h"/>
+      </VirtualDirectory>
+      <File Name="app/scene/GameScene.cpp"/>
+      <File Name="app/scene/GameScene.h"/>
+      <File Name="app/scene/SceneObject.cpp"/>
+      <File Name="app/scene/SceneObject.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="model">
+      <VirtualDirectory Name="md5">
+        <File Name="app/model/md5/main.cpp"/>
+        <File Name="app/model/md5/md5.cpp"/>
+        <File Name="app/model/md5/md5.h"/>
+        <File Name="app/model/md5/md5Frame.cpp"/>
+        <File Name="app/model/md5/md5Frame.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="md5parser">
+        <File Name="app/model/md5parser/md5.cpp"/>
+        <File Name="app/model/md5parser/md5.h"/>
+        <File Name="app/model/md5parser/md5Model.cpp"/>
+        <File Name="app/model/md5parser/md5Model.h"/>
+      </VirtualDirectory>
+      <File Name="app/model/BasicModel.cpp"/>
+      <File Name="app/model/BasicModel.h"/>
+      <File Name="app/model/CModelParser.cpp"/>
+      <File Name="app/model/CModelParser.h"/>
+      <File Name="app/model/MD5Model.cpp"/>
+      <File Name="app/model/MD5Model.h"/>
+      <File Name="app/model/models.cpp"/>
+      <File Name="app/model/models.h"/>
+      <File Name="app/model/RenderObject.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="math">
+      <VirtualDirectory Name="backup">
+        <File Name="app/math/backup/Camera.cpp"/>
+        <File Name="app/math/backup/Camera.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="quat">
+        <File Name="app/math/quat/Camera.cpp"/>
+        <File Name="app/math/quat/Camera.h"/>
+      </VirtualDirectory>
+      <File Name="app/math/Camera.cpp"/>
+      <File Name="app/math/Camera.h"/>
+      <File Name="app/math/Variance.cpp"/>
+      <File Name="app/math/Variance.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="core">
+      <VirtualDirectory Name="renderer">
+        <File Name="app/core/renderer/TextRenderer.cpp"/>
+        <File Name="app/core/renderer/TextRenderer.h"/>
+      </VirtualDirectory>
+      <File Name="app/core/BufferOGL.cpp"/>
+      <File Name="app/core/BufferOGL.h"/>
+      <File Name="app/core/DepthStencilOGL.cpp"/>
+      <File Name="app/core/DepthStencilOGL.h"/>
+      <File Name="app/core/device.h"/>
+      <File Name="app/core/EffectOGL.cpp"/>
+      <File Name="app/core/EffectOGL.h"/>
+      <File Name="app/core/Image.cpp"/>
+      <File Name="app/core/RenderPipelineOGL.cpp"/>
+      <File Name="app/core/RenderPipelineOGL.h"/>
+      <File Name="app/core/RenderTargetOGL.cpp"/>
+      <File Name="app/core/RenderTargetOGL.h"/>
+      <File Name="app/core/ShaderOGL.cpp"/>
+      <File Name="app/core/ShaderOGL.h"/>
+      <File Name="app/core/TexOGL.cpp"/>
+      <File Name="app/core/TexOGL.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="app">
+      <File Name="app/app/AppDelegate.cpp"/>
+      <File Name="app/app/AppDelegate.h"/>
+      <File Name="app/app/OpenGLViewController.cpp"/>
+      <File Name="app/app/OpenGLViewController.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="audioManager">
+      <File Name="app/audioManager/AudioManager.cpp"/>
+      <File Name="app/audioManager/AudioManager.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="event">
+      <File Name="app/event/MouseEvent.cpp"/>
+      <File Name="app/event/MouseEvent.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="glsl">
+      <File Name="app/glsl/depthonly.frag"/>
+      <File Name="app/glsl/depthonly.vert"/>
+      <File Name="app/glsl/fontrender.frag"/>
+      <File Name="app/glsl/fontrender.vert"/>
+      <File Name="app/glsl/md5anim.frag"/>
+      <File Name="app/glsl/md5anim.vert"/>
+      <File Name="app/glsl/rendering.frag"/>
+      <File Name="app/glsl/rendering.vert"/>
+      <File Name="app/glsl/simple.frag"/>
+      <File Name="app/glsl/simple.vert"/>
+      <File Name="app/glsl/staticObject.frag"/>
+      <File Name="app/glsl/staticObject.vert"/>
+      <File Name="app/glsl/uirender.frag"/>
+      <File Name="app/glsl/uirender.vert"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="gui">
+      <File Name="app/gui/Label.cpp"/>
+      <File Name="app/gui/Label.h"/>
+    </VirtualDirectory>
+  </VirtualDirectory>
+  <Description/>
+  <Dependencies/>
+  <VirtualDirectory Name="graphics">
+    <File Name="main.cpp"/>
+  </VirtualDirectory>
+  <Dependencies Name="Debug"/>
+  <Settings Type="Executable">
+    <GlobalSettings>
+      <Compiler Options="" C_Options="" Assembler="">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="">
+        <LibraryPath Value="."/>
+      </Linker>
+      <ResourceCompiler Options=""/>
+    </GlobalSettings>
+    <Configuration Name="Debug" CompilerType="MinGW ( gcc.exe (tdm-1) 4.9.2 )" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
+      <Compiler Options="-g -Wall" C_Options="" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
+        <IncludePath Value="."/>
+      </Compiler>
+      <Linker Options="-O0" Required="yes">
+        <LibraryPath Value="."/>
+        <LibraryPath Value="Debug"/>
+      </Linker>
+      <ResourceCompiler Options="" Required="no"/>
+      <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./Debug/$(ProjectName).exe" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../builds/$(ProjectName)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
+        <![CDATA[]]>
+      </Environment>
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+        <DebuggerSearchPaths/>
+        <PostConnectCommands/>
+        <StartupCommands/>
+      </Debugger>
+      <PreBuild/>
+      <PostBuild/>
+      <CustomBuild Enabled="no">
+        <RebuildCommand/>
+        <CleanCommand/>
+        <BuildCommand/>
+        <PreprocessFileCommand/>
+        <SingleFileCommand/>
+        <MakefileGenerationCommand/>
+        <ThirdPartyToolName/>
+        <WorkingDirectory/>
+      </CustomBuild>
+      <AdditionalRules>
+        <CustomPostBuild/>
+        <CustomPreBuild/>
+      </AdditionalRules>
+      <Completion EnableCpp11="no" EnableCpp14="no">
+        <ClangCmpFlagsC/>
+        <ClangCmpFlags/>
+        <ClangPP/>
+        <SearchPaths>$(IntermediateDirectory)</SearchPaths>
+      </Completion>
+    </Configuration>
+  </Settings>
+</CodeLite_Project>

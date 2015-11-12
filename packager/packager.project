@@ -7,11 +7,11 @@
     <Plugin Name="CMakePlugin">
       <![CDATA[[{
   "name": "Debug",
-  "enabled": false,
-  "buildDirectory": "build",
-  "sourceDirectory": "$(ProjectPath)",
-  "generator": "",
-  "buildType": "",
+  "enabled": true,
+  "buildDirectory": "..\\builds\\$(ProjectName)\\Debug",
+  "sourceDirectory": ".\\packager",
+  "generator": "MinGW Makefiles",
+  "buildType": "Debug",
   "arguments": [],
   "parentProject": ""
  }, {
@@ -26,53 +26,81 @@
  }]]]>
     </Plugin>
   </Plugins>
-  <VirtualDirectory Name="ow">
-    <VirtualDirectory Name="algorithm">
-      <File Name="../ow/algorithm/md5.cpp"/>
-      <File Name="../ow/algorithm/md5.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="buffer">
-      <File Name="../ow/buffer/buffer.cpp"/>
-      <File Name="../ow/buffer/buffer.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="owcmn">
-      <File Name="../ow/owcmn/owcmn.cpp"/>
-      <File Name="../ow/owcmn/owcmn.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="owfile">
-      <File Name="../ow/owfile/owfile.cpp"/>
-      <File Name="../ow/owfile/owfile.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="owZip">
-      <File Name="../ow/owZip/owZip.cpp"/>
-      <File Name="../ow/owZip/owZip.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="package">
-      <File Name="../ow/package/owPackage.cpp"/>
-      <File Name="../ow/package/owPackage.h"/>
-      <File Name="../ow/package/package_common.cpp"/>
-      <File Name="../ow/package/package_common.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="memory">
-      <File Name="../ow/memory/memory.cpp"/>
-      <File Name="../ow/memory/memory.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="archive">
-      <File Name="../ow/archive/owArchive.h"/>
-      <File Name="../ow/archive/owArchive.cpp"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="foundation">
-      <File Name="../ow/foundation/owVector.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="owstring">
-      <File Name="../ow/owcmn/owstring.cpp"/>
-      <File Name="../ow/owcmn/owstring.h"/>
-    </VirtualDirectory>
-  </VirtualDirectory>
   <Description/>
   <Dependencies/>
-  <VirtualDirectory Name="src">
+  <VirtualDirectory Name="packager">
     <File Name="main.cpp"/>
+  </VirtualDirectory>
+  <VirtualDirectory Name="src">
+    <VirtualDirectory Name="ow">
+      <VirtualDirectory Name="script">
+        <VirtualDirectory Name="scriptEngine">
+          <File Name="../src/ow/script/scriptEngine/ScriptEngine.cpp"/>
+          <File Name="../src/ow/script/scriptEngine/ScriptEngine.h"/>
+          <File Name="../src/ow/script/scriptEngine/script_reg_def.h"/>
+        </VirtualDirectory>
+      </VirtualDirectory>
+      <VirtualDirectory Name="cmn">
+        <VirtualDirectory Name="log">
+          <File Name="../src/ow/cmn/log/logger.cpp"/>
+          <File Name="../src/ow/cmn/log/logger.h"/>
+        </VirtualDirectory>
+        <File Name="../src/ow/cmn/owcmn.cpp"/>
+        <File Name="../src/ow/cmn/owcmn.h"/>
+        <File Name="../src/ow/cmn/owstring.cpp"/>
+        <File Name="../src/ow/cmn/owstring.h"/>
+        <File Name="../src/ow/cmn/resources.cpp"/>
+        <File Name="../src/ow/cmn/resources.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="archive">
+        <File Name="../src/ow/archive/owArchive.cpp"/>
+        <File Name="../src/ow/archive/owArchive.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="audio">
+        <File Name="../src/ow/audio/owAEPlayer.cpp"/>
+        <File Name="../src/ow/audio/owAEPlayer.h"/>
+        <File Name="../src/ow/audio/owAudio.cpp"/>
+        <File Name="../src/ow/audio/owAudio.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="buffer">
+        <File Name="../src/ow/buffer/buffer.cpp"/>
+        <File Name="../src/ow/buffer/buffer.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="crypto">
+        <File Name="../src/ow/crypto/md5.cpp"/>
+        <File Name="../src/ow/crypto/md5.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="excel">
+        <File Name="../src/ow/excel/excel.cpp"/>
+        <File Name="../src/ow/excel/excel.h"/>
+        <File Name="../src/ow/excel/excel_def.h"/>
+        <File Name="../src/ow/excel/excel_def_imp.cpp"/>
+        <File Name="../src/ow/excel/excel_meta_def.h"/>
+        <File Name="../src/ow/excel/excel_undef.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="file">
+        <File Name="../src/ow/file/owfile.cpp"/>
+        <File Name="../src/ow/file/owfile.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="foundation">
+        <File Name="../src/ow/foundation/owVector.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="memory">
+        <File Name="../src/ow/memory/memory.cpp"/>
+        <File Name="../src/ow/memory/memory.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="package">
+        <File Name="../src/ow/package/owPackage.cpp"/>
+        <File Name="../src/ow/package/owPackage.h"/>
+        <File Name="../src/ow/package/package_common.cpp"/>
+        <File Name="../src/ow/package/package_common.h"/>
+      </VirtualDirectory>
+      <VirtualDirectory Name="zip">
+        <File Name="../src/ow/zip/owZip.cpp"/>
+        <File Name="../src/ow/zip/owZip.h"/>
+      </VirtualDirectory>
+    </VirtualDirectory>
+    <File Name="../src/libowconf.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -91,7 +119,7 @@
       </Compiler>
       <Linker Options="-lz -lgdi32 -luser32 -lkernel32 -liconv" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
-      <General OutputFile="$(BuildDir)/$(ProjectName)/$(ProjectName)" IntermediateDirectory="$(BuildDir)/$(ProjectName)/Debug" Command="$(BuildDir)/$(ProjectName)/$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(BuildDir)/$(ProjectName)/" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
+      <General OutputFile="$(BuildDir)/$(ProjectName)/$(ProjectName)" IntermediateDirectory="$(BuildDir)/$(ProjectName)/Debug" Command="./Debug/$(ProjectName).exe" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="../../builds/$(ProjectName)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
